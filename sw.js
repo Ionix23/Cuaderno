@@ -1,7 +1,7 @@
 /* Cuaderno Profesor · service worker
    La app se carga de la red si hay conexión (así llegan las actualizaciones)
    y de la copia guardada si no la hay. Las llamadas a Google no se tocan. */
-const CACHE = 'cuaderno-v3.0';
+const CACHE = 'cuaderno-v3.0.1';
 const SHELL = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './apple-touch-icon.png'];
 
 self.addEventListener('install', e=>{
