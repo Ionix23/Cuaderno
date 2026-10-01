@@ -461,6 +461,65 @@ details.sp-card summary{cursor:pointer;font-size:14px}
 .day-actions{margin-top:8px}
 .wk-tt{background:repeating-linear-gradient(135deg,#fff 0 8px,#F6F8F6 8px 16px)}
 .wk-tt-hint{display:block;font-size:11.5px;color:var(--muted)}
+.tt-note{display:block;font-size:11.5px;color:#7A5A10;font-weight:600;margin-top:2px;line-height:1.25}
+.day-ttnote{font-size:13px;margin:2px 0 4px}
+/* cambio rápido de clase, continuar, colores, ficha con todas las áreas */
+.ctx-course{flex:0 1 auto;font-weight:700;font-family:var(--font-display)}
+.resume-card{display:flex;align-items:center;gap:6px 14px;flex-wrap:wrap;width:100%;text-align:left;cursor:pointer;margin:-6px 0 18px;padding:12px 16px;border:1px solid var(--rule);border-left:5px solid var(--accent);border-radius:12px;background:#fff;font:inherit;color:inherit}
+.resume-card:hover{background:#F6F9F7}
+.resume-card .rc-k{width:100%;font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.resume-card .rc-t{font-weight:700;font-size:16px}
+.resume-card .rc-s{font-size:13px;color:var(--muted)}
+.resume-card .rc-go{margin-left:auto;font-size:20px;color:var(--accent)}
+.colors-card{margin-bottom:18px}
+.colors-card .col-by{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:6px 0 12px}
+.seg{display:inline-flex;border:1px solid var(--rule);border-radius:9px;overflow:hidden}
+.seg-btn{font:inherit;font-size:13.5px;padding:6px 14px;border:0;background:#fff;color:inherit;cursor:pointer}
+.seg-btn.on{background:var(--accent);color:#fff}
+.col-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px 24px}
+.col-pick{display:flex;align-items:center;gap:10px;padding:5px 0;cursor:pointer}
+.col-pick input[type=color]{width:34px;height:26px;padding:0;border:1px solid var(--rule);border-radius:6px;background:none;cursor:pointer}
+.ov-grid th.r,.ov-grid td.r{text-align:right;white-space:nowrap}
+.ov-grid .ov-cell{cursor:pointer}
+.ov-grid .ov-cell:hover{background:#F2F6F3}
+.ov-grid .ov-cell.on{background:#E7F1EB;box-shadow:inset 0 0 0 2px var(--accent)}
+.ov-grid tr.ov-cur td:first-child{font-weight:700}
+.ov-grid .ov-ini{color:#8A6206;background:#FFF3D6;border-radius:6px;padding:1px 6px;font-size:13px}
+.ov-grid b.low{color:#B4232C}
+.ov-grid .muted{color:var(--muted)}
+.ov-grid .al-dot{display:inline-block;width:10px;height:10px;border-radius:3px;vertical-align:middle}
+/* marcas y caritas */
+.mk-wrap{display:inline-flex;align-items:center;gap:2px}
+.mk-n{font-size:11.5px;font-weight:700;color:#8A6206;background:#FFF3D6;border-radius:8px;padding:0 5px}
+.mk-minus{font:inherit;width:26px;height:26px;border-radius:50%;border:1px solid var(--rule);background:#fff;cursor:pointer;color:var(--muted)}
+.mke-list{display:flex;flex-direction:column;gap:8px;margin-bottom:10px}
+.mke-row{display:flex;align-items:center;gap:8px}
+.mke-emo{font-size:22px;width:46px;height:42px;border:1px solid var(--rule);border-radius:10px;background:#fff;cursor:pointer;flex:none}
+.mke-emo.on{border-color:var(--accent);box-shadow:0 0 0 2px #E7F1EB}
+.mke-name{flex:1;min-width:0}
+.mke-cnt{display:flex;align-items:center;gap:4px;font-size:13px;color:var(--muted);white-space:nowrap}
+.mke-pal{display:grid;grid-template-columns:repeat(auto-fill,minmax(38px,1fr));gap:4px;padding:8px;border:1px solid var(--rule);border-radius:10px;background:#FAFBFA}
+.mke-pal button{font-size:20px;height:38px;border:0;background:none;border-radius:8px;cursor:pointer}
+.mke-pal button:hover{background:#E7F1EB}
+.mke-own{grid-column:1/-1;margin-top:4px}
+.grid td.mark button.cell,.tl-val{position:relative}
+.cmarks{position:absolute;top:-3px;right:-3px;font-size:13px;line-height:1;letter-spacing:-1px;pointer-events:none;z-index:2;background:rgba(255,255,255,.85);border-radius:6px;padding:1px 2px}
+.face-v{font-size:20px;line-height:1}
+.mk-hint{margin-top:8px}
+.mk-box{margin-top:14px;padding-top:10px;border-top:1px solid var(--rule)}
+.mk-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.mk-btn{display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:13px;padding:6px 10px;border:1px solid var(--rule);border-radius:999px;background:#fff;color:inherit;cursor:pointer}
+.mk-btn.on{background:#FFF3D6;border-color:#E4A11B;font-weight:600}
+.mk-ic{font-size:16px;line-height:1}
+.stu-marks{font-size:15px}
+.face-item{margin:8px 0 4px}
+.face-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+.face-btn{display:flex;flex-direction:column;align-items:center;gap:4px;min-width:84px;padding:12px 10px;border:2px solid var(--rule);border-radius:14px;background:#fff;font:inherit;font-size:13px;color:inherit;cursor:pointer}
+.face-btn .face-ic{font-size:34px;line-height:1}
+.face-btn.none .face-ic{font-size:24px;color:var(--muted);padding:5px 0}
+.face-btn.on{border-color:var(--accent);background:#E7F1EB;font-weight:600}
+.lvl-face{font-size:22px;line-height:1;margin-bottom:4px}
+.tt-note-box{margin:-4px 0 12px;padding:8px 10px;border-radius:8px;background:#FFF6DC;border:1px solid #EBD38E;color:#5E4708;font-size:13.5px}
 .app-ver{max-width:1100px;margin:0 auto;padding:6px 16px 22px;text-align:center;font-size:12px;color:var(--muted);font-family:var(--font-mono)}
 .app-ver b{color:var(--ink);font-weight:600}
 .subnav-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border:2px solid var(--rule);border-radius:11px;background:#fff;cursor:pointer;font-family:var(--font-display);font-size:15.5px;color:var(--muted);transition:all .12s;line-height:1}
@@ -1061,9 +1120,9 @@ function medMatchesProfile(medCode, conds){
 }
 const CODES = {P:'Presente', A:'Falta', R:'Retraso', J:'Justificada'};
 const KEY = 'cuaderno-lomloe:v1';
-const APP_VERSION = '3.0';
-const APP_BUILD = '30/09/2026';
-const APP_NOTES = 'App instalable en PC y móvil; sincronización automática con Google Drive entre equipos; Copia «clase sin alumnado» para compartir la programación con otro docente; Plantilla «Rúbrica de Cuaderno Inteligente»; Evaluación inicial con pruebas sin límite y cualquier instrumento, nota + observaciones y seguimiento del progreso; duplicar en otra clase; copiar sesiones; horarios';
+const APP_VERSION = '3.1';
+const APP_BUILD = '01/10/2026';
+const APP_NOTES = 'Cambio rápido de clase desde la cabecera manteniendo área y evaluación; la app recuerda tu última clase, área y evaluación («Continuar donde lo dejaste»); las notas de Mi horario se ven al planificar la sesión; ficha del alumno con todas sus áreas e informe individual descargable; colores de clases y áreas a elegir en Ajustes; marcas rápidas en las notas (pulsación larga o clic derecho) con editor de marcas y contador; instrumento Observación con caritas; tareas «solo informativas» que no cuentan para la nota';
 
 /* escala cualitativa por defecto (Orden ECD/1112/2022) */
 const DEFAULT_SCALE = [
@@ -1127,6 +1186,44 @@ function subnav(act, cur, items){
 }
 function instrMode(){ return state.instrMode || (isNarrow()?'list':'table'); }
 function course(){ return state.courses.find(c=>c.id===state.activeCourse) || null; }
+/* recuerda, por clase, el área, el periodo y la pestaña con la que se trabajó por última vez */
+const LIST_VIEWS = ['alumnos','unidades','trimestre','diversidad','plantillas','tutorias'];
+function rememberSel(){
+  const c = course(); if(!c) return;
+  if(!state.lastSel || typeof state.lastSel!=='object') state.lastSel = {};
+  const prev = state.lastSel[c.id] || {};
+  state.lastSel[c.id] = {area:state.activeArea || prev.area || null, period:state.activePeriod || prev.period || null,
+    view: LIST_VIEWS.includes(state.view) ? state.view : (prev.view || 'alumnos')};
+  state.lastCourse = c.id;
+}
+/* entrar en una clase. keep=true: cambio rápido desde la cabecera, se queda en la misma área, evaluación y pestaña */
+function enterCourse(cid, keep){
+  const from = course(), to = state.courses.find(x=>x.id===cid); if(!to) return;
+  const fromArea = from ? areaId() : null, fromP = from ? period() : null;
+  const fromIdx = (from && fromP) ? from.periods.findIndex(x=>x.id===fromP.id) : -1;
+  const fromUnit = (from && state.activeUnit) ? (from.units||[]).find(u=>u.id===state.activeUnit) : null;
+  const mem = (state.lastSel||{})[cid] || {};
+  state.activeCourse = cid; state.editor = null;
+  if(keep && from){
+    state.activeArea = to.areas.includes(fromArea) ? fromArea : (to.areas.includes(mem.area) ? mem.area : null);
+    const byName = fromP ? to.periods.find(x=>x.name===fromP.name) : null;
+    const np = byName || (fromIdx>=0 ? to.periods[fromIdx] : null);
+    state.activePeriod = np ? np.id : (mem.period || null);
+    if(state.view==='unidad' || state.view==='editorInstr'){
+      const twin = fromUnit ? (to.units||[]).find(u=>u.name===fromUnit.name && u.areaId===state.activeArea && u.periodId===state.activePeriod) : null;
+      if(twin){ state.activeUnit = twin.id; state.view = 'unidad'; state.unitSub = state.unitSub || 'tareas'; }
+      else { state.activeUnit = null; state.view = 'unidades'; }
+    } else if(state.view==='alumno') state.view = 'alumnos';
+    else if(state.view==='tutoriaAlumno') state.view = 'tutorias';
+    else if(!views[state.view] || state.view==='clases') state.view = 'alumnos';
+  } else {
+    state.activeArea = to.areas.includes(mem.area) ? mem.area : null;
+    state.activePeriod = to.periods.some(x=>x.id===mem.period) ? mem.period : null;
+    state.activeUnit = null;
+    state.view = mem.view && views[mem.view] ? mem.view : 'alumnos';
+  }
+  normalize(); leaveStale(); rememberSel();
+}
 function period(){ const c=course(); if(!c) return null; return c.periods.find(p=>p.id===state.activePeriod) || c.periods[0] || null; }
 function areaId(){ const c=course(); if(!c) return null; return c.areas.includes(state.activeArea) ? state.activeArea : c.areas[0]; }
 function areaDef(id){ return state.curriculo[id] || {name:id, ce:{}, crit:{1:{},2:{},3:{}}}; }
@@ -1139,7 +1236,7 @@ const SKILLS = [
   {id:'mediation', name:'Mediación (Mediation)'}
 ];
 function skillName(id){ const s=SKILLS.find(x=>x.id===id); return s?s.name:''; }
-function areaColor(aid){ return AREA_COLORS[aid] || '#6B7A72'; }
+function areaColor(aid){ return (state.areaColors && state.areaColors[aid]) || AREA_COLORS[aid] || '#6B7A72'; }
 function critList(aid, cycle){ const o = areaDef(aid).crit[cycle] || {}; return Object.keys(o).sort(cmpCode).map(k=>({code:k, text:o[k]})); }
 function cmpCode(a,b){ const pa=a.split('.').map(Number), pb=b.split('.').map(Number); return pa[0]-pb[0] || pa[1]-pb[1]; }
 
@@ -1254,10 +1351,10 @@ const GD_FILE = 'cuaderno-datos.json';
 const GD_LS = 'cuaderno-gdrive';
 const GD_API = 'https://www.googleapis.com/drive/v3';
 const GD_UP = 'https://www.googleapis.com/upload/drive/v3';
-const GD_DATA_KEYS = ['courses','curriculo','schedule','sessions','teacherTT','templates'];
+const GD_DATA_KEYS = ['courses','curriculo','schedule','sessions','teacherTT','templates','areaColors','colorBy','markDefs'];
 const GD_UI_KEYS = ['view','homeTab','planView','planDate','planSub','activeCourse','activeArea','activePeriod','activeUnit',
   'editor','viewStudent','tutStudent','tutFromHome','unitSub','triSub','divSub','alumSub','gridMode','editMode',
-  'instrMode','editWeights','homeTutCourse','homeAjCourse','attDate'];
+  'instrMode','editWeights','homeTutCourse','homeAjCourse','attDate','lastSel','lastCourse'];
 
 const gd = {
   status:'off',          // off · need · ok · sync · offline · error · conflict
@@ -1662,6 +1759,7 @@ function blankInstr(type){
   if(i.type==='rubric'){ i.levels = LEVEL_PRESETS.calif.slice(); i.items = [mkItem('','')]; }
   if(i.type==='scale'){ i.levels = numericLevels(4); i.items = [mkItem('','')]; }
   if(i.type==='check'){ i.items = [mkItem('','')]; }
+  if(i.type==='faces'){ i.levels = FACE_LEVELS.map(l=>Object.assign({}, l)); i.items = [mkItem('Actitud en clase','')]; }
   return i;
 }
 function cloneInstr(o){
@@ -1670,12 +1768,142 @@ function cloneInstr(o){
   return c;
 }
 
-const TYPE_NAMES = {num:'Puntuación directa', scale:'Escala de gradación', check:'Lista de cotejo', rubric:'Rúbrica'};
+const TYPE_NAMES = {num:'Puntuación directa', scale:'Escala de gradación', check:'Lista de cotejo', rubric:'Rúbrica', faces:'Observación con caritas'};
+/* caritas: tres grados fijos; el valor sobre 10 solo se usa si la tarea cuenta para la nota */
+const FACE_LEVELS = [{label:'Bien', value:9, face:'😊'}, {label:'Regular', value:6, face:'😐'}, {label:'Mejorable', value:3, face:'☹️'}];
+function levelFace(l){ return l && l.face ? l.face : ''; }
+/* carita que representa la nota de una tarea de caritas (la del grado más cercano) */
+function faceOf(ins, raw, v){
+  const lv = ins.levels||[];
+  if(Array.isArray(raw) && (ins.items||[]).length===1 && raw[0]!=null && lv[raw[0]]) return levelFace(lv[raw[0]]);
+  if(v==null || !lv.length) return '';
+  let best = lv[0]; lv.forEach(l=>{ if(Math.abs(l.value-v) < Math.abs(best.value-v)) best = l; });
+  return levelFace(best);
+}
+
+/* ---------- marcas rápidas en una nota ---------- */
+const MARKS = [
+  {id:'flag',   ic:'🚩', name:'Atención'},
+  {id:'star',   ic:'👏', name:'Felicitar'},
+  {id:'up',     ic:'⬆️', name:'Mejora'},
+  {id:'down',   ic:'⬇️', name:'Empeora'},
+  {id:'family', ic:'📞', name:'Hablar con la familia'},
+  {id:'talk',   ic:'💬', name:'Hablar con el alumno'},
+  {id:'late',   ic:'⏰', name:'Entrega tarde'}
+];
+/* marcas definidas por el docente (Ajustes › Marcas); si nunca las ha tocado, las de serie.
+   count:true = acumulable: cada toque suma una (p. ej. ⭐ un punto por leer voluntario). */
+function markDefs(){ return Array.isArray(state.markDefs) ? state.markDefs : MARKS; }
+function markDef(id){ return markDefs().find(m=>m.id===id) || null; }
+/* lista de ids (con repeticiones si es acumulable), solo de marcas que siguen existiendo */
+function marksOf(c, sid, tid){ return ((c.marks||{})[gkey(sid, tid)] || []).filter(id=>markDef(id)); }
+function marksCount(c, sid, tid){
+  const cnt = {}; marksOf(c, sid, tid).forEach(id=>{ cnt[id] = (cnt[id]||0)+1; });
+  return markDefs().filter(m=>cnt[m.id]).map(m=>({m:m, n:cnt[m.id]}));
+}
+function marksIcons(c, sid, tid){ return marksCount(c, sid, tid).map(x=>x.m.ic+(x.n>1?'×'+x.n:'')).join(''); }
+function marksNames(c, sid, tid){ return marksCount(c, sid, tid).map(x=>x.m.ic+' '+x.m.name+(x.n>1?' ×'+x.n:'')).join(' · '); }
+function setMarks(c, sid, tid, cur){
+  if(!c.marks || typeof c.marks!=='object') c.marks = {};
+  const k = gkey(sid, tid);
+  if(cur.length) c.marks[k] = cur; else delete c.marks[k];
+}
+function toggleMark(c, sid, tid, id){
+  const cur = ((c.marks||{})[gkey(sid, tid)]||[]).slice();
+  const d = markDef(id);
+  if(d && d.count) cur.push(id);
+  else { const i = cur.indexOf(id); if(i>-1) cur.splice(i,1); else cur.push(id); }
+  setMarks(c, sid, tid, cur);
+}
+function dropMark(c, sid, tid, id){
+  const cur = ((c.marks||{})[gkey(sid, tid)]||[]).slice();
+  const i = cur.lastIndexOf(id); if(i>-1) cur.splice(i,1);
+  setMarks(c, sid, tid, cur);
+}
+function marksPicker(c, sid, tid){
+  const cnt = {}; marksOf(c, sid, tid).forEach(id=>{ cnt[id]=(cnt[id]||0)+1; });
+  return `<div class="mk-box" data-sid="${sid}" data-tid="${tid}"><div class="row"><span class="field-lbl">Marcas</span><div class="spacer"></div>
+      <button type="button" class="btn ghost small" data-mkedit>✎ Editar marcas</button></div>
+    <div class="mk-row">
+    ${markDefs().map(m=>`<span class="mk-wrap"><button type="button" class="mk-btn ${cnt[m.id]?'on':''}" data-mk="${m.id}" title="${esc(m.name)}${m.count?' · cada toque suma una':''}"><span class="mk-ic">${m.ic}</span><span class="mk-nm">${esc(m.name)}</span>${m.count?`<span class="mk-n">${cnt[m.id]?'×'+cnt[m.id]:'+1'}</span>`:''}</button>${m.count&&cnt[m.id]?`<button type="button" class="mk-minus" data-mkminus="${m.id}" title="Quitar una">−</button>`:''}</span>`).join('')}
+    ${markDefs().length?'':'<span class="hint">No hay marcas. Créalas con «Editar marcas».</span>'}
+  </div></div>`;
+}
+/* las marcas se aplican al momento (no dependen de Guardar/Cancelar) */
+function bindMarks(wrap, c, sid, tid){
+  wrap.addEventListener('click', e=>{
+    if(e.target.closest('[data-mkedit]')){ e.preventDefault(); e.stopPropagation(); marksEditor(); return; }
+    const minus = e.target.closest('[data-mkminus]');
+    const b = minus || e.target.closest('[data-mk]'); if(!b) return;
+    e.preventDefault(); e.stopPropagation();
+    if(minus) dropMark(c, sid, tid, minus.dataset.mkminus); else toggleMark(c, sid, tid, b.dataset.mk);
+    const box = wrap.querySelector('.mk-box');
+    if(box) box.outerHTML = marksPicker(c, sid, tid);
+    save(); render();
+  }, true);
+}
+const MARK_EMOJIS = ['⭐','🌟','✨','🏅','🏆','🎖️','👏','👍','💪','🙌','❤️','💡',
+  '📖','📚','✏️','📝','🗣️','🎤','🎧','👂','🧠','🔍','🎨','🎭',
+  '🚩','⚠️','❗','❓','⏰','⌛','🎒','📵','🤫','😴','🧹','🤝',
+  '⬆️','⬇️','➡️','✅','❌','➕','➖','🔁','📞','💬','👨‍👩‍👧','🏠',
+  '🟢','🟡','🔴','🔵','🟣','🟠','😊','😐','☹️','🙂','😃','🤩'];
+function marksEditor(){
+  let rows = JSON.parse(JSON.stringify(markDefs()));
+  let pickFor = -1;
+  const draw = ()=>`<div class="mke-list">${rows.map((m,i)=>`<div class="mke-row" data-i="${i}">
+      <button type="button" class="mke-emo ${pickFor===i?'on':''}" data-emo="${i}" title="Cambiar emoji">${m.ic}</button>
+      <input class="inp mke-name" data-mkname="${i}" value="${esc(m.name)}" placeholder="Qué significa">
+      <label class="mke-cnt" title="Cada toque suma una más"><input type="checkbox" data-mkcnt="${i}" ${m.count?'checked':''}> Contador</label>
+      <button type="button" class="icon" data-mkdel="${i}" title="Quitar esta marca">✕</button>
+    </div>${pickFor===i?`<div class="mke-pal">${MARK_EMOJIS.map(e=>`<button type="button" data-pick="${e}">${e}</button>`).join('')}
+      <input class="inp mke-own" placeholder="u otro: pega aquí un emoji" data-own="${i}"></div>`:''}`).join('')}</div>
+    <button type="button" class="btn ghost small" data-mkadd>+ Añadir marca</button>
+    <p class="sub" style="margin:12px 0 0"><b>Contador</b>: cada toque suma una (⭐×3), útil para puntos como leer voluntario. Sin contador, la marca se pone o se quita.
+      Si quitas una marca, deja de verse en las notas donde estaba puesta.</p>`;
+  const wrap = openModal(`<h3>Editar marcas</h3><p class="sub">Valen para todas tus clases.</p><div id="mkeBody">${draw()}</div>`, ()=>{
+    state.markDefs = rows.filter(m=>m.ic && m.name.trim()).map(m=>({id:m.id, ic:m.ic, name:m.name.trim(), count:!!m.count}));
+    const c = course();   // refresca la ventana de marcas que hubiera debajo
+    if(c) document.querySelectorAll('.mk-box[data-sid]').forEach(b=>{ b.outerHTML = marksPicker(c, b.dataset.sid, b.dataset.tid); });
+  }, 'Guardar', {wide:true});
+  const body = wrap.querySelector('#mkeBody');
+  const redraw = ()=>{ body.innerHTML = draw(); };
+  body.addEventListener('input', e=>{
+    const n = e.target.dataset.mkname; if(n!=null) rows[Number(n)].name = e.target.value;
+    const o = e.target.dataset.own;
+    if(o!=null && e.target.value.trim()){ rows[Number(o)].ic = [...e.target.value.trim()].slice(0,2).join(''); pickFor = -1; redraw(); }
+  });
+  body.addEventListener('change', e=>{ const k = e.target.dataset.mkcnt; if(k!=null) rows[Number(k)].count = e.target.checked; });
+  body.addEventListener('click', e=>{
+    const t = e.target.closest('button'); if(!t) return;
+    e.preventDefault();
+    if(t.dataset.emo!=null){ const i = Number(t.dataset.emo); pickFor = pickFor===i ? -1 : i; redraw(); return; }
+    if(t.dataset.pick){ rows[pickFor].ic = t.dataset.pick; pickFor = -1; redraw(); return; }
+    if(t.dataset.mkdel!=null){ rows.splice(Number(t.dataset.mkdel),1); pickFor = -1; redraw(); return; }
+    if(t.hasAttribute('data-mkadd')){ rows.push({id:uid(), ic:'⭐', name:'', count:false}); pickFor = rows.length-1; redraw();
+      const ins = body.querySelectorAll('.mke-name'); ins[ins.length-1].focus(); return; }
+  });
+}
+function marksCard(){
+  return `<div class="card colors-card">
+    <div class="row"><h2 class="sec-title" style="margin:0">Marcas</h2><div class="spacer"></div>
+      <button class="btn ghost small" data-act="editMarks">✎ Editar marcas</button></div>
+    <p class="hint">Se ponen manteniendo pulsada una casilla de nota (o con clic derecho). Valen para todas tus clases.</p>
+    <div class="mk-row">${markDefs().map(m=>`<span class="mk-btn" style="cursor:default"><span class="mk-ic">${m.ic}</span><span class="mk-nm">${esc(m.name)}</span>${m.count?'<span class="mk-n">contador</span>':''}</span>`).join('') || '<span class="hint">No hay marcas.</span>'}</div>
+  </div>`;
+}
+function marksModal(sid, tid){
+  const c = course(); if(!c) return;
+  const t = taskById(c, tid), s = c.students.find(x=>x.id===sid); if(!t || !s) return;
+  const wrap = openModal(`<h3>Marcas</h3><p class="sub">${esc(s.name)} · ${esc(t.name)}</p>${marksPicker(c, sid, tid)}`, null);
+  wrap.querySelector('[data-close]').textContent = 'Hecho';
+  bindMarks(wrap, c, sid, tid);
+}
 const TYPE_OPTS = [
   {value:'rubric', label:'Rúbrica · cada ítem con su criterio de éxito en cada grado'},
   {value:'scale',  label:'Escala de gradación · cada ítem valorado con un número'},
   {value:'check',  label:'Lista de cotejo · conseguido o no conseguido'},
-  {value:'num',    label:'Puntuación directa · una sola nota'}
+  {value:'num',    label:'Puntuación directa · una sola nota'},
+  {value:'faces',  label:'Observación con caritas · 😊 😐 ☹️ (actitud, participación…)'}
 ];
 
 /* Rúbrica del cuaderno inteligente (My Smart Notebook): una vez por unidad en Literacy, Natural y Social Science */
@@ -1793,7 +2021,7 @@ function migrate(){
     state.seedSmartNB = true;
   }
   if(!state.teacherTT || typeof state.teacherTT!=='object') state.teacherTT = {};
-  (state.courses||[]).forEach(c=>{ if(!c.timetable || typeof c.timetable!=='object') c.timetable = {}; });
+  (state.courses||[]).forEach(c=>{ if(!c.timetable || typeof c.timetable!=='object') c.timetable = {}; if(!c.marks || typeof c.marks!=='object') c.marks = {}; });
   (state.courses||[]).forEach(c=>{
     const old = c.tools || [];
     old.forEach(t=>{
@@ -1989,7 +2217,7 @@ function studentTasks(c, studentId, aid, pid){
   return tasksOf(c, aid, pid);
 }
 /* ¿esta tarea cuenta para las notas? Las de evaluación inicial no computan. */
-function taskComputes(t){ return !t.isInitial; }
+function taskComputes(t){ return !t.isInitial && !t.informative; }
 function areaScore(c, studentId, aid, pid){
   let s=0, w=0;
   studentTasks(c, studentId, aid, pid).forEach(t=>{
@@ -2064,7 +2292,7 @@ function critScore(c, studentId, aid, pid, code){
    (un ACS con adaptación puede evaluar criterios de otro ciclo). */
 function critsWorked(c, aid, pid, studentId){
   const set = {};
-  const tasks = tasksOf(c, aid, pid);
+  const tasks = tasksOf(c, aid, pid).filter(t=>!t.informative);
   tasks.forEach(t=>{
     const crits = studentId!=null ? effCriteria(c, t, studentId) : (t.criteria||[]);
     crits.forEach(cd=>{ set[cd]=1; });
@@ -2182,7 +2410,9 @@ function renderHeader(){
     <button class="home-btn" data-act="goHome" title="Volver a mis clases">
       <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>
       <span>Inicio</span></button>
-    <span class="ctx-name">${esc(c.name)}</span>
+    ${state.courses.length>1
+      ? `<select class="ctx-sel ctx-course" data-act="pickCourse" aria-label="Clase">${state.courses.map(x=>`<option value="${x.id}" ${x.id===c.id?'selected':''}>${esc(x.name)}</option>`).join('')}</select>`
+      : `<span class="ctx-name">${esc(c.name)}</span>`}
     <select class="ctx-sel" data-act="pickArea" aria-label="Área">
       ${c.areas.map(a=>`<option value="${a}" ${a===areaId()?'selected':''}>${esc(areaDef(a).short||areaDef(a).name)}</option>`).join('')}
     </select>
@@ -2207,6 +2437,18 @@ function noCourse(){
     <button class="btn" data-act="tab" data-id="clases">Ir a Clases</button></div>`;
 }
 
+function resumeCard(){
+  const c = state.courses.find(x=>x.id===state.lastCourse); if(!c) return '';
+  const m = (state.lastSel||{})[c.id] || {};
+  const a = c.areas.includes(m.area) ? m.area : c.areas[0];
+  const p = c.periods.find(x=>x.id===m.period);
+  const tabName = (TABS.find(x=>x[0]===m.view)||[])[1] || '';
+  return `<button class="resume-card" data-act="resumeCourse" data-id="${c.id}" style="border-left-color:${courseColor(c.id)}">
+    <span class="rc-k">Continuar donde lo dejaste</span>
+    <span class="rc-t">${esc(c.name)}${a?' · '+esc(areaDef(a).short||areaDef(a).name):''}${p?' · '+esc(p.name):''}</span>
+    ${tabName?`<span class="rc-s">${esc(tabName)}</span>`:''}
+    <span class="rc-go">→</span></button>`;
+}
 views.clases = function(){
   const tab = state.homeTab || 'clases';
   const nav = `<div class="home-navwrap"><div id="gdBanner">${gdBannerHtml()}</div><div class="home-switch">
@@ -2240,9 +2482,10 @@ views.clases = function(){
       <button class="btn ghost small" data-act="ejemplo">Clase Ejemplo</button>
       <button class="btn" data-act="newCourse">Nueva clase</button>
     </div>
+    ${resumeCard()}
     <div class="home-grid">
       ${state.courses.map((c,i)=>{
-        const col = palette[i % palette.length];
+        const col = courseColor(c.id);
         return `<div class="course-card">
           <div class="cc-banner" style="background:linear-gradient(135deg, ${col}, ${col}cc)" data-act="setCourse" data-id="${c.id}">
             <div class="cc-level">${esc(c.level||'')}</div>
@@ -2281,15 +2524,17 @@ views.clases = function(){
 };
 
 /* ===================== PLANIFICADOR SEMANAL ===================== */
+const COURSE_PALETTE = ['#1F6B4F','#2D6A9F','#8A5A2B','#7A4F9A','#9A3B52','#4E7A3A','#B0742A','#3A6E70'];
 function courseColor(courseId){
-  const palette = ['#1F6B4F','#2D6A9F','#8A5A2B','#7A4F9A','#9A3B52','#4E7A3A','#B0742A','#3A6E70'];
   const i = state.courses.findIndex(c=>c.id===courseId);
-  return i<0 ? '#6B7A72' : palette[i % palette.length];
+  if(i<0) return '#6B7A72';
+  return state.courses[i].color || COURSE_PALETTE[i % COURSE_PALETTE.length];
 }
 /* color de una sesión: el del área si la tiene; si no, el de la clase */
 function sessionColor(sessOrCourseId){
   if(sessOrCourseId && typeof sessOrCourseId==='object'){
     const s = sessOrCourseId;
+    if(state.colorBy==='course' && s.courseId) return courseColor(s.courseId);
     if(s.areaId) return areaColor(s.areaId);
     return courseColor(s.courseId);
   }
@@ -2319,7 +2564,11 @@ function ttText(e){
   if(e.label) parts.push(e.label);
   return parts.join(' · ');
 }
-function ttColor(e){ return e && e.areaId ? areaColor(e.areaId) : (e && e.courseId ? courseColor(e.courseId) : '#8A968F'); }
+function ttNoteHtml(iso, slotId, cls){
+  const tt = ttAt(iso, slotId);
+  return tt && tt.label ? `<span class="${cls||'tt-note'}" title="Nota de tu horario">📌 ${esc(tt.label)}</span>` : '';
+}
+function ttColor(e){ if(e && e.courseId && state.colorBy==='course') return courseColor(e.courseId); return e && e.areaId ? areaColor(e.areaId) : (e && e.courseId ? courseColor(e.courseId) : '#8A968F'); }
 function subjColor(name){
   let h = 0; String(name||'').toLowerCase().split('').forEach(ch=>{ h = (h*31 + ch.charCodeAt(0)) % 360; });
   return 'hsl('+h+',38%,42%)';
@@ -2567,7 +2816,7 @@ function planWeek(){
             const tt = s ? null : ttAt(iso, sl.id);
             return `<td class="wk-cell ${iso===tod?'is-today':''}" data-act="editSession" data-iso="${iso}" data-slot="${sl.id}">
               <div class="wk-inner">
-              ${s? `<div class="wk-ev" style="border-left:3px solid ${col}">${label?`<span class="wk-course" style="color:${col}">${esc(label)}</span>`:''}<span class="wk-t">${esc(s.title||'')}</span></div>
+              ${s? `<div class="wk-ev" style="border-left:3px solid ${col}">${label?`<span class="wk-course" style="color:${col}">${esc(label)}</span>`:''}<span class="wk-t">${esc(s.title||'')}</span>${ttNoteHtml(iso, sl.id, 'tt-note')}</div>
                     <button class="wk-copy ${sessClip&&sessClip.from===iso&&sessClip.slot===sl.id?'on':''}" data-act="copySession" data-iso="${iso}" data-slot="${sl.id}" title="Copiar esta sesión">⧉</button>`
                  : tt? `<div class="wk-ev wk-tt" style="border-left:3px dashed ${ttColor(tt)}" title="De tu horario · toca para programar"><span class="wk-course" style="color:${ttColor(tt)}">${esc(ttText(tt))}</span><span class="wk-tt-hint">Sin programar</span></div>`
                  : (evs.length? '' : '<span class="wk-add">+</span>')}
@@ -2612,6 +2861,7 @@ function planDay(){
           <div data-act="editSession" data-iso="${iso}" data-slot="${sl.id}">
           ${s? `${label?`<div class="day-course" style="color:${col}">${esc(label)}</div>`:''}
              <div class="day-title">${esc(s.title||'(sin título)')}</div>
+             ${ttNoteHtml(iso, sl.id, 'tt-note day-ttnote')}
              ${sessionDevHtml(s)? `<div class="day-notes">${sessionDevHtml(s)}</div>`:''}`
           : tt? `<div class="day-course" style="color:${col}">${esc(ttText(tt))}</div><div class="day-empty">De tu horario · sin programar, toca para planificar</div>`
           : '<div class="day-empty">Sin planificar · toca para añadir</div>'}
@@ -2917,6 +3167,36 @@ function aulaDistribute(mode){
 }
 
 /* ---------- ficha individual del alumno ---------- */
+/* notas de un alumno en todas las áreas y periodos (para su ficha y su informe) */
+function studentOverview(c, sid){
+  return c.areas.map(a=>{
+    const cells = c.periods.map(p=>{
+      if(p.initial){ const v = initMean(c, sid, a); return {p:p, v:v, ini:true, n:v==null?0:1}; }
+      const ts = studentTasks(c, sid, a, p.id);
+      const n = ts.filter(t=>taskFinal(c, t, sid)!=null).length;
+      const v = n || isAdjFinal(c, sid, a, p.id) ? areaFinal(c, sid, a, p.id) : null;
+      return {p:p, v:v, ini:false, n:n, total:ts.length};
+    });
+    return {aid:a, cells:cells, any:cells.some(x=>x.v!=null)};
+  });
+}
+function overviewCard(c, s){
+  const rows = studentOverview(c, s.id).filter(r=>r.any);
+  const curA = areaId(), curP = period() ? period().id : null;
+  if(!rows.length) return `<div class="card"><h2 class="sec-title">Todas las áreas</h2><p class="hint" style="margin:0">Aún no tiene notas en ninguna área.</p></div>`;
+  return `<div class="card ov-card">
+    <div class="row"><h2 class="sec-title" style="margin:0">Todas las áreas</h2><div class="spacer"></div>
+      <button class="btn small" data-act="stuReport" data-id="${s.id}">⬇ Informe del alumno</button></div>
+    <p class="hint">Toca una nota para ver su detalle abajo.</p>
+    <div class="wk-scroll"><table class="mini-grid ov-grid">
+      <thead><tr><th>Área</th>${c.periods.map(p=>`<th class="r">${esc(p.name)}</th>`).join('')}</tr></thead>
+      <tbody>${rows.map(r=>`<tr class="${r.aid===curA?'ov-cur':''}">
+        <td><span class="al-dot" style="background:${areaColor(r.aid)}"></span> ${esc(areaDef(r.aid).short||areaDef(r.aid).name)}</td>
+        ${r.cells.map(x=>`<td class="r ov-cell ${r.aid===curA&&x.p.id===curP?'on':''}" data-act="stuArea" data-a="${r.aid}" data-p="${x.p.id}" title="${x.ini?'Nota orientativa · no computa':(x.n+' de '+x.total+' tareas calificadas')}">
+          ${x.v==null?'<span class="muted">–</span>':(x.ini?`<span class="ov-ini">${fmt2(x.v)}</span>`:`<b class="${x.v<c.pass?'low':''}">${fmt(x.v)}</b> ${pill(x.v, c.scale)}`)}</td>`).join('')}
+      </tr>`).join('')}</tbody></table></div>
+  </div>`;
+}
 views.alumno = function(){
   const c = course(); if(!c) return noCourse();
   const s = c.students.find(x=>x.id===state.viewStudent);
@@ -2940,7 +3220,7 @@ views.alumno = function(){
       ? `<table class="mini-grid"><tbody>${ins.items.map((it,i)=>{
           const iv = itemValue(ins, i, raw);
           const lab = ins.type==='check' ? (Array.isArray(raw)&&raw[i]?'Conseguido':'No conseguido')
-                    : (Array.isArray(raw)&&raw[i]!=null&&ins.levels[raw[i]] ? ins.levels[raw[i]].label : '–');
+                    : (Array.isArray(raw)&&raw[i]!=null&&ins.levels[raw[i]] ? (levelFace(ins.levels[raw[i]])?levelFace(ins.levels[raw[i]])+' ':'')+ins.levels[raw[i]].label : '–');
           return `<tr><td>${esc(it.name||('Ítem '+(i+1)))}${itemCrits(it).length?` <span class="tag grey">${itemCrits(it).join(' · ')}</span>`:''}</td>
             <td class="lv">${esc(lab)}</td><td class="r">${iv==null?'–':fmt2(iv)}</td></tr>`;
         }).join('')}</tbody></table>`
@@ -2948,11 +3228,13 @@ views.alumno = function(){
     return `<div class="item">
       <div class="item-head"><strong>${esc(t.name)}</strong>
         ${adaptedHere?'<span class="tag warn" style="font-size:10px">adaptada</span>':''}
-        ${init?'':`<span class="tag grey">${Number(t.weight)||0}%</span>`}
+        ${init?'':(t.informative?'<span class="tag grey">informativa</span>':`<span class="tag grey">${Number(t.weight)||0}%</span>`)}
+        ${marksOf(c, s.id, t.id).length?`<span class="stu-marks" title="${esc(marksNames(c, s.id, t.id))}">${marksIcons(c, s.id, t.id)}</span>`:''}
         <div class="spacer"></div>
-        <span class="score-inline ${v!=null&&v<c.pass?'low':''} ${adj?'adj':''}">${v==null?'–':fmt2(v)}</span>
-        ${init?'':`<span>${pill(v, c.scale)}</span>`}
+        <span class="score-inline ${v!=null&&v<c.pass&&!t.informative?'low':''} ${adj?'adj':''}">${v==null?'–':(ins.type==='faces'?(faceOf(ins, raw, v)+' '):'')+(ins.type==='faces'&&t.informative?'':fmt2(v))}</span>
+        ${init||t.informative?'':`<span>${pill(v, c.scale)}</span>`}
       </div>
+      ${marksOf(c, s.id, t.id).length?`<p class="hint" style="margin:2px 0 6px">${esc(marksNames(c, s.id, t.id))}</p>`:''}
       ${effCriteria(c,t,s.id).length? `<div class="crit-chips">${effCriteria(c,t,s.id).map(k=>`<span class="chip on">${esc(k)}</span>`).join('')}</div>`:''}
       ${items}
     </div>`;
@@ -2995,7 +3277,12 @@ views.alumno = function(){
       </div>
       <p class="hint" style="margin:8px 0 0">${esc(c.name)} · ${esc(areaDef(aid).name)} · ${esc(p.name)}${init?' · diagnóstico, no computa':''}</p>
     </div>
-    <div class="row" style="margin:14px 0 6px"><h2 class="sec-title">Tareas evaluadas</h2></div>
+    ${overviewCard(c, s)}
+    ${(()=>{ const tot = {}; list.forEach(t=>marksCount(c, s.id, t.id).forEach(x=>{ tot[x.m.id] = (tot[x.m.id]||0) + x.n; }));
+      const ms = markDefs().filter(m=>tot[m.id]);
+      return ms.length ? `<div class="card"><h2 class="sec-title">Marcas · ${esc(areaDef(aid).short||areaDef(aid).name)} · ${esc(p.name)}</h2>
+        <div class="mk-row">${ms.map(m=>`<span class="mk-btn on" style="cursor:default"><span class="mk-ic">${m.ic}</span><span class="mk-nm">${esc(m.name)}</span><span class="mk-n">×${tot[m.id]}</span></span>`).join('')}</div></div>` : ''; })()}
+    <div class="row" style="margin:14px 0 6px"><h2 class="sec-title">Tareas evaluadas · ${esc(areaDef(aid).short||areaDef(aid).name)} · ${esc(p.name)}</h2></div>
     ${divBlock(c, s, aid)}
     ${hasStartPoint(c, s.id, aid) ? `<div class="card sp-card">
       <h2 class="sec-title">Punto de partida · evaluación inicial</h2>
@@ -3405,7 +3692,7 @@ views.editorInstr = function(){
   const task = isTask ? taskById(c, state.editor.id) : (isAdapt ? taskById(c, state.editor.taskId) : null);
   const adapt = isAdapt ? (task.adaptations||{})[state.editor.sid] : null;
   const tpl  = (!isTask && !isAdapt) ? (state.templates||[]).find(x=>x.id===state.editor.id) : null;
-  const isMatrix = ins.type==='rubric' || ins.type==='scale';
+  const isMatrix = ins.type==='rubric' || ins.type==='scale' || ins.type==='faces';
   const tcyc = isAdapt ? (adapt.refCycle||c.cycle) : (isTask ? taskCycle(c, task) : c.cycle);
   const critMap = areaDef(areaId()).crit[tcyc] || {};
   const linkTask = (isTask||isAdapt);
@@ -3419,7 +3706,7 @@ views.editorInstr = function(){
 
   const head = `<tr>
     <th class="stick">ÍTEM${linkTask?' · CRITERIO · PESO':''}</th>
-    ${isMatrix ? (ins.levels||[]).map((l,j)=>`<th class="lvl">
+    ${isMatrix ? (ins.levels||[]).map((l,j)=>`<th class="lvl">${l.face?`<div class="lvl-face">${l.face}</div>`:''}
         <input class="lvl-label" value="${esc(l.label)}" data-act="levelLabel" data-j="${j}" aria-label="Nombre del grado">
         <div class="row" style="gap:4px;justify-content:center;margin-top:4px">
           <input class="lvl-val" type="number" step="0.1" min="0" max="10" value="${l.value}" data-act="levelValue" data-j="${j}" aria-label="Valor sobre 10">
@@ -3587,13 +3874,15 @@ function gradeTable(c, aid, p, opts){
     const adj = isAdjTask(c, sid, t.id);
     const low = eff!=null && eff < c.pass;
     const aMark = adaptedHere? '<i class="ad-badge" title="Evaluación adaptada para este alumno">A</i>' : '';
+    const mk = edit ? '' : marksIcons(c, sid, t.id);
+    const mkHtml = mk ? `<span class="cmarks" title="${esc(marksNames(c, sid, t.id))}">${mk}</span>` : '';
     if(ins.type==='num' && !edit)
-      return `<span class="cell-wrap">${aMark}<input class="${cls} ${low?'low':''} ${adaptedHere?'is-adapted':''}" inputmode="decimal" data-act="grade" data-s="${sid}" data-t="${t.id}" value="${raw==null?'':esc(raw)}"></span>`;
+      return `<span class="cell-wrap" data-mks="${sid}" data-mkt="${t.id}">${mkHtml}${aMark}<input class="${cls} ${low?'low':''} ${adaptedHere?'is-adapted':''}" inputmode="decimal" data-act="grade" data-s="${sid}" data-t="${t.id}" value="${raw==null?'':esc(raw)}"></span>`;
     if(edit)
       return `<input class="${cls} ${adj?'adj':''} ${low?'low':''}" inputmode="decimal" data-act="ovTask" data-s="${sid}" data-t="${t.id}"
         value="${adj? esc(c.overrides[gkey(sid,t.id)]) : ''}" placeholder="${calc==null?'–':fmt2(calc)}" title="Nota calculada: ${calc==null?'sin calificar':fmt2(calc)}">`;
     return `<button class="${cls} ${eff==null?'empty-cell':''} ${adj?'adj':''} ${low?'low':''} ${adaptedHere?'is-adapted':''}" data-act="openCell" data-s="${sid}" data-t="${t.id}"
-      title="${adaptedHere?'Evaluación adaptada. ':''}${adj?'Nota ajustada a mano; calculada '+(calc==null?'–':fmt2(calc)):''}">${aMark}${eff==null?'+':fmt2(eff)}${adj?'<i class="dot"></i>':''}</button>`;
+      title="${adaptedHere?'Evaluación adaptada. ':''}${adj?'Nota ajustada a mano; calculada '+(calc==null?'–':fmt2(calc)):''}" data-mks="${sid}" data-mkt="${t.id}">${mkHtml}${aMark}${eff==null?'+':(ins.type==='faces'?`<span class="face-v">${faceOf(ins, raw, eff)||fmt2(eff)}</span>`:fmt2(eff))}${adj?'<i class="dot"></i>':''}</button>`;
   }
 
   if(mode==='cards'){
@@ -3606,15 +3895,15 @@ function gradeTable(c, aid, p, opts){
           <span class="score" title="Media de la unidad (informativa)">${fmt(um)}</span>
         </div>
         ${list.map(t=>`<div class="task-line${t.isInitial?' tl-init':''}">
-            <span class="tl-name">${t.isInitial?'<span class="init-tag">Ev. inicial</span> ':''}${esc(t.name)}${isAdaptedFor(c,t,s.id)?' <span class="tag warn" style="font-size:9px">adaptada</span>':''}<small>${TYPE_NAMES[(effInstr(c,t,s.id)||{}).type]}${t.isInitial?' · no computa':' · '+(Number(t.weight)||0)+'%'}</small></span>
+            <span class="tl-name">${t.isInitial?'<span class="init-tag">Ev. inicial</span> ':''}${esc(t.name)}${isAdaptedFor(c,t,s.id)?' <span class="tag warn" style="font-size:9px">adaptada</span>':''}<small>${TYPE_NAMES[(effInstr(c,t,s.id)||{}).type]}${t.isInitial?' · no computa':(t.informative?' · informativa':' · '+(Number(t.weight)||0)+'%')}</small></span>
             ${ctrl(t, s.id, 'tl-val')}</div>`).join('')}
       </div>`;
     }).join('');
-    return header + cards;
+    return header + cards + MARKS_HINT_F();
   }
 
   const head = `<tr><th class="stick">Alumno/a</th>
-    ${list.map(t=>`<th class="task${t.isInitial?' th-init':''}">${t.isInitial?'<span class="init-tag">Ev. inicial</span><br>':''}${esc(t.name)}<small>${TYPE_NAMES[(t.instr||{}).type]||''}${t.isInitial?' · no computa':' · '+(Number(t.weight)||0)+'%'}</small></th>`).join('')}
+    ${list.map(t=>`<th class="task${t.isInitial?' th-init':''}">${t.isInitial?'<span class="init-tag">Ev. inicial</span><br>':''}${esc(t.name)}<small>${TYPE_NAMES[(t.instr||{}).type]||''}${t.isInitial?' · no computa':(t.informative?' · informativa':' · '+(Number(t.weight)||0)+'%')}</small></th>`).join('')}
     <th class="task">Media<small>unidad</small></th></tr>`;
   const body = c.students.map((s,idx)=>{
     const um = unitFinal(s.id);
@@ -3626,10 +3915,11 @@ function gradeTable(c, aid, p, opts){
     tr += `<td class="final" title="Media de la unidad (informativa)">${fmt(um)}</td></tr>`;
     return tr;
   }).join('');
-  return header + `<div class="scroll"><table class="grid"><thead>${head}</thead><tbody>${body}</tbody></table></div>`
+  return header + `<div class="scroll"><table class="grid"><thead>${head}</thead><tbody>${body}</tbody></table></div>` + (state.editMode ? '' : MARKS_HINT_F())
     + (hasInit? `<p class="hint" style="margin-top:8px"><span class="init-tag">Ev. inicial</span> Columna de diagnóstico: muestra la nota de la evaluación inicial, pero no cuenta para la media de la unidad ni para la nota trimestral.</p>`:'');
 }
 
+function MARKS_HINT_F(){ return `<p class="hint mk-hint">Mantén pulsada una casilla (o clic derecho) para añadir marcas: ${markDefs().map(m=>m.ic).join(' ')}</p>`; }
 /* la antigua evaluación global por tareas ya no se usa; la trimestral va por criterios */
 function viewGlobal(){ const c=course(); return gradeTable(c, areaId(), period(), {}); }
 
@@ -3694,7 +3984,27 @@ function homeAjustes(){
         <select class="inp" data-act="homeAjCourse">
           ${state.courses.map(x=>`<option value="${x.id}" ${x.id===cid?'selected':''}>${esc(x.name)}</option>`).join('')}
         </select></label></div>`;
-  return `<div class="home-inner">${selector}${ajustesBody(c)}</div>`;
+  return `<div class="home-inner">${colorsCard()}${marksCard()}${selector}${ajustesBody(c)}</div>`;
+}
+/* colores de la agenda: los elige el docente (se sincronizan con Drive) */
+function colorsCard(){
+  const areas = []; state.courses.forEach(c=>c.areas.forEach(a=>{ if(!areas.includes(a)) areas.push(a); }));
+  const by = state.colorBy==='course' ? 'course' : 'area';
+  const sw = (act, id, col, name)=>`<label class="col-pick"><input type="color" data-act="${act}" data-id="${id}" value="${col}"><span>${esc(name)}</span></label>`;
+  return `<div class="card colors-card">
+    <h2 class="sec-title">Colores de la agenda</h2>
+    <p class="hint">Toca un color para cambiarlo. Se aplica en la agenda, en Mi horario y en las tarjetas de clase.</p>
+    <div class="col-by"><span class="field-lbl">Colorear las sesiones según</span>
+      <div class="seg">
+        <button class="seg-btn ${by==='area'?'on':''}" data-act="colorBy" data-m="area">Área</button>
+        <button class="seg-btn ${by==='course'?'on':''}" data-act="colorBy" data-m="course">Clase</button>
+      </div></div>
+    <div class="col-grid">
+      <div><span class="field-lbl">Clases</span>${state.courses.map(c=>sw('courseColor', c.id, courseColor(c.id), c.name)).join('')}</div>
+      <div><span class="field-lbl">Áreas</span>${areas.map(a=>sw('areaColor', a, areaColor(a), areaDef(a).short||areaDef(a).name)).join('')}</div>
+    </div>
+    <button class="btn ghost small" data-act="colorsReset" style="margin-top:6px">Volver a los colores automáticos</button>
+  </div>`;
 }
 
 views.tutorias = function(){
@@ -4806,17 +5116,43 @@ function openCell(studentId, taskId){
 
   const items = ins.items||[], levels = ins.levels||[];
   let raw = c.grades[key];
+  const mkBlock = marksPicker(c, studentId, taskId);
+  const withMarks = w=>{ bindMarks(w, c, studentId, taskId); return w; };
+
+  if(ins.type==='faces'){
+    if(!Array.isArray(raw) || raw.length!==items.length) raw = items.map(()=>null);
+    const sel = raw.slice();
+    const single = items.length===1;
+    const inner = `<h3>${esc(task.name)}${adTag}</h3><p class="sub">${esc(s.name)} · observación${task.informative?' · informativa, no cuenta para la nota':''}</p>
+      ${items.map((it,i)=>`<div class="face-item">
+        ${single?'':`<strong>${esc(it.name||('Ítem '+(i+1)))}</strong>`}
+        ${single && it.name?`<p class="sub" style="margin:0 0 6px">${esc(it.name)}</p>`:''}
+        <div class="face-row">${levels.map((l,j)=>`<button type="button" class="face-btn ${sel[i]===j?'on':''}" data-fi="${i}" data-fj="${j}"><span class="face-ic">${levelFace(l)||'•'}</span><span>${esc(l.label)}</span></button>`).join('')}
+          <button type="button" class="face-btn none ${sel[i]==null?'on':''}" data-fi="${i}" data-fj="null"><span class="face-ic">–</span><span>Sin valorar</span></button></div>
+      </div>`).join('')}
+      ${mkBlock}`;
+    const wrap = withMarks(openModal(inner, ()=>{ c.grades[key] = sel.some(x=>x!=null) ? sel : null; if(c.grades[key]==null) delete c.grades[key]; }, 'Guardar'));
+    wrap.addEventListener('click', e=>{
+      const b = e.target.closest('[data-fj]'); if(!b) return;
+      e.preventDefault();
+      const i = Number(b.dataset.fi);
+      sel[i] = b.dataset.fj==='null' ? null : Number(b.dataset.fj);
+      wrap.querySelectorAll('[data-fi="'+i+'"]').forEach(x=>x.classList.toggle('on', (x.dataset.fj==='null' && sel[i]==null) || Number(x.dataset.fj)===sel[i]));
+      if(single) wrap.querySelector('[data-ok]').click();   // con un solo ítem, un toque y listo
+    });
+    return;
+  }
 
   if(ins.type==='check'){
     if(!Array.isArray(raw) || raw.length!==items.length) raw = items.map(()=>false);
     let inner = `<h3>${esc(task.name)}${adTag}</h3><p class="sub">${esc(s.name)} · lista de cotejo</p>`;
     inner += items.map((it,i)=>`<label class="check-opt"><input type="checkbox" data-i="${i}" ${raw[i]?'checked':''}><span>${esc(it.name)}</span></label>`).join('');
-    inner += `<p class="sub" id="cellPreview" style="margin-top:10px"></p>`;
-    const wrap = openModal(inner, ()=>{
-      c.grades[key] = [...wrap.querySelectorAll('input[type="checkbox"]')].map(i=>i.checked);
-    });
+    inner += `<p class="sub" id="cellPreview" style="margin-top:10px"></p>` + mkBlock;
+    const wrap = withMarks(openModal(inner, ()=>{
+      c.grades[key] = [...wrap.querySelectorAll('.check-opt input[type="checkbox"]')].map(i=>i.checked);
+    }));
     const upd = ()=>{
-      const out = [...wrap.querySelectorAll('input[type="checkbox"]')].map(i=>i.checked);
+      const out = [...wrap.querySelectorAll('.check-opt input[type="checkbox"]')].map(i=>i.checked);
       const done = out.filter(Boolean).length;
       wrap.querySelector('#cellPreview').textContent = done+' de '+out.length+' conseguidos → '+fmt2((done/out.length)*10);
     };
@@ -4848,9 +5184,9 @@ function openCell(studentId, taskId){
         </tr>`).join('')}
         </tbody>
       </table></div>
-      <p class="sub" id="cellPreview" style="margin-top:10px"></p>`;
+      <p class="sub" id="cellPreview" style="margin-top:10px"></p>${mkBlock}`;
 
-    const wrap = openModal(inner, ()=>{ c.grades[key] = sel; }, 'Guardar', {xl:true});
+    const wrap = withMarks(openModal(inner, ()=>{ c.grades[key] = sel; }, 'Guardar', {xl:true}));
     const upd = ()=>{
       let a=0, w=0;
       items.forEach((it,i)=>{ const j=sel[i]; if(j!=null && levels[j]){ const wi=Number(it.weight)||1; a+=levels[j].value*wi; w+=wi; } });
@@ -4890,9 +5226,9 @@ function openCell(studentId, taskId){
       <div class="crit-chips">${levels.map((l,j)=>`<button class="lvl-btn ${sel[i]===j?'on':''}" data-i="${i}" data-j="${j}">${esc(l.label)}</button>`).join('')}
              <button class="lvl-btn ${sel[i]==null?'on':''}" data-i="${i}" data-j="null">–</button></div>
     </div>`).join('');
-  inner += `<p class="sub" id="cellPreview" style="margin-top:6px"></p>`;
+  inner += `<p class="sub" id="cellPreview" style="margin-top:6px"></p>` + mkBlock;
 
-  const wrap = openModal(inner, ()=>{ c.grades[key] = sel; });
+  const wrap = withMarks(openModal(inner, ()=>{ c.grades[key] = sel; }));
   const upd = ()=>{
     let a=0, w=0;
     items.forEach((it,i)=>{ const j=sel[i]; if(j!=null && levels[j]){ const wi=Number(it.weight)||1; a+=levels[j].value*wi; w+=wi; } });
@@ -4996,7 +5332,10 @@ function taskModal(existing, unitId){
         ${isInitialP(c,p.id)? '' : `<label class="field chk-field"><span></span>
           <label class="chk-row"><input type="checkbox" name="isInitial" id="tkInitial" ${t.isInitial?'checked':''}>
             <span>Es <b>evaluación inicial</b> de la unidad (diagnóstico: se ve la nota pero no cuenta para la nota de la unidad ni la trimestral)</span></label></label>`}
-        ${isInitialP(c,p.id)? '' : `<div id="weightWrap" style="${t.isInitial?'display:none':''}">${field('Peso dentro de la unidad (%)','weight',{type:'number', value:t.weight})}</div>`}
+        ${isInitialP(c,p.id)? '' : `<label class="field chk-field" id="infoWrap" style="${t.isInitial?'display:none':''}"><span></span>
+          <label class="chk-row"><input type="checkbox" name="informative" id="tkInfo" ${t.informative?'checked':''}>
+            <span><b>Solo informativa</b>: se ve en el cuaderno, la ficha y el informe, pero no cuenta para ninguna nota</span></label></label>`}
+        ${isInitialP(c,p.id)? '' : `<div id="weightWrap" style="${t.isInitial||t.informative?'display:none':''}">${field('Peso dentro de la unidad (%)','weight',{type:'number', value:t.weight})}</div>`}
         <label class="field"><span>Fechas en la agenda (opcional)</span></label>
         <div id="taskDates"></div>
         ${!existing? field('Instrumento de evaluación','type',{type:'select', value:'rubric', options:TYPE_OPTS}) : ''}
@@ -5015,7 +5354,8 @@ function taskModal(existing, unitId){
     if(!v.name) return;
     if(existing){
       Object.assign(existing, {name:v.name, skill:v.skill||'', desc:v.desc, goals:v.goals, activities:v.activities,
-        criteria:sel, weight:(v.isInitial||isInitialP(c,p.id))?0:(Number(v.weight)||0), isInitial:!!v.isInitial || isInitialP(c,p.id)});
+        criteria:sel, weight:(v.isInitial||v.informative||isInitialP(c,p.id))?0:(Number(v.weight)||0), isInitial:!!v.isInitial || isInitialP(c,p.id),
+        informative:!!v.informative && !v.isInitial && !isInitialP(c,p.id)});
       setTaskDates(existing, dates);
       (existing.instr.items||[]).forEach(it=>{ it.crits = itemCrits(it).filter(k=>sel.indexOf(k)>-1); delete it.critCode; });
       state.view='unidad'; state.activeUnit=existing.unitId;
@@ -5025,10 +5365,11 @@ function taskModal(existing, unitId){
     const instr = tpl ? cloneInstr(tpl) : blankInstr(v.type);
     if(tpl && v.type && tpl.type!==v.type) instr.type = tpl.type;
     const task = {id:uid(), areaId:aid, periodId:p.id, unitId:uId, name:v.name, skill:v.skill||'', desc:v.desc, goals:v.goals,
-      activities:v.activities, criteria:sel, weight:(v.isInitial||isInitialP(c,p.id))?0:(Number(v.weight)||0), isInitial:!!v.isInitial || isInitialP(c,p.id), instr:instr, adaptations:{}, dates:dates.slice()};
+      activities:v.activities, criteria:sel, weight:(v.isInitial||v.informative||isInitialP(c,p.id))?0:(Number(v.weight)||0), isInitial:!!v.isInitial || isInitialP(c,p.id),
+      informative:!!v.informative && !v.isInitial && !isInitialP(c,p.id), instr:instr, adaptations:{}, dates:dates.slice()};
     c.tasks.push(task);
     state.editor = {mode:'task', id:task.id};
-    if(instr.type==='num'){
+    if(instr.type==='num' || instr.type==='faces'){
       if(taskFromAgenda){ taskFromAgenda=false; state.view='clases'; state.homeTab='agenda'; state.planDate=(taskDates(task)[0])||state.planDate; }
       else { state.view='unidad'; state.activeUnit=uId; }
     }
@@ -5083,11 +5424,17 @@ function taskModal(existing, unitId){
   });
   drawDates();
 
-  const chkInit = wrap.querySelector('#tkInitial');
-  if(chkInit) chkInit.addEventListener('change', e=>{
-    const ww = wrap.querySelector('#weightWrap');
-    if(ww) ww.style.display = e.target.checked ? 'none' : '';
-  });
+  const chkInit = wrap.querySelector('#tkInitial'), chkInfo = wrap.querySelector('#tkInfo');
+  const syncWeight = ()=>{
+    const ini = chkInit && chkInit.checked, inf = chkInfo && chkInfo.checked;
+    const ww = wrap.querySelector('#weightWrap'); if(ww) ww.style.display = (ini||inf) ? 'none' : '';
+    const iw = wrap.querySelector('#infoWrap'); if(iw) iw.style.display = ini ? 'none' : '';
+  };
+  if(chkInit) chkInit.addEventListener('change', syncWeight);
+  if(chkInfo) chkInfo.addEventListener('change', syncWeight);
+  /* las caritas suelen ser solo informativas: se marca por defecto (se puede quitar) */
+  const typeSel = wrap.querySelector('select[name="type"]');
+  if(typeSel && chkInfo) typeSel.addEventListener('change', ()=>{ chkInfo.checked = typeSel.value==='faces'; syncWeight(); });
 
   const drawCrits = ()=>{
     const crits = critList(aid, c.cycle);
@@ -5217,7 +5564,7 @@ function levelLabelOf(ins, i, raw){
   if(ins.type==='check') return Array.isArray(raw) ? (raw[i]?'Conseguido':'No conseguido') : '–';
   if(!Array.isArray(raw)) return '–';
   const j = raw[i];
-  return (j!=null && ins.levels[j]) ? ins.levels[j].label : '–';
+  return (j!=null && ins.levels[j]) ? ((levelFace(ins.levels[j])?levelFace(ins.levels[j])+' ':'')+ins.levels[j].label) : '–';
 }
 
 function reportFor(c, s, aid, pid, opt){
@@ -5247,10 +5594,13 @@ function reportFor(c, s, aid, pid, opt){
     ${list.map(t=>{
       const v = taskFinal(c, t, s.id);
       const adj = isAdjTask(c, s.id, t.id);
-      return `<tr><td>${esc(t.name)}${t.desc?`<br><span class="sub">${esc(t.desc)}</span>`:''}</td>
+      const insR = effInstr(c, t, s.id) || {};
+      const fc = insR.type==='faces' ? faceOf(insR, c.grades[gkey(s.id, t.id)], v) : '';
+      const mn = marksNames(c, s.id, t.id);
+      return `<tr><td>${esc(t.name)}${t.desc?`<br><span class="sub">${esc(t.desc)}</span>`:''}${mn?`<br><span class="sub">${esc(mn)}</span>`:''}</td>
         <td>${TYPE_NAMES[(t.instr||{}).type]||''}</td>
-        <td class="r">${Number(t.weight)||0}%</td>
-        <td class="r"><b>${v==null?'–':fmt2(v)}</b>${adj?' <span class="sub">(ajustada)</span>':''}</td></tr>`;
+        <td class="r">${t.informative?'<span class="sub">informativa</span>':(Number(t.weight)||0)+'%'}</td>
+        <td class="r"><b>${v==null?'–':(fc?fc+' ':'')+(t.informative&&fc?'':fmt2(v))}</b>${adj?' <span class="sub">(ajustada)</span>':''}</td></tr>`;
     }).join('')}
     <tr class="tot"><td colspan="3">Nota final ponderada${isAdjFinal(c,s.id,aid,pid)?' (ajustada)':''}</td><td class="r">${fmt(f)}</td></tr>
     </tbody></table>`;
@@ -5331,6 +5681,26 @@ function reportFor(c, s, aid, pid, opt){
   return h;
 }
 
+function reportSummary(c, s, pid, aids){
+  const p = c.periods.find(x=>x.id===pid);
+  const idx = c.students.findIndex(x=>x.id===s.id)+1;
+  const ini = p && p.initial;
+  return `<div class="rep">
+    <div class="rhead"><div>
+      <h1>${esc(s.name)}</h1>
+      <p class="meta">Nº ${String(idx).padStart(2,'0')} · ${esc(c.name)} · ${esc(c.level||'')} de Primaria · ${CYCLE_NAMES[c.cycle]}</p>
+      <p class="meta">Resumen de todas las áreas · ${esc(p?p.name:'')}</p></div></div>
+    <h2>Calificaciones por área</h2>
+    <table><thead><tr><th>Área</th><th class="r">Nota</th><th class="r">Calificación</th></tr></thead><tbody>
+    ${aids.map(a=>{
+      const v = ini ? initMean(c, s.id, a) : areaFinal(c, s.id, a, pid);
+      const k = ini ? null : calif(v, c.scale);
+      return `<tr><td>${esc(areaDef(a).name)}</td><td class="r"><b>${v==null?'–':(ini?fmt2(v):fmt(v))}</b></td><td class="r">${ini?'<span class="sub">orientativa</span>':(k?esc(k.name):'–')}</td></tr>`;
+    }).join('')}
+    </tbody></table>
+    <p class="sub" style="margin-top:14px">En las páginas siguientes, el detalle de cada área.</p>
+  </div>`;
+}
 function reportDoc(c, students, aid, pid, opt){
   const css = `
     @page{margin:16mm}
@@ -5461,6 +5831,9 @@ function applyBackup(data, mode){
     if(Array.isArray(data.schedule) && data.schedule.length) state.schedule = data.schedule;
     if(data.sessions && typeof data.sessions==='object') state.sessions = data.sessions;
     if(data.teacherTT && typeof data.teacherTT==='object') state.teacherTT = data.teacherTT;
+    if(data.areaColors && typeof data.areaColors==='object') state.areaColors = data.areaColors;
+    if(data.colorBy) state.colorBy = data.colorBy;
+    if(Array.isArray(data.markDefs)) state.markDefs = data.markDefs;
     state.activeCourse = state.courses[0]? state.courses[0].id : null;
     state.activePeriod = null; state.activeArea = null; state.editor = null;
   } else {
@@ -5787,7 +6160,8 @@ function sessionDevHtml(s){
 function sessionModal(iso, slotId){
   const sl = state.schedule.find(x=>x.id===slotId);
   const key = skey(iso, slotId);
-  const ttPre = state.sessions[key] ? null : ttAt(iso, slotId);
+  const ttNow = ttAt(iso, slotId);
+  const ttPre = state.sessions[key] ? null : ttNow;
   const s = state.sessions[key] || {title:'', parts:[], courseId:(ttPre&&ttPre.courseId)||'', areaId:(ttPre&&ttPre.areaId)||''};
   let courseId = s.courseId || '';
   let aid = s.areaId || '';
@@ -5800,7 +6174,8 @@ function sessionModal(iso, slotId){
   };
 
   const inner = `<h3>Planificar sesión</h3>
-    <p class="sub">${fmtDayLong(iso)} · ${sl?sl.from+'–'+sl.to:''}${ttPre?` · <b>de tu horario: ${esc(ttText(ttPre))}</b>`:''}</p>
+    <p class="sub">${fmtDayLong(iso)} · ${sl?sl.from+'–'+sl.to:''}${ttNow?` · <b>de tu horario: ${esc(ttText(Object.assign({}, ttNow, {label:''})))}</b>`:''}</p>
+    ${ttNow&&ttNow.label?`<p class="tt-note-box">📌 <b>Nota de tu horario:</b> ${esc(ttNow.label)}</p>`:''}
     <div class="m-cols">
       <div class="col-a">
         <label class="field"><span>Clase (opcional)</span>
@@ -6086,11 +6461,20 @@ const actions = {
   },
   gdSyncNow(){ if(gdTokenOk()) gdSync(); else gdConnect(); },
   gdOff(){ gdDisconnect(); },
-  tab(t){ state.view = t.dataset.id; save(); render(); },
-  pickCourse(t){ state.activeCourse=t.value; state.activePeriod=null; state.activeArea=null; state.editor=null; save(); render(); },
-  pickPeriod(t){ state.activePeriod=t.value; leaveStale(); save(); render(); },
-  pickArea(t){ state.activeArea=t.value; leaveStale(); save(); render(); },
-  setCourse(t){ state.activeCourse=t.dataset.id; state.activePeriod=null; state.activeArea=null; state.editor=null; state.view='alumnos'; save(); render(); },
+  tab(t){ state.view = t.dataset.id; rememberSel(); save(); render(); },
+  pickCourse(t){ enterCourse(t.value, true); save(); render(); },
+  pickPeriod(t){ state.activePeriod=t.value; leaveStale(); rememberSel(); save(); render(); },
+  pickArea(t){ state.activeArea=t.value; leaveStale(); rememberSel(); save(); render(); },
+  stuArea(t){ state.activeArea=t.dataset.a; if(t.dataset.p) state.activePeriod=t.dataset.p; rememberSel(); save(); render(); window.scrollTo(0,0); },
+  setCourse(t){ enterCourse(t.dataset.id, false); save(); render(); },
+  resumeCourse(t){ enterCourse(t.dataset.id, false); save(); render(); },
+  colorBy(t){ state.colorBy = t.dataset.m; save(); render(); },
+  editMarks(){ marksEditor(); },
+  colorsReset(){
+    openModal('<h3>Colores automáticos</h3><p class="sub" style="margin:0">Se quitan los colores que has elegido para clases y áreas.</p>', ()=>{
+      state.areaColors = {}; state.courses.forEach(c=>{ delete c.color; });
+    }, 'Restablecer');
+  },
   goHome(){ state.view='clases'; state.editor=null; save(); render(); },
   homeTab(t){ state.homeTab = t.dataset.id; save(); render(); },
   homeTutCourse(t){ state.homeTutCourse = t.target.value; save(); render(); },
@@ -6274,6 +6658,44 @@ const actions = {
     confirmDo('¿Volver al catálogo predeterminado?','Se pierden las medidas que hayas añadido al catálogo. Las medidas ya marcadas por área se conservan si siguen existiendo.', ()=>{
       c.duaCatalog = null;
     });
+  },
+  stuReport(t){
+    const c = course(), s = c.students.find(x=>x.id===t.dataset.id); if(!s) return;
+    const ov = studentOverview(c, s.id);
+    const withData = c.periods.filter(p=>ov.some(r=>r.cells.some(x=>x.p.id===p.id && x.v!=null)));
+    const here = period();
+    const cur = withData.some(p=>p.id===here.id) ? here : (withData.filter(p=>!p.initial).slice(-1)[0] || withData.slice(-1)[0] || here);
+    const inner = `<h3>Informe de ${esc(s.name)}</h3>
+      <div class="m-cols">
+        <div class="col-a">
+          ${field('Evaluación','pid',{type:'select', value:cur.id, options:c.periods.map(p=>({value:p.id, label:p.name}))})}
+          ${field('Áreas','scope',{type:'select', value:'all', options:[{value:'all',label:'Todas las áreas con notas'},{value:'cur',label:'Solo '+(areaDef(areaId()).short||areaDef(areaId()).name)}]})}
+          <p class="sub" style="margin-top:12px">Se abre dentro de la app con botones para imprimir, guardar en PDF o descargar.</p>
+        </div>
+        <div class="col-b">
+          <label class="field"><span>Qué incluir</span></label>
+          <label class="check-opt"><input type="checkbox" name="ini" checked><span>Punto de partida (ev. inicial) y progreso</span></label>
+          <label class="check-opt"><input type="checkbox" name="crits" checked><span>Logro por criterio de evaluación</span></label>
+          <label class="check-opt"><input type="checkbox" name="rub"><span>Detalle de rúbricas y escalas, ítem a ítem</span></label>
+          <label class="check-opt"><input type="checkbox" name="tut"><span>Tutorías con la familia</span></label>
+          <label class="check-opt"><input type="checkbox" name="obs" checked><span>Espacio para observaciones y firmas</span></label>
+        </div>
+      </div>`;
+    openModal(inner, v=>{
+      const pid = v.pid || cur.id;
+      const opt = {ini:v.ini, crits:v.crits, rub:v.rub, tut:false, obs:false};
+      let aids = v.scope==='cur' ? [areaId()]
+        : studentOverview(c, s.id).filter(r=>r.cells.some(x=>x.p.id===pid && x.v!=null)).map(r=>r.aid);
+      if(!aids.length) aids = [areaId()];
+      const packs = aids.map((a,i)=>reportDoc(c, [s], a, pid, Object.assign({}, opt, i===aids.length-1 ? {tut:v.tut, obs:v.obs} : {})));
+      const pack = packs[0];
+      pack.body = (aids.length>1 ? reportSummary(c, s, pid, aids) : '') + packs.map(x=>x.body).join('');
+      pack.n = 1;
+      pack.title = 'Informe · '+s.name+' · '+c.name;
+      const pn = (c.periods.find(x=>x.id===pid)||{}).name||'';
+      const name = ('informe_'+s.name+'_'+c.name+'_'+(aids.length>1?'todas':(areaDef(aids[0]).short||''))+'_'+pn).replace(/[^\w]+/g,'_')+'.html';
+      showReport(pack, name);
+    }, 'Generar', {wide:true});
   },
   studentPrev(t){
     const c=course(), i=c.students.findIndex(x=>x.id===t.dataset.id);
@@ -6589,7 +7011,7 @@ const actions = {
       const k = JSON.parse(JSON.stringify(cc));
       k.students = []; k.grades = {}; k.attendance = {}; k.overrides = {}; k.finals = {};
       k.tutorias = []; k.diversity = {}; k.dua = {}; k.initObs = {}; k.progress = {};
-      k.layout = {items:[]}; k.timetable = {};
+      k.layout = {items:[]}; k.timetable = {}; k.marks = {};
       (k.tasks||[]).forEach(t=>{ t.adaptations = {}; t.dates = []; delete t.date; });
       k.name = cc.name + ' (programación)';
       return k;
@@ -6613,7 +7035,7 @@ const actions = {
       } else if(v.scope==='course' && c){
         data = Object.assign({}, meta, {scope:'course', courses:[c], templates:state.templates, curriculo:state.curriculo});
       } else {
-        data = Object.assign({}, meta, {scope:'all', courses:state.courses, templates:state.templates, curriculo:state.curriculo,
+        data = Object.assign({}, meta, {scope:'all', courses:state.courses, templates:state.templates, curriculo:state.curriculo, areaColors:state.areaColors, colorBy:state.colorBy, markDefs:state.markDefs,
           schedule:state.schedule, sessions:state.sessions, teacherTT:state.teacherTT});
       }
       const txt = JSON.stringify(data);
@@ -6705,6 +7127,24 @@ document.addEventListener('click', e=>{
   if(fn){ e.preventDefault(); if(t.closest('summary')) e.stopPropagation(); fn(t); }
 });
 
+/* marcas: clic derecho o pulsación larga sobre una casilla de nota */
+document.addEventListener('contextmenu', e=>{
+  const m = e.target.closest('[data-mks]'); if(!m || e.target.closest('.backdrop')) return;
+  e.preventDefault(); marksModal(m.dataset.mks, m.dataset.mkt);
+});
+let lpTimer = null, lpFired = false, lpXY = null;
+document.addEventListener('pointerdown', e=>{
+  const m = e.target.closest('[data-mks]'); if(!m || e.button>0) return;
+  lpFired = false; lpXY = [e.clientX, e.clientY];
+  clearTimeout(lpTimer);
+  lpTimer = setTimeout(()=>{ lpFired = true; marksModal(m.dataset.mks, m.dataset.mkt); }, 550);
+});
+document.addEventListener('pointermove', e=>{ if(lpTimer && lpXY && Math.hypot(e.clientX-lpXY[0], e.clientY-lpXY[1])>10){ clearTimeout(lpTimer); lpTimer=null; } });
+['pointerup','pointercancel'].forEach(ev=>document.addEventListener(ev, ()=>{ clearTimeout(lpTimer); lpTimer=null; }));
+document.addEventListener('click', e=>{   // tras una pulsación larga, no abrir además la casilla
+  if(lpFired && e.target.closest('[data-mks]')){ lpFired = false; e.preventDefault(); e.stopPropagation(); }
+}, true);
+
 document.addEventListener('change', e=>{
   const t = e.target.closest('[data-act]');
   if(!t || t.closest('.backdrop')) return;
@@ -6712,6 +7152,8 @@ document.addEventListener('change', e=>{
   if(a==='iniGrade'||a==='iniObs'||a==='progObs') return;
   if(a==='pickCourse'||a==='pickPeriod'||a==='pickArea'){ actions[a](t); return; }
   if(a==='homeTutCourse'||a==='homeAjCourse'){ actions[a](t); return; }
+  if(a==='areaColor'){ if(!state.areaColors||typeof state.areaColors!=='object') state.areaColors = {}; state.areaColors[t.dataset.id] = t.value; save(); render(); return; }
+  if(a==='courseColor'){ const k = state.courses.find(x=>x.id===t.dataset.id); if(k){ k.color = t.value; save(); render(); } return; }
   if(a==='attDate'){ state.attDate = t.value; save(); render(); return; }
   if(!c) return;
   if(a==='periodName'){ const x=c.periods.find(k=>k.id===t.dataset.id); x.name=t.value; save(); renderHeader(); return; }
