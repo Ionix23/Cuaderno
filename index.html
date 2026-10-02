@@ -599,6 +599,14 @@ details.sp-card summary{cursor:pointer;font-size:14px}
 .tm-pre button.on{border-color:#E4A11B;color:#E4A11B}
 .tools-mode.tm-end .tm-disp{color:#FF6B5E;animation:tmblink .8s steps(2) 6}
 @keyframes tmblink{50%{opacity:.25}}
+/* pesos de los ítems en % */
+.w-pct{display:inline-flex;align-items:center;gap:3px;font-family:var(--font-mono);font-size:13px}
+.w-pct i{font-style:normal;color:var(--muted)}
+table.rub .w-pct input.mini{width:56px}
+.w-bar{display:flex;align-items:center;gap:8px 12px;flex-wrap:wrap;margin-top:12px;padding:9px 12px;border-radius:10px;border:1px solid var(--rule);background:#F4F8F5;font-size:14px}
+.w-bar.ok b{color:var(--accent)}
+.w-bar.bad{background:#FDF1F1;border-color:#E9B9BB}
+.w-bar.bad b,.w-bar.bad .w-msg{color:#B4232C}
 /* días no lectivos */
 .wk-dayh{cursor:pointer}
 .wk-dayh:hover{background:#F2F6F3}
@@ -1244,9 +1252,9 @@ function medMatchesProfile(medCode, conds){
 }
 const CODES = {P:'Presente', A:'Falta', R:'Retraso', J:'Justificada'};
 const KEY = 'cuaderno-lomloe:v1';
-const APP_VERSION = '3.2';
-const APP_BUILD = '01/10/2026';
-const APP_NOTES = 'Anexos (imágenes, PDF, documentos) en cada sesión con visor a pantalla completa; herramientas de aula (sorteo, grupos aleatorios o equilibrados, temporizador); estadísticas de la clase; gráficas de evolución en la ficha del alumno; comentario opcional en cada nota; dianas y plantillas de autoevaluación y coevaluación con modo alumno; días no lectivos en la agenda';
+const APP_VERSION = '3.3';
+const APP_BUILD = '02/10/2026';
+const APP_NOTES = 'El peso de cada ítem de una rúbrica se escribe ahora directamente en porcentaje y entre todos tienen que sumar 100 % (los pesos que ya tenías se han convertido solos, sin cambiar ninguna nota)';
 
 /* escala cualitativa por defecto (Orden ECD/1112/2022) */
 const DEFAULT_SCALE = [
@@ -1836,13 +1844,19 @@ async function load(){
   if(!state.planView) state.planView = 'week';
   if(!state.planDate) state.planDate = today();
   state.view = 'clases';   // la app siempre abre en el panel de inicio
+  /* si los datos estaban al día con Drive, las conversiones automáticas de una versión nueva
+     no cuentan como cambios hechos en este equipo (evita un falso aviso de «dos versiones») */
+  gdRestore();
+  const wasClean = !!gd.baseHash && gdHash()===gd.baseHash;
   migrate();
   normalize();
+  if(wasClean && gdHash()!==gd.baseHash){ gd.baseHash = gdHash(); gdPersist(); }
   render();
   gdInit();
 }
 function normalize(){
   if(!state.courses) state.courses = [];
+  allInstrs(toPct);
   if(!state.activeCourse && state.courses[0]) state.activeCourse = state.courses[0].id;
   const c = course();
   if(c){
@@ -1888,7 +1902,7 @@ function blankInstr(type){
   return i;
 }
 function cloneInstr(o){
-  const c = JSON.parse(JSON.stringify({type:o.type, max:o.max||10, levels:o.levels||[], items:o.items||[], diana:!!o.diana}));
+  const c = JSON.parse(JSON.stringify({type:o.type, max:o.max||10, levels:o.levels||[], items:o.items||[], diana:!!o.diana, pct:!!o.pct}));
   c.items.forEach(i=>{ i.id = uid(); i.crits = []; delete i.critCode; });
   return c;
 }
@@ -2349,6 +2363,61 @@ function itemValue(instr, i, raw){
   if(j==null || !instr.levels[j]) return null;
   return instr.levels[j].value;
 }
+/* ---------- peso de los ítems en porcentaje ----------
+   El peso de cada ítem se guarda como porcentaje y entre todos deben sumar 100.
+   Los instrumentos anteriores (pesos relativos 1, 2, 0,5…) se convierten una sola vez (ins.pct). */
+function wRound(v){ return Math.round((Number(v)||0)*10)/10; }
+function weightSum(ins){ return wRound((ins.items||[]).reduce((n,it)=>n+(Number(it.weight)||0),0)); }
+function weightsOk(ins){ return !ins || ins.type==='num' || !(ins.items||[]).length || Math.abs(weightSum(ins)-100) < 0.05; }
+function weightsEqual(ins){ const w = (ins.items||[]).map(it=>Number(it.weight)||0); return w.length>0 && Math.max(...w)-Math.min(...w) <= 1; }
+function equalWeights(ins){
+  const n = (ins.items||[]).length; if(!n) return;
+  ins.items.forEach(it=>{ it.weight = 100/n; });      // exacto (33,33…): tres ítems iguales pesan de verdad lo mismo
+}
+/* ajusta a 100 conservando la proporción entre ítems */
+function fixWeights(ins, exactly){
+  const items = ins.items||[]; if(!items.length) return;
+  const sum = items.reduce((n,it)=>n+(Number(it.weight)||0),0);
+  if(!sum) return equalWeights(ins);
+  if(exactly){   /* conversión automática: reescalado exacto, las notas no cambian */
+    items.forEach(it=>{ const v = (Number(it.weight)||0)*100/sum; it.weight = Math.abs(v-Math.round(v))<1e-9 ? Math.round(v) : v; });
+    return;
+  }
+  /* a petición del docente: valores limpios (un decimal como mucho); el resto va al ítem que más pesa */
+  items.forEach(it=>{ it.weight = wRound((Number(it.weight)||0)*100/sum); });
+  const diff = wRound(100 - items.reduce((n,it)=>n+it.weight,0));
+  if(diff){ const big = items.reduce((a,b)=>b.weight>a.weight?b:a, items[0]); big.weight = wRound(big.weight+diff); }
+}
+function toPct(ins){
+  if(!ins || ins.pct || ins.type==='num') return ins;
+  const items = ins.items||[];
+  if(items.length){
+    const w = items.map(it=>it.weight==null?1:(Number(it.weight)||0));
+    items.forEach((it,i)=>{ it.weight = w[i]; });
+    if(w.every(x=>x===w[0])) equalWeights(ins); else fixWeights(ins, true);
+  }
+  ins.pct = true;
+  return ins;
+}
+function allInstrs(fn){
+  (state.templates||[]).forEach(fn);
+  (state.courses||[]).forEach(c=>(c.tasks||[]).forEach(t=>{ if(t.instr) fn(t.instr);
+    Object.keys(t.adaptations||{}).forEach(sid=>{ const a = t.adaptations[sid]; if(a && a.instr) fn(a.instr); }); }));
+}
+function weightBar(ins){
+  const sum = weightSum(ins), ok = weightsOk(ins), d = wRound(100 - sum);
+  const zeros = (ins.items||[]).filter(it=>!(Number(it.weight)>0)).length;
+  const f = v=>String(v).replace('.',',');
+  return `<div class="w-bar ${ok?'ok':'bad'}" id="wBar">
+    <b>Pesos de los ítems: ${f(sum)} %</b>
+    <span class="w-msg">${ok ? '✓ suman 100 %' + (zeros?` · ${zeros} ítem(s) con 0 % no cuentan para la nota`:'')
+      : (d>0 ? `faltan ${f(d)} % para llegar a 100 %` : `sobran ${f(-d)} %: tienen que sumar 100 %`)}</span>
+    <div class="spacer"></div>
+    ${ok?'':`<button class="btn small" data-act="fixWeights" title="Mantiene la proporción entre ítems">Ajustar a 100 %</button>`}
+    ${weightsEqual(ins)&&ok?'':`<button class="btn ghost small" data-act="eqWeights">Repartir por igual</button>`}
+  </div>`;
+}
+function weightBarRefresh(ins){ const b = document.getElementById('wBar'); if(b) b.outerHTML = weightBar(ins); }
 function itemPct(instr, i){
   const total = (instr.items||[]).reduce((n,it)=>n+(Number(it.weight)||0),0);
   if(!total) return 0;
@@ -4043,8 +4112,7 @@ views.editorInstr = function(){
       <textarea class="it-name" data-act="itemName" data-i="${i}" rows="2" placeholder="Qué se evalúa en este ítem">${esc(it.name)}</textarea>
       <div class="row" style="gap:6px;margin-top:6px">
         ${critPicker(it, i)}
-        <input class="mini" type="number" min="0" step="0.5" value="${it.weight==null?1:it.weight}" data-act="itemWeight" data-i="${i}" title="Peso relativo del ítem">
-        <span class="tag grey">${itemPct(ins,i)}%</span>
+        <span class="w-pct" title="Cuánto pesa este ítem en la nota de la tarea"><input class="mini" type="number" min="0" max="100" step="5" value="${wRound(it.weight)}" data-act="itemWeight" data-i="${i}" aria-label="Peso del ítem en %"><i>%</i></span>
         <div class="spacer"></div>
         <button class="icon" data-act="delItem" data-i="${i}" title="Quitar ítem">✕</button>
       </div>
@@ -4067,8 +4135,7 @@ views.editorInstr = function(){
             <option value="">criterio –</option>
             ${avail.map(k=>`<option value="${k}" ${k===it.critCode?'selected':''}>${k}</option>`).join('')}
           </select>`:''}
-        <input type="number" min="0" step="0.5" value="${it.weight==null?1:it.weight}" data-act="itemWeight" data-i="${i}" style="width:66px;text-align:center">
-        <span class="tag grey">${itemPct(ins,i)}%</span>
+        <span class="w-pct" title="Cuánto pesa este ítem en la nota de la tarea"><input type="number" min="0" max="100" step="5" value="${wRound(it.weight)}" data-act="itemWeight" data-i="${i}" aria-label="Peso del ítem en %" style="width:66px;text-align:center"><i>%</i></span>
         <div class="spacer"></div>
         <button class="icon" data-act="delItem" data-i="${i}">✕</button>
       </div>
@@ -4139,6 +4206,7 @@ views.editorInstr = function(){
       <p class="hint" style="margin:8px 0 0">La cifra bajo cada grado es su equivalencia sobre 10: eso es lo que convierte la rúbrica en nota.</p>
     </div>`:''}
 
+    ${weightBar(ins)}
     ${mode==='table'
       ? `<div class="scroll" style="margin-top:12px"><table class="rub"><thead>${head}</thead><tbody>${body}</tbody></table></div>`
       : `<div style="margin-top:12px">${levelsEditor}${listBody}</div>`}
@@ -4152,7 +4220,7 @@ views.editorInstr = function(){
     </div>
     ${ins.diana && (ins.items||[]).length>=3 ? `<div class="card" style="margin-top:10px;text-align:center"><p class="hint" style="margin:0 0 6px">Vista previa de la diana (con un ejemplo de valoración)</p>${dianaSvg(ins, (ins.items||[]).map((_,i)=>(i % Math.max(1,(ins.levels||[]).length))), 260)}</div>`
       : (ins.diana ? '<p class="hint">La diana necesita al menos 3 ítems.</p>' : '')}
-    <p class="hint" style="margin-top:10px">Todos los ítems pesan igual salvo que cambies el número; el % se recalcula solo.${linkTask?' Los códigos de cada ítem son los criterios que ese ítem valora: puedes marcar varios. El logro de cada criterio se calcula con los ítems que lo llevan marcado, no con la nota global.':''}</p>
+    <p class="hint" style="margin-top:10px">Escribe en cada ítem el porcentaje que pesa en la nota de la tarea; entre todos tienen que sumar 100 %.${linkTask?' Los códigos de cada ítem son los criterios que ese ítem valora: puedes marcar varios. El logro de cada criterio se calcula con los ítems que lo llevan marcado, no con la nota global.':''}</p>
     `}`;
 };
 
@@ -7494,7 +7562,13 @@ const actions = {
   },
 
   /* instrumento en edición */
-  addItem(){ const i=editedInstr(); if(!i) return; i.items.push(mkItem('')); save(); render(); },
+  addItem(){ const i=editedInstr(); if(!i) return;
+    const eq = weightsEqual(i) && weightsOk(i);
+    const it = mkItem(''); it.weight = 0; i.items.push(it);
+    if(eq || i.items.length===1) equalWeights(i);     // si pesaban todos igual, se vuelve a repartir; si no, el nuevo entra con 0 %
+    save(); render(); },
+  eqWeights(){ const i=editedInstr(); if(!i) return; equalWeights(i); save(); render(); },
+  fixWeights(){ const i=editedInstr(); if(!i) return; fixWeights(i); save(); render(); },
   toggleDiana(){ const i=editedInstr(); if(!i) return; i.diana = !i.diana; save(); render(); },
   itemCrit(t){
     const ins = editedInstr(); if(!ins) return;
@@ -7507,7 +7581,11 @@ const actions = {
     it.crits = list; delete it.critCode;
     save(); render();
   },
-  delItem(t){ const i=editedInstr(); if(!i) return; i.items.splice(Number(t.dataset.i),1); save(); render(); },
+  delItem(t){ const i=editedInstr(); if(!i) return;
+    const eq = weightsEqual(i) && weightsOk(i);
+    i.items.splice(Number(t.dataset.i),1);
+    if(eq) equalWeights(i);
+    save(); render(); },
   addLevel(){ const i=editedInstr(); if(!i) return; i.levels.push(lv('Nuevo grado',10)); save(); render(); },
   delLevel(t){
     const ins=editedInstr(); if(!ins) return;
@@ -7826,8 +7904,22 @@ document.addEventListener('click', e=>{
   if(!t || t.tagName==='INPUT' || t.tagName==='SELECT' || t.tagName==='TEXTAREA') return;
   if(t.closest('.backdrop')) return;
   const fn = actions[t.dataset.act];
-  if(fn){ e.preventDefault(); if(t.closest('summary')) e.stopPropagation(); fn(t); }
+  if(fn){ e.preventDefault(); if(t.closest('summary')) e.stopPropagation(); if(weightGuard(t.dataset.act, ()=>fn(t))) return; fn(t); }
 });
+/* al salir del editor de un instrumento, sus pesos tienen que sumar 100 % */
+const LEAVE_ACTS = ['tab','goHome','backToUnit','pickCourse','pickArea','pickPeriod','editTask'];
+function weightGuard(act, go){
+  if(state.view!=='editorInstr' || LEAVE_ACTS.indexOf(act)<0) return false;
+  const ins = editedInstr();
+  if(weightsOk(ins)) return false;
+  const sum = String(weightSum(ins)).replace('.',',');
+  const wrap = openModal(`<h3>Los pesos suman ${sum} %</h3>
+    <p class="sub" style="margin:0">Los porcentajes de los ítems tienen que sumar 100 %. Puedes volver y corregirlos, o ajustarlos ahora manteniendo la proporción entre ellos.</p>`,
+    ()=>{ fixWeights(ins); go(); }, 'Ajustar a 100 % y salir');
+  wrap.querySelector('[data-close]').textContent = 'Volver a corregir';
+  wrap.addEventListener('click', e=>{ if(e.target===wrap || e.target.hasAttribute('data-close')) renderHeader(); });
+  return true;
+}
 
 /* anexos en la agenda: tocar una miniatura o el 📎 abre el visor sin abrir la sesión */
 document.addEventListener('click', e=>{
@@ -7860,7 +7952,7 @@ document.addEventListener('change', e=>{
   if(!t || t.closest('.backdrop')) return;
   const a = t.dataset.act, c = course();
   if(a==='iniGrade'||a==='iniObs'||a==='progObs') return;
-  if(a==='pickCourse'||a==='pickPeriod'||a==='pickArea'){ actions[a](t); return; }
+  if(a==='pickCourse'||a==='pickPeriod'||a==='pickArea'){ const v = t.value; if(weightGuard(a, ()=>actions[a]({value:v, dataset:t.dataset}))) return; actions[a](t); return; }
   if(a==='toggleDiana'){ actions.toggleDiana(); return; }
   if(a==='homeTutCourse'||a==='homeAjCourse'){ actions[a](t); return; }
   if(a==='areaColor'){ if(!state.areaColors||typeof state.areaColors!=='object') state.areaColors = {}; state.areaColors[t.dataset.id] = t.value; save(); render(); return; }
@@ -7917,7 +8009,7 @@ document.addEventListener('change', e=>{
   if(a==='levelLabel'){ ins.levels[j].label = t.value; save(); return; }
   if(a==='levelValue'){ ins.levels[j].value = num(t.value)==null?0:num(t.value); save(); return; }
   if(a==='itemName'){ ins.items[i].name = t.value; save(); return; }
-  if(a==='itemWeight'){ ins.items[i].weight = num(t.value)==null?1:num(t.value); save(); render(); return; }
+  if(a==='itemWeight'){ const v = num(t.value); ins.items[i].weight = v==null ? 0 : Math.max(0, Math.min(100, wRound(v))); t.value = ins.items[i].weight; weightBarRefresh(ins); save(); return; }
   if(a==='cellText'){
     const it = ins.items[i];
     if(!it.cells) it.cells = [];
@@ -7927,6 +8019,12 @@ document.addEventListener('change', e=>{
   }
 });
 
+document.addEventListener('input', e=>{
+  if(e.target.dataset && e.target.dataset.act==='itemWeight' && !e.target.closest('.backdrop')){
+    const ins = editedInstr(); const it = ins && ins.items[Number(e.target.dataset.i)];
+    if(it){ const v = num(e.target.value); it.weight = v==null ? 0 : Math.max(0, wRound(v)); weightBarRefresh(ins); }
+  }
+});
 document.addEventListener('input', e=>{
   const t = e.target;
   if(!t.dataset) return;
