@@ -600,6 +600,58 @@ details.sp-card summary{cursor:pointer;font-size:14px}
 .tm-pre button.on{border-color:#E4A11B;color:#E4A11B}
 .tools-mode.tm-end .tm-disp{color:#FF6B5E;animation:tmblink .8s steps(2) 6}
 @keyframes tmblink{50%{opacity:.25}}
+/* página de tarea */
+#app.focus .top{padding-bottom:14px}
+.te{max-width:860px;margin:0 auto}
+.te-top{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+#app .te-title{font-size:24px}
+.te-err{background:#FDF1F1;border:1px solid #E9B9BB;color:#B4232C;border-radius:10px;padding:10px 12px;margin-bottom:12px;font-weight:600;font-size:15px}
+.te-card{margin-bottom:12px;padding:16px}
+#app .te-h{font-size:17px;margin:0 0 10px;display:inline-block}
+.te-h small,.te-lbl small,.te-more summary small{font-family:var(--font-ui);font-weight:400;font-size:13px;color:var(--muted);letter-spacing:0;text-transform:none;margin-left:6px}
+.te-lbl{display:block;font-size:13.5px;font-weight:600;color:var(--muted);margin-bottom:5px}
+.te-name{font-size:19px;padding:11px 12px}
+.te-help{color:var(--muted);font-size:14px;margin:10px 0 0}
+.te-count{font-family:var(--font-ui);font-weight:400;font-size:13px;color:var(--accent);margin-left:8px}
+.te-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.te-grid label,.te-new{display:block;min-width:0}
+.te-new{margin-top:12px}
+.te-chips{display:flex;flex-wrap:wrap;gap:8px}
+.te-chip{font:inherit;font-size:14.5px;padding:8px 14px;border-radius:999px;border:1.5px solid var(--rule);background:#fff;color:var(--ink);cursor:pointer;min-height:40px}
+.te-chip.mono{font-family:var(--font-mono);font-size:14px;padding:8px 12px;border-radius:9px;min-width:52px}
+.te-chip.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.te-critlist{margin-top:12px}
+.te-crit{display:flex;gap:10px;font-size:14.5px;padding:5px 0;border-top:1px solid #EEF1EE;line-height:1.35}
+.te-crit b{font-family:var(--font-mono);color:var(--accent);flex:none;width:34px}
+.te-types{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.te-kinds{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.te-type{display:flex;flex-direction:column;gap:3px;text-align:left;font:inherit;padding:11px 12px;border:1.5px solid var(--rule);border-radius:11px;background:#fff;color:var(--ink);cursor:pointer;min-height:64px}
+.te-type b{font-family:var(--font-display);font-size:15px}
+.te-type span{font-size:12.5px;color:var(--muted);line-height:1.3}
+.te-type.on{border-color:var(--accent);background:var(--accent-soft)}
+.te-type.on b{color:var(--accent)}
+.te-weight{display:flex;align-items:flex-end;gap:14px;flex-wrap:wrap;margin-top:14px}
+.te-weight .w-pct{display:flex;align-items:center;gap:6px}
+.te-weight .w-pct i{font-size:17px;font-family:var(--font-ui)}
+.te-weight .te-help{padding-bottom:10px}
+.te .td-add .inp[type=date]{max-width:180px}.te .td-add .inp[type=time]{max-width:130px}
+.te-more summary{cursor:pointer;list-style:none;display:flex;align-items:baseline;gap:4px;flex-wrap:wrap}
+.te-more summary::-webkit-details-marker{display:none}
+.te-more summary::before{content:'▸';color:var(--muted);margin-right:6px}
+.te-more[open] summary::before{content:'▾'}
+.te-more summary .te-h{margin:0;font-family:var(--font-display);font-weight:800;letter-spacing:-0.02em}
+.te-more label{display:block;margin-top:12px}
+.te-more textarea{min-height:64px;resize:vertical}
+.te-foot{position:sticky;bottom:0;display:flex;gap:10px;align-items:center;flex-wrap:wrap;background:var(--paper);padding:12px 0 14px;border-top:1px solid var(--rule);margin-top:4px;z-index:5}
+@media (max-width:820px){ .te-grid{grid-template-columns:repeat(2,minmax(0,1fr))} .te-types{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:560px){
+  .te-kinds{grid-template-columns:1fr}
+  .te-type{min-height:0}
+  .te-save-top{display:none}
+  #app .te-title{font-size:21px}
+  .te-foot .btn{flex:1;justify-content:center;text-align:center}
+  .te .td-add .inp[type=date],.te .td-add .inp[type=time]{max-width:none;flex:1;min-width:120px}
+}
 /* otras áreas (nota a mano) */
 .ext-cell{display:inline-flex;align-items:center;gap:6px;justify-content:flex-end}
 .ext-inp{width:58px;text-align:center;font-family:var(--font-mono);font-size:14px;padding:5px 4px;border:1px solid var(--rule);border-radius:8px;background:#fff;color:inherit}
@@ -893,6 +945,68 @@ html,body{margin:0;background:var(--paper)}
 .gd-b-txt{flex:1;font-size:14.5px;line-height:1.4}
 @media (max-width:700px){.gd-pill{font-size:11.5px;padding:4px 9px}.gd-banner{flex-wrap:wrap}}
 
+
+/* ---------- ventanas y capas fuera de #app: misma tipografía que el resto ---------- */
+.backdrop,.kid-mode,.tools-mode,.att-viewer{font-family:var(--font-ui);line-height:1.45}
+.backdrop,.kid-mode{color:var(--ink)}
+.modal h3,.kid-t{font-family:var(--font-display);font-weight:800;letter-spacing:-0.02em}
+.modal{font-size:16px}
+.gm-scroll{overflow:auto;max-height:74vh}
+.ev-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+table.grid.ext-grid td.mark .ext-inp{border:1px solid var(--rule);background:#fff;border-radius:8px;width:64px;padding:6px 4px}
+table.grid.ext-grid td.mark .ext-inp.bad{border-color:#B4232C;background:#FDF1F1}
+/* «clip» recorta igual que «hidden» pero deja funcionar position:sticky (cabecera y pie fijos) */
+@supports (overflow:clip){#app{overflow:clip}}
+
+/* ---------- tablet y móvil ---------- */
+@media (max-width:900px){
+  /* rúbrica al calificar: un ítem debajo de otro, cada grado en una fila que se toca */
+  .modal.xl{width:100%;max-width:100%}
+  .gm-scroll{max-height:none;overflow:visible}
+  .grade-matrix,.grade-matrix tbody,.grade-matrix tr,.grade-matrix td{display:block;width:auto}
+  .grade-matrix thead{display:none}
+  .grade-matrix tr{border:1px solid var(--rule);border-radius:12px;margin-bottom:12px;overflow:hidden;background:#fff}
+  .grade-matrix td{border:0;border-top:1px solid var(--rule)}
+  .grade-matrix td.gm-item{border-top:0;background:var(--paper);padding:10px 12px}
+  .grade-matrix td.gm-item strong{display:inline;font-size:16px;margin-right:6px}
+  .gm-cell .gm-inner{min-height:0;flex-direction:row;gap:12px;align-items:baseline;padding:12px}
+  .gm-cell .gm-lvl{flex:none;width:104px;font-size:13px}
+  .gm-cell .gm-desc{font-size:15px}
+  td.gm-skip{text-align:right;padding:8px 12px}
+  .gm-skip button{font-size:13.5px;padding:6px}
+}
+@media (max-width:700px){
+  /* cabecera: Inicio · clase · Aula arriba; área y evaluación debajo, a lo ancho */
+  .context .home-btn{order:1}
+  .context .ctx-name,.context .ctx-course{order:2;flex:1 1 0;width:auto;min-width:0;align-self:center}
+  .context .tools-btn{order:3}
+  .context .ctx-sel[data-act="pickArea"],.context .ctx-sel[data-act="pickPeriod"]{order:4;flex:1 1 42%}
+  .context > .btn,.context > .tag{order:5}
+  #app.focus .top{position:static}
+  .ev-card .ev-scroll svg{min-width:560px}
+  .gd-banner{padding:10px 12px;gap:8px 10px;font-size:14.5px}
+  .subnav-btn{line-height:1.15}
+}
+@media (max-width:560px){
+  [data-act="moveStudent"]{display:none}
+  .ov-grid th,.ov-grid td{padding-left:4px;padding-right:4px}
+  .ext-inp{width:52px}
+  .mk-btn .mk-nm{font-size:13px}
+  .tl-tabs button{font-size:14.5px;padding:8px 12px}
+}
+/* dedos en vez de ratón: objetivos más grandes y sin zoom al escribir en iOS */
+@media (pointer:coarse){
+  button.icon{min-width:40px;min-height:40px}
+  button.chip{padding:8px 11px;font-size:13.5px;border-radius:8px}
+  .seg-toggle button{padding:9px 14px}
+  .check-opt{padding:11px 0}
+  .check-opt input,.chk-row input{width:22px;height:22px}
+  input:not([type=checkbox]):not([type=radio]):not([type=color]):not([type=range]),select,textarea{font-size:16px!important}
+  .grid td.mark button,.tl-val{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
+  .td-chip button,.att-del{min-width:30px;min-height:30px}
+}
+.te-foot,.modal{padding-bottom:max(14px, env(safe-area-inset-bottom))}
 </style>
 </head>
 <body>
@@ -1265,9 +1379,9 @@ function medMatchesProfile(medCode, conds){
 }
 const CODES = {P:'Presente', A:'Falta', R:'Retraso', J:'Justificada'};
 const KEY = 'cuaderno-lomloe:v1';
-const APP_VERSION = '3.4';
-const APP_BUILD = '02/10/2026';
-const APP_NOTES = 'Ficha para tutoría: una hoja por alumno con las notas de todas las áreas y sus tareas y pruebas por unidad, sin comparar con la clase; notas a mano de las áreas que dan otros docentes (en la ficha del alumno y en Ev. Trimestral › Otras áreas); la media de la clase aparece solo para ti, en la gráfica de la ficha del alumno';
+const APP_VERSION = '3.5';
+const APP_BUILD = '03/10/2026';
+const APP_NOTES = 'Adaptada a móvil y tablet: rúbricas que se califican tocando cada grado, cabecera que se pliega al bajar, botones más grandes y ventanas legibles; nueva página para crear y editar tareas (la misma desde la unidad, la agenda o una sesión), con la destreza solo en Inglés y la opción de crear la unidad allí mismo';
 
 /* escala cualitativa por defecto (Orden ECD/1112/2022) */
 const DEFAULT_SCALE = [
@@ -1499,7 +1613,7 @@ const GD_UP = 'https://www.googleapis.com/upload/drive/v3';
 const GD_DATA_KEYS = ['courses','curriculo','schedule','sessions','teacherTT','templates','areaColors','colorBy','markDefs','holidays','attFolderId'];
 const GD_UI_KEYS = ['view','homeTab','planView','planDate','planSub','activeCourse','activeArea','activePeriod','activeUnit',
   'editor','viewStudent','tutStudent','tutFromHome','unitSub','triSub','divSub','alumSub','gridMode','editMode',
-  'instrMode','editWeights','homeTutCourse','homeAjCourse','attDate','lastSel','lastCourse'];
+  'instrMode','editWeights','homeTutCourse','homeAjCourse','attDate','lastSel','lastCourse','taskEd'];
 
 const gd = {
   status:'off',          // off · need · ok · sync · offline · error · conflict
@@ -1642,7 +1756,7 @@ async function gdSync(){
       gdSet('ok'); return;
     }
     /* Drive tiene una versión que este equipo no ha visto */
-    if(document.querySelector('.backdrop')){ gd.again = true; return; }   // no pisar un formulario abierto
+    if(document.querySelector('.backdrop') || state.view==='tarea'){ gd.again = true; return; }   // no pisar un formulario abierto
     const fresh = gd.base==null;
     if((!fresh && !dirty) || (fresh && !gdHasLocalData())){
       const remote = await gdDownload(meta.id);
@@ -1854,9 +1968,10 @@ async function load(){
   if(!state.sessions || typeof state.sessions!=='object') state.sessions = {};
   if(!state.teacherTT || typeof state.teacherTT!=='object') state.teacherTT = {};
   if(!state.homeTab) state.homeTab = 'clases';
-  if(!state.planView) state.planView = 'week';
+  if(!state.planView) state.planView = isNarrow() ? 'day' : 'week';
   if(!state.planDate) state.planDate = today();
   state.view = 'clases';   // la app siempre abre en el panel de inicio
+  state.taskEd = null;
   /* si los datos estaban al día con Drive, las conversiones automáticas de una versión nueva
      no cuentan como cambios hechos en este equipo (evita un falso aviso de «dos versiones») */
   gdRestore();
@@ -2100,6 +2215,7 @@ function bindComment(wrap, c, sid, tid){
   wrap.addEventListener('change', e=>{ if(e.target.hasAttribute('data-cmt')) render(); });
 }
 function marksModal(sid, tid){
+  if(document.querySelector('.backdrop')) return;
   const c = course(); if(!c) return;
   const t = taskById(c, tid), s = c.students.find(x=>x.id===sid); if(!t || !s) return;
   const wrap = openModal(`<h3>Marcas y comentario</h3><p class="sub">${esc(s.name)} · ${esc(t.name)}</p>${commentBlock(c, sid, tid)}${marksPicker(c, sid, tid)}`, null);
@@ -2686,6 +2802,8 @@ function renderHeader(){
   const c = course();
   const home = atHome();
   const ctx = el('context');
+  document.getElementById('app').classList.toggle('focus', state.view==='tarea');
+  if(state.view==='tarea'){ ctx.innerHTML = ''; el('tabs').innerHTML = ''; document.getElementById('app').classList.remove('home'); return; }
   if(home){
     ctx.innerHTML = '';
     el('tabs').innerHTML = '';
@@ -3556,11 +3674,11 @@ function evolutionCard(c, s){
         <title>${esc(d.t.name)} · ${fmt2(d.v)} · media de la clase ${fmt2(d.m)}${taskDates(d.t)[0]?' · '+fmtDate(taskDates(d.t)[0]):''}</title></g>`).join('');
     const mpath = ts.map((d,i)=>`${i?'L':'M'}${x(i).toFixed(1)},${y(d.m).toFixed(1)}`).join(' ');
     const lastI = ts.length-1;
-    chart1 = `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Evolución de las notas de las tareas">${grid}${pass}${seps}
+    chart1 = `<div class="ev-scroll"><svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Evolución de las notas de las tareas">${grid}${pass}${seps}
       <path d="${mpath}" fill="none" stroke="#8C9892" stroke-width="1.5" stroke-dasharray="4 3"/>
       <path d="${path}" fill="none" stroke="${col}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>${pts}
       <text x="${Math.min(x(lastI)+8, W-R-30)}" y="${y(ts[lastI].v)-8}" font-size="11.5" font-weight="600" fill="#16241F">${fmt2(ts[lastI].v)}</text>
-      <text x="${L}" y="${H-8}" font-size="10.5" fill="#6B7A72">${ts.length} tarea(s) calificada(s), en orden de fecha</text></svg>`;
+      <text x="${L}" y="${H-8}" font-size="10.5" fill="#6B7A72">${ts.length} tarea(s) calificada(s), en orden de fecha</text></svg></div>`;
   }
   let chart2 = '';
   if(areasWith.length && per.length){
@@ -3574,7 +3692,7 @@ function evolutionCard(c, s){
       return `<path d="${d}" fill="none" stroke="${col}" stroke-width="2" stroke-linejoin="round"/>` +
         vs.map((v,i)=>v==null?'':`<g><circle cx="${x(i).toFixed(1)}" cy="${y(v).toFixed(1)}" r="12" fill="transparent"/><circle cx="${x(i).toFixed(1)}" cy="${y(v).toFixed(1)}" r="4.5" fill="${col}" stroke="#fff" stroke-width="2"/><title>${esc(areaDef(a).short||areaDef(a).name)} · ${esc(per[i].name)} · ${fmt(v)}</title></g>`).join('');
     }).join('');
-    chart2 = `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Nota de cada área por evaluación">${grid}${pass}${xl}${lines}</svg>
+    chart2 = `<div class="ev-scroll"><svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Nota de cada área por evaluación">${grid}${pass}${xl}${lines}</svg></div>
       ${areasWith.length>1?`<div class="ev-legend">${areasWith.map(a=>`<span><i style="background:${areaColor(a)}"></i>${esc(areaDef(a).short||areaDef(a).name)}</span>`).join('')}</div>`:''}`;
   }
   return `<div class="card ev-card">
@@ -3671,6 +3789,7 @@ function viewOtras(){
       <tr class="ext-mean"><td class="stick">Media de la clase</td>${ex.map(e=>`<td class="mark" data-xmean="${e.id}">${fmt(extClassMean(c, e.id, p.id))}</td>`).join('')}</tr>
     </tbody></table></div>`;
 }
+function perShort(n){ return String(n||'').replace(/evaluaci[oó]n inicial/i,'Inicial').replace(/evaluaci[oó]n/i,'ev.'); }
 function overviewCard(c, s){
   const rows = studentOverview(c, s.id).filter(r=>r.any);
   const ex = extAreas(c);
@@ -3681,7 +3800,7 @@ function overviewCard(c, s){
       <button class="btn ghost small" data-act="stuReport" data-id="${s.id}">⬇ Informe del alumno</button></div>
     ${rows.length||ex.length ? `<p class="hint">Toca una nota tuya para ver su detalle abajo.${ex.length?' Las de otras áreas se escriben aquí mismo.':''}</p>
     <div class="wk-scroll"><table class="mini-grid ov-grid">
-      <thead><tr><th>Área</th>${c.periods.map(p=>`<th class="r">${esc(p.name)}</th>`).join('')}</tr></thead>
+      <thead><tr><th>Área</th>${c.periods.map(p=>`<th class="r">${esc(isNarrow()?perShort(p.name):p.name)}</th>`).join('')}</tr></thead>
       <tbody>${rows.map(r=>`<tr class="${r.aid===curA?'ov-cur':''}">
         <td><span class="al-dot" style="background:${areaColor(r.aid)}"></span> ${esc(areaDef(r.aid).short||areaDef(r.aid).name)}</td>
         ${r.cells.map(x=>`<td class="r ov-cell ${r.aid===curA&&x.p.id===curP?'on':''}" data-act="stuArea" data-a="${r.aid}" data-p="${x.p.id}" title="${x.ini?'Nota orientativa · no computa':(x.n+' de '+x.total+' tareas calificadas · media de la clase '+fmt(areaClassMean(c, r.aid, x.p.id)))}">
@@ -4157,7 +4276,7 @@ function taskCard(c, aid, t){
       <span class="tag">${TYPE_NAMES[ins.type]||ins.type}${ins.type!=='num'? ' · '+n+' ítem(s)':''}</span>
       <div class="spacer"></div>
       <button class="btn ghost small" data-act="adaptTask" data-id="${t.id}">Adaptar</button>
-      <button class="btn ghost small" data-act="editTask" data-id="${t.id}">Datos y criterios</button>
+      <button class="btn ghost small" data-act="editTask" data-id="${t.id}">Editar tarea</button>
       ${ins.type!=='num'? `<button class="btn small" data-act="editInstr" data-id="${t.id}">Abrir instrumento</button>`
         : `<button class="btn ghost small" data-act="editInstr" data-id="${t.id}">Instrumento</button>`}
     </div>
@@ -5703,9 +5822,14 @@ function leaveStale(){
   const c = course(), p = period();
   if(state.view==='trimestre' && c && p && isInitialP(c, p.id)) state.view = 'unidades';
 }
+function fitHeader(){
+  const top = document.querySelector('.top'), tabs = el('tabs'); if(!top) return;
+  top.style.top = (isNarrow() && tabs && tabs.children.length) ? -(Math.max(0, tabs.offsetTop - 8))+'px' : '';
+}
 function render(){
   normalize();
   renderHeader();
+  fitHeader();
   el('main').innerHTML = (views[state.view] || views.clases)();
   const av = el('appVer'); if(av) av.innerHTML = 'Cuaderno Profesor · <b>versión '+APP_VERSION+'</b> · '+APP_BUILD;
   gdRender();
@@ -5774,7 +5898,9 @@ function openModal(html, onOk, okLabel, opts){
       <button class="btn ghost" data-close>Cancelar</button>
       ${onOk?`<button class="btn" data-ok>${esc(okLabel||'Guardar')}</button>`:''}</div></div>`;
   document.body.appendChild(wrap);
-  const f = wrap.querySelector('.inp'); if(f) f.focus();
+  /* en pantallas táctiles no se enfoca nada al abrir: evitaría ver la ventana y sacaría el teclado */
+  const touch = window.matchMedia && window.matchMedia('(pointer:coarse)').matches;
+  const f = wrap.querySelector('.inp:not([data-cmt])'); if(f && !touch) f.focus();
   const close = ()=>wrap.remove();
   wrap.addEventListener('click', e=>{
     if(e.target===wrap || e.target.hasAttribute('data-close')) return close();
@@ -5873,7 +5999,7 @@ function openCell(studentId, taskId){
   if(ins.type==='rubric'){
     const inner = `<h3>${esc(task.name)}${adTag}</h3>
       <p class="sub">${esc(s.name)} · rúbrica${adaptedHere?' · criterios de '+CYCLE_NAMES[effCycle(c,task,studentId)]:''}</p>
-      <div style="overflow:auto;max-height:74vh">
+      <div class="gm-scroll">
       <table class="grade-matrix">
         <thead><tr><th class="gm-itemhead">Aspecto evaluado</th>
           ${levels.map(l=>`<th>${esc(l.label)}</th>`).join('')}
@@ -5886,7 +6012,7 @@ function openCell(studentId, taskId){
           ${levels.map((l,j)=>`<td class="gm-cell ${sel[i]===j?'on':''}" data-i="${i}" data-j="${j}">
             <div class="gm-inner"><span class="gm-lvl">${esc(l.label)}</span>
             ${(it.cells||[])[j]? `<span class="gm-desc">${esc(it.cells[j])}</span>`:''}</div></td>`).join('')}
-          <td class="gm-skip"><button data-i="${i}" data-j="null">sin<br>valorar</button></td>
+          <td class="gm-skip"><button data-i="${i}" data-j="null">sin valorar</button></td>
         </tr>`).join('')}
         </tbody>
       </table></div>
@@ -6027,161 +6153,243 @@ function pickSlotModal(startIso, chosen, onPick){
   return wrap;
 }
 
-function taskModal(existing, unitId){
-  const c = course(), aid = areaId(), p = period();
-  const t = existing || {name:'', desc:'', goals:'', activities:'', criteria:[], weight:25,
-                         dates: pendingTaskDates.slice()};
-  pendingTaskDates = [];
-  const uId = existing ? existing.unitId : unitId;
-  const unit = unitById(c, uId);
-  const sel = (t.criteria||[]).slice();
-  const dates = dateEntries(t);
-
-  const inner = `<h3>${existing?'Datos de la tarea':(isInitialP(c,p.id)?'Nueva prueba inicial':'Nueva tarea evaluable')}</h3>
-    <p class="sub">${esc(areaDef(aid).name)} · ${esc(p.name)}${unit?' · '+esc(unit.name):''}</p>
-    <div class="m-cols">
-      <div class="col-a">
-        ${field('Nombre de la tarea','name',{value:t.name, placeholder:'Speaking: My favourite animal'})}
-        ${field('Destreza','skill',{type:'select', value:t.skill||'', options:[{value:'',label:'Sin especificar'}].concat(SKILLS.map(k=>({value:k.id,label:k.name})))})}
-        ${field('Descripción','desc',{type:'textarea', value:t.desc, rows:2, placeholder:'En qué consiste.'})}
-        ${field('Objetivos de aprendizaje','goals',{type:'textarea', value:t.goals, rows:2, placeholder:'Qué se pretende que aprendan.'})}
-        ${field('Actividades','activities',{type:'textarea', value:t.activities, rows:2, placeholder:'Secuencia de actividades hasta el producto final.'})}
-        ${isInitialP(c,p.id)? '' : `<label class="field chk-field"><span></span>
-          <label class="chk-row"><input type="checkbox" name="isInitial" id="tkInitial" ${t.isInitial?'checked':''}>
-            <span>Es <b>evaluación inicial</b> de la unidad (diagnóstico: se ve la nota pero no cuenta para la nota de la unidad ni la trimestral)</span></label></label>`}
-        ${isInitialP(c,p.id)? '' : `<label class="field chk-field" id="infoWrap" style="${t.isInitial?'display:none':''}"><span></span>
-          <label class="chk-row"><input type="checkbox" name="informative" id="tkInfo" ${t.informative?'checked':''}>
-            <span><b>Solo informativa</b>: se ve en el cuaderno, la ficha y el informe, pero no cuenta para ninguna nota</span></label></label>`}
-        ${isInitialP(c,p.id)? '' : `<div id="weightWrap" style="${t.isInitial||t.informative?'display:none':''}">${field('Peso dentro de la unidad (%)','weight',{type:'number', value:t.weight})}</div>`}
-        <label class="field"><span>Fechas en la agenda (opcional)</span></label>
-        <div id="taskDates"></div>
-        ${!existing? field('Instrumento de evaluación','type',{type:'select', value:'rubric', options:TYPE_OPTS}) : ''}
-        ${!existing? field('Partir de una plantilla (opcional)','tpl',{type:'select', value:'',
-          options:[{value:'',label:'Empezar en blanco'}].concat((state.templates||[]).map(x=>({value:x.id, label:x.name+' · '+TYPE_NAMES[x.type]})))}) : ''}
-      </div>
-      <div class="col-b">
-        <label class="field"><span>Criterios de evaluación que se valoran</span></label>
-        <div class="crit-chips" id="critPick"></div>
-        <div id="critPreview" class="hint" style="margin-top:8px"></div>
-        ${existing? `<p class="sub" style="margin-top:14px">Para adaptar esta tarea a un alumno concreto (ACS/ACA), usa el botón <b>Adaptar</b> en la tarjeta de la tarea.</p>`:''}
-      </div>
-    </div>`;
-
-  const wrap = openModal(inner, v=>{
-    if(!v.name) return;
-    if(existing){
-      Object.assign(existing, {name:v.name, skill:v.skill||'', desc:v.desc, goals:v.goals, activities:v.activities,
-        criteria:sel, weight:(v.isInitial||v.informative||isInitialP(c,p.id))?0:(Number(v.weight)||0), isInitial:!!v.isInitial || isInitialP(c,p.id),
-        informative:!!v.informative && !v.isInitial && !isInitialP(c,p.id)});
-      setTaskDates(existing, dates);
-      (existing.instr.items||[]).forEach(it=>{ it.crits = itemCrits(it).filter(k=>sel.indexOf(k)>-1); delete it.critCode; });
-      state.view='unidad'; state.activeUnit=existing.unitId;
-      return;
-    }
-    const tpl = (state.templates||[]).find(x=>x.id===v.tpl);
-    const instr = tpl ? cloneInstr(tpl) : blankInstr(v.type);
-    if(tpl && v.type && tpl.type!==v.type) instr.type = tpl.type;
-    const task = {id:uid(), areaId:aid, periodId:p.id, unitId:uId, name:v.name, skill:v.skill||'', desc:v.desc, goals:v.goals,
-      activities:v.activities, criteria:sel, weight:(v.isInitial||v.informative||isInitialP(c,p.id))?0:(Number(v.weight)||0), isInitial:!!v.isInitial || isInitialP(c,p.id),
-      informative:!!v.informative && !v.isInitial && !isInitialP(c,p.id), instr:instr, adaptations:{}, dates:dates.slice()};
-    c.tasks.push(task);
-    state.editor = {mode:'task', id:task.id};
-    if(instr.type==='num' || instr.type==='faces'){
-      if(taskFromAgenda){ taskFromAgenda=false; state.view='clases'; state.homeTab='agenda'; state.planDate=(taskDates(task)[0])||state.planDate; }
-      else { state.view='unidad'; state.activeUnit=uId; }
-    }
-    else state.view='editorInstr';
-  }, existing?'Guardar':'Crear y definir el instrumento', {wide:true});
-  if(existing && state.courses.length>1){
-    const row = wrap.querySelector('.modal > .row');
-    const b = document.createElement('button');
-    b.className = 'btn ghost'; b.textContent = '⇉ Duplicar en otra clase';
-    b.addEventListener('click', ev=>{ ev.preventDefault(); wrap.remove(); dupModal('task', existing.id); });
-    row.insertBefore(b, row.children[0]);
+/* =====================================================================
+   PÁGINA DE TAREA: crear y editar una tarea evaluable
+   Es una vista propia (no una ventana superpuesta) y es la misma se abra
+   desde la unidad, desde la agenda, desde una sesión o desde la evaluación inicial.
+   El borrador vive en state.taskEd y no toca la clase hasta pulsar Guardar.
+   ===================================================================== */
+const TE_TYPES = [
+  ['rubric','Rúbrica','Ítems con un descriptor en cada grado'],
+  ['scale','Escala','Ítems valorados con un número'],
+  ['check','Lista de cotejo','Conseguido o no conseguido'],
+  ['num','Nota directa','Una sola nota, sin ítems'],
+  ['faces','Caritas','😊 😐 ☹️ para observar']
+];
+const TE_KINDS = [
+  ['counts','Cuenta para la nota','Entra en la nota de la unidad y en la de la evaluación.'],
+  ['initial','Evaluación inicial','Diagnóstico: se ve la nota, pero no cuenta.'],
+  ['info','Solo informativa','Se ve en el cuaderno y en los informes, pero no cuenta.']
+];
+const SKILL_SHORT = {speaking:'Speaking', writing:'Writing', reading:'Reading', listening:'Listening', mediation:'Mediation'};
+function teSortDates(a){ a.sort((x,y)=> x.d===y.d ? (x.t||'').localeCompare(y.t||'') : x.d.localeCompare(y.d)); }
+/* o = {task, cid} para editar · {cid, aid, pid, unitId, dates, fromAgenda} para crear */
+function openTaskPage(o){
+  o = o || {};
+  if(!state.courses.length){ alertBox('Crea primero una clase para poder añadirle tareas evaluables.'); return; }
+  const back = {view:state.view, homeTab:state.homeTab, unit:state.activeUnit, editor:state.editor,
+                cid:state.activeCourse, aid:state.activeArea, pid:state.activePeriod};
+  let d;
+  if(o.task){
+    const t = o.task;
+    d = {id:t.id, cid:o.cid || state.activeCourse, aid:t.areaId, pid:t.periodId, unitId:t.unitId||'', newUnit:'',
+      name:t.name||'', skill:t.skill||'', kind:t.isInitial?'initial':(t.informative?'info':'counts'), weight:Number(t.weight)||0,
+      criteria:(t.criteria||[]).slice(), dates:dateEntries(t).map(x=>({d:x.d, t:x.t||''})),
+      desc:t.desc||'', goals:t.goals||'', activities:t.activities||''};
+  } else {
+    const c = state.courses.find(x=>x.id===o.cid) || course() || state.courses[0];
+    const mem = (state.lastSel||{})[c.id] || {};
+    const same = c.id===state.activeCourse;
+    let aid = o.aid || (same ? areaId() : mem.area); if(c.areas.indexOf(aid)<0) aid = c.areas[0];
+    let pid = o.pid || (same && !o.fromAgenda ? (period()||{}).id : mem.period);
+    if(!c.periods.some(p=>p.id===pid) || (o.fromAgenda && isInitialP(c, pid))) pid = (c.periods.find(p=>!p.initial)||c.periods[0]).id;
+    d = {id:null, cid:c.id, aid:aid, pid:pid, unitId:o.unitId||'', newUnit:'',
+      name:'', skill:'', kind:'counts', weight:25, type:'rubric', tpl:'', criteria:[],
+      dates:(o.dates||[]).map(x=>({d:x.d, t:x.t||''})), desc:'', goals:'', activities:''};
   }
-
-  /* --- editor de fechas (con hora opcional) --- */
-  const drawDates = ()=>{
-    const box = wrap.querySelector('#taskDates');
-    box.innerHTML = `
-      ${dates.length? `<div class="td-list">${dates.map((e,i)=>`
-        <span class="td-chip">${esc(dateEntryLabel(e))}<button data-deldate="${i}" title="Quitar esta fecha">✕</button></span>`).join('')}</div>` : ''}
-      <div class="td-add">
-        <input class="inp" type="date" id="tdNew" style="max-width:170px">
-        <input class="inp" type="time" id="tdNewT" style="max-width:120px" title="Hora (opcional)">
-        <button class="btn ghost small" id="tdAdd">Añadir</button>
-        <button class="btn ghost small" id="tdPick">📅 Elegir en el horario</button>
-      </div>
-      <p class="sub" style="margin:6px 0 0">${dates.length>1
-        ? 'La tarea aparece en la agenda en cada fecha. Si pones hora, se coloca en esa franja del horario.'
-        : 'Con hora, la tarea aparece dentro de la franja que le corresponda en el horario. Puedes añadir varias fechas si la haces en días distintos.'}</p>`;
-  };
-  wrap.addEventListener('click', e=>{
-    const del = e.target.closest('[data-deldate]');
-    if(del){ e.preventDefault(); dates.splice(Number(del.dataset.deldate),1); drawDates(); return; }
-    if(e.target.id==='tdAdd'){
-      e.preventDefault();
-      const v = wrap.querySelector('#tdNew').value;
-      const h = wrap.querySelector('#tdNewT').value;
-      if(v && !dates.some(x=>x.d===v && x.t===h)) dates.push({d:v, t:h||''});
-      wrap.querySelector('#tdNew').value=''; wrap.querySelector('#tdNewT').value='';
-      dates.sort((a,b)=> a.d===b.d ? (a.t||'').localeCompare(b.t||'') : a.d.localeCompare(b.d));
-      drawDates(); return;
-    }
-    if(e.target.id==='tdPick'){
-      e.preventDefault();
-      pickSlotModal(dates[0]?dates[0].d:'', dates, sel=>{
-        const i = dates.findIndex(x=>x.d===sel.d && x.t===sel.t);
-        if(i>-1) dates.splice(i,1); else dates.push({d:sel.d, t:sel.t});
-        dates.sort((a,b)=> a.d===b.d ? (a.t||'').localeCompare(b.t||'') : a.d.localeCompare(b.d));
-        drawDates();
-      });
-      return;
-    }
-  });
-  drawDates();
-
-  const chkInit = wrap.querySelector('#tkInitial'), chkInfo = wrap.querySelector('#tkInfo');
-  const syncWeight = ()=>{
-    const ini = chkInit && chkInit.checked, inf = chkInfo && chkInfo.checked;
-    const ww = wrap.querySelector('#weightWrap'); if(ww) ww.style.display = (ini||inf) ? 'none' : '';
-    const iw = wrap.querySelector('#infoWrap'); if(iw) iw.style.display = ini ? 'none' : '';
-  };
-  if(chkInit) chkInit.addEventListener('change', syncWeight);
-  if(chkInfo) chkInfo.addEventListener('change', syncWeight);
-  /* las caritas suelen ser solo informativas: se marca por defecto (se puede quitar) */
-  const typeSel = wrap.querySelector('select[name="type"]');
-  if(typeSel && chkInfo) typeSel.addEventListener('change', ()=>{ chkInfo.checked = typeSel.value==='faces'; syncWeight(); });
-  /* las plantillas de autoevaluación y coevaluación también se marcan como informativas (se puede quitar) */
-  const tplSel = wrap.querySelector('select[name="tpl"]');
-  if(tplSel && chkInfo) tplSel.addEventListener('change', ()=>{ const tp = (state.templates||[]).find(x=>x.id===tplSel.value);
-    if(tp){ chkInfo.checked = !!tp.self || tp.type==='faces'; syncWeight(); } });
-
-  const drawCrits = ()=>{
-    const crits = critList(aid, c.cycle);
-    const box = wrap.querySelector('#critPick');
-    box.innerHTML = crits.length
-      ? crits.map(k=>`<button class="chip ${sel.indexOf(k.code)>-1?'on':''}" data-code="${k.code}" title="${esc(k.text)}">${k.code}</button>`).join('')
-      : '<span class="chip">no hay criterios cargados para este ciclo</span>';
-  };
-  const prev = ()=>{
-    const critMap = areaDef(aid).crit[c.cycle] || {};
-    const box = wrap.querySelector('#critPreview');
-    box.innerHTML = sel.length
-      ? sel.slice().sort(cmpCode).map(k=>`<div style="margin-bottom:4px"><b style="color:var(--accent);font-family:var(--font-mono)">${esc(k)}</b> ${esc(critMap[k]||'')}</div>`).join('')
-      : 'Marca los criterios que evalúa esta tarea; luego podrás ligar cada ítem del instrumento a uno de ellos.';
-  };
-  wrap.addEventListener('click', e=>{
-    const b = e.target.closest('[data-code]');
-    if(!b) return;
-    e.preventDefault();
-    const code = b.dataset.code, i = sel.indexOf(code);
-    if(i>-1) sel.splice(i,1); else sel.push(code);
-    b.classList.toggle('on', i===-1);
-    prev();
-  });
-  drawCrits(); prev();
+  d.back = back; d.fromAgenda = !!o.fromAgenda || (back.view==='clases' && back.homeTab==='agenda'); d.dirty = false; d.err = '';
+  state.taskEd = d; state.view = 'tarea';
+  render(); window.scrollTo(0,0);
+  const n = document.getElementById('teName'); if(n && !d.id && !isNarrow()) n.focus();
 }
+function teCourse(){ const d = state.taskEd; return d ? state.courses.find(x=>x.id===d.cid) : null; }
+function teLeave(){
+  const d = state.taskEd, b = d && d.back; state.taskEd = null;
+  if(!b){ state.view = 'clases'; return; }
+  state.activeCourse = b.cid; state.activeArea = b.aid; state.activePeriod = b.pid;
+  state.view = b.view==='tarea' ? 'clases' : b.view; state.homeTab = b.homeTab; state.activeUnit = b.unit; state.editor = b.editor;
+}
+function teCritHtml(c, d){
+  const map = areaDef(d.aid).crit[c.cycle] || {};
+  return d.criteria.length
+    ? d.criteria.slice().sort(cmpCode).map(k=>`<div class="te-crit"><b>${esc(k)}</b><span>${esc(map[k]||'')}</span></div>`).join('')
+    : '<p class="te-help">Marca los criterios que valora esta tarea. Después podrás ligar cada ítem del instrumento a uno de ellos.</p>';
+}
+views.tarea = function(){
+  const d = state.taskEd, c = teCourse();
+  const task = d && d.id && c ? c.tasks.find(x=>x.id===d.id) : null;
+  if(!d || !c || (d.id && !task)){ teLeave(); return (views[state.view]||views.clases)(); }
+  const isEdit = !!d.id;
+  if(c.areas.indexOf(d.aid)<0) d.aid = c.areas[0];
+  if(!c.periods.some(p=>p.id===d.pid)) d.pid = (c.periods.find(p=>!p.initial)||c.periods[0]).id;
+  const ini = isInitialP(c, d.pid);
+  const units = ini ? [] : unitsOf(c, d.aid, d.pid);
+  const looseEdit = isEdit && !d.unitId && !ini;
+  if(!ini && !looseEdit && d.unitId!=='__new' && !units.some(u=>u.id===d.unitId)) d.unitId = units.length ? units[0].id : '__new';
+  const crits = critList(d.aid, c.cycle);
+  d.criteria = d.criteria.filter(k=>crits.some(x=>x.code===k));
+  const tpl = !isEdit && d.tpl ? (state.templates||[]).find(x=>x.id===d.tpl) : null;
+  const type = tpl ? tpl.type : d.type;
+  const needsItems = !isEdit && type!=='num' && type!=='faces';
+  const title = isEdit ? 'Editar tarea' : (ini ? 'Nueva prueba inicial' : 'Nueva tarea evaluable');
+  const saveLbl = isEdit ? 'Guardar' : (needsItems ? 'Crear y definir instrumento' : 'Crear tarea');
+  const others = (!ini && d.unitId && d.unitId!=='__new') ? tasksOfUnit(c, d.unitId).filter(t=>t.id!==d.id && !t.isInitial && !t.informative).reduce((n,t)=>n+(Number(t.weight)||0),0) : null;
+  const sel = (k, opts, cur, dis)=>`<select class="inp" data-te="${k}" ${dis?'disabled':''}>${opts.map(o=>`<option value="${esc(o[0])}" ${o[0]===cur?'selected':''}>${esc(o[1])}</option>`).join('')}</select>`;
+  const ins = isEdit ? (task.instr||{type:'num'}) : null;
+  const more = !!(d.desc || d.goals || d.activities);
+
+  return `<div class="te">
+    <div class="te-top">
+      <button class="btn ghost small" data-act="teCancel">← Volver</button>
+      <h1 class="te-title">${title}</h1>
+      <div class="spacer"></div>
+      <button class="btn te-save-top" data-act="teSave">${saveLbl}</button>
+    </div>
+    ${d.err?`<div class="te-err" id="teErr">${esc(d.err)}</div>`:''}
+
+    <section class="card te-card">
+      <label class="te-lbl" for="teName">Nombre de la tarea</label>
+      <input class="inp te-name" id="teName" data-te="name" value="${esc(d.name)}" placeholder="p. ej. ${d.aid==='ing'?'Speaking: My favourite animal':'Prueba escrita: los ecosistemas'}" autocomplete="off">
+      ${d.aid==='ing' ? `<div class="te-lbl" style="margin-top:14px">Destreza <small>opcional</small></div>
+        <div class="te-chips">${SKILLS.map(k=>`<button type="button" class="te-chip ${d.skill===k.id?'on':''}" data-act="teSkill" data-k="${k.id}">${SKILL_SHORT[k.id]||esc(k.name)}</button>`).join('')}</div>` : ''}
+    </section>
+
+    <section class="card te-card">
+      <h2 class="te-h">Dónde va</h2>
+      <div class="te-grid">
+        <label><span class="te-lbl">Clase</span>${sel('cid', state.courses.map(x=>[x.id, x.name]), d.cid, isEdit)}</label>
+        <label><span class="te-lbl">Área</span>${sel('aid', c.areas.map(a=>[a, areaDef(a).short||areaDef(a).name]), d.aid, isEdit)}</label>
+        <label><span class="te-lbl">Evaluación</span>${sel('pid', c.periods.map(p=>[p.id, p.name]), d.pid, isEdit)}</label>
+        ${ini ? '' : `<label><span class="te-lbl">Unidad</span>${sel('unitId', (looseEdit?[['','Sin unidad']]:[]).concat(units.map(u=>[u.id, u.name])).concat([['__new','＋ Nueva unidad…']]), d.unitId)}</label>`}
+      </div>
+      ${!ini && d.unitId==='__new' ? `<label class="te-new"><span class="te-lbl">Nombre de la nueva unidad</span>
+        <input class="inp" data-te="newUnit" value="${esc(d.newUnit)}" placeholder="p. ej. Unit 2: Healthy habits"></label>` : ''}
+      ${ini ? '<p class="te-help">Evaluación inicial: es un diagnóstico de principio de curso y no cuenta para la nota.</p>' : ''}
+    </section>
+
+    <section class="card te-card">
+      <h2 class="te-h">Instrumento de evaluación</h2>
+      ${isEdit ? `<div class="row"><span class="tag">${TYPE_NAMES[ins.type]||ins.type}${ins.type!=='num'?' · '+(ins.items||[]).length+' ítem(s)':''}</span>
+          <div class="spacer"></div><button class="btn ghost small" data-act="teSave" data-go="instr">Guardar y abrir el instrumento</button></div>`
+      : `<div class="te-types">${TE_TYPES.map(([id,n,sub])=>`<button type="button" class="te-type ${type===id?'on':''}" data-act="teType" data-t="${id}"><b>${n}</b><span>${sub}</span></button>`).join('')}</div>
+        <label class="te-new"><span class="te-lbl">Partir de una plantilla <small>opcional</small></span>
+          ${sel('tpl', [['','Empezar en blanco']].concat((state.templates||[]).map(x=>[x.id, x.name+' · '+TYPE_NAMES[x.type]])), d.tpl||'')}</label>`}
+    </section>
+
+    <section class="card te-card">
+      <h2 class="te-h">Criterios de evaluación <span class="te-count" id="teCritN">${d.criteria.length?d.criteria.length+' marcado(s)':''}</span></h2>
+      ${crits.length ? `<div class="te-chips">${crits.map(k=>`<button type="button" class="te-chip mono ${d.criteria.indexOf(k.code)>-1?'on':''}" data-act="teCrit" data-code="${k.code}" title="${esc(k.text)}">${k.code}</button>`).join('')}</div>
+        <div id="teCritPrev" class="te-critlist">${teCritHtml(c, d)}</div>`
+      : '<p class="te-help">No hay criterios cargados para esta área y ciclo.</p>'}
+    </section>
+
+    ${ini ? '' : `<section class="card te-card">
+      <h2 class="te-h">Cómo cuenta</h2>
+      <div class="te-kinds">${TE_KINDS.map(([id,n,sub])=>`<button type="button" class="te-type ${d.kind===id?'on':''}" data-act="teKind" data-k="${id}"><b>${n}</b><span>${sub}</span></button>`).join('')}</div>
+      ${d.kind==='counts' ? `<div class="te-weight"><label><span class="te-lbl">Peso en la unidad</span>
+          <span class="w-pct"><input class="inp" type="number" min="0" max="100" step="5" data-te="weight" value="${Number(d.weight)||0}" style="width:92px;text-align:center"><i>%</i></span></label>
+          ${others!=null ? `<span class="te-help" style="margin:0">Las demás tareas de la unidad suman ${others} %.</span>` : ''}</div>` : ''}
+    </section>`}
+
+    <section class="card te-card">
+      <h2 class="te-h">Fechas <small>opcional</small></h2>
+      ${d.dates.length ? `<div class="td-list">${d.dates.map((e,i)=>`<span class="td-chip">${esc(dateEntryLabel(e))}<button type="button" data-act="teDelDate" data-i="${i}" title="Quitar esta fecha">✕</button></span>`).join('')}</div>` : ''}
+      <div class="td-add">
+        <input class="inp" type="date" id="teDate" aria-label="Fecha">
+        <input class="inp" type="time" id="teTime" aria-label="Hora (opcional)">
+        <button type="button" class="btn ghost small" data-act="teAddDate">Añadir</button>
+        <button type="button" class="btn ghost small" data-act="tePick">📅 Elegir en el horario</button>
+      </div>
+      <p class="te-help">La tarea aparece en la agenda en cada fecha; con hora, dentro de esa franja.</p>
+    </section>
+
+    <details class="card te-card te-more" ${more?'open':''}>
+      <summary><span class="te-h">Más detalles</span> <small>descripción, objetivos y actividades · opcional</small></summary>
+      <label><span class="te-lbl">Descripción</span><textarea class="inp" data-te="desc" rows="2" placeholder="En qué consiste.">${esc(d.desc)}</textarea></label>
+      <label><span class="te-lbl">Objetivos de aprendizaje</span><textarea class="inp" data-te="goals" rows="2" placeholder="Qué se pretende que aprendan.">${esc(d.goals)}</textarea></label>
+      <label><span class="te-lbl">Actividades</span><textarea class="inp" data-te="activities" rows="2" placeholder="Pasos hasta el producto final.">${esc(d.activities)}</textarea></label>
+    </details>
+
+    <div class="te-foot">
+      ${isEdit && state.courses.length>1 ? `<button class="btn ghost" data-act="teDup">⇉ Duplicar en otra clase</button>` : ''}
+      <div class="spacer"></div>
+      <button class="btn ghost" data-act="teCancel">Cancelar</button>
+      <button class="btn" data-act="teSave">${saveLbl}</button>
+    </div>
+  </div>`;
+};
+function teError(msg, focusSel){
+  state.taskEd.err = msg; render(); window.scrollTo(0,0);
+  const f = focusSel && document.querySelector(focusSel); if(f) f.focus();
+}
+function teSave(go){
+  const d = state.taskEd, c = teCourse(); if(!d || !c) return;
+  const name = (d.name||'').trim();
+  if(!name) return teError('Ponle un nombre a la tarea.', '#teName');
+  const ini = isInitialP(c, d.pid);
+  let unitId = ini ? '' : d.unitId;
+  if(!ini && unitId==='__new'){
+    const un = (d.newUnit||'').trim();
+    if(!un) return teError('Escribe el nombre de la nueva unidad.', '[data-te="newUnit"]');
+    const nu = {id:uid(), areaId:d.aid, periodId:d.pid, name:un, desc:''};
+    if(!c.units) c.units = [];
+    c.units.push(nu); unitId = nu.id;
+  }
+  const isInitial = ini || d.kind==='initial', informative = !ini && d.kind==='info';
+  const weight = (isInitial || informative) ? 0 : Math.max(0, Number(d.weight)||0);
+  const crit = d.criteria.slice();
+  const dates = d.dates.slice(); teSortDates(dates);
+  let task;
+  if(d.id){
+    task = c.tasks.find(x=>x.id===d.id);
+    Object.assign(task, {name:name, desc:d.desc.trim(), goals:d.goals.trim(), activities:d.activities.trim(), criteria:crit,
+      weight:weight, isInitial:isInitial, informative:informative, unitId:unitId});
+    if(d.aid==='ing') task.skill = d.skill||'';
+    setTaskDates(task, dates);
+    ((task.instr||{}).items||[]).forEach(it=>{ it.crits = itemCrits(it).filter(k=>crit.indexOf(k)>-1); delete it.critCode; });
+  } else {
+    const tpl = d.tpl ? (state.templates||[]).find(x=>x.id===d.tpl) : null;
+    const instr = tpl ? cloneInstr(tpl) : blankInstr(d.type);
+    task = {id:uid(), areaId:d.aid, periodId:d.pid, unitId:unitId, name:name, skill:d.aid==='ing'?(d.skill||''):'',
+      desc:d.desc.trim(), goals:d.goals.trim(), activities:d.activities.trim(), criteria:crit, weight:weight,
+      isInitial:isInitial, informative:informative, instr:instr, adaptations:{}, dates:dates};
+    c.tasks.push(task);
+  }
+  const b = d.back || {}, type = (task.instr||{}).type;
+  const toInstr = go==='instr' || (!d.id && type!=='num' && type!=='faces');
+  state.taskEd = null;
+  state.activeCourse = c.id; state.activeArea = task.areaId; state.activePeriod = task.periodId;
+  if(toInstr){ state.editor = {mode:'task', id:task.id}; state.view = 'editorInstr'; }
+  else if(d.fromAgenda){ state.view = 'clases'; state.homeTab = 'agenda'; if(!d.id && taskDates(task)[0]) state.planDate = taskDates(task)[0]; }
+  else if(d.id && b.view==='editorInstr'){ state.editor = b.editor; state.view = 'editorInstr'; }
+  else if(isInitialP(c, task.periodId) || !unitId){ state.view = 'unidades'; state.activeUnit = null; }
+  else { state.view = 'unidad'; state.activeUnit = unitId; state.unitSub = 'tareas'; }
+  rememberSel(); save(); render(); window.scrollTo(0,0);
+}
+/* campos de texto y desplegables de la página de tarea */
+document.addEventListener('input', e=>{
+  const k = e.target.dataset && e.target.dataset.te; const d = state.taskEd;
+  if(!k || !d || state.view!=='tarea' || e.target.tagName==='SELECT') return;
+  d[k] = e.target.value; d.dirty = true;
+  if(d.err){ d.err = ''; const x = document.getElementById('teErr'); if(x) x.remove(); }
+});
+document.addEventListener('change', e=>{
+  const k = e.target.dataset && e.target.dataset.te; const d = state.taskEd;
+  if(!k || !d || state.view!=='tarea' || e.target.tagName!=='SELECT') return;
+  d[k] = e.target.value; d.dirty = true; d.err = '';
+  if(k==='cid'){ const c = teCourse(), mem = (state.lastSel||{})[c.id] || {};
+    if(c.areas.indexOf(d.aid)<0) d.aid = c.areas.indexOf(mem.area)>-1 ? mem.area : c.areas[0];
+    const pn = (state.courses.find(x=>x.id===d.back.cid)||{periods:[]}).periods.find(p=>p.id===d.pid);
+    const twin = pn ? c.periods.find(p=>p.name===pn.name) : null;
+    d.pid = twin ? twin.id : (c.periods.find(p=>!p.initial)||c.periods[0]).id; d.unitId = ''; }
+  if(k==='aid'){ d.criteria = []; d.unitId = ''; if(d.aid!=='ing') d.skill = ''; }
+  if(k==='pid') d.unitId = '';
+  if(k==='tpl'){ const tp = (state.templates||[]).find(x=>x.id===d.tpl);
+    if(tp){ d.type = tp.type; if(tp.self || tp.type==='faces') d.kind = 'info'; } }
+  render();
+  if(k==='unitId' && d.unitId==='__new'){ const f = document.querySelector('[data-te="newUnit"]'); if(f) f.focus(); }
+});
+
 
 /* ---------- adaptar una tarea para un alumno concreto (opción A) ---------- */
 function adaptModal(taskId){
@@ -6551,6 +6759,8 @@ function reportDoc(c, students, aid, pid, opt){
     #reportRoot .rbar button{font:inherit;background:#E4A11B;color:#16241F;border:0;border-radius:7px;
       padding:7px 13px;cursor:pointer;font-weight:600}
     #reportRoot .rbar button.alt{background:transparent;color:#EAF0EC;border:1px solid #3A5347}
+    @media (max-width:560px){ #reportRoot .rbar{padding:8px 10px;gap:6px;flex-wrap:wrap} #reportRoot .rbar span,#reportRoot .rbar .sp{display:none}
+      #reportRoot .rbar button{padding:8px 10px;font-size:12.5px;white-space:nowrap} #reportRoot .pages{padding:12px 8px} #reportRoot .rep{padding:18px 16px} }
     #reportRoot .pages{padding:22px 16px}
     #reportRoot .rep{background:#fff;max-width:760px;margin:0 auto 24px;padding:26px 30px;border-radius:8px;box-shadow:0 1px 4px rgba(0,0,0,.12)}
     #reportRoot .rhead{display:flex;gap:16px;align-items:flex-start;border-bottom:2px solid #1F6B4F;padding-bottom:12px;margin-bottom:16px}
@@ -6880,97 +7090,6 @@ function importCritModal(){
 }
 
 /* Alta de tarea desde el planificador: elige clase, área, unidad y fechas */
-function newTaskForDate(iso, preCourse, preArea, preTime){
-  if(!state.courses.length){
-    openModal(`<h3>Todavía no hay clases</h3><p class="sub">Crea primero una clase para poder añadirle tareas evaluables.</p>`, null, null);
-    return;
-  }
-  let cid = preCourse || state.courses[0].id;
-  let aid = preArea || '';
-  let uid_ = '';
-  const fechas = [{d:iso, t:preTime||''}];
-  const cOf = ()=>state.courses.find(x=>x.id===cid);
-
-  const drawDest = ()=>{
-    const c = cOf();
-    if(!aid || c.areas.indexOf(aid)<0) aid = c.areas[0];
-    const per = (c.periods.find(p=>!p.initial)||c.periods[0]).id;
-    const us = unitsOf(c, aid, per);
-    if(!us.some(u=>u.id===uid_)) uid_ = us.length? us[0].id : '';
-    return `<label class="field"><span>Clase</span>
-        <select class="inp" id="ntCourse">${state.courses.map(x=>`<option value="${x.id}" ${x.id===cid?'selected':''}>${esc(x.name)}</option>`).join('')}</select></label>
-      <label class="field"><span>Área</span>
-        <select class="inp" id="ntArea">${c.areas.map(a=>`<option value="${a}" ${a===aid?'selected':''}>${esc(areaDef(a).short||areaDef(a).name)}</option>`).join('')}</select></label>
-      <label class="field"><span>Unidad</span>
-        <select class="inp" id="ntUnit">${us.length? us.map(u=>`<option value="${u.id}" ${u.id===uid_?'selected':''}>${esc(u.name)}</option>`).join('')
-          : '<option value="">— esta área no tiene unidades todavía —</option>'}</select></label>
-      ${us.length? '' : '<p class="sub" style="color:var(--low)">Crea antes una unidad en esa área para poder colgar la tarea de ella.</p>'}`;
-  };
-  const drawDates = ()=>`
-      ${fechas.length? `<div class="td-list">${fechas.map((e,i)=>`
-        <span class="td-chip">${esc(dateEntryLabel(e))}${fechas.length>1?`<button data-deldate="${i}" title="Quitar">✕</button>`:''}</span>`).join('')}</div>`:''}
-      <div class="td-add">
-        <input class="inp" type="date" id="ntNewDate" style="max-width:170px">
-        <input class="inp" type="time" id="ntNewTime" style="max-width:120px" title="Hora (opcional)">
-        <button class="btn ghost small" id="ntAddDate">Añadir</button>
-        <button class="btn ghost small" id="ntPick">📅 Elegir en el horario</button>
-      </div>
-      <p class="sub" style="margin:6px 0 0">Con hora, la tarea se coloca en esa franja del horario. Si la misma prueba la haces en días distintos (medio grupo cada día), añade aquí las dos fechas: seguirá siendo una sola tarea.</p>`;
-
-  const wrap = openModal(`<h3>Nueva tarea evaluable</h3>
-    <p class="sub">Aparecerá en la agenda en las fechas que indiques y, a la vez, dentro de su unidad.</p>
-    <div class="m-cols">
-      <div class="col-a"><div id="ntBody">${drawDest()}</div></div>
-      <div class="col-b">
-        <label class="field"><span>Fechas</span></label>
-        <div id="ntDates">${drawDates()}</div>
-      </div>
-    </div>`, ()=>{
-      const c = cOf();
-      if(!uid_) return;
-      state.activeCourse = cid; state.activeArea = aid;
-      state.activePeriod = (c.periods.find(p=>!p.initial)||c.periods[0]).id;
-      pendingTaskDates = fechas.slice();   // las recoge taskModal al crear
-      taskFromAgenda = true;
-      taskModal(null, uid_);
-    }, 'Continuar', {wide:true});
-
-  const refreshDest = ()=>{ wrap.querySelector('#ntBody').innerHTML = drawDest(); bind(); };
-  const refreshDates = ()=>{ wrap.querySelector('#ntDates').innerHTML = drawDates(); };
-  function bind(){
-    wrap.querySelector('#ntCourse').addEventListener('change', e=>{ cid=e.target.value; aid=''; refreshDest(); });
-    wrap.querySelector('#ntArea').addEventListener('change', e=>{ aid=e.target.value; refreshDest(); });
-    const us = wrap.querySelector('#ntUnit');
-    if(us) us.addEventListener('change', e=>{ uid_=e.target.value; });
-  }
-  wrap.addEventListener('click', e=>{
-    const del = e.target.closest('[data-deldate]');
-    if(del){ e.preventDefault(); if(fechas.length>1) fechas.splice(Number(del.dataset.deldate),1); refreshDates(); return; }
-    if(e.target.id==='ntAddDate'){
-      e.preventDefault();
-      const v = wrap.querySelector('#ntNewDate').value;
-      const h = wrap.querySelector('#ntNewTime').value;
-      if(v && !fechas.some(x=>x.d===v && x.t===(h||''))) fechas.push({d:v, t:h||''});
-      wrap.querySelector('#ntNewDate').value=''; wrap.querySelector('#ntNewTime').value='';
-      fechas.sort((a,b)=> a.d===b.d ? (a.t||'').localeCompare(b.t||'') : a.d.localeCompare(b.d));
-      refreshDates(); return;
-    }
-    if(e.target.id==='ntPick'){
-      e.preventDefault();
-      pickSlotModal(fechas[0]?fechas[0].d:iso, fechas, sel=>{
-        const i = fechas.findIndex(x=>x.d===sel.d && x.t===sel.t);
-        if(i>-1){ if(fechas.length>1) fechas.splice(i,1); }
-        else fechas.push({d:sel.d, t:sel.t});
-        fechas.sort((a,b)=> a.d===b.d ? (a.t||'').localeCompare(b.t||'') : a.d.localeCompare(b.d));
-        refreshDates();
-      });
-      return;
-    }
-  });
-  bind();
-}
-let pendingTaskDates = [];
-let taskFromAgenda = false;
 
 /* ---- desarrollo de la sesión como lista de partes ----
    s.parts = [{text, min}].  Compatibilidad: sesiones antiguas con s.notes
@@ -7296,7 +7415,7 @@ function sessionModal(iso, slotId){
       e.preventDefault();
       const cc = state.courses.find(x=>x.id===ed.dataset.cid);
       const tk = cc && cc.tasks.find(x=>x.id===ed.dataset.edittask);
-      if(tk){ state.activeCourse=cc.id; state.activeArea=tk.areaId; state.activePeriod=tk.periodId; wrap.remove(); save(); taskModal(tk); }
+      if(tk){ wrap.remove(); openTaskPage({task:tk, cid:cc.id, fromAgenda:true}); }
       return;
     }
     const ad = e.target.closest('[data-adapttask]');
@@ -7323,7 +7442,7 @@ function sessionModal(iso, slotId){
       if(v.title || clean.length || courseId)
         state.sessions[key] = {title:v.title||'', parts:clean, courseId:courseId, areaId:courseId?aid:''};
       wrap.remove(); save();
-      newTaskForDate(iso, courseId, aid, sl? sl.from : '');
+      openTaskPage({cid:courseId, aid:aid, dates:[{d:iso, t:sl?sl.from:''}], fromAgenda:true});
       return;
     }
   });
@@ -7577,8 +7696,8 @@ const actions = {
   triSub(t){ state.triSub = t.dataset.id; save(); render(); },
   openUnit(t){ state.activeUnit = t.dataset.id; state.view='unidad'; state.unitSub='tareas'; save(); render(); },
   addUnit(){ unitModal(null); },
-  iniAddTest(){ taskModal(null, ''); },
-  iniEditTest(t){ const tk = taskById(course(), t.dataset.id); if(tk) taskModal(tk); },
+  iniAddTest(){ openTaskPage({}); },
+  iniEditTest(t){ const tk = taskById(course(), t.dataset.id); if(tk) openTaskPage({task:tk}); },
   dupUnitTo(t){ dupModal('unit', t.dataset.id); },
   dupTaskTo(t){ dupModal('task', t.dataset.id); },
   editUnit(t){ unitModal(unitById(course(), t.dataset.id)); },
@@ -7591,7 +7710,7 @@ const actions = {
       if(state.activeUnit===u.id){ state.view='unidades'; state.activeUnit=null; }
     });
   },
-  addTaskU(t){ taskModal(null, t.dataset.unit); },
+  addTaskU(t){ openTaskPage({unitId:t.dataset.unit}); },
   backToUnit(t){ state.activeUnit = t.dataset.id; state.view='unidad'; state.unitSub='tareas'; save(); render(); },
   goTask(t){
     const cc = state.courses.find(x=>x.id===t.dataset.cid); if(!cc) return;
@@ -7612,9 +7731,7 @@ const actions = {
   editTaskFrom(t){
     const cc = state.courses.find(x=>x.id===t.dataset.cid); if(!cc) return;
     const tk = cc.tasks.find(x=>x.id===t.dataset.id); if(!tk) return;
-    state.activeCourse = cc.id; state.activeArea = tk.areaId; state.activePeriod = tk.periodId;
-    save();
-    taskModal(tk);
+    openTaskPage({task:tk, cid:cc.id, fromAgenda:true});
   },
   setEditW(t){ state.editWeights = t.dataset.m==='1'; save(); render(); },
   critW(t){
@@ -7762,8 +7879,39 @@ const actions = {
   },
 
   /* tareas */
-  addTask(){ taskModal(null); },
-  editTask(t){ taskModal(taskById(course(), t.dataset.id)); },
+  addTask(){ openTaskPage({}); },
+  editTask(t){ const tk = taskById(course(), t.dataset.id); if(tk) openTaskPage({task:tk}); },
+  teSave(t){ teSave(t.dataset.go||''); },
+  teCancel(){
+    const d = state.taskEd; if(!d) return;
+    const out = ()=>{ teLeave(); save(); render(); };
+    if(!d.dirty) return out();
+    const wrap = openModal(`<h3>¿Salir sin guardar?</h3><p class="sub" style="margin:0">Se perderá lo que has escrito en esta tarea.</p>`, ()=>{ teLeave(); }, 'Salir sin guardar');
+    wrap.querySelector('[data-close]').textContent = 'Seguir editando';
+  },
+  teKind(t){ const d = state.taskEd; if(!d) return; d.kind = t.dataset.k; d.dirty = true; if(d.kind==='counts' && !(Number(d.weight)>0)) d.weight = 25; render(); },
+  teType(t){ const d = state.taskEd; if(!d) return; d.type = t.dataset.t; d.tpl = ''; d.dirty = true; d.kind = d.type==='faces' ? 'info' : (d.kind==='info' ? 'counts' : d.kind); render(); },
+  teSkill(t){ const d = state.taskEd; if(!d) return; d.skill = d.skill===t.dataset.k ? '' : t.dataset.k; d.dirty = true;
+    document.querySelectorAll('[data-act="teSkill"]').forEach(b=>b.classList.toggle('on', b.dataset.k===d.skill)); },
+  teCrit(t){ const d = state.taskEd, c = teCourse(); if(!d || !c) return;
+    const i = d.criteria.indexOf(t.dataset.code); if(i>-1) d.criteria.splice(i,1); else d.criteria.push(t.dataset.code);
+    d.dirty = true; t.classList.toggle('on', i===-1);
+    const pv = document.getElementById('teCritPrev'); if(pv) pv.innerHTML = teCritHtml(c, d);
+    const n = document.getElementById('teCritN'); if(n) n.textContent = d.criteria.length ? d.criteria.length+' marcado(s)' : ''; },
+  teAddDate(){ const d = state.taskEd; if(!d) return;
+    const v = document.getElementById('teDate').value, h = document.getElementById('teTime').value || '';
+    if(!v) return;
+    if(!d.dates.some(x=>x.d===v && (x.t||'')===h)){ d.dates.push({d:v, t:h}); teSortDates(d.dates); d.dirty = true; }
+    render(); },
+  teDelDate(t){ const d = state.taskEd; if(!d) return; d.dates.splice(Number(t.dataset.i),1); d.dirty = true; render(); },
+  tePick(){ const d = state.taskEd; if(!d) return;
+    pickSlotModal(d.dates[0] ? d.dates[0].d : state.planDate, d.dates, sel=>{
+      const i = d.dates.findIndex(x=>x.d===sel.d && (x.t||'')===(sel.t||''));
+      if(i>-1) d.dates.splice(i,1); else d.dates.push({d:sel.d, t:sel.t||''});
+      teSortDates(d.dates); d.dirty = true; render(); }); },
+  teDup(){ const d = state.taskEd; if(!d || !d.id) return;
+    if(d.dirty){ alertBox('Guarda antes los cambios de la tarea y después duplícala desde aquí.'); return; }
+    state.activeCourse = d.cid; dupModal('task', d.id); },
   adaptTask(t){ adaptModal(t.dataset.id); },
   editInstr(t){ state.editor = {mode:'task', id:t.dataset.id}; state.view='editorInstr'; save(); render(); },
   dupTask(t){
@@ -8382,9 +8530,14 @@ document.addEventListener('keydown', e=>{
 });
 
 let rzTimer=null;
+window.addEventListener('resize', fitHeader);
+let rzW = window.innerWidth;
 window.addEventListener('resize', ()=>{
+  if(window.innerWidth===rzW) return;
+  rzW = window.innerWidth;
   clearTimeout(rzTimer);
-  rzTimer = setTimeout(()=>{ if(!document.querySelector('.backdrop')) render(); }, 250);
+  rzTimer = setTimeout(()=>{ const a = document.activeElement; const typing = a && /^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName);
+    if(!document.querySelector('.backdrop') && !typing) render(); else fitHeader(); }, 250);
 });
 
 load();
