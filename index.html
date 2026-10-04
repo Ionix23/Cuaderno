@@ -623,7 +623,7 @@ details.sp-card summary{cursor:pointer;font-size:14px}
 .te-critlist{margin-top:12px}
 .te-crit{display:flex;gap:10px;font-size:14.5px;padding:5px 0;border-top:1px solid #EEF1EE;line-height:1.35}
 .te-crit b{font-family:var(--font-mono);color:var(--accent);flex:none;width:34px}
-.te-types{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.te-types{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
 .te-kinds{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
 .te-type{display:flex;flex-direction:column;gap:3px;text-align:left;font:inherit;padding:11px 12px;border:1.5px solid var(--rule);border-radius:11px;background:#fff;color:var(--ink);cursor:pointer;min-height:64px}
 .te-type b{font-family:var(--font-display);font-size:15px}
@@ -956,6 +956,20 @@ html,body{margin:0;background:var(--paper)}
 
 table.grid.ext-grid td.mark .ext-inp{border:1px solid var(--rule);background:#fff;border-radius:8px;width:64px;padding:6px 4px}
 table.grid.ext-grid td.mark .ext-inp.bad{border-color:#B4232C;background:#FDF1F1}
+/* notas por apartado */
+.pt-list{display:flex;flex-direction:column;gap:8px}
+.pt-row{display:flex;align-items:center;gap:12px;padding:10px 12px;border:1px solid var(--rule);border-radius:10px;background:#fff;cursor:text}
+.pt-name{flex:1;min-width:0;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.pt-name strong{font-size:15.5px}
+.pt-inp{display:flex;align-items:center;gap:6px;flex:none;font-family:var(--font-mono);color:var(--muted)}
+.pt-inp i{font-style:normal;font-size:14px;white-space:nowrap}
+.pt-val{width:84px;text-align:center;font-family:var(--font-mono);font-size:19px;padding:9px 6px}
+.pt-val.bad{border-color:#B4232C;background:#FDF1F1}
+/* diversidad */
+.div-add{flex:none}
+.div-ext{margin-top:14px;padding-top:12px;border-top:1px solid var(--rule)}
+.div-ext-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px 14px}
+.div-ext-grid label{display:block;min-width:0}
 /* «clip» recorta igual que «hidden» pero deja funcionar position:sticky (cabecera y pie fijos) */
 @supports (overflow:clip){#app{overflow:clip}}
 
@@ -1379,9 +1393,9 @@ function medMatchesProfile(medCode, conds){
 }
 const CODES = {P:'Presente', A:'Falta', R:'Retraso', J:'Justificada'};
 const KEY = 'cuaderno-lomloe:v1';
-const APP_VERSION = '3.5';
-const APP_BUILD = '03/10/2026';
-const APP_NOTES = 'Adaptada a móvil y tablet: rúbricas que se califican tocando cada grado, cabecera que se pliega al bajar, botones más grandes y ventanas legibles; nueva página para crear y editar tareas (la misma desde la unidad, la agenda o una sesión), con la destreza solo en Inglés y la opción de crear la unidad allí mismo';
+const APP_VERSION = '3.6';
+const APP_BUILD = '04/10/2026';
+const APP_NOTES = 'Nuevo instrumento «Notas por apartado»: una nota directa en cada criterio o parte de un examen, con «Guardar y siguiente» para corregir de seguido; botón más visible para añadir adaptaciones (en la ficha y en Diversidad › Por alumno); medidas como ACS en áreas que no das tú';
 
 /* escala cualitativa por defecto (Orden ECD/1112/2022) */
 const DEFAULT_SCALE = [
@@ -2026,6 +2040,7 @@ function blankInstr(type){
   if(i.type==='rubric'){ i.levels = LEVEL_PRESETS.calif.slice(); i.items = [mkItem('','')]; }
   if(i.type==='scale'){ i.levels = numericLevels(4); i.items = [mkItem('','')]; }
   if(i.type==='check'){ i.items = [mkItem('','')]; }
+  if(i.type==='points'){ i.items = [mkItem('','')]; }
   if(i.type==='faces'){ i.levels = FACE_LEVELS.map(l=>Object.assign({}, l)); i.items = [mkItem('Actitud en clase','')]; }
   return i;
 }
@@ -2035,7 +2050,7 @@ function cloneInstr(o){
   return c;
 }
 
-const TYPE_NAMES = {num:'Puntuación directa', scale:'Escala de gradación', check:'Lista de cotejo', rubric:'Rúbrica', faces:'Observación con caritas'};
+const TYPE_NAMES = {num:'Puntuación directa', scale:'Escala de gradación', check:'Lista de cotejo', rubric:'Rúbrica', faces:'Observación con caritas', points:'Notas por apartado'};
 /* caritas: tres grados fijos; el valor sobre 10 solo se usa si la tarea cuenta para la nota */
 const FACE_LEVELS = [{label:'Bien', value:9, face:'😊'}, {label:'Regular', value:6, face:'😐'}, {label:'Mejorable', value:3, face:'☹️'}];
 function levelFace(l){ return l && l.face ? l.face : ''; }
@@ -2228,6 +2243,7 @@ const TYPE_OPTS = [
   {value:'scale',  label:'Escala de gradación · cada ítem valorado con un número'},
   {value:'check',  label:'Lista de cotejo · conseguido o no conseguido'},
   {value:'num',    label:'Puntuación directa · una sola nota'},
+  {value:'points', label:'Notas por apartado · una nota directa en cada apartado o criterio'},
   {value:'faces',  label:'Observación con caritas · 😊 😐 ☹️ (actitud, participación…)'}
 ];
 
@@ -2486,6 +2502,11 @@ function taskById(c,id){ return c.tasks.find(t=>t.id===id)||null; }
 
 /* ---------- cálculo ---------- */
 function itemValue(instr, i, raw){
+  if(instr.type==='points'){
+    if(!Array.isArray(raw)) return null;
+    const v = num(raw[i]);
+    return v==null ? null : Math.max(0, Math.min(10, v/(instr.max||10)*10));
+  }
   if(instr.type==='check') return Array.isArray(raw) ? (raw[i]?10:0) : null;
   if(!Array.isArray(raw)) return null;
   const j = raw[i];
@@ -3739,6 +3760,10 @@ function extInput(c, sid, e, p){
   return `<span class="ext-cell"><input class="ext-inp ${g&&g.v<c.pass?'low':''}" data-act="extGrade" data-s="${sid}" data-e="${e.id}" data-p="${p.id}"
     value="${esc(extText(g))}" placeholder="–" autocomplete="off" aria-label="${esc(e.name)} · ${esc(p.name)}"><span class="ext-pill">${extPill(c, g)}</span></span>`;
 }
+function extMed(c, sid, eid){ const k = (c.extDiv||{})[sid+':'+eid]; return k ? medDef(k) : null; }
+function extMedTag(c, sid, eid){ const m = extMed(c, sid, eid);
+  return m ? `<span class="tag ${m.sig?'warn':'grey'}" title="${esc(m.name)} (otro docente)">${esc(m.code)}</span>` : ''; }
+function extMedsOf(c, sid){ return extAreas(c).map(e=>({e:e, m:extMed(c, sid, e.id)})).filter(x=>x.m); }
 function extAreasModal(){
   const c = course(); if(!c) return;
   let rows = extAreas(c).map(e=>Object.assign({}, e));
@@ -3757,6 +3782,7 @@ function extAreasModal(){
     const keep = rows.filter(r=>r.name.trim()).map(r=>({id:r.id, name:r.name.trim(), teacher:(r.teacher||'').trim()}));
     const ids = keep.map(r=>r.id);
     Object.keys(c.extGrades||{}).forEach(k=>{ if(ids.indexOf(k.split(':')[1])<0) delete c.extGrades[k]; });
+    Object.keys(c.extDiv||{}).forEach(k=>{ if(ids.indexOf(k.split(':')[1])<0) delete c.extDiv[k]; });
     c.extAreas = keep;
   }, 'Guardar');
   const body = wrap.querySelector('#extBody');
@@ -3785,7 +3811,7 @@ function viewOtras(){
     <div class="scroll"><table class="grid ext-grid"><thead><tr><th class="stick">Alumno/a</th>
       ${ex.map(e=>`<th class="task">${esc(e.name)}${e.teacher?`<small>${esc(e.teacher)}</small>`:''}</th>`).join('')}</tr></thead>
     <tbody>${c.students.map((s,i)=>`<tr><td class="stick"><span class="rownum">${String(i+1).padStart(2,'0')}</span><button class="linklike" data-act="openStudent" data-id="${s.id}">${esc(s.name)}</button></td>
-      ${ex.map(e=>`<td class="mark">${extInput(c, s.id, e, p)}</td>`).join('')}</tr>`).join('')}
+      ${ex.map(e=>`<td class="mark">${extMedTag(c, s.id, e.id)} ${extInput(c, s.id, e, p)}</td>`).join('')}</tr>`).join('')}
       <tr class="ext-mean"><td class="stick">Media de la clase</td>${ex.map(e=>`<td class="mark" data-xmean="${e.id}">${fmt(extClassMean(c, e.id, p.id))}</td>`).join('')}</tr>
     </tbody></table></div>`;
 }
@@ -3807,7 +3833,7 @@ function overviewCard(c, s){
           ${x.v==null?'<span class="muted">–</span>':(x.ini?`<span class="ov-ini">${fmt2(x.v)}</span>`:`<b class="${x.v<c.pass?'low':''}">${fmt(x.v)}</b> ${pill(x.v, c.scale)}`)}</td>`).join('')}
       </tr>`).join('')}
       ${ex.map(e=>`<tr class="ov-ext">
-        <td><span class="al-dot" style="background:${subjColor(e.name)}"></span> ${esc(e.name)}${e.teacher?` <small class="muted">${esc(e.teacher)}</small>`:''}</td>
+        <td><span class="al-dot" style="background:${subjColor(e.name)}"></span> ${esc(e.name)} ${extMedTag(c, s.id, e.id)}${e.teacher?` <small class="muted">${esc(e.teacher)}</small>`:''}</td>
         ${c.periods.map(p=>`<td class="r">${p.initial?'<span class="muted">–</span>':extInput(c, s.id, e, p)}</td>`).join('')}
       </tr>`).join('')}</tbody></table></div>` : `<p class="hint" style="margin:6px 0 0">Aún no tiene notas en ninguna área.</p>`}
     <div class="row" style="margin-top:8px">${ex.length
@@ -3837,7 +3863,8 @@ views.alumno = function(){
     const items = (ins.type!=='num' && (ins.items||[]).length)
       ? `<table class="mini-grid"><tbody>${ins.items.map((it,i)=>{
           const iv = itemValue(ins, i, raw);
-          const lab = ins.type==='check' ? (Array.isArray(raw)&&raw[i]?'Conseguido':'No conseguido')
+          const lab = ins.type==='points' ? (Array.isArray(raw)&&num(raw[i])!=null ? fmt2(num(raw[i]))+' / '+(ins.max||10) : '–')
+                    : ins.type==='check' ? (Array.isArray(raw)&&raw[i]?'Conseguido':'No conseguido')
                     : (Array.isArray(raw)&&raw[i]!=null&&ins.levels[raw[i]] ? (levelFace(ins.levels[raw[i]])?levelFace(ins.levels[raw[i]])+' ':'')+ins.levels[raw[i]].label : '–');
           return `<tr><td>${esc(it.name||('Ítem '+(i+1)))}${itemCrits(it).length?` <span class="tag grey">${itemCrits(it).join(' · ')}</span>`:''}</td>
             <td class="lv">${esc(lab)}</td><td class="r">${iv==null?'–':fmt2(iv)}</td></tr>`;
@@ -3929,7 +3956,8 @@ function divBlock(c, s, aid){
     <div class="row"><h2 class="sec-title" style="margin:0">Atención a la diversidad</h2>
       <span class="tag grey">${esc(areaDef(aid).short||'')}</span>
       <div class="spacer"></div>
-      <button class="btn ghost small" data-act="editDiv" data-id="${s.id}">${med||conds.length||measures.length?'Editar':'Añadir'}</button></div>
+      <button class="btn small" data-act="editDiv" data-id="${s.id}">${med||conds.length||measures.length?'✎ Editar adaptaciones':'＋ Añadir adaptación'}</button></div>
+    ${extMedsOf(c, s.id).length ? `<p style="margin:10px 0 0"><span class="hint" style="margin:0">En áreas de otros docentes:</span> ${extMedsOf(c, s.id).map(x=>`<span class="tag ${x.m.sig?'warn':'grey'}" title="${esc(x.m.name)}">${esc(x.e.name)} · ${esc(x.m.code)}</span>`).join(' ')}</p>` : ''}
     ${!(med||conds.length||measures.length||(d&&d.note))
       ? `<p class="hint" style="margin:10px 0 0">Sin medidas registradas en esta área. Este alumno sigue el currículo del grupo.</p>`
       : `
@@ -4335,6 +4363,7 @@ views.editorInstr = function(){
         </div></th>`).join('') : ''}
     ${isMatrix ? `<th class="lvl" style="min-width:60px"><button class="btn ghost small" data-act="addLevel">+ grado</button></th>` : ''}
     ${ins.type==='check' ? `<th class="lvl">Conseguido / no conseguido</th>` : ''}
+    ${ins.type==='points' ? `<th class="lvl">Nota sobre ${ins.max||10}</th>` : ''}
   </tr>`;
 
   const body = (ins.items||[]).map((it,i)=>`<tr>
@@ -4352,6 +4381,7 @@ views.editorInstr = function(){
           placeholder="${ins.type==='rubric'?'Qué tiene que hacer para alcanzar este grado':'Descripción opcional'}">${esc((it.cells||[])[j]||'')}</textarea></td>`).join('') : ''}
     ${isMatrix ? '<td class="cell-desc"></td>' : ''}
     ${ins.type==='check' ? '<td class="cell-desc" style="text-align:center;color:var(--muted);font-size:14px">se marca al calificar</td>' : ''}
+    ${ins.type==='points' ? '<td class="cell-desc" style="text-align:center;color:var(--muted);font-size:14px">la nota se escribe al calificar</td>' : ''}
   </tr>`).join('');
 
   const mode = instrMode();
@@ -4376,6 +4406,7 @@ views.editorInstr = function(){
             placeholder="${ins.type==='rubric'?'Qué tiene que hacer para este grado':'Descripción opcional'}">${esc((it.cells||[])[j]||'')}</textarea>
         </div>`).join('') : ''}
       ${ins.type==='check' ? '<p class="hint" style="margin:8px 0 0">Se marca conseguido o no al calificar.</p>' : ''}
+      ${ins.type==='points' ? '<p class="hint" style="margin:8px 0 0">La nota de este apartado se escribe al calificar.</p>' : ''}
     </div>`).join('');
 
   const levelsEditor = !isMatrix ? '' : `<div class="card">
@@ -4419,7 +4450,7 @@ views.editorInstr = function(){
           <select class="inp" data-act="instrType">
             ${TYPE_OPTS.map(o=>`<option value="${o.value}" ${o.value===ins.type?'selected':''}>${esc(o.label)}</option>`).join('')}
           </select></label>
-        ${ins.type==='num'? `<label class="field" style="margin:0"><span>Máximo</span>
+        ${ins.type==='num'||ins.type==='points'? `<label class="field" style="margin:0"><span>${ins.type==='points'?'Cada apartado, sobre':'Máximo'}</span>
           <input class="inp" type="number" style="width:100px" value="${ins.max||10}" data-act="instrMax"></label>`:''}
       </div>
     </div>
@@ -5127,12 +5158,14 @@ function divByStudent(c, aid){
       <span class="num">${String(i+1).padStart(2,'0')}</span>
       <span class="grow">${esc(s.name)}
         ${conds.length? `<small style="display:block;color:var(--muted);font-size:11px">${conds.map(x=>condDef(x).code).join(' · ')}</small>`:''}</span>
+      ${extMedsOf(c, s.id).map(x=>`<span class="tag ${x.m.sig?'warn':'grey'}" title="${esc(x.m.name)} · ${esc(x.e.name)} (otro docente)">${esc(x.e.name.slice(0,12))} · ${esc(x.m.code)}</span>`).join('')}
       ${med? `<span class="pill ${med.sig?'ACS-sig':''}" style="background:${med.cri?'#FCF1D8':'var(--accent-soft)'};color:${med.cri?'#8A6206':'var(--accent)'};border:1px solid ${med.cri?'#EEDCA8':'#B8D8C6'}">${med.code}</span>`
-        : (has?'<span class="tag grey">medidas</span>':'<span class="tag grey" style="opacity:.4">—</span>')}
+        : (has?'<span class="tag grey">medidas</span>':'')}
+      <button class="btn small div-add" data-act="editDiv" data-id="${s.id}">${has||extMedsOf(c, s.id).length?'✎ Editar':'＋ Adaptación'}</button>
     </div>`;
   }).join('');
   const withMed = c.students.filter(s=>{ const d=c.diversity[dvkey(s.id,aid)]; return d&&d.med; }).length;
-  return `<p class="tpl-intro">Perfil de cada alumno en esta área. Toca un nombre para editarlo. ${withMed} con medida específica.</p>
+  return `<p class="tpl-intro">Perfil de cada alumno en ${esc(areaDef(aid).short||areaDef(aid).name)}. Usa el botón verde para añadir o cambiar sus adaptaciones, también las de áreas que no das tú. Toca el nombre para abrir su ficha. ${withMed} con medida específica.</p>
     <div class="card">${rows}</div>`;
 }
 
@@ -5943,6 +5976,47 @@ function openCell(studentId, taskId){
     w.addEventListener('click', e=>{ if(e.target.hasAttribute('data-close') || e.target===w) render(); });
     return w; };
 
+  if(ins.type==='points'){
+    if(!Array.isArray(raw) || raw.length!==items.length) raw = items.map(()=>null);
+    const mx = ins.max||10;
+    const next = c.students[c.students.findIndex(x=>x.id===studentId)+1];
+    const inner = `<h3>${esc(task.name)}${adTag}</h3><p class="sub">${esc(s.name)} · una nota por apartado, sobre ${mx}</p>
+      <div class="pt-list">${items.map((it,i)=>`<label class="pt-row">
+        <span class="pt-name"><strong>${esc(it.name||('Apartado '+(i+1)))}</strong>${itemCrits(it).map(k=>`<span class="chip on">${esc(k)}</span>`).join('')}<span class="tag grey">${itemPct(ins,i)}%</span></span>
+        <span class="pt-inp"><input class="inp pt-val" inputmode="decimal" autocomplete="off" data-pt="${i}" value="${num(raw[i])==null?'':esc(String(raw[i]).replace('.',','))}" placeholder="–"><i>/ ${mx}</i></span></label>`).join('')}</div>
+      <p class="sub" id="cellPreview" style="margin-top:10px"></p>${mkBlock}`;
+    const read = ()=>[...wrap.querySelectorAll('.pt-val')].map(x=>{ const v = num(x.value); return v==null ? null : Math.max(0, Math.min(mx, v)); });
+    const store = ()=>{ const out = read(); if(out.some(v=>v!=null)) c.grades[key] = out; else delete c.grades[key]; };
+    const wrap = withMarks(openModal(inner, store, 'Guardar'));
+    const upd = ()=>{
+      const out = read(); let a=0, w=0;
+      items.forEach((it,i)=>{ if(out[i]!=null){ const wi = Number(it.weight)||1; a += out[i]/mx*10*wi; w += wi; } });
+      const v = w ? a/w : null;
+      const adj = isAdjTask(c, studentId, taskId);
+      wrap.querySelector('#cellPreview').innerHTML = (v==null ? 'Sin calificar todavía.' : 'Nota de la tarea: <b>'+fmt2(v)+'</b> '+pill(v, c.scale))
+        + (adj ? ' <span class="count mid" style="margin-left:6px">ajustada a mano a '+fmt2(num(c.overrides[key]))+'</span>' : '');
+      wrap.querySelectorAll('.pt-val').forEach(x=>{ const n = num(x.value); x.classList.toggle('bad', x.value.trim()!=='' && (n==null || n<0 || n>mx)); });
+    };
+    wrap.addEventListener('input', e=>{ if(e.target.classList.contains('pt-val')) upd(); });
+    /* Intro pasa al apartado siguiente; en el último, guarda (y abre al alumno siguiente) */
+    wrap.addEventListener('keydown', e=>{
+      if(e.key!=='Enter' || !e.target.classList.contains('pt-val')) return;
+      e.preventDefault();
+      const all = [...wrap.querySelectorAll('.pt-val')], i = all.indexOf(e.target);
+      if(all[i+1]){ all[i+1].focus(); all[i+1].select(); }
+      else (wrap.querySelector('[data-next]') || wrap.querySelector('[data-ok]')).click();
+    });
+    if(next){
+      const nb = document.createElement('button');
+      nb.className = 'btn'; nb.dataset.next = '1'; nb.textContent = 'Guardar y siguiente ▸'; nb.title = 'Guarda y abre a '+next.name;
+      nb.addEventListener('click', ev=>{ ev.preventDefault(); ev.stopPropagation(); store(); wrap.remove(); save(); render(); openCell(next.id, taskId); });
+      wrap.querySelector('.modal > .row').appendChild(nb);
+      wrap.querySelector('[data-ok]').classList.add('ghost');
+    }
+    upd();
+    return;
+  }
+
   if(ins.type==='faces'){
     if(!Array.isArray(raw) || raw.length!==items.length) raw = items.map(()=>null);
     const sel = raw.slice();
@@ -6164,6 +6238,7 @@ const TE_TYPES = [
   ['scale','Escala','Ítems valorados con un número'],
   ['check','Lista de cotejo','Conseguido o no conseguido'],
   ['num','Nota directa','Una sola nota, sin ítems'],
+  ['points','Notas por apartado','Una nota directa por criterio o parte del examen'],
   ['faces','Caritas','😊 😐 ☹️ para observar']
 ];
 const TE_KINDS = [
@@ -6230,7 +6305,8 @@ views.tarea = function(){
   d.criteria = d.criteria.filter(k=>crits.some(x=>x.code===k));
   const tpl = !isEdit && d.tpl ? (state.templates||[]).find(x=>x.id===d.tpl) : null;
   const type = tpl ? tpl.type : d.type;
-  const needsItems = !isEdit && type!=='num' && type!=='faces';
+  const autoPts = !isEdit && !tpl && type==='points' && d.criteria.length>0;
+  const needsItems = !isEdit && type!=='num' && type!=='faces' && !autoPts;
   const title = isEdit ? 'Editar tarea' : (ini ? 'Nueva prueba inicial' : 'Nueva tarea evaluable');
   const saveLbl = isEdit ? 'Guardar' : (needsItems ? 'Crear y definir instrumento' : 'Crear tarea');
   const others = (!ini && d.unitId && d.unitId!=='__new') ? tasksOfUnit(c, d.unitId).filter(t=>t.id!==d.id && !t.isInitial && !t.informative).reduce((n,t)=>n+(Number(t.weight)||0),0) : null;
@@ -6273,7 +6349,8 @@ views.tarea = function(){
           <div class="spacer"></div><button class="btn ghost small" data-act="teSave" data-go="instr">Guardar y abrir el instrumento</button></div>`
       : `<div class="te-types">${TE_TYPES.map(([id,n,sub])=>`<button type="button" class="te-type ${type===id?'on':''}" data-act="teType" data-t="${id}"><b>${n}</b><span>${sub}</span></button>`).join('')}</div>
         <label class="te-new"><span class="te-lbl">Partir de una plantilla <small>opcional</small></span>
-          ${sel('tpl', [['','Empezar en blanco']].concat((state.templates||[]).map(x=>[x.id, x.name+' · '+TYPE_NAMES[x.type]])), d.tpl||'')}</label>`}
+          ${sel('tpl', [['','Empezar en blanco']].concat((state.templates||[]).map(x=>[x.id, x.name+' · '+TYPE_NAMES[x.type]])), d.tpl||'')}</label>
+        ${type==='points' && !tpl ? `<p class="te-help"><b>Notas por apartado:</b> marca abajo los criterios que valora la prueba y se crea un apartado por cada uno. Al calificar escribes una nota en cada apartado; la nota de la tarea sale sola.</p>` : ''}`}
     </section>
 
     <section class="card te-card">
@@ -6350,13 +6427,15 @@ function teSave(go){
   } else {
     const tpl = d.tpl ? (state.templates||[]).find(x=>x.id===d.tpl) : null;
     const instr = tpl ? cloneInstr(tpl) : blankInstr(d.type);
+    if(!tpl && instr.type==='points' && crit.length){ instr.items = crit.slice().sort(cmpCode).map(k=>mkItem('Criterio '+k, [k])); instr.auto = true; }
     task = {id:uid(), areaId:d.aid, periodId:d.pid, unitId:unitId, name:name, skill:d.aid==='ing'?(d.skill||''):'',
       desc:d.desc.trim(), goals:d.goals.trim(), activities:d.activities.trim(), criteria:crit, weight:weight,
       isInitial:isInitial, informative:informative, instr:instr, adaptations:{}, dates:dates};
     c.tasks.push(task);
   }
   const b = d.back || {}, type = (task.instr||{}).type;
-  const toInstr = go==='instr' || (!d.id && type!=='num' && type!=='faces');
+  const toInstr = go==='instr' || (!d.id && type!=='num' && type!=='faces' && !(task.instr||{}).auto);
+  if(task.instr) delete task.instr.auto;
   state.taskEd = null;
   state.activeCourse = c.id; state.activeArea = task.areaId; state.activePeriod = task.periodId;
   if(toInstr){ state.editor = {mode:'task', id:task.id}; state.view = 'editorInstr'; }
@@ -6490,6 +6569,7 @@ function templateModal(){
    INFORMES INDIVIDUALES
    ===================================================================== */
 function levelLabelOf(ins, i, raw){
+  if(ins.type==='points') return Array.isArray(raw) && num(raw[i])!=null ? fmt2(num(raw[i]))+' / '+(ins.max||10) : '–';
   if(ins.type==='check') return Array.isArray(raw) ? (raw[i]?'Conseguido':'No conseguido') : '–';
   if(!Array.isArray(raw)) return '–';
   const j = raw[i];
@@ -6635,11 +6715,13 @@ function tutSheet(c, s, opt){
 
   /* ---- notas por área ---- */
   const ownRow = a=>{
-    return `<tr><td><i class="ts-dot" style="background:${areaColor(a)}"></i>${esc(areaDef(a).name)}</td>
+    const dvA = c.diversity[dvkey(s.id, a)], mA = dvA && dvA.med ? medDef(dvA.med) : null;
+    return `<tr><td><i class="ts-dot" style="background:${areaColor(a)}"></i>${esc(areaDef(a).name)}${mA&&mA.sig?`<span class="ts-tag" title="${esc(mA.name)}">${esc(mA.code)}</span>`:''}</td>
       ${cols.map(p=>{ const x = areaFinal(c, s.id, a, p.id); return `<td class="r ${p===cmpP?'cur':''}">${x==null?'–':`<b class="${x<c.pass?'ts-low':''}">${fmt(x)}</b>${q(x)}`}</td>`; }).join('')}</tr>`;
   };
   const extRow = e=>{
-    return `<tr><td><i class="ts-dot" style="background:${subjColor(e.name)}"></i>${esc(e.name)}${e.teacher?` <span class="sub">${esc(e.teacher)}</span>`:''}</td>
+    const mE = extMed(c, s.id, e.id);
+    return `<tr><td><i class="ts-dot" style="background:${subjColor(e.name)}"></i>${esc(e.name)}${mE&&mE.sig?`<span class="ts-tag" title="${esc(mE.name)}">${esc(mE.code)}</span>`:''}${e.teacher?` <span class="sub">${esc(e.teacher)}</span>`:''}</td>
       ${cols.map(p=>{ const x = extGet(c, s.id, e.id, p.id); return `<td class="r ${p===cmpP?'cur':''}">${!x?'–':(x.isNum?`<b class="${x.v<c.pass?'ts-low':''}">${fmt(x.v)}</b>${q(x.v)}`:`<b class="${x.v<c.pass?'ts-low':''}">${x.code}</b>`)}</td>`; }).join('')}</tr>`;
   };
   let h = `<div class="rep ts">
@@ -6921,6 +7003,11 @@ function divModal(sid){
   let med = d.med || '';
   let refCycle = d.refCycle || c.cycle;
   const measures = d.measures.slice();
+  /* áreas de otros docentes, más Matemáticas y Lengua como propuesta: se crean solas al marcarles una medida */
+  const xHave = extAreas(c).map(e=>({id:e.id, name:e.name}));
+  const xList = xHave.concat(['Matemáticas','Lengua Castellana'].filter(n=>!xHave.some(e=>e.name.toLowerCase()===n.toLowerCase())
+      && !c.areas.some(a=>areaDef(a).name.toLowerCase()===n.toLowerCase())).map(n=>({id:null, name:n})))
+    .map(e=>Object.assign(e, {cur: e.id ? ((c.extDiv||{})[sid+':'+e.id] || '') : ''}));
 
   const inner = `<h3>Atención a la diversidad</h3>
     <p class="sub">${esc(s.name)} · ${esc(areaDef(aid).name)}</p>
@@ -6958,6 +7045,15 @@ function divModal(sid){
           <button class="btn ghost small" data-fromdua>Tomar del catálogo DUA</button></div>
         <p class="sub">Las medidas generales del grupo ya se aplican solas; aquí van solo las individuales o generales personalizadas.</p>
       </div>
+      <div class="col-full div-ext">
+        <label class="field" style="margin:0"><span>Medidas en áreas que no das tú</span></label>
+        <p class="sub" style="margin:2px 0 8px">Para tener a la vista que lleva, por ejemplo, ACS en Matemáticas. Es solo informativo: no cambia ninguna nota.</p>
+        <div class="div-ext-grid">${xList.map((e,i)=>`<label><span class="te-lbl">${esc(e.name)}</span>
+          <select class="inp" data-xmed="${i}">
+            <option value="">Sin medida</option>
+            ${MED_PRESET.map(m=>`<option value="${m.code}" ${e.cur===m.code?'selected':''}>${m.code} · ${esc(m.name)}</option>`).join('')}
+          </select></label>`).join('')}</div>
+      </div>
     </div>`;
 
   const wrap = openModal(inner, v=>{
@@ -6966,6 +7062,13 @@ function divModal(sid){
     d.refCycle = med && medDef(med).cri ? refCycle : null;
     d.note = v.note||'';
     d.measures = [...wrap.querySelectorAll('.meas-input')].map(i=>i.value.trim()).filter(Boolean);
+    if(!c.extDiv || typeof c.extDiv!=='object') c.extDiv = {};
+    wrap.querySelectorAll('[data-xmed]').forEach(el=>{
+      const e = xList[Number(el.dataset.xmed)];
+      if(!e.id && el.value){ if(!Array.isArray(c.extAreas)) c.extAreas = []; const na = {id:uid(), name:e.name, teacher:''}; c.extAreas.push(na); e.id = na.id; }
+      if(!e.id) return;
+      if(el.value) c.extDiv[sid+':'+e.id] = el.value; else delete c.extDiv[sid+':'+e.id];
+    });
   }, 'Guardar', {wide:true});
 
   const refresh = ()=>{
@@ -7896,6 +7999,7 @@ const actions = {
   teCrit(t){ const d = state.taskEd, c = teCourse(); if(!d || !c) return;
     const i = d.criteria.indexOf(t.dataset.code); if(i>-1) d.criteria.splice(i,1); else d.criteria.push(t.dataset.code);
     d.dirty = true; t.classList.toggle('on', i===-1);
+    if(!d.id && d.type==='points' && !d.tpl){ render(); return; }   // cambia el texto del botón
     const pv = document.getElementById('teCritPrev'); if(pv) pv.innerHTML = teCritHtml(c, d);
     const n = document.getElementById('teCritN'); if(n) n.textContent = d.criteria.length ? d.criteria.length+' marcado(s)' : ''; },
   teAddDate(){ const d = state.taskEd; if(!d) return;
@@ -8202,7 +8306,7 @@ const actions = {
       const k = JSON.parse(JSON.stringify(cc));
       k.students = []; k.grades = {}; k.attendance = {}; k.overrides = {}; k.finals = {};
       k.tutorias = []; k.diversity = {}; k.dua = {}; k.initObs = {}; k.progress = {};
-      k.layout = {items:[]}; k.timetable = {}; k.marks = {}; k.comments = {}; k.extGrades = {};
+      k.layout = {items:[]}; k.timetable = {}; k.marks = {}; k.comments = {}; k.extGrades = {}; k.extDiv = {};
       (k.tasks||[]).forEach(t=>{ t.adaptations = {}; t.dates = []; delete t.date; });
       k.name = cc.name + ' (programación)';
       return k;
@@ -8421,7 +8525,7 @@ document.addEventListener('change', e=>{
     if(tpl){ if(a==='instrName') tpl.name=t.value; else tpl.desc=t.value; save(); }
     return;
   }
-  if(a==='instrMax'){ ins.max = Number(t.value)||10; save(); return; }
+  if(a==='instrMax'){ ins.max = Number(t.value)||10; save(); if(ins.type==='points') render(); return; }
   if(a==='instrType'){
     const before = ins.type;
     ins.type = t.value;
