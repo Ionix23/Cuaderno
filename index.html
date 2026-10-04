@@ -331,7 +331,7 @@ table.grid th.task{min-width:96px;max-width:130px;font-weight:500}
 table.grid th.task small{display:block;font-family:var(--font-mono);font-size:12px;color:var(--muted);font-weight:400}
 .stick{position:sticky;left:0;z-index:2;background:#fff;text-align:left!important;padding:6px 10px!important;min-width:150px;box-shadow:1px 0 0 var(--rule)}
 th.stick{background:#F0F3F0;z-index:3}
-tbody tr:nth-child(even) td{background:#FAFBFA}
+table:not(.grid) tbody tr:nth-child(even) td{background:#FAFBFA}
 td.mark input{width:100%;border:0;background:transparent;text-align:center;font-family:var(--font-mono);font-size:15.5px;padding:8px 2px;color:var(--ink)}
 td.mark input:focus{background:#FFF8E6;outline:2px solid var(--mark);outline-offset:-2px}
 td.mark input.low{color:var(--low);font-weight:500}
@@ -1009,6 +1009,240 @@ table.grid.ext-grid td.mark .ext-inp.bad{border-color:#B4232C;background:#FDF1F1
   td.gm-skip{text-align:right;padding:8px 12px}
   .gm-skip button{font-size:13.5px;padding:6px}
 }
+/* ---------- código de color por grado (v3.8): rojo · ámbar · lima · verde · azul ---------- */
+.tn0{--tf:#A8402A;--tb:#FBE9E4;--td:#EBC2B7;--ts:#C8553B}
+.tn1{--tf:#855C04;--tb:#FDF1D3;--td:#EBD08C;--ts:#DB9C12}
+.tn2{--tf:#55691A;--tb:#EEF4D6;--td:#CFDD9A;--ts:#8FA932}
+.tn3{--tf:#1A6347;--tb:#DBEEE3;--td:#A9D3BC;--ts:#2E8B62}
+.tn4{--tf:#1F5587;--tb:#E1EDF8;--td:#AFCBE6;--ts:#3A7DBD}
+.pill.IN{background:#FBE9E4;color:#A8402A;border-color:#EBC2B7}
+.pill.SU{background:#FDF1D3;color:#855C04;border-color:#EBD08C}
+.pill.BI{background:#EEF4D6;color:#55691A;border-color:#CFDD9A}
+.pill.NT{background:#DBEEE3;color:#1A6347;border-color:#A9D3BC}
+.pill.SB{background:#E1EDF8;color:#1F5587;border-color:#AFCBE6}
+.lv-bars{display:inline-flex;align-items:flex-end;gap:2px;height:14px;flex:none}
+.lv-bars i{width:4px;border-radius:1px;background:currentColor;opacity:.22}
+.lv-bars i.f{opacity:1}
+/* rúbrica al calificar */
+.gm-bar{position:sticky;top:-18px;z-index:5;background:#fff;display:flex;align-items:center;gap:10px 14px;flex-wrap:wrap;padding:8px 0 10px;margin-bottom:6px;border-bottom:1px solid var(--rule)}
+.gm-score{display:flex;align-items:center;gap:9px;padding:4px 12px;border-radius:10px;background:var(--tb,#F0F2F0);color:var(--tf,var(--muted));border:1px solid var(--td,var(--rule))}
+.gm-score b{font-family:var(--font-mono);font-size:27px;font-weight:500;line-height:1.15}
+.gm-score small{font-size:12.5px;line-height:1.2}
+.gm-dots{display:flex;gap:5px;align-items:center;flex-wrap:wrap}
+.gm-dots i{width:15px;height:15px;border-radius:50%;background:var(--ts,transparent);border:2px solid var(--ts,var(--rule))}
+.gm-left{font-size:13.5px;color:var(--muted)}
+.grade-matrix thead th[class*="tn"]{background:var(--tb);color:var(--tf);border-color:var(--td);border-top:4px solid var(--ts)}
+.gm-h{display:flex;flex-direction:column;align-items:center;gap:3px}
+.gm-h b{font-size:13.5px;font-weight:600}
+.gm-v{font-family:var(--font-mono);font-size:12.5px;font-weight:500}
+.gm-meta{display:flex;flex-wrap:wrap;gap:5px;align-items:center;margin-top:5px}
+.grade-matrix td.gm-item .gm-meta .chip{margin-top:0}
+.gm-picked{display:none;font-size:13px;line-height:1.35;color:var(--muted);margin-top:6px}
+.gm-cell .gm-lvl{display:flex;align-items:center;gap:6px;color:var(--tf)}
+.gm-cell .gm-name,.gm-cell .gm-short{display:none}
+.gm-cell:hover{background:var(--tb)}
+.gm-cell.on{background:var(--tb);border-color:var(--ts);box-shadow:inset 0 0 0 2px var(--ts)}
+.gm-cell.on .gm-lvl{color:var(--tf)}
+.gm-cell.on .gm-desc{color:var(--ink)}
+.gm-cell.on .gm-lvl::after{content:"✓";margin-left:auto;font-size:15px}
+.grade-matrix tr.has-sel .gm-cell:not(.on){opacity:.5}
+.grade-matrix tr.has-sel .gm-cell:not(.on):hover{opacity:1}
+.grade-matrix.compact .gm-desc,.grade-matrix.compact .gm-cell .lv-bars{display:none}
+.grade-matrix.compact .gm-picked{display:block}
+.grade-matrix.compact .gm-cell .gm-inner{min-height:0;align-items:center;justify-content:center;padding:10px 4px}
+.grade-matrix.compact .gm-cell .gm-lvl{flex-direction:column;gap:2px;width:auto}
+.grade-matrix.compact .gm-cell .gm-short{display:block;font-family:var(--font-ui);font-size:18px;font-weight:600;line-height:1.1}
+.grade-matrix.compact .gm-cell.on .gm-lvl::after{display:none}
+.grade-matrix.compact td.gm-cell{vertical-align:middle}
+button.lvl-btn[class*="tn"]{color:var(--tf);border-color:var(--td)}
+button.lvl-btn[class*="tn"].on{background:var(--ts);border-color:var(--ts);color:#fff}
+/* tablas de notas: mapa de calor con el mismo código de color */
+td.mark button.cell[class*="tn"],td.mark input[class*="tn"],.task-line .tl-val[class*="tn"]{background:var(--tb);color:var(--tf);font-weight:500}
+td.mark button.cell[class*="tn"]:hover{filter:brightness(.96)}
+.task-line .tl-val[class*="tn"]{border-color:var(--td)}
+td.mark button.cell.empty-cell{outline:1px dashed #C9D2CB;outline-offset:-6px;border-radius:9px}
+table.grid tbody td.calif[class*="tn"]{background:var(--tb);color:var(--tf);font-family:var(--font-mono);font-weight:500}
+table.grid tbody td.final[class*="tn"]{background:var(--tb);color:var(--tf);box-shadow:inset 4px 0 0 var(--ts),var(--bevel);white-space:nowrap}
+table.grid td.final .pill{margin-left:6px;vertical-align:1px}
+table.grid td.td-init{background-image:repeating-linear-gradient(135deg,transparent 0 7px,rgba(228,161,27,.16) 7px 9px)}
+.stu-head .score[class*="tn"]{color:var(--tf)}
+.tone-legend{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;margin-top:10px;font-size:13px;color:var(--muted)}
+.tone-legend span{display:inline-flex;align-items:center;gap:5px}
+/* editor de instrumentos */
+table.rub th.lvl[class*="tn"]{background:var(--tb);border-top:4px solid var(--ts)}
+table.rub th.lvl[class*="tn"] .lvl-label{background:transparent;border-color:transparent;color:var(--tf)}
+table.rub th.lvl[class*="tn"] .lvl-label:focus{background:#fff;border-color:var(--ts)}
+table.rub tbody tr td.cell-desc[class*="tn"]{background:color-mix(in srgb,var(--tb) 45%,#fff)}
+table.rub td.cell-desc[class*="tn"] textarea{background:#fff;border-color:var(--td)}
+.item-edit .lv-tag[class*="tn"]{color:var(--tf);background:var(--tb);border:1px solid var(--td);border-radius:8px;padding:6px 8px;text-align:center}
+/* vista de la rúbrica en Plantillas */
+.rv-wrap{overflow-x:auto;margin-top:12px}
+table.rv{border-collapse:separate;border-spacing:4px;width:100%;min-width:600px;table-layout:fixed}
+table.rv th,table.rv td{border-radius:8px;padding:8px 10px;font-size:13.5px;line-height:1.35;vertical-align:top;text-align:left;font-family:var(--font-ui)}
+table.rv thead th[class*="tn"]{background:var(--tb);color:var(--tf);text-align:center;font-weight:600;border-bottom:4px solid var(--ts)}
+table.rv thead th .gm-v{display:block}
+table.rv tbody th{background:var(--paper);font-weight:600;font-size:14px;width:150px}
+table.rv td[class*="tn"]{background:color-mix(in srgb,var(--tb) 60%,#fff)}
+.tpl-level[class*="tn"]{background:var(--tb);border-color:var(--td);color:var(--tf)}
+.tpl-level[class*="tn"] b{color:var(--tf)}
+/* ---------- tablas blandas (v3.10): filas separadas, esquinas redondeadas y un bisel suave ---------- */
+:root{--bevel:inset 0 1px 0 rgba(255,255,255,.85),inset 0 -2px 0 rgba(22,36,31,.08),0 1px 2px rgba(22,36,31,.07)}
+.scroll:has(> table.grid){border:0;background:transparent;border-radius:0;padding:0 2px 4px}
+table.grid{border-spacing:3px 7px;margin:-7px 0}
+table.grid th,table.grid td{border:0;border-radius:8px}
+:where(table.grid) td{background:#fff;box-shadow:var(--bevel)}
+table.grid th{background:#E7ECE8;box-shadow:var(--bevel)}
+table.grid tr > :first-child{border-radius:14px 8px 8px 14px}
+table.grid tr > :last-child{border-radius:8px 14px 14px 8px}
+table.grid td.stick{font-weight:500;box-shadow:var(--bevel)}
+table.grid tbody tr:hover td.stick{background:var(--accent-soft)}
+table.grid td.mark{overflow:hidden}
+td.mark button.cell,td.mark input{border-radius:8px}
+table.grid td.final,table.grid td.calif{box-shadow:var(--bevel)}
+table.rub{border-spacing:4px;background:transparent}
+table.rub th,table.rub td{border:1px solid var(--rule);border-radius:10px;box-shadow:var(--bevel)}
+table.rub th.stick,table.rub td.stick{box-shadow:var(--bevel)}
+.scroll:has(> table.rub){border:0;background:transparent}
+table.ini-grid,table.mini-grid{border-collapse:separate;border-spacing:0 5px}
+.ini-grid td,.ini-grid th,table.mini-grid td{border-bottom:0;background:#fff;box-shadow:var(--bevel)}
+.ini-grid tr > :first-child,table.mini-grid tr > :first-child{border-radius:12px 0 0 12px}
+.ini-grid tr > :last-child,table.mini-grid tr > :last-child{border-radius:0 12px 12px 0}
+.ini-grid th{background:#E7ECE8}
+/* programación de la unidad */
+.up-prog{font-family:var(--font-mono);font-size:13px;color:var(--muted);margin-left:6px}
+.up-acc{display:flex;flex-direction:column;gap:10px}
+.up-sec{background:#fff;border-radius:18px;box-shadow:var(--bevel);overflow:hidden;border-left:7px solid color-mix(in srgb,var(--c,#1F6B4F) 45%,#fff);transition:border-color .15s}
+.up-sec.open{border-left-color:var(--c,#1F6B4F)}
+.up-head{display:flex;align-items:center;gap:14px;width:100%;padding:16px 18px;border:0;background:transparent;cursor:pointer;text-align:left;font:inherit;color:var(--ink)}
+.up-head:hover{background:color-mix(in srgb,var(--c,#1F6B4F) 6%,#fff)}
+.up-tt{flex:1;min-width:0}
+.up-tt b{display:block;font-family:var(--font-display);font-size:22px;font-weight:800;letter-spacing:-0.02em;line-height:1.15}
+.up-tt small{display:block;font-size:14px;color:var(--muted);margin-top:2px}
+.up-n{flex:none;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:19px;font-weight:800;background:color-mix(in srgb,var(--c,#1F6B4F) 18%,#fff);color:color-mix(in srgb,var(--c,#1F6B4F) 80%,#000);box-shadow:var(--bevel)}
+.up-sec.open .up-n{background:var(--c,#1F6B4F);color:#fff}
+.up-dot{flex:none;width:14px;height:14px;border-radius:50%;border:2px solid var(--rule)}
+.up-dot.on{background:#2E8B62;border-color:#2E8B62}
+.up-caret{flex:none;font-size:18px;color:var(--muted);transition:transform .2s}
+.up-sec.open > .up-head .up-caret{transform:rotate(180deg)}
+.up-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .22s ease}
+.up-sec.open .up-body{grid-template-rows:1fr}
+.up-inner{overflow:hidden;min-height:0;padding:0 18px}
+.up-sec.open .up-inner{padding:4px 18px 18px;border-top:1px solid var(--paper)}
+.up-sec:not(.open) .up-inner{visibility:hidden}
+.up-res{display:flex;flex-wrap:wrap;gap:6px}
+.up-stat{background:var(--tb,var(--paper));color:var(--tf,var(--ink));border-radius:12px;padding:6px 12px;box-shadow:var(--bevel);min-width:92px}
+.up-stat small{display:block;font-size:11.5px;text-transform:uppercase;letter-spacing:.03em;opacity:.8}
+.up-stat b{font-family:var(--font-mono);font-weight:500;font-size:19px}
+.up-ses{flex-wrap:wrap}
+.up-ses .up-clip{margin-left:auto;cursor:pointer}
+.up-atts{flex:1 0 100%}
+.dvs{display:flex;flex-direction:column;gap:8px}
+.dv-st{background:var(--paper);border-radius:14px;padding:10px 12px;box-shadow:var(--bevel)}
+.dv-head{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.dv-head b{font-size:15.5px}
+.dv-head .sab-n{margin-left:auto}
+.up-chip.dv-m{font-size:13.5px;text-align:left;border-radius:12px}
+.dv-add{display:flex;gap:6px;margin-top:8px}
+.dv-add .inp{flex:1;min-width:0}
+.self-grid{display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:14px;align-items:center}
+.self-row{display:flex;align-items:center;gap:10px;background:var(--paper);border-radius:12px;padding:7px 10px;box-shadow:var(--bevel);margin-bottom:6px}
+.self-row b{flex:1;min-width:0;font-weight:600;font-size:14.5px}
+.self-lv{display:flex;gap:4px}
+.self-lv .lvl-btn{min-width:38px;height:36px}
+.self-diana{text-align:center;padding:0 62px}
+.self-diana svg{overflow:visible}
+.upd-self svg{overflow:visible}
+label.btn{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-ui);font-size:14.5px;font-weight:500;cursor:pointer;background:transparent;color:var(--accent);border:1px solid var(--rule);border-radius:8px;padding:6px 11px}
+label.btn:hover{background:var(--accent-soft)}
+@media (max-width:800px){.self-grid{grid-template-columns:1fr}}
+.sab-ce{font-weight:500;font-size:14px;line-height:1.35}
+.sab-cc{font-family:var(--font-mono);font-weight:500;color:var(--accent);margin-right:4px}
+.sab-in{display:block;font-style:normal;margin-top:5px}
+.sab-in u{display:inline-block;text-decoration:none;font-size:12.5px;background:#fff;border:1px solid #A9D3BC;color:#1A6347;border-radius:20px;padding:1px 9px;margin:0 5px 3px 0}
+.sab-in u::before{content:"◆ "}
+.sab-it.lock{cursor:default}
+.kc-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:6px}
+.kc{display:flex;flex-direction:column;align-items:flex-start;gap:1px;text-align:left;font:inherit;background:#fff;border:1px solid var(--rule);border-radius:12px;padding:8px 11px;cursor:pointer;box-shadow:var(--bevel);color:var(--ink)}
+.kc b{font-family:var(--font-mono);font-weight:500;font-size:14px;color:var(--muted)}
+.kc span{font-size:13.5px;line-height:1.3}
+.kc small{font-family:var(--font-mono);font-size:12px;color:#1A6347;margin-top:2px}
+.kc.on{background:#DBEEE3;border-color:#A9D3BC}
+.kc.on b{color:#1A6347}
+.kc.lock{cursor:default}
+.te-chip.inplan{box-shadow:0 0 0 2px #2E8B62}
+.sab-bar{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.sab-tot{font-family:var(--font-mono);font-size:13px;color:var(--accent);background:var(--accent-soft);border-radius:20px;padding:3px 11px}
+.sab-blk{margin-bottom:12px}
+.sab-blk h4{font-family:var(--font-display);font-size:17px;font-weight:800;margin:0 0 6px;display:flex;gap:9px;align-items:baseline}
+.sab-blk h4 b{flex:none;color:var(--c,#1F6B4F)}
+.sab-sub{background:var(--paper);border-radius:14px;box-shadow:var(--bevel);margin-bottom:6px;overflow:hidden}
+.sab-sub > summary{display:flex;align-items:center;gap:10px;padding:10px 12px;cursor:pointer;list-style:none;user-select:none}
+.sab-sub > summary::-webkit-details-marker{display:none}
+.sab-sub[open] > summary .up-caret{transform:rotate(180deg)}
+.sab-code{flex:none;font-family:var(--font-mono);font-size:13px;font-weight:500;color:color-mix(in srgb,var(--c,#1F6B4F) 80%,#000);background:color-mix(in srgb,var(--c,#1F6B4F) 16%,#fff);border-radius:8px;padding:2px 8px}
+.sab-name{flex:1;min-width:0;font-weight:600;font-size:15.5px}
+.sab-n{flex:none;font-family:var(--font-mono);font-size:13px;color:var(--muted)}
+.sab-sub.has .sab-n{color:#fff;background:#2E8B62;border-radius:20px;padding:1px 9px}
+.sab-items{display:flex;flex-direction:column;gap:5px;padding:2px 10px 12px}
+.sab-it{display:flex;align-items:flex-start;gap:10px;width:100%;text-align:left;font:inherit;font-size:14.5px;line-height:1.4;color:var(--ink);background:#fff;border:1px solid transparent;border-radius:11px;padding:9px 11px;cursor:pointer;box-shadow:var(--bevel)}
+.sab-it:hover{border-color:#A9D3BC}
+.sab-it i{flex:none;width:22px;height:22px;border-radius:7px;border:2px solid var(--rule);background:#fff;display:flex;align-items:center;justify-content:center;font-style:normal;font-size:14px;line-height:1;color:#fff;margin-top:-1px}
+.sab-it.on{background:#DBEEE3;border-color:#A9D3BC}
+.sab-it.on i{background:#2E8B62;border-color:#2E8B62}
+.sab-it.on i::before{content:"✓"}
+.sab.only .sab-it:not(.on),.sab.only .sab-sub:not(.has){display:none}
+i.up-auto{font-style:normal;font-family:var(--font-mono);font-size:11px;font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted);background:var(--paper);border-radius:20px;padding:1px 8px;margin-left:6px}
+.up-inner .field{display:block;margin:0 0 10px}
+.up-inner .field > span{display:block;font-size:13px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin-bottom:4px}
+.up-inner .field .inp{width:100%}
+.up-inner textarea.inp{resize:vertical;border-radius:10px}
+.up-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin-bottom:12px}
+.up-facts span{background:var(--paper);border-radius:10px;padding:6px 10px;box-shadow:var(--bevel);min-width:0}
+.up-facts small{display:block;font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.03em}
+.up-facts b{font-weight:600;font-size:14.5px}
+.up-grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.up-grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.up-chips{display:flex;flex-wrap:wrap;gap:6px}
+.up-chip{font-family:var(--font-ui);font-size:14px;padding:6px 12px;border-radius:20px;border:1px solid var(--rule);background:#fff;color:var(--ink);cursor:pointer;box-shadow:var(--bevel)}
+.up-chip.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.up-crits,.up-tasks{display:flex;flex-direction:column;gap:6px}
+.up-crit,.up-task{display:flex;gap:10px;align-items:baseline;background:var(--paper);border-radius:10px;padding:7px 10px;box-shadow:var(--bevel);font-size:14px;line-height:1.35}
+.up-crit b{flex:none;font-family:var(--font-mono);color:var(--accent);font-weight:500}
+.up-task b{flex:1;min-width:0;font-weight:600}
+.up-task span{color:var(--muted);font-size:13px}
+.up-tc i{font-style:normal;font-family:var(--font-mono);font-size:12px;background:var(--accent-soft);color:var(--accent);border-radius:5px;padding:1px 5px;margin-left:3px}
+.up-w{font-family:var(--font-mono);flex:none}
+.up-sheet{background:#fff;border-radius:16px;padding:18px;box-shadow:var(--bevel);font-size:15px}
+@media (max-width:560px){.up-tt b{font-size:19px}.up-head{padding:14px;gap:11px}.up-n{width:34px;height:34px;font-size:16px}.up-facts{grid-template-columns:1fr}}
+@media (max-width:560px){.up-grid3,.up-grid2{grid-template-columns:1fr}}
+/* horario y agenda semanal: mismas piezas redondeadas, con el color del área de fondo */
+table.wk{border-collapse:separate;border-spacing:4px}
+table.wk th{border-bottom:0;background:#E7ECE8;border-radius:10px;box-shadow:var(--bevel);color:var(--ink)}
+table.wk th:first-child{background:transparent;box-shadow:none}
+table.wk th.is-today{background:var(--accent);color:#fff}
+table.wk th.is-today small{color:#fff}
+.wk-cell{border:0;border-radius:10px;background:#fff;box-shadow:var(--bevel);overflow:hidden}
+.wk-cell.is-today{background:#EEF6F1}
+.wk-ev,.tt-ev{background:color-mix(in srgb,var(--c,#8A968F) 20%,#fff);border-left-width:6px!important}
+.wk-ev.wk-tt{background:color-mix(in srgb,var(--c,#8A968F) 8%,#fff)}
+.wk-ev .wk-course,.tt-ev .tt-main{color:color-mix(in srgb,var(--c,#8A968F) 78%,#000)!important}
+table.wk tr.brk td{border:0;border-radius:10px;background:#FBF3DD}
+@media (min-width:901px){
+  .grade-matrix{border-spacing:4px}
+  .grade-matrix th,.grade-matrix td{border-radius:10px;box-shadow:var(--bevel)}
+  .gm-cell.on{box-shadow:inset 0 0 0 2px var(--ts),var(--bevel)}
+}
+@media (max-width:900px){
+  .gm-bar{top:-16px}
+  .gm-cell{border-left:5px solid var(--ts)!important}
+  .gm-cell .gm-name{display:inline;font-family:var(--font-ui);font-weight:600}
+  .gm-cell .gm-lvl{width:122px;flex-wrap:wrap;gap:2px 6px}
+  .grade-matrix.compact tr{display:flex;flex-wrap:wrap}
+  .grade-matrix.compact td.gm-item,.grade-matrix.compact td.gm-skip{flex:1 0 100%}
+  .grade-matrix.compact td.gm-cell{flex:1 1 52px;min-width:0;border-left:0!important;border-top:4px solid var(--ts)}
+  .grade-matrix.compact .gm-cell .gm-name{display:none}
+  .grade-matrix.compact .gm-cell .gm-inner{flex-direction:column;padding:11px 2px}
+}
 @media (max-width:700px){
   /* cabecera: Inicio · clase · Aula arriba; área y evaluación debajo, a lo ancho */
   .context .home-btn{order:1}
@@ -1484,9 +1718,9 @@ function medMatchesProfile(medCode, conds){
 }
 const CODES = {P:'Presente', A:'Falta', R:'Retraso', J:'Justificada'};
 const KEY = 'cuaderno-lomloe:v1';
-const APP_VERSION = '3.7';
+const APP_VERSION = '4.0';
 const APP_BUILD = '04/10/2026';
-const APP_NOTES = 'Atención a la diversidad con las etiquetas de la normativa de Aragón: tipología de ACNEAE con sus subtipos (Decreto 188/2017 mod. 164/2022), que ahora es del alumno y vale para todas sus áreas; actuaciones generales y específicas de la Orden ECD/1005/2018 (mod. 913/2023); flexibilización, permanencia y otras actuaciones del alumno. Lo que tenías marcado se ha convertido solo';
+const APP_NOTES = 'Programación de la unidad: nueve apartados desplegables para planificar la unidad entera, con criterios, saberes básicos y competencias clave del currículo de Aragón, sesiones enlazadas con la agenda, adjuntos, medidas de atención a la diversidad por alumno, diana de autoevaluación docente, vista completa y PDF de dos caras. Además, código de color único por grado en rúbricas y tablas de notas, y tablas, horario y agenda con piezas redondeadas';
 
 /* escala cualitativa por defecto (Orden ECD/1112/2022) */
 const DEFAULT_SCALE = [
@@ -1715,10 +1949,10 @@ const GD_FILE = 'cuaderno-datos.json';
 const GD_LS = 'cuaderno-gdrive';
 const GD_API = 'https://www.googleapis.com/drive/v3';
 const GD_UP = 'https://www.googleapis.com/upload/drive/v3';
-const GD_DATA_KEYS = ['courses','curriculo','schedule','sessions','teacherTT','templates','areaColors','colorBy','markDefs','holidays','attFolderId'];
+const GD_DATA_KEYS = ['courses','curriculo','schedule','sessions','teacherTT','templates','areaColors','colorBy','markDefs','upMethods','holidays','attFolderId'];
 const GD_UI_KEYS = ['view','homeTab','planView','planDate','planSub','activeCourse','activeArea','activePeriod','activeUnit',
   'editor','viewStudent','tutStudent','tutFromHome','unitSub','triSub','divSub','alumSub','gridMode','editMode',
-  'instrMode','editWeights','homeTutCourse','homeAjCourse','attDate','lastSel','lastCourse','taskEd'];
+  'instrMode','rubCompact','upView','upOpen','sabOnly','sabCycle','editWeights','homeTutCourse','homeAjCourse','attDate','lastSel','lastCourse','taskEd'];
 
 const gd = {
   status:'off',          // off · need · ok · sync · offline · error · conflict
@@ -2126,6 +2360,28 @@ function numericLevels(n){
   const out=[];
   for(let i=1;i<=n;i++) out.push(lv(String(i), Math.round((i*10/n)*10)/10));
   return out;
+}
+/* ---------- código de color de un grado: depende de la nota que da (IN·SU·BI·NT·SB) ---------- */
+function toneOf(v){ v = Number(v); return !(v>=5) ? 0 : v<6 ? 1 : v<7 ? 2 : v<9 ? 3 : 4; }
+function tn(l){ return 'tn'+toneOf(l ? l.value : null); }
+function lvlRank(levels, j){ const v = levels[j].value; return levels.filter(l=>l.value<v).length; }
+/* barritas tipo «cobertura»: cuantas más llenas, más alto el grado */
+function lvlBars(levels, j){
+  const n = levels.length, r = lvlRank(levels, j);
+  return `<span class="lv-bars" aria-hidden="true">${levels.map((_,k)=>`<i class="${k<=r?'f':''}" style="height:${Math.round(5+9*(k+1)/n)}px"></i>`).join('')}</span>`;
+}
+/* etiqueta corta de un grado para la vista compacta: carita, número inicial, IN/SU/BI/NT/SB o su posición */
+function lvlShort(levels, j){
+  const l = levels[j];
+  if(l.face) return l.face;
+  const m = /^\s*(\d+)/.exec(l.label||''); if(m) return m[1];
+  const k = DEFAULT_SCALE.find(s=>s.name.toLowerCase()===String(l.label||'').trim().toLowerCase());
+  return k ? k.code : String(lvlRank(levels, j)+1);
+}
+function tnv(v){ return v==null ? '' : ' tn'+toneOf(v); }
+function toneLegend(c){
+  return `<div class="tone-legend">${c.scale.map((k,i)=>`<span>${pill(k.min, c.scale)} ${fmt2(k.min)}–${c.scale[i+1]?fmt2(c.scale[i+1].min-0.1):'10'}</span>`).join('')}
+    <span><i style="display:inline-block;width:22px;height:14px;border:1px dashed #C9D2CB;border-radius:5px"></i> sin calificar</span></div>`;
 }
 function blankInstr(type){
   const i = {type:type||'rubric', max:10, levels:[], items:[]};
@@ -3140,7 +3396,7 @@ function teacherTimetable(){
       if(!e) return `<td class="wk-cell" data-act="ttEdit" data-slot="${sl.id}" data-dow="${d}"><span class="wk-add">+</span></td>`;
       const col = ttColor(e);
       return `<td class="wk-cell" data-act="ttEdit" data-slot="${sl.id}" data-dow="${d}">
-        <div class="tt-ev" style="border-left:4px solid ${col};background:${col}14">
+        <div class="tt-ev" style="--c:${col};border-left:4px solid ${col}">
           ${e.courseId?`<span class="tt-main" style="color:${col}">${esc(courseName(e.courseId))}</span>`:''}
           ${e.areaId?`<span class="tt-sub">${esc(areaDef(e.areaId).short||areaDef(e.areaId).name)}</span>`:''}
           ${e.label?`<span class="tt-sub">${esc(e.label)}</span>`:''}
@@ -3164,14 +3420,14 @@ function classTimetable(){
       if(own){
         const col = ttColor(mine);
         return `<td class="wk-cell" data-act="ttClassEdit" data-slot="${sl.id}" data-dow="${d}">
-          <div class="tt-ev" style="border-left:4px solid ${col};background:${col}14">
+          <div class="tt-ev" style="--c:${col};border-left:4px solid ${col}">
             <span class="tt-main" style="color:${col}">${esc(mine.areaId?(areaDef(mine.areaId).short||areaDef(mine.areaId).name):(mine.label||'Clase'))}</span>
             <span class="tt-sub">Contigo</span></div></td>`;
       }
       if(!e || !e.subject) return `<td class="wk-cell" data-act="ttClassEdit" data-slot="${sl.id}" data-dow="${d}"><span class="wk-add">+</span></td>`;
       const col = subjColor(e.subject);
       return `<td class="wk-cell" data-act="ttClassEdit" data-slot="${sl.id}" data-dow="${d}">
-        <div class="tt-ev" style="border-left:4px solid ${col};background:${col.replace('hsl','hsla').replace(')',',.08)')}">
+        <div class="tt-ev" style="--c:${col};border-left:4px solid ${col}">
           <span class="tt-main" style="color:${col}">${esc(e.subject)}</span>
           ${e.teacher?`<span class="tt-sub">${esc(e.teacher)}</span>`:''}
         </div></td>`;
@@ -3407,9 +3663,9 @@ function planWeek(){
             const tt = (s || hol) ? null : ttAt(iso, sl.id);
             return `<td class="wk-cell ${iso===tod?'is-today':''} ${hol?'is-hol':''}" data-act="editSession" data-iso="${iso}" data-slot="${sl.id}">
               <div class="wk-inner">
-              ${s? `<div class="wk-ev" style="border-left:3px solid ${col}">${label?`<span class="wk-course" style="color:${col}">${esc(label)}</span>`:''}<span class="wk-t">${esc(s.title||'')}</span>${ttNoteHtml(iso, sl.id, 'tt-note')}${(s.files||[]).length?`<span class="wk-att" data-attsess="${skey(iso, sl.id)}" title="Ver anexos">📎 ${s.files.length}</span>`:''}</div>
+              ${s? `<div class="wk-ev" style="--c:${col};border-left:3px solid ${col}">${label?`<span class="wk-course" style="color:${col}">${esc(label)}</span>`:''}<span class="wk-t">${esc(s.title||'')}</span>${ttNoteHtml(iso, sl.id, 'tt-note')}${(s.files||[]).length?`<span class="wk-att" data-attsess="${skey(iso, sl.id)}" title="Ver anexos">📎 ${s.files.length}</span>`:''}</div>
                     <button class="wk-copy ${sessClip&&sessClip.from===iso&&sessClip.slot===sl.id?'on':''}" data-act="copySession" data-iso="${iso}" data-slot="${sl.id}" title="Copiar esta sesión">⧉</button>`
-                 : tt? `<div class="wk-ev wk-tt" style="border-left:3px dashed ${ttColor(tt)}" title="De tu horario · toca para programar"><span class="wk-course" style="color:${ttColor(tt)}">${esc(ttText(tt))}</span><span class="wk-tt-hint">Sin programar</span></div>`
+                 : tt? `<div class="wk-ev wk-tt" style="--c:${ttColor(tt)};border-left:3px dashed ${ttColor(tt)}" title="De tu horario · toca para programar"><span class="wk-course" style="color:${ttColor(tt)}">${esc(ttText(tt))}</span><span class="wk-tt-hint">Sin programar</span></div>`
                  : (evs.length? '' : '<span class="wk-add">+</span>')}
               ${evs.map(x=>`<div class="wk-task" title="${esc(x.course.name)} · ${esc(x.task.name)}">◆ ${esc(x.time)} ${esc(x.task.name)}</div>`).join('')}
               </div>
@@ -4119,6 +4375,7 @@ function ensureUnitIn(src, dst, u){
   let du = (dst.units||[]).find(x=>x.areaId===u.areaId && x.periodId===pid && x.name===u.name);
   if(!du){
     du = {id:uid(), areaId:u.areaId, periodId:pid, name:u.name, desc:u.desc||''};
+    if(u.plan){ du.plan = JSON.parse(JSON.stringify(u.plan)); ['divStu','self','valWorked','valChange'].forEach(k=>{ delete du.plan[k]; }); }
     if(!dst.units) dst.units = [];
     dst.units.push(du);
   }
@@ -4315,7 +4572,7 @@ views.unidades = function(){
       ${units.map((u,i)=>{
         const col = palette[i%palette.length];
         const nt = tasksOfUnit(c, u.id).length;
-        const crs = critsWorkedUnit(c, u.id);
+        const crs = upCrits(c, u);
         return `<div class="unit-card" data-act="openUnit" data-id="${u.id}">
           <div class="uc-bar" style="background:${col}"></div>
           <div class="uc-body">
@@ -4324,7 +4581,7 @@ views.unidades = function(){
               <button class="icon" data-act="editUnit" data-id="${u.id}" title="Editar">✎</button>
               <button class="icon" data-act="delUnit" data-id="${u.id}" title="Eliminar">✕</button></div>
             ${u.desc? `<p class="uc-desc">${esc(u.desc)}</p>`:'<p class="uc-desc muted">Sin descripción.</p>'}
-            <div class="uc-stats"><span><b>${nt}</b> tareas</span><span><b>${crs.length}</b> criterios</span></div>
+            <div class="uc-stats"><span><b>${nt}</b> tareas</span><span><b>${crs.length}</b> criterios</span><span title="Apartados de la programación con contenido"><b>${UP_BLOCKS.filter(b=>upFilled(u.plan||{},b) || upAuto(c,u,b)).length}/${UP_BLOCKS.length}</b> programación</span></div>
             <div class="crit-chips" style="margin-top:8px">${crs.slice(0,8).map(cd=>`<span class="chip on">${esc(cd)}</span>`).join('')}${crs.length>8?`<span class="chip">+${crs.length-8}</span>`:''}</div>
           </div>
         </div>`;
@@ -4338,15 +4595,434 @@ views.unidad = function(){
   const u = unitById(c, state.activeUnit);
   if(!u || u.areaId!==aid || !p || u.periodId!==p.id || isInitialP(c, p.id)) { state.view='unidades'; state.activeUnit=null; return views.unidades(); }
   const sub = state.unitSub || 'tareas';
-  const subtabs = [['tareas','Tareas de la unidad'],['eval','Evaluación de la unidad']];
   const head = `<div class="row" style="margin-bottom:2px">
       <button class="btn ghost small" data-act="tab" data-id="unidades">← Unidades</button>
       <h2 class="sec-title" style="margin:0 0 0 6px">${esc(u.name)}</h2><div class="spacer"></div>
       ${state.courses.length>1?`<button class="btn ghost small" data-act="dupUnitTo" data-id="${u.id}">⇉ Duplicar en otra clase</button>`:''}</div>
     ${u.desc? `<p class="hint">${esc(u.desc)}</p>`:''}
-    ${subnav('unitSub', sub, [['tareas','Tareas','✎'],['eval','Evaluación','◧']])}`;
-  return head + (sub==='eval' ? viewUnitEval(u) : viewUnitTasks(u));
+    ${subnav('unitSub', sub, [['plan','Programación','▤'],['tareas','Tareas','✎'],['eval','Evaluación','◧']])}`;
+  return head + (sub==='eval' ? viewUnitEval(u) : sub==='plan' ? viewUnitPlan(u) : viewUnitTasks(u));
 };
+
+/* ---------- Programación de la unidad (Unit Plan) ----------
+   Se rellena por bloques, sin obligación de completarlos; lo que ya existe en la app
+   (criterios y tareas evaluables) se muestra solo. Se guarda en unit.plan. */
+const UP_METHODS = ['Aprendizaje cooperativo','Aprendizaje basado en proyectos','Gamificación','TPR','Drama y role-play','Estaciones de aprendizaje','Rutinas de pensamiento','Clase invertida','Aprendizaje-servicio'];
+const UP_GROUPS = ['Gran grupo','Pequeño grupo','Parejas','Individual'];
+/* Saberes básicos de la Orden ECD/1112/2022 (Aragón), por área, ciclo, bloque y subbloque, con el texto literal de la norma */
+const SABERES = {"nat":{"1":[{"c":"A","n":"Cultura científica","s":[{"c":"A.1","n":"Iniciación a la actividad científica","i":["Procedimientos adecuados a las necesidades de la investigación escolar (observación en el tiempo, identificación y clasificación, búsqueda de patrones...).","Instrumentos y dispositivos apropiados para realizar observaciones y mediciones de acuerdo a las necesidades de las diferentes investigaciones escolares.","Vocabulario científico básico relacionado con las diferentes investigaciones.","La curiosidad y la iniciativa en la realización de las diferentes investigaciones como actitudes presentes en la construcción del conocimiento científico.","Las profesiones relacionadas con la ciencia y la tecnología desde una perspectiva de género.","Estilos de vida sostenible e importancia del cuidado del planeta a través de acciones presentes en la vida cotidiana basadas en el conocimiento científico."]},{"c":"A.2","n":"La vida en nuestro planeta","i":["Necesidades básicas de los seres vivos y la diferencia con los objetos inertes.","Las adaptaciones de los seres vivos a su hábitat, concebido como el lugar en el que cubren sus necesidades.","Clasificación e identificación de los seres vivos de acuerdo con sus características observables.","Las relaciones entre los seres humanos, los animales y las plantas. Cuidado y respeto hacia los seres vivos y el entorno en el que viven.","Hábitos saludables relacionados con el bienestar físico del ser humano: higiene, alimentación variada y equilibrada, ejercicio físico, contacto con la naturaleza, descanso y cuidado del cuerpo para prevenir posibles enfermedades.","Hábitos saludables relacionados con el bienestar emocional y social: estrategias de identificación de las propias emociones y respeto por las de los demás. Sensibilidad y aceptación de la diversidad presente en el aula y en la sociedad. Educación afectivo-sexual."]},{"c":"A.3","n":"Materia, fuerzas y energía","i":["Propiedades observables de los materiales, su procedencia y su uso en objetos de la vida cotidiana de acuerdo a las necesidades de diseño para los que fueron fabricados.","La luz y el sonido como entidades físicas.","Otras formas de energía. Fuentes y uso en la vida cotidiana.","Las mezclas y sus componentes. Identificación de mezclas homogéneas y heterogéneas. Separación de mezclas heterogéneas y algunas homogéneas mediante distintos métodos físicos sencillos.","Estructuras resistentes, estables y útiles en el contexto escolar."]},{"c":"A.4","n":"La Tierra y el espacio","i":["La Tierra en el universo. Algunos componentes. Propiedades físicas observables de algunos minerales y rocas.","Movimientos y dinámicas relacionados con la Tierra y el universo y sus consecuencias en la vida diaria y en el entorno. Secuencias temporales y cambios estacionales.","La vida en la Tierra. Fenómenos atmosféricos y su repercusión en los ciclos biológicos y en la vida diaria. Observación y registro de datos atmosféricos"]}]},{"c":"B","n":"Tecnología y digitalización","s":[{"c":"B.1","n":"Digitalización del entorno personal de aprendizaje","i":["Dispositivos y recursos del entorno digital de aprendizaje de acuerdo con las necesidades del contexto educativo.","Recursos digitales para comunicarse con personas conocidas en entornos conocidos y seguros."]},{"c":"B.2","n":"Proyectos de diseño y pensamiento computacional","i":["Fases de los proyectos de diseño: de modelos analógicos y prototipos, prueba y comunicación.","Materiales adecuados a la consecución del proyecto de diseño.","Iniciación a la programación a través de recursos analógicos o digitales adaptados al nivel lector del alumnado (actividades desenchufadas, plataformas digitales de iniciación a la programación, robótica educativa...).","Estrategias básicas de trabajo en equipo."]}]}],"2":[{"c":"A","n":"Cultura científica","s":[{"c":"A.1","n":"Iniciación a la actividad científica","i":["Procedimientos adecuados a las necesidades de la investigación escolar (observación en el tiempo, identificación y clasificación, búsqueda de patrones, creación de modelos, investigación a través de búsqueda de información, diseño y puesta en marcha de experimentos con control de variables...).","Instrumentos y dispositivos apropiados para realizar observaciones y mediciones precisas de acuerdo a las necesidades de la investigación.","Vocabulario científico básico relacionado con las diferentes investigaciones.","La curiosidad, la iniciativa y la constancia en la realización de las diferentes investigaciones como actitudes presentes en la construcción del conocimiento científico","Avances en el pasado relacionados con la ciencia y la tecnología que han contribuido a transformar nuestra sociedad para mostrar modelos desde una perspectiva de género.","La importancia del uso de la ciencia y la tecnología para ayudar a comprender las consecuencias de las propias acciones, tomar decisiones razonadas y realizar tareas de forma más eficiente."]},{"c":"A.2","n":"La vida en nuestro planeta","i":["Los reinos de la naturaleza desde una perspectiva general e integrada a partir del estudio y análisis de las características de diferentes ecosistemas.","Características propias de los animales que permiten su clasificación y diferenciación en subgrupos relacionados con su capacidad adaptativa al medio: obtención de energía, relación con el entorno y perpetuación la especie.","Características propias de las plantas que permiten su clasificación en relación con su capacidad adaptativa al medio: obtención de energía, relación con el entorno y perpetuación de la especie.","Los ecosistemas como lugar donde intervienen factores bióticos y abióticos, manteniéndose un equilibrio entre los diferentes elementos y recursos. Sus interacciones y relación con otros sistemas.","Relación del ser humano con los ecosistemas para cubrir las necesidades de la sociedad. Ejemplos de buenos y malos usos de los recursos naturales de nuestro planeta y sus consecuencias."]},{"c":"A.3","n":"Materia, fuerzas y energía","i":["Estados de la materia.","El calor y temperatura. Cambios de estado.","Materiales conductores y aislantes ante el calor, instrumentos de medición de la temperatura, efectos del calor sobre los materiales y aplicaciones en la vida cotidiana.","Los cambios que experimentan determinados materiales en situaciones de la vida cotidiana (físicos o químicos, reversibles o irreversibles…) para reconocer procesos y transformaciones observando la situación inicial y final.","Las fuerzas y sus efectos. Fuerzas de contacto y a distancia.","Trabajo mecánico","Propiedades de las máquinas simples y su efecto sobre las fuerzas. Aplicaciones y usos en la vida cotidiana."]},{"c":"A.4","n":"La Tierra y el espacio","i":["La Tierra y las catástrofes riesgos naturales.","Clasificación elemental de las rocas","Las formas de relieve más relevantes.","Elementos Componentes, movimientos, dinámicas que ocurren en el universo y su relación con determinados fenómenos físicos que afectan a la Tierra y repercuten en la vida diaria y en el entorno","Los fenómenos atmosféricos. Toma y registro de datos meteorológicos y su representación gráfica y visual"]}]},{"c":"B","n":"Tecnología y digitalización","s":[{"c":"B.1","n":"Digitalización del entorno personal de aprendizaje","i":["Dispositivos y recursos digitales de acuerdo a las necesidades del contexto educativo.","Estrategias de búsquedas guiadas de información seguras y eficientes en internet (valoración, discriminación, selección y organización).","Reglas básicas de seguridad y privacidad para navegar por internet y para proteger el entorno digital personal de aprendizaje.","Recursos y plataformas digitales restringidas y seguras para comunicarse con otras personas. Etiqueta digital, reglas básicas de cortesía y respeto y estrategias para resolver problemas en la comunicación digital.","Estrategias para fomentar el bienestar digital. Reconocimiento de los riesgos asociados a un uso inadecuado y poco seguro de las tecnologías digitales (tiempo excesivo de uso, ciberacoso, acceso a contenidos inadecuados, publicidad y correos no deseados, etc.), y estrategias de actuación."]},{"c":"B.2","n":"Proyectos de diseño y pensamiento computacional","i":["Fases de los proyectos de diseño: diseño, construcción de modelos y prototipos, prueba y comunicación.","Materiales, herramientas y objetos adecuados a la consecución de un proyecto de diseño.","Técnicas cooperativas sencillas para el trabajo en equipo y estrategias para la gestión de conflictos y promoción de conductas empáticas e inclusivas.","Iniciación a la programación a través de recursos analógicos (actividades desenchufadas) o digitales (plataformas digitales de iniciación a la programación, aplicaciones de programación por bloques, robótica educativa...)."]}]}],"3":[{"c":"A","n":"Cultura científica","s":[{"c":"A.1","n":"Iniciación a la actividad científica","i":["Prácticas científicas (observación, formulación de preguntas y predicciones, planificación y realización de experimentos, recogida y análisis de información y datos, comunicación de resultados y conclusiones...).","Instrumentos y dispositivos apropiados para realizar observaciones y mediciones precisas de acuerdo con las necesidades de la investigación.","Vocabulario científico básico relacionado con las diferentes investigaciones.","La curiosidad, la iniciativa, la constancia y el sentido de la responsabilidad como actitudes en la realización de las diferentes investigaciones.","La ciencia, la tecnología y la ingeniería como actividades humanas. Las profesiones STEM en la actualidad desde una perspectiva de género.","La relación entre los avances en matemáticas, ciencia, ingeniería y tecnología para comprender la evolución de la sociedad en el ámbito científico-tecnológico."]},{"c":"A.2","n":"La vida en nuestro planeta","i":["Aspectos básicos de las funciones vitales del ser humano desde una perspectiva integrada: obtención de energía, relación con el entorno y perpetuación de la especie.","Los cambios físicos, emocionales y sociales que conllevan la pubertad y la adolescencia para aceptarlos de forma positiva tanto en uno mismo como en los demás. Educación afectivo-sexual.","Pautas para una alimentación saludable y sostenible: menús saludables y equilibrados. La importancia de la cesta de la compra y del etiquetado de los productos alimenticios para conocer sus nutrientes y su aporte energético.","Pautas que fomenten una salud emocional y social adecuadas: higiene del sueño, prevención y consecuencias del consumo de drogas (legales e ilegales), gestión saludable del ocio y del tiempo libre, uso adecuado de dispositivos digitales, estrategias para el fomento de relaciones sociales saludables y fomento de los cuidados de las personas.","Pautas para la prevención de riesgos y accidentes. Conocimiento de actuaciones básicas de primeros auxilios."]},{"c":"A.3","n":"Materia, fuerzas y energía","i":["Masa y volumen. Su medida en objetos y materiales.","Instrumentos y procedimientos para calcular medirla masa y la capacidad volumen de un diferentes objetos.","Concepto de densidad y su relación con la flotabilidad de un objeto o material en un líquido o en un gas.","La energía eléctrica: fuentes, transferencia, transformaciones entre formas de energía y usos en la vida cotidiana. Los circuitos eléctricos y las estructuras robotizadas como ejemplos de transferencia y transformación y algunos usos.","Las fuentes de energías renovables y no renovables y su influencia en la contribución al desarrollo sostenible de la sociedad.","Artefactos, objetos y seres vivos voladores. Principios básicos físicos del vuelo."]},{"c":"A.4","n":"La Tierra y el espacio","i":["El futuro de la Tierra y del universo. Los fenómenos físicos relacionados con la Tierra y el universo y su repercusión en la vida diaria y en el entorno.","Clasificación básica de rocas y minerales. Usos y explotación sostenible de los recursos geológicos","Procesos geológicos básicos de formación y modelado del relieve.","Fenómenos atmosféricos","La exploración espacial y la observación del cielo; la contaminación lumínica."]}]},{"c":"B","n":"Tecnología y digitalización","s":[{"c":"B.1","n":"Digitalización del entorno personal de aprendizaje","i":["Dispositivos y recursos digitales de acuerdo a las necesidades del contexto educativo.","Estrategias de búsquedas de información seguras y eficientes en Internet (valoración, discriminación, selección, organización y propiedad intelectual).","Estrategias de recogida, almacenamiento y representación de datos para facilitar su comprensión y análisis.","Reglas básicas de seguridad y privacidad para navegar por Internet y para proteger el entorno digital personal de aprendizaje.","Recursos y plataformas digitales restringidas y seguras para comunicarse con otras personas. Etiqueta digital, reglas básicas de cortesía y respeto y estrategias para resolver problemas en la comunicación digital.","Estrategias para fomentar el bienestar físico y mental. Reconocimiento de los riesgos asociados a un uso inadecuado y poco seguro de las tecnologías digitales (tiempo excesivo de uso, ciberacoso, dependencia tecnológica, acceso a contenidos inadecuados, etc.), y estrategias de actuación."]},{"c":"B.2","n":"Proyectos de diseño y pensamiento computacional","i":["Fases de los proyectos de diseño: identificación de necesidades, diseño, creación de un prototipo, prueba, evaluación y comunicación.","Fases del pensamiento computacional (descomposición de una tarea en partes más sencillas, reconocimiento de patrones y creación de algoritmos sencillos para la resolución del problema...).","Materiales, herramientas, objetos, dispositivos y recursos digitales (programación por bloques, sensores, motores, simuladores, impresoras 3D, ...) seguros y adecuados a la consecución del proyecto.","Estrategias en situaciones de incertidumbre: adaptación y cambio de estrategia cuando sea necesario, valoración del error propio y el de los demás como oportunidad de aprendizaje."]}]}]},"soc":{"1":[{"c":"A","n":"Cultura científica: iniciación a la actividad científica en Ciencias Sociales","s":[{"c":"A","n":"","i":["Exploración y observación guiada del entorno físico y social, con especial interés en el patrimonio, el paisaje y la organización de la localidad.","Inicio al trabajo con fuentes. Uso de objetos y artefactos de la vida cotidiana como fuentes para reflexionar sobre el cambio y la continuidad, las causas y consecuencias.","Inicio en la representación gráfica del espacio (lectura o Inicio a la representación gráfica del espacio y del tiempo. Utilización de mapas, croquis o planos sencillos o visualización a través de sistemas de información geográfica como Google Earth o similares. Elaboración de líneas temporales sencillas, árboles genealógicos, etc."]}]},{"c":"B","n":"Sociedades y territorios","s":[{"c":"B.1","n":"Retos del mundo actual","i":["Retos sobre situaciones cotidianas. Categorías espaciales. Funciones básicas del pensamiento espacial y temporal para la interacción con el medio y la resolución de situaciones de la vida cotidiana. Itinerarios y trayectos, desplazamientos y viajes.","La diversidad de las poblaciones en el entorno físico y sociocultural."]},{"c":"B.2","n":"Sociedades en el tiempo","i":["La percepción del tiempo. Categorías temporales básicas. Medida del tiempo en la vida cotidiana.","El ciclo vital y las relaciones intergeneracionales.","Recursos y medios analógicos y digitales. Las fuentes orales y la memoria colectiva. La historia local y la biografía familiar, hombres y mujeres como sujetos de la historia.","Las expresiones y producciones artísticas a través del tiempo. El patrimonio material e inmaterial local y del contexto sociocultural del alumnado. Las lenguas propias de Aragón (aragonés y catalán)."]},{"c":"B.3","n":"Alfabetización cívica","i":["La vida en colectividad. La familia. Diversidad familiar. Compromisos, participación y normas en el entorno familiar, vecinal y escolar. Prevención, gestión y resolución dialogada de conflictos.","Habilidades emocionales (conciencia y regulación emocional; autovaloración) y comunicativas (verbales, no verbales, y conversacionales; la escucha activa).","La vida en sociedad. Espacios, recursos y servicios del entorno. Formas y modos de interacción social en espacios públicos desde una perspectiva de género.","Identidad y diversidad cultural: existencia de realidades diferentes y aproximación a las distintas etnoculturas presentes en el entorno. La convivencia con los demás y el rechazo a las actitudes discriminatorias. Cultura de paz y no violencia.","Ocupación y trabajo. Identificación de las principales actividades profesionales y laborales de mujeres y hombres en el entorno.","Igualdad de género y conducta no sexista.","Seguridad vial. La ciudad como espacio de convivencia. Normas básicas en los desplazamientos como peatones y usuarios de los medios de locomoción."]},{"c":"B.4","n":"Conciencia ecosocial","i":["Conocimiento de nuestro entorno. Paisajes naturales y paisajes humanizados, y sus elementos. La acción humana sobre el medio y sus consecuencias.","Relación entre el ser humano y el medio.","Responsabilidad ecosocial. Acciones para la conservación, mejora y uso sostenible de los bienes comunes. El maltrato animal y su prevención.","Estilos de vida sostenible. El uso responsable del agua, la movilidad segura, saludable y sostenible, y la prevención y gestión de los residuos."]}]}],"2":[{"c":"A","n":"Cultura científica: iniciación a la actividad científica en Ciencias Sociales","s":[{"c":"A","n":"","i":["Iniciación a la investigación y a los métodos de trabajo para la realización de proyectos, que analicen hechos, asuntos y temas de la vida cotidiana o de relevancia actual desde una perspectiva histórica, contextualizándolos en la época correspondiente desde la Prehistoria a la Edad Contemporánea, como son la supervivencia y la alimentación, la vivienda, los intercambios comerciales (de dónde viene el dinero, los trabajos no remunerados), la explotación de bienes comunes y recursos, los avances técnicos.","Las fuentes históricas: clasificación y utilización de las distintas fuentes (orales, escritas, patrimoniales) como vía para el análisis de los cambios y permanencias en la localidad a lo largo de la historia. Las huellas de la historia en lugares, edificios, objetos, oficios o tradiciones de la localidad.","La representación gráfica del espacio y del tiempo. Comparación de mapas y planos de diferentes escalas. Representaciones gráficas y visuales del clima y los paisajes. Las Tecnologías de la Información Geográfica (TIG)."]}]},{"c":"B","n":"Sociedades y territorios","s":[{"c":"B.1","n":"Retos del mundo actual","i":["Conocimiento del espacio. Representación de la Tierra a través del globo terráqueo, los mapas y otros recursos analógicos y digitales. Mapas y planos en distintas escalas. Técnicas de orientación mediante la observación de los elementos del medio físico y otros medios de localización espacial.).","El clima y el paisaje. gráfica. Relación entre las zonas climáticas y la diversidad de paisajes. El medio físico de Aragón. Distribución territorial de Aragón.","Retos demográficos. Ocupación y distribución de la población en el espacio y análisis de los principales problemas y retos demográficos. Representación gráfica y cartográfica de la población. La organización del territorio en Aragón y rasgos básicos de España y en Europa.","Desigualdad social y acceso a los recursos. Usos del espacio por el ser humano y evolución de las actividades productivas. El valor, el control del dinero y medios de pago. De la supervivencia a la sobreproducción."]},{"c":"B.2","n":"Sociedades en el tiempo","i":["El tiempo histórico. Nociones temporales y cronología. Representación gráfica del tiempo (líneas del tiempo y ejes cronológicos).","Ubicación temporal de las grandes etapas históricas en ejes cronológicos. Características civilizaciones y sociedades representativas de las grandes etapas cronológicas, profundizando en las referentes a España y Aragón.","La acción de las mujeres y los hombres como sujetos en la historia. Interpretación del papel de los individuos y de los distintos grupos sociales, relaciones, conflictos, creencias y condicionantes en cada época histórica. Las personas como agentes/motor de los cambios.","Introducción a las expresiones artísticas y culturales y su contextualización histórica, incluyendo una perspectiva de género. La función del arte y la cultura en el mundo a lo largo de las diferentes etapas históricas.","Ejemplos destacados del patrimonio natural y cultural de Aragón. Los espacios protegidos, culturales y naturales, parques culturales y elementos patrimoniales protegidos. Patrimonio material e inmaterial. Su uso, cuidado y conservación. Las lenguas propias de Aragón (aragonés y catalán)."]},{"c":"B.3","n":"Alfabetización cívica","i":["Compromisos y normas para la vida en sociedad.","Las costumbres, tradiciones y manifestaciones etnoculturales del entorno. Respeto por la diversidad cultural, los derechos humanos y la cohesión social. La cultura de paz y no violencia.","La organización política y territorial de Aragón y rasgos básicos de España.","Organización y funcionamiento de la sociedad. Las principales instituciones y entidades del entorno local, regional y nacional y los servicios públicos que prestan. Estructura administrativa de Aragón y aspectos básicos de la España.","Seguridad vial. La ciudad como espacio de convivencia. Normas de circulación, señales y marcas viales. Movilidad segura, saludable y sostenible como peatones y usuarios de los medios de locomoción."]},{"c":"B.4","n":"Conciencia ecosocial","i":["Riesgos ambientales y el cambio climático. Introducción a las causas y consecuencias del cambio climático y los riesgos ambientales, y su impacto en los paisajes de la Tierra. Medidas de mitigación y adaptación.","Responsabilidad ecosocial. Ecodependencia e interdependencia entre personas, sociedades y medio natural.","Ciudadanía geográfica espacial.","Desequilibrios territoriales","La transformación y la degradación de los ecosistemas naturales por acción humana. Conservación y protección de la naturaleza. El maltrato animal y su prevención.","Estilos de vida sostenible. El consumo responsable, el uso del agua y la energía, la movilidad sostenible y la gestión de los residuos."]}]}],"3":[{"c":"A","n":"Cultura científica: iniciación a la actividad científica en Ciencias Sociales","s":[{"c":"A","n":"","i":["Aplicación de competencias del pensamiento histórico.","Las fuentes históricas: clasificación y utilización de fuentes de distinta naturaleza (orales, escritas, materiales, iconográficas, etc).","Representación gráfica, visual y cartográfica a través de medios y recursos analógicos y digitales usando las Tecnologías de la Información Geográfica (TIG). Representación gráfica del tiempo (líneas temporales, mapas históricos, etc.)"]}]},{"c":"B","n":"Sociedades y territorios","s":[{"c":"B.1","n":"Retos del mundo actual","i":["El clima y el planeta. Introducción a la dinámica atmosférica y a las grandes áreas climáticas del mundo. Los principales ecosistemas y sus paisajes.","El entorno natural. La diversidad geográfica de España y de Europa.","Migraciones y diversidad cultural. Las principales variables demográficas y su representación gráfica. Los comportamientos de la población y su evolución. Los movimientos migratorios y apreciación de la diversidad cultural. Contraste entre zonas urbanas y despoblación rural.","Ciudadanía activa. Fundamentos y principios para la organización política y gestión del territorio en España y Europa. Participación social y ciudadana. Ciudadanía europea.","Igualdad de género y conductas no sexistas. Crítica de los estereotipos y roles en los distintos ámbitos: académico, profesional, social y cultural. Acciones para la igualdad efectiva de mujeres y hombres."]},{"c":"B.2","n":"Sociedades en el tiempo","i":["Acontecimientos y procesos históricos relevantes en la historia del mundo desde la Prehistoria a la actualidad, el papel representado por los sujetos históricos (individuales y colectivos), acontecimientos y procesos.","Principales hitos de la evolución histórica de Aragón y de España","El patrimonio natural y cultural material e inmaterial de Aragón y España como bien y recurso; su uso, cuidado y conservación. Las lenguas propias de Aragón (aragonés y catalán).","El papel de las mujeres en la historia y los principales movimientos en defensa de sus derechos. Situación actual y retos de futuro en la igualdad de género. Otros movimientos en defensa de los derechos de diferentes colectivos sociales.","Profundización en la función del arte y la cultura. Las expresiones artísticas y culturales y su contextualización histórica, incluyendo una perspectiva de género.","La memoria democrática. Análisis multicausal del proceso de construcción de la democracia en España. La Constitución de 1978."]},{"c":"B.3","n":"Alfabetización cívica","i":["Historia y cultura de las minorías étnico-culturales presentes en nuestro país, particularmente las propias del pueblo gitano. Reconocimiento de la diversidad cultural y lingüística de Aragón y de España.","Los principios y valores de los derechos humanos y de la infancia y la Constitución española, derechos y deberes de la ciudadanía. La contribución del Estado y sus instituciones a la paz, la seguridad integral y la cooperación internacional para el desarrollo.","La cultura de paz y no violencia. El pensamiento crítico como herramienta para el análisis de los conflictos de intereses. El reconocimiento de las víctimas de la violencia.","La organización política. Principales entidades políticas y administrativas del entorno local, autonómico y nacional en Aragón y España. Sistemas de representación y de participación política.","Fórmulas para la participación de la ciudadanía en la vida pública en Aragón, España y Europa.","Aragón, España y Europa. Las principales instituciones de Aragón, España y de la Unión Europea, de sus valores y de sus funciones. Los ámbitos de acción de las instituciones autonómicas, estatales y europeas y su repercusión en el entorno."]},{"c":"B.4","n":"Conciencia ecosocial","i":["El cambio climático de lo local a lo global: causas y consecuencias. Medidas de mitigación y adaptación.","Responsabilidad ecosocial. Ecodependencia, interdependencia e interrelación entre personas, sociedades y medio natural.","El desarrollo sostenible. La actividad humana sobre el espacio y la explotación de los recursos. La actividad económica y la distribución de la riqueza: desigualdad social y regional en el mundo y en España. Los Objetivos de Desarrollo Sostenible.","Economía verde. La influencia de los mercados (de bienes, financiero y laboral) en la vida de la ciudadanía. Los agentes económicos y los derechos laborales desde una perspectiva de género. El valor social de los impuestos. Responsabilidad social y ambiental de las empresas. Publicidad, consumo responsable (necesidades y deseos) y derechos del consumidor.","Estilos de vida sostenible: los límites del planeta y el agotamiento de recursos. La huella ecológica.","Agenda Urbana. El desarrollo urbano sostenible. La ciudad como espacio de convivencia."]}]}]},"evce":{"3":[{"c":"A","n":"Autoconocimiento y autonomía moral","s":[{"c":"A","n":"","i":["El pensamiento crítico y ético.","La naturaleza humana y la identidad personal. Igualdad y diferencia entre las personas.","La gestión de las emociones y los sentimientos. La autoestima.","La educación afectivo-sexual.","Deseos y razones. La voluntad y el juicio moral. Autonomía y responsabilidad.","La ética como guía de nuestras acciones. El debate en torno a lo valioso y a los valores.Las normas, las virtudes y los sentimientos morales.","El propio proyecto personal: la diversidad de valores, fines y modelos de vida.","La influencia y el uso crítico y responsable de los medios y las redes de comunicación. La prevención del abuso y el ciberacoso. El respeto a la intimidad. Los límites a la libertad de expresión. Las conductas adictivas."]}]},{"c":"B","n":"Sociedad, justicia y democracia","s":[{"c":"B","n":"","i":["Las virtudes del diálogo y las normas de la argumentación. La toma democrática de decisiones.","Fundamentos de la vida en sociedad. La empatía con los demás. Los afectos. La familia. La amistad y el amor.","Las reglas de convivencia. Moralidad, legalidad y conducta cívica.","Principios y valores constitucionales y democráticos. El problema de la justicia.","Los derechos humanos y de la infancia y su relevancia ética.","La desigualdad económica. La pobreza y la explotación infantil: análisis de sus causas y búsqueda de soluciones locales y globales.","La igualdad y la corresponsabilidad entre mujeres y hombres. La prevención de los abusos y la violencia de género. La conducta no sexista. Interseccionalidad.","El respeto por las minorías y las identidades étnoculturales y de género. Interculturalidad y migraciones.","La cultura de paz y no violencia. La contribución del Estado y sus instituciones a la paz, la seguridad y la cooperación internacional. La seguridad integral del ciudadano. Valoración de la defensa como un compromiso cívico y solidario al servicio de la paz. La protección civil y la colaboración ciudadana frente a los desastres. El papel de las ONG y ONGD. La resolución pacífica de los conflictos."]}]},{"c":"C","n":"Desarrollo sostenible y Ética ambiental","s":[{"c":"C","n":"","i":["La empatía, el cuidado y el aprecio hacia los seres vivos y el medio natural. El maltrato animal y su prevención.","La acción humana en la naturaleza. Ecosistemas y sociedades: interdependencia, ecodependencia e interrelación.","Los límites del planeta y el cambio climático.","El deber ético y la obligación legal de proteger y cuidar del planeta.","Hábitos y actividades para el logro de los Objetivos de Desarrollo Sostenible. El consumo responsable. El uso sostenible del suelo, del aire, del agua y de la energía. La movilidad segura, saludable y sostenible. La prevención y la gestión de los residuos."]}]}]},"epv":{"1":[{"c":"A","n":"Recepción y análisis","s":[{"c":"A","n":"","i":["Principales propuestas artísticas de diferentes corrientes estéticas, procedencias y épocas producidas por creadores y creadoras locales, regionales y nacionales.","Estrategias básicas de recepción activa.","Normas elementales de comportamiento en la recepción de propuestas artísticas en diferentes espacios. El silencio como elemento y condición indispensable para el mantenimiento de la atención durante la recepción.","Vocabulario específico básico de las artes plásticas, visuales y audiovisuales.","Recursos digitales básicos para las artes plásticas, visuales y audiovisuales."]}]},{"c":"B","n":"Creación e interpretación","s":[{"c":"B","n":"","i":["Fases del proceso creativo: planificación guiada y experimentación.","Profesiones vinculadas con las artes plásticas, visuales, y audiovisuales.","Interés tanto por el proceso como por el producto final en producciones plásticas, visuales y audiovisuales"]}]},{"c":"C","n":"Artes plásticas, visuales y audiovisuales","s":[{"c":"C","n":"","i":["Cultura visual. La imagen en el mundo actual: técnicas y estrategias básicas de lectura.","Elementos configurativos básicos del lenguaje visual: punto, línea, plano, textura, color.","Materiales, instrumentos, soportes y técnicas elementales utilizados en la expresión plástica y visual.","Medios, soportes y materiales de expresión plástica y visual. Técnicas bidimensionales y tridimensionales básicas en dibujos y modelados sencillos.","Herramientas adecuadas para el registro de imagen y sonido.","Estrategias y técnicas básicas de composición de historias audiovisuales sencillas.","Nociones básicas sobre cine."]}]}],"2":[{"c":"A","n":"Recepción y análisis","s":[{"c":"A.1","n":"Percepción y análisis","i":["Propuestas artísticas de diferentes corrientes estéticas, procedencias y épocas producidas por creadores y creadoras locales, regionales y nacionales.","Estrategias de recepción activa.","Normas comunes de comportamiento y actitud positiva en la recepción de propuestas artísticas en diferentes espacios. El silencio como elemento y condición indispensable para el mantenimiento de la atención durante la recepción.","Vocabulario específico de uso común en las artes plásticas, visuales y audiovisuales.","Recursos digitales de uso común para las artes plásticas, visuales y audiovisuales.","Estrategias básicas de análisis de propuestas artísticas desde una perspectiva de género."]}]},{"c":"B","n":"Creación e interpretación","s":[{"c":"B","n":"","i":["Fases del proceso creativo: planificación, interpretación y experimentación.","Profesiones vinculadas con las artes plásticas, visuales y audiovisuales.","Interés y valoración tanto por el proceso como por el producto final en producciones plásticas, visuales y audiovisuales."]}]},{"c":"C","n":"Artes plásticas, visuales y audiovisuales","s":[{"c":"C","n":"","i":["Cultura visual. La imagen en el mundo actual: técnicas y estrategias básicas de lectura e interpretación.","Elementos configurativos básicos del lenguaje visual y sus posibilidades expresivas: punto, línea, plano, textura, color.","Materiales, instrumentos, soportes y técnicas de uso común utilizados en la expresión plástica y visual.","Medios, soportes y materiales de expresión plástica y visual. Técnicas bidimensionales y tridimensionales en dibujos y modelados sencillos.","Técnicas, materiales y recursos informáticos y tecnológicos básicos: su aplicación para la captura y manipulación de producciones plásticas y visuales.","Registro y edición básica de elementos audiovisuales: conceptos, tecnologías, técnicas y recursos elementales y de manejo sencillo.","Estrategias y técnicas de uso común de composición de historias audiovisuales.","El cine como forma de narración.","Géneros y formatos básicos de producciones audiovisuales.","Producciones multimodales: iniciación en la realización con diversas herramientas . – Características elementales del lenguaje audiovisual multimodal.","Aproximación a las herramientas y las técnicas básicas de animación."]}]}],"3":[{"c":"A","n":"Recepción y análisis","s":[{"c":"A","n":"","i":["Propuestas artísticas de diferentes corrientes estéticas, procedencias y épocas producidas por creadoras y creadores locales, regionales, nacionales e internacionales.","Estrategias de recepción activa.","Normas de comportamiento y actitud positiva en la recepción de propuestas artísticas en diferentes espacios. El silencio como elemento y condición indispensable para el mantenimiento de la atención durante la recepción.","Vocabulario específico de las artes plásticas, visuales y audiovisuales.","Recursos digitales de uso común para las artes plásticas, visuales y audiovisuales.","Estrategias básicas de análisis de propuestas artísticas desde una perspectiva de género."]}]},{"c":"B","n":"Creación e interpretación","s":[{"c":"B","n":"","i":["Fases del proceso creativo: planificación, interpretación, experimentación y evaluación.","Profesiones vinculadas con las artes plásticas, visuales y audiovisuales.","Evaluación, interés y valoración tanto por el proceso como por el producto final en producciones plásticas, visuales y audiovisuales.","Uso responsable de bancos de imágenes y sonidos: respeto a las licencias de uso y distribución de contenidos generados por otros. Plagio y derechos de autor."]}]},{"c":"C","n":"Artes plásticas, visuales y audiovisuales","s":[{"c":"C","n":"","i":["Cultura visual. La imagen en el mundo actual: técnicas y estrategias de lectura, análisis e interpretación.","Elementos configurativos del lenguaje visual y sus posibilidades expresivas: punto, línea, plano, textura, color.","Materiales, instrumentos, soportes y técnicas en la expresión plástica y visual.","Medios, soportes y materiales de expresión plástica y visual. Técnicas bidimensionales y tridimensionales en dibujos y modelados.","Técnicas, materiales y recursos informáticos y tecnológicos: su aplicación para la captura, creación, manipulación y difusión de producciones plásticas y visuales.","Registro y edición de elementos audiovisuales: conceptos, tecnologías, técnicas y recursos elementales y de manejo sencillo.","Estrategias y técnicas de composición de historias audiovisuales.","El cine: origen y evolución.","Géneros y formatos de producciones audiovisuales.","Producciones multimodales: realización con diversas herramientas.","Características del lenguaje audiovisual multimodal.","Las herramientas y las técnicas básicas de animación."]}]}]}};
+SABERES.ing = {"1":[{"c":"A","n":"Comunicación","s":[{"c":"A","n":"","i":["Autoconfianza en el uso de la lengua extranjera.","Iniciación a las estrategias elementales para la comprensión y la producción de textos orales, escritos y multimodales breves, sencillos y contextualizados.","Funciones comunicativas elementales adecuadas al ámbito y al contexto: saludar, despedirse, presentar y presentarse; identificar las características de personas, objetos y lugares; responder a preguntas concretas sobre cuestiones cotidianas; expresar el tiempo, la cantidad y el espacio, la posesión, petición y ofrecimiento de ayuda, expresión de gustos, expresión de emociones, expresiones de lugar y dirección, petición de información personal y de permiso, instrucciones del contexto de la clase, expresión de capacidad.","Modelos contextuales elementales en la comprensión y producción de textos orales, escritos y multimodales, breves y sencillos, tales como felicitaciones, notas, listas o avisos.","Unidades lingüísticas elementales y significados asociados a dichas estructuras tales como expresión de la entidad y sus propiedades, cantidad y número, afirmación, exclamación, negación, interrogación.","Léxico elemental y de interés para el alumnado relativo a relaciones interpersonales básicas, vivienda, lugares y entornos cercanos: colegio y materiales escolares, identificación personal,la familia, colores, números, comidas y bebidas, juguetes, partes del cuerpo y ropa, animales, días de la semana, entorno natural y clima, adjetivos para describir, verbos (to be, have got, like, can en presente), algunas palabras relacionadas con la tecnología. Léxico relacionado con celebraciones y tradiciones: Halloween, Christmas, Easter.","Iniciación a patrones sonoros y acentuales elementales.","Iniciación a convenciones ortográficas elementales.","Convenciones y estrategias conversacionales elementales, en formato síncrono o asíncrono, para iniciar, mantener y terminar la comunicación, tomar y ceder la palabra, preguntar y responder, etc.","Herramientas analógicas y digitales elementales para la comprensión y producción oral, escrita y multimodal."]}]},{"c":"B","n":"Plurilingüismo","s":[{"c":"B","n":"","i":["Estrategias y técnicas elementales de detección de las carencias comunicativas y las limitaciones derivadas del nivel de competencia en la lengua extranjera y en las lenguas familiares.","Iniciación a las estrategias elementales para identificar y utilizar unidades lingüísticas (léxico, morfosintaxis, patrones sonoros, etc.) a partir de la comparación de las lenguas y variedades que conforman el repertorio lingüístico personal."]}]},{"c":"C","n":"Interculturalidad","s":[{"c":"C","n":"","i":["La lengua extranjera como medio de comunicación y relación con personas de otros países.","Aspectos socioculturales y sociolingüísticos elementales y más significativos relativos a las costumbres y la vida cotidiana en países donde se habla la lengua extranjera.","Iniciación a las estrategias básicas de uso común para entender y apreciar la diversidad lingüística, cultural y artística, atendiendo a valores ecosociales y democráticos."]}]}],"2":[{"c":"A","n":"Comunicación","s":[{"c":"A","n":"","i":["Autoconfianza y reflexión sobre el aprendizaje. El error como parte integrante del proceso.","Estrategias básicas de uso común para la comprensión y la producción de textos orales, escritos y multimodales breves, sencillos y contextualizados.","Conocimientos, destrezas y actitudes elementales que permiten iniciarse en actividades de mediación en situaciones cotidianas básicas.","Funciones comunicativas básicas de uso común adecuadas al ámbito y al contexto: saludar, despedirse, presentar y presentarse, describir personas, objetos, lugares, animales y rutinas diarias; pedir e intercambiar información sobre cuestiones cotidianas, dar indicaciones e instrucciones; expresar el tiempo, la cantidad y el espacio, expresar la capacidad y el gusto, la preferencia, el sentimiento, petición de ayuda, de información, de permiso, pedir disculpas y agradecimientos y hacer invitaciones.","Modelos contextuales y géneros discursivos básicos de uso común en la comprensión, producción y coproducción de textos orales, escritos y multimodales, breves y sencillos, literarios y no literarios tales como folletos, instrucciones, normas, avisos o conversaciones reguladoras de la convivencia.","Unidades lingüísticas básicas de uso común y significados asociados a dichas estructuras tales como expresión de la entidad y sus propiedades, cantidad y número, espacio y las relaciones espaciales, afirmación, exclamación, negación, interrogación.","Léxico elemental y de interés para el alumnado relativo a relaciones interpersonales próximas, vivienda, lugares y entornos cercanos (casa, ciudad, pueblo, campo), familia, comidas y hábitos saludables, el colegio y material escolar, partes del cuerpo y ropa, animales y respeto, transporte, tiempo libre y deportes, festividades, días de la semana, adjetivos…","Patrones sonoros, acentuales y de entonación básicos de uso común, y funciones comunicativas generales asociadas a dichos patrones.","Convenciones ortográficas básicas de uso común y significados asociados a los formatos y elementos gráficos.","Convenciones y estrategias conversacionales básicas de uso común, en formato síncrono o asíncrono, para iniciar, mantener y terminar la comunicación, tomar y ceder la palabra, pedir y dar indicaciones, etc.","Recursos para el aprendizaje y estrategias elementales de búsqueda guiada de información en medios analógicos y digitales.","Herramientas analógicas y digitales básicas de uso común para la comprensión, producción y coproducción oral, escrita y multimodal; y plataformas virtuales de interacción y colaboración educativa."]}]},{"c":"B","n":"Plurilingüismo","s":[{"c":"B","n":"","i":["Estrategias y técnicas de compensación de las carencias comunicativas para responder a una necesidad elemental, a pesar de las limitaciones derivadas del nivel de competencia en la lengua extranjera y en las lenguas familiares.","Estrategias básicas de uso común para identificar, retener, recuperar y utilizar unidades lingüísticas (léxico, morfosintaxis, patrones sonoros, etc.) a partir de la comparación de las lenguas y variedades que conforman el repertorio lingüístico personal.","Iniciación a estrategias y herramientas básicas de uso común de autoevaluación y coevaluación, analógicas y digitales, individuales y cooperativas.","Léxico y expresiones elementales para comprender enunciados sobre la comunicación, la lengua y el aprendizaje (metalenguaje)."]}]},{"c":"C","n":"Interculturalidad","s":[{"c":"C","n":"","i":["La lengua extranjera como medio de comunicación y relación con personas de otros países, como medio para conocer culturas y modos de vida diferentes.","Interés en la participación en intercambios comunicativos planificados, a través de diferentes medios, con estudiantes de la lengua extranjera.","Iniciación a patrones culturales elementales propios de la lengua extranjera.","Aspectos socioculturales y sociolingüísticos elementales relativos a las costumbres, la vida cotidiana y las relaciones interpersonales básicas en países donde se habla la lengua extranjera.","Estrategias básicas de uso común para entender y apreciar la diversidad lingüística, cultural y artística, atendiendo a valores ecosociales y democráticos."]}]}],"3":[{"c":"A","n":"Comunicación","s":[{"c":"A","n":"","i":["Autoconfianza. El error como instrumento de mejora.","Estrategias básicas para la comprensión, la planificación y la producción de textos orales, escritos y multimodales breves, sencillos y contextualizados.","Conocimientos, destrezas y actitudes que permiten iniciarse en actividades de mediación en situaciones cotidianas básicas.","Funciones comunicativas básicas adecuadas al ámbito y al contexto: saludar y presentarse, despedirse, presentar a alguien, agradecimientos, invitaciones; describir personas, animales, objetos, lugares y hábitos; situar eventos en el tiempo y narrar hechos pasados y recientes; situar objetos, personas y lugares en el espacio; pedir e intercambiar información sobre cuestiones cotidianas y acciones diarias y su frecuencia; describir rutinas; dar indicaciones e instrucciones; expresar la pertenencia y la cantidad; expresar la capacidad, el gusto, la preferencia, la opinión, el acuerdo o desacuerdo, el sentimiento, la intención; hacer peticiones y ofrecimiento de ayuda, dar información, y pedir permiso, sugerir planes e informar de planes, ir de compras o ir a un restaurante, hablar de experiencias.","Modelos contextuales y géneros discursivos básicos en la comprensión, producción y coproducción de textos orales, escritos y multimodales, breves y sencillos, literarios y no literarios: características y reconocimiento del contexto, organización y estructuración según la estructura interna.","Unidades lingüísticas básicas y significados asociados a dichas unidades tales como expresión de la entidad y sus propiedades, cantidad y número, el espacio y las relaciones espaciales, el tiempo, la afirmación, la negación, la interrogación y la exclamación, relaciones lógicas elementales.","Léxico básico y de interés para el alumnado, relativo a identificación personal, relaciones interpersonales próximas, lugares y entornos cercanos (vivienda, ciudad, pueblo), ocio, tiempo libre y deporte, vida cotidiana y familia y amigos o amigas; trabajo y ocupaciones; viajes, vacaciones y transporte; salud y hábitos de vida saludables; educación y estudio; compras y actividades comerciales; alimentación, hábitos saludables y recetas; lenguas y comunicación; medio ambiente y sostenibilidad y clima; maravillas del mundo, tecnologías de la información y la comunicación; cine y televisión, léxico relativo a festividades de países de habla inglesa y léxico vinculado con el plan lector de la asignatura.","Patrones sonoros, acentuales, rítmicos y de entonación básicos, y funciones comunicativas generales asociadas a dichos patrones.","Convenciones ortográficas básicas y significados asociados a los formatos y elementos gráficos.","Convenciones y estrategias conversacionales básicas, en formato síncrono o asíncrono, para iniciar, mantener y terminar la comunicación, tomar y ceder la palabra, pedir y dar aclaraciones y explicaciones, comparar y contrastar, colaborar, etc.","Recursos para el aprendizaje y estrategias para la búsqueda guiada de información en medios analógicos y digitales.","Propiedad intelectual de las fuentes consultadas y contenidos utilizados.","Herramientas analógicas y digitales básicas de uso común para la comprensión, producción y coproducción oral, escrita y multimodal; y plataformas virtuales de interacción y colaboración educativa (aulas virtuales, videoconferencias, herramientas digitales colaborativas...) para el aprendizaje, la comunicación y el desarrollo de proyectos con hablantes o estudiantes de la Lengua Extranjera."]}]},{"c":"B","n":"Plurilingüismo","s":[{"c":"B","n":"","i":["Estrategias y técnicas de compensación de las carencias comunicativas para responder eficazmente a una necesidad concreta, a pesar de las limitaciones derivadas del nivel de competencia en la lengua extranjera y en las lenguas familiares.","Estrategias básicas de uso común para identificar, organizar, retener, recuperar y utilizar unidades lingüísticas (léxico, morfosintaxis, patrones sonoros, etc.) a partir de la comparación de las lenguas y variedades que conforman el repertorio lingüístico personal.","Estrategias y herramientas básicas de uso común de autoevaluación y coevaluación, analógicas y digitales, individuales y cooperativas.","Léxico y expresiones de uso común para comprender enunciados sobre la comunicación, la lengua, el aprendizaje y las herramientas de comunicación y aprendizaje (metalenguaje).","Comparación elemental entre lenguas a partir de elementos de la lengua extranjera y otras lenguas: origen y parentescos."]}]},{"c":"C","n":"Interculturalidad","s":[{"c":"C","n":"","i":["La lengua extranjera como medio de comunicación y relación con personas de otros países, como forma de acceder a nueva información y como medio para conocer culturas y modos de vida diferentes.","Interés y valoración positiva por establecer contactos y comunicarse a través de diferentes medios con hablantes o estudiantes de la lengua extranjera.","Patrones culturales básicos de uso frecuente propios de la lengua extranjera.","Aspectos socioculturales y sociolingüísticos básicos y habituales relativos a las costumbres, la vida cotidiana y las relaciones interpersonales, convenciones sociales básicas de uso común, lenguaje no verbal, cortesía lingüística y etiqueta digital propias de países donde se habla la lengua extranjera.","Estrategias básicas de uso común para entender y apreciar la diversidad lingüística, cultural y artística, atendiendo a valores ecosociales y democráticos."]}]}]};
+/* descriptores del Perfil de salida vinculados a cada competencia específica (apartado I de cada área en la Orden) */
+const DESCR = {"nat":{"1":["CCL3","STEM4","CD1","CD2","CD3","CD4","CD5","CCEC4"],"2":["CCL1","CCL2","CCL3","STEM2","STEM4","CD1","CD2","CC4"],"3":["STEM3","STEM4","CD5","CPSAA3","CPSAA4","CPSAA5","CE1","CE3","CCEC4"],"4":["STEM5","CPSAA1","CPSAA2","CPSAA3","CC3"],"5":["STEM1","STEM2","STEM4","STEM5","CD1","CC4","CE1","CCEC1"]},"soc":{"1":["STEM4","STEM5","CD1","CC4","CE1","CCEC1"],"2":["CCL5","STEM2","STEM5","CPSAA4","CC1","CC3","CC4","CE1"],"3":["CCL3","STEM4","CPSAA4","CC1","CC3","CE2","CCEC1"],"4":["CP3","CPSAA3","CC1","CC2","CC3","CCEC1"],"5":["CCL5","CPSAA1","CC1","CC2","CC3","CCEC1"],"6":["CCL1","CCL2","CCL3","CD1","CD2","CC4"]},"evce":{"1":["CCL1","CCL3","CD4","CPSAA4","CC1","CC2","CC3"],"2":["CCL5","CPSAA4","CC1","CC2","CC3","CCEC1","CP3","CPSAA3"],"3":["CCL2","CCL5","STEM5","CPSAA2","CC3","CC4","CE1","STEM1"],"4":["CCL1","CCL5","CPSAA1","CPSAA2","CC2","CC3","CC4","CE3","CPSAA3"]},"epv":{"1":["CP3","STEM1","CD1","CPSAA3","CC1","CE2","CCEC1","CCEC2"],"2":["CCL3","CP3","STEM2","CD1","CPSAA4","CC3","CCEC1","CCEC2"],"3":["CCL1","CD2","CPSAA1","CPSAA5","CC2","CE1","CCEC3","CCEC4"],"4":["CCL1","CP3","STEM3","CC2","CE1","CE3","CCEC3","CCEC4"]},"ing":{"1":["CCL2","CCL3","CP1","CP2","STEM1","CD1","CPSAA5","CCEC2"],"2":["CCL1","CP1","CP2","STEM1","CD2","CPSAA5","CE1","CCEC4"],"3":["CCL5","CP1","CP2","STEM1","CPSAA3","CC3","CE1"],"4":["CCL5","CP1","CP2","CP3","STEM1","CPSAA1","CPSAA3","CCEC1"],"5":["CP2","STEM1","CD2","CPSAA1","CPSAA5"],"6":["CCL5","CP3","CPSAA1","CPSAA3","CC3","CCEC1"]}};
+const KC = [['CCL','Comunicación lingüística'],['CP','Plurilingüe'],['STEM','Matemática y en ciencia, tecnología e ingeniería'],['CD','Digital'],['CPSAA','Personal, social y de aprender a aprender'],['CC','Ciudadana'],['CE','Emprendedora'],['CCEC','Conciencia y expresión culturales']];
+/* criterios de la unidad: los elegidos en la programación más los que ya llevan sus tareas */
+function upCrits(c, u){
+  const set = {}; ((u.plan||{}).crits||[]).forEach(k=>{ set[k]=1; }); critsWorkedUnit(c, u.id).forEach(k=>{ set[k]=1; });
+  return Object.keys(set).sort(cmpCode);
+}
+function upCritTasks(c, u, code){ return tasksOfUnit(c, u.id).filter(t=>(t.criteria||[]).indexOf(code)>-1 || Object.keys(t.adaptations||{}).some(sid=>((t.adaptations[sid]||{}).criteria||[]).indexOf(code)>-1)); }
+/* descriptores que tocan los criterios de la unidad, agrupados por competencia clave */
+function upDescr(c, u, aid){
+  const d = DESCR[aid] || {}, set = {};
+  upCrits(c, u).map(k=>k.split('.')[0]).forEach(ce=>(d[ce]||[]).forEach(x=>{ set[x]=1; }));
+  const out = {}; Object.keys(set).sort().forEach(x=>{ const k = x.replace(/\d+$/,''); (out[k]=out[k]||[]).push(x); });
+  return out;
+}
+function critPicker(c, u, aid){
+  const pl = u.plan || {}, crits = critList(aid, c.cycle), ces = areaDef(aid).ce || {}, mine = pl.crits || [];
+  if(!crits.length) return `<p class="hint" style="margin:0">No hay criterios cargados para esta área y ciclo.</p>`;
+  const byCE = {}; crits.forEach(k=>{ const ce = k.code.split('.')[0]; (byCE[ce]=byCE[ce]||[]).push(k); });
+  const all = upCrits(c, u);
+  return `<div class="sab" id="critBox">
+    <div class="sab-bar"><span class="sab-tot" id="critTot">${all.length} elegidos de ${crits.length}</span></div>
+    ${Object.keys(byCE).sort((a,b)=>a-b).map(ce=>{ const n = byCE[ce].filter(k=>all.indexOf(k.code)>-1).length;
+      return `<details class="sab-sub ${n?'has':''}" ${n && !isNarrow()?'open':''}>
+        <summary><span class="sab-code">CE ${esc(ce)}</span><span class="sab-name sab-ce">${esc(ces[ce]||'Competencia específica '+ce)}</span>
+          <span class="sab-n" data-sabn>${n}/${byCE[ce].length}</span><span class="up-caret" aria-hidden="true">▾</span></summary>
+        <div class="sab-items">${byCE[ce].map(k=>{ const ts = upCritTasks(c, u, k.code), on = ts.length>0 || mine.indexOf(k.code)>-1;
+          return `<button type="button" class="sab-it ${on?'on':''} ${ts.length?'lock':''}" data-act="critToggle" data-code="${esc(k.code)}" aria-pressed="${on}" ${ts.length?'title="Lo evalúa una tarea de la unidad: se quita desde la tarea"':''}><i aria-hidden="true"></i>
+            <span><b class="sab-cc">${esc(k.code)}</b> ${esc(k.text)}${ts.length?`<em class="sab-in">${ts.map(t=>`<u>${esc(t.name)}</u>`).join('')}</em>`:''}</span></button>`; }).join('')}</div>
+      </details>`; }).join('')}
+  </div>`;
+}
+function kcPicker(c, u, aid){
+  const pl = u.plan || {}, d = upDescr(c, u, aid), mine = pl.kc || [];
+  return `<div class="kc-list">${KC.map(([k,n])=>{ const auto = d[k], on = !!auto || mine.indexOf(k)>-1;
+    return `<button type="button" class="kc ${on?'on':''} ${auto?'lock':''}" data-act="kcToggle" data-k="${k}" aria-pressed="${on}" ${auto?'title="Vinculada por la Orden a las competencias específicas de tus criterios"':''}>
+      <b>${k}</b><span>${esc(n)}</span>${auto?`<small>${auto.join(' · ')}</small>`:''}</button>`; }).join('')}</div>`;
+}
+/* sesiones de la agenda de esta clase y área entre las fechas de la unidad */
+function upSessions(c, u, aid){
+  const pl = u.plan || {}; if(!pl.from || !pl.to) return null;
+  const ord = {}; (state.schedule||[]).forEach((sl,i)=>{ ord[sl.id] = i; });
+  return Object.keys(state.sessions||{}).map(k=>{ const p = k.split('|'); return {iso:p[0], slot:p[1], s:state.sessions[k]}; })
+    .filter(x=>x.s && x.s.courseId===c.id && x.s.areaId===aid && x.iso>=pl.from && x.iso<=pl.to)
+    .sort((a,b)=> a.iso<b.iso ? -1 : a.iso>b.iso ? 1 : (ord[a.slot]||0)-(ord[b.slot]||0));
+}
+function seqLinesHtml(pl){
+  const ls = upLines(pl.sequence);
+  return ls.length ? `<div class="field"><span>Sesiones previstas sin fecha <i class="up-auto">pásalas a la agenda cuando sepas el día</i></span>
+    <div class="up-tasks">${ls.map((x,i)=>`<div class="up-task"><b>${esc(x)}</b><button type="button" class="btn ghost small" data-act="seqToAgenda" data-i="${i}">▦ A la agenda</button></div>`).join('')}</div></div>` : '';
+}
+/* resultados de la unidad para la valoración: media de la clase, aprobados y criterios de menor a mayor */
+function upResults(c, u){
+  const vals = c.students.map(st=>unitScore(c, st.id, u.id)).filter(v=>v!=null);
+  if(!vals.length) return null;
+  const mean = vals.reduce((a,b)=>a+b,0)/vals.length, pass = vals.filter(v=>v>=c.pass).length;
+  const by = {};
+  tasksOfUnit(c, u.id).forEach(t=>{ if(t.isInitial || t.informative) return;
+    const tv = c.students.map(st=>taskApplies(c, t, st.id) ? taskFinal(c, t, st.id) : null).filter(v=>v!=null); if(!tv.length) return;
+    const m = tv.reduce((a,b)=>a+b,0)/tv.length;
+    (t.criteria||[]).forEach(k=>{ (by[k] = by[k] || []).push(m); }); });
+  const crits = Object.keys(by).map(k=>({code:k, v:by[k].reduce((a,b)=>a+b,0)/by[k].length})).sort((a,b)=>a.v-b.v);
+  return {mean:mean, n:vals.length, pass:pass, crits:crits};
+}
+/* autoevaluación docente de la unidad: una diana con ocho aspectos y cuatro grados */
+const SELF_ITEMS = ['Planificación y tiempos','Objetivos y saberes','Metodología','Recursos y materiales','Atención a la diversidad','Evaluación','Clima y participación','Producto final'];
+const SELF_INS = {type:'scale', items:SELF_ITEMS.map(n=>({name:n})), levels:[{label:'Mejorable',value:2.5},{label:'Aceptable',value:5},{label:'Bien',value:7.5},{label:'Muy bien',value:10}]};
+function upSelf(pl){ const a = Array.isArray(pl.self) ? pl.self : []; return SELF_ITEMS.map((_,i)=>a[i]==null ? null : a[i]); }
+/* alumnado de la clase con alguna necesidad registrada en esta área o en su ficha */
+function upDivStudents(c, aid){
+  return c.students.map(st=>{ const dv = (c.diversity||{})[dvkey(st.id, aid)] || {}, sd = (c.sdiv||{})[st.id] || {};
+    const has = dv.med || (dv.cond||[]).length || (dv.measures||[]).length || (sd.cond||[]).length || (sd.acts||[]).length;
+    return has ? {st:st, med:dv.med ? medDef(dv.med).code : '', measures:(dv.measures||[]).slice()} : null; }).filter(Boolean);
+}
+function upDivPicker(c, u, aid){
+  const pl = u.plan || {}, sel = pl.divStu || {}, list = upDivStudents(c, aid);
+  if(!list.length) return `<p class="hint" style="margin:0">No hay alumnado con necesidades registradas en esta área. Se registran en la pestaña Diversidad.</p>`;
+  return `<div class="dvs">${list.map(x=>{ const mine = (sel[x.st.id]||{}).m || [], extra = mine.filter(m=>x.measures.indexOf(m)<0);
+    return `<div class="dv-st" data-sid="${x.st.id}">
+      <div class="dv-head"><b>${esc(x.st.name)}</b>${x.med?`<span class="tag warn" style="font-size:11px">${esc(x.med)}</span>`:''}<span class="sab-n">${mine.length} medida(s)</span></div>
+      <div class="up-chips">${x.measures.concat(extra).map(m=>`<button type="button" class="up-chip dv-m ${mine.indexOf(m)>-1?'on':''}" data-act="divM" data-sid="${x.st.id}" data-m="${esc(m)}">${esc(m)}</button>`).join('')}
+        ${x.measures.length?'':'<span class="hint" style="margin:0">Sin medidas escritas en Diversidad.</span>'}</div>
+      <div class="dv-add"><input class="inp" placeholder="Otra medida para esta unidad" data-divnew="${x.st.id}"><button type="button" class="btn ghost small" data-act="divAdd" data-sid="${x.st.id}">Añadir</button></div>
+    </div>`; }).join('')}</div>`;
+}
+/* resumen sin nombres de lo registrado en Diversidad y de las tareas adaptadas de la unidad */
+function upDivAuto(c, u, aid){
+  const by = {}, lines = []; let nm = 0;
+  c.students.forEach(st=>{ const dv = (c.diversity||{})[dvkey(st.id, aid)]; if(!dv) return;
+    if(dv.med){ const m = medDef(dv.med), k = m.name && m.name!==m.code ? m.name+' ('+m.code+')' : m.code; by[k] = (by[k]||0)+1; }
+    if((dv.measures||[]).length) nm++; });
+  Object.keys(by).forEach(k=>lines.push(by[k]+' alumno(s) con '+k));
+  if(nm) lines.push(nm+' alumno(s) con actuaciones registradas en Diversidad');
+  tasksOfUnit(c, u.id).forEach(t=>{ const n = Object.keys(t.adaptations||{}).length; if(n) lines.push('«'+t.name+'»: evaluación adaptada para '+n+' alumno(s)'); });
+  return lines;
+}
+function sabBlocks(aid, cycle){ const a = SABERES[aid]; if(!a) return []; return a[cycle] || a[Object.keys(a)[0]] || []; }
+function sabCycles(aid){ return Object.keys(SABERES[aid]||{}).map(Number).sort(); }
+/* el ciclo de la clase guarda «A.2|0»; los de otro ciclo, «c2:A.2|0» */
+function sabId(sub, i, cy, base){ return (cy && cy!==base ? 'c'+cy+':' : '') + sub.c+'|'+i; }
+/* saberes elegidos en la unidad, agrupados como en la norma: [{code, name, items:[texto], cycle}] */
+function sabChosen(aid, cycle, pl){
+  const set = pl.sab || [], out = [], cys = sabCycles(aid), base = cys.indexOf(Number(cycle))>-1 ? Number(cycle) : cys[0];
+  cys.forEach(cy=>(SABERES[aid][cy]||[]).forEach(b=>b.s.forEach(sub=>{
+    const its = sub.i.filter((_,i)=>set.indexOf(sabId(sub,i,cy,base))>-1);
+    if(its.length) out.push({code:sub.c, name:(sub.n || b.n) + (cy!==base ? ' · '+CYCLE_NAMES[cy] : ''), items:its});
+  })));
+  return out;
+}
+function sabPicker(aid, cycle, pl){
+  const cys = sabCycles(aid), set = pl.sab || [];
+  if(!cys.length) return `<p class="hint" style="margin:0 0 10px">Esta área todavía no tiene cargados los saberes básicos del currículo. Mientras tanto puedes escribirlos a mano aquí abajo.</p>`;
+  const base = cys.indexOf(Number(cycle))>-1 ? Number(cycle) : cys[0];
+  const cy = cys.indexOf(Number(state.sabCycle))>-1 ? Number(state.sabCycle) : base;
+  const blocks = SABERES[aid][cy] || [];
+  const nOf = k=> k===base ? set.filter(x=>x.charAt(0)!=='c' || x.indexOf(':')<0).length : set.filter(x=>x.indexOf('c'+k+':')===0).length;
+  return `<div class="sab ${state.sabOnly?'only':''}" id="sabBox">
+    <div class="sab-bar">${cys.length>1 ? `<div class="seg-toggle">${cys.map(k=>`<button type="button" data-act="sabCycle" data-m="${k}" aria-pressed="${k===cy}" title="${k===base?'Ciclo de la clase':'Para alumnado con adaptación o para repasar'}">${k}.º ciclo${nOf(k)?' · '+nOf(k):''}</button>`).join('')}</div>` : ''}
+      <span class="sab-tot" id="sabTot">${set.length} elegidos</span><div class="spacer"></div>
+      <button type="button" class="btn ghost small" data-act="sabOnly">${state.sabOnly?'Ver todos':'Ver solo los elegidos'}</button></div>
+    ${cy!==base ? `<p class="hint" style="margin:0 0 8px">Estás viendo ${CYCLE_NAMES[cy]}. La clase es de ${CYCLE_NAMES[base]}.</p>` : ''}
+    ${blocks.map(b=>`<div class="sab-blk">${b.s.length===1 && !b.s[0].n ? '' : `<h4><b>${esc(b.c)}</b>${esc(b.n)}</h4>`}
+      ${b.s.map(sub=>{ const n = sub.i.filter((_,i)=>set.indexOf(sabId(sub,i,cy,base))>-1).length;
+        return `<details class="sab-sub ${n?'has':''}" data-sub="${esc(sub.c)}" ${n && !isNarrow()?'open':''}>
+          <summary><span class="sab-code">${esc(sub.c)}</span><span class="sab-name">${esc(sub.n || b.n)}</span>
+            <span class="sab-n" data-sabn>${n}/${sub.i.length}</span><span class="up-caret" aria-hidden="true">▾</span></summary>
+          <div class="sab-items">
+            ${sub.i.map((x,i)=>{ const id = sabId(sub,i,cy,base), on = set.indexOf(id)>-1;
+              return `<button type="button" class="sab-it ${on?'on':''}" data-act="sabToggle" data-id="${esc(id)}" aria-pressed="${on}"><i aria-hidden="true"></i><span>${esc(x)}</span></button>`; }).join('')}
+            <div class="row" style="gap:6px;margin-top:4px"><button type="button" class="btn ghost small" data-act="sabAll" data-sub="${esc(sub.c)}" data-m="1">Añadir todos</button>
+              <button type="button" class="btn ghost small" data-act="sabAll" data-sub="${esc(sub.c)}" data-m="0">Quitar todos</button></div>
+          </div></details>`; }).join('')}</div>`).join('')}
+  </div>`;
+}
+function sabRefresh(u){
+  const box = document.getElementById('sabBox'); if(!box) return;
+  const set = (u.plan||{}).sab || [];
+  box.querySelectorAll('.sab-it').forEach(x=>{ const on = set.indexOf(x.dataset.id)>-1; x.classList.toggle('on', on); x.setAttribute('aria-pressed', on); });
+  box.querySelectorAll('.sab-sub').forEach(d=>{ const all = d.querySelectorAll('.sab-it').length, n = d.querySelectorAll('.sab-it.on').length;
+    d.querySelector('[data-sabn]').textContent = n+'/'+all; d.classList.toggle('has', n>0); });
+  const t = document.getElementById('sabTot'); if(t) t.textContent = set.length+' elegidos';
+  const tab = box.querySelector('[data-act="sabCycle"][aria-pressed="true"]');
+  if(tab){ const n = box.querySelectorAll('.sab-it.on').length; tab.textContent = tab.dataset.m+'.º ciclo'+(n?' · '+n:''); }
+  upRefresh(u);
+}
+const UP_BLOCKS = [
+  {id:'ident', t:'Identificación', s:'Sesiones y fechas', keys:['sessions','from','to']},
+  {id:'ctx',   t:'Justificación y contexto', s:'Por qué, situación de aprendizaje y producto final', keys:['justif','situation','product']},
+  {id:'curr',  t:'Concreción curricular', s:'Criterios, competencias y saberes básicos', keys:['crits','sab','saberes','kc','currNotes'], auto:true},
+  {id:'obj',   t:'Objetivos didácticos', s:'Qué van a aprender', keys:['objectives']},
+  {id:'met',   t:'Metodología', s:'Cómo se trabaja, agrupamientos, recursos y espacios', keys:['methods','groups','resources','spaces']},
+  {id:'seq',   t:'Secuencia de sesiones', s:'Qué se hace en cada sesión', keys:['sequence','files']},
+  {id:'eval',  t:'Evaluación', s:'Tareas evaluables, instrumentos y pesos', keys:['evalNotes'], auto:true},
+  {id:'div',   t:'Atención a la diversidad', s:'Medidas generales y específicas', keys:['divStu','divGeneral','divSpecific']},
+  {id:'val',   t:'Valoración de la unidad', s:'Qué funcionó y qué cambiar', keys:['self','valWorked','valChange']}
+];
+function upMethodList(){ return Array.isArray(state.upMethods) ? state.upMethods : UP_METHODS; }
+function upHas(pl, k){ const v = pl[k]; if(k==='self') return upSelf(pl).some(x=>x!=null);
+  if(k==='divStu') return Object.keys(v||{}).some(s=>((v[s]||{}).m||[]).length>0);
+  return Array.isArray(v) ? v.length>0 : (v!=null && String(v).trim()!==''); }
+function upFilled(pl, b){ return (b.keys||[]).some(k=>upHas(pl, k)); }
+/* lo que la app aporta sola a un apartado (criterios o tareas de la unidad) */
+function upAuto(c, u, b){ return b.id==='curr' ? critsWorkedUnit(c, u.id).length>0 : b.id==='eval' ? tasksOfUnit(c, u.id).length>0
+    : b.id==='seq' ? ((upSessions(c, u, u.areaId)||[]).length>0 || tasksOfUnit(c, u.id).some(t=>t.isInitial)) : b.id==='div' ? upDivAuto(c, u, u.areaId).length>0 : false; }
+function upCountTxt(n){ return n+' de '+UP_BLOCKS.length+' apartados'; }
+function upLines(txt){ return String(txt||'').split(/\n+/).map(x=>x.replace(/^\s*(?:[-•·*]|\d+[.)])\s*/,'').trim()).filter(Boolean); }
+function upDates(pl){ return (pl.from||pl.to) ? [pl.from?fmtDate(pl.from):'…', pl.to?fmtDate(pl.to):'…'].join(' – ') : ''; }
+function upOpenSet(u){ if(!state.upOpen || typeof state.upOpen!=='object') state.upOpen = {}; return state.upOpen[u.id] || (state.upOpen[u.id] = []); }
+
+function viewUnitPlan(u){
+  const c = course(), aid = areaId(), p = period(), pl = u.plan || {};
+  const full = state.upView==='full';
+  const open = (state.upOpen||{})[u.id] || [];
+  const done = UP_BLOCKS.filter(b=>upFilled(pl,b) || upAuto(c,u,b)).length;
+  const bar = `<div class="row" style="margin-bottom:12px">
+      <div class="seg-toggle">
+        <button data-act="upView" data-m="edit" aria-pressed="${!full}">Por apartados</button>
+        <button data-act="upView" data-m="full" aria-pressed="${full}">Ver completa</button>
+      </div>
+      <span class="up-prog" id="upProg">${upCountTxt(done)}</span><div class="spacer"></div>
+      ${full?'':`<button class="btn ghost small" data-act="upAll" data-m="${open.length===UP_BLOCKS.length?0:1}">${open.length===UP_BLOCKS.length?'Plegar todo':'Desplegar todo'}</button>`}
+      <button class="btn small" data-act="planPdf">Descargar PDF</button></div>`;
+  if(full) return bar + `<style>${UPD_CSS}</style><div class="up-sheet"><div class="upd">${planDocHtml(c, u, aid, p, true)}</div></div>`;
+
+  const ta = (k, label, ph, rows)=>`<label class="field"><span>${label}</span>
+      <textarea class="inp" data-act="planF" data-k="${k}" rows="${rows||3}" placeholder="${esc(ph||'')}">${esc(pl[k]||'')}</textarea></label>`;
+  const chips = (k, list)=>`<div class="up-chips">${list.map(x=>`<button type="button" class="up-chip ${(pl[k]||[]).indexOf(x)>-1?'on':''}" data-act="planChip" data-k="${k}" data-v="${esc(x)}">${esc(x)}</button>`).join('')}</div>`;
+  const tasks = tasksOfUnit(c, u.id);
+  const methods = upMethodList().concat((pl.methods||[]).filter(x=>upMethodList().indexOf(x)<0));
+  const body = {
+    ident: `<div class="up-facts">
+        <span><small>Unidad</small><b>${esc(u.name)}</b></span>
+        <span><small>Área</small><b>${esc(areaDef(aid).name)}</b></span>
+        <span><small>Clase</small><b>${esc(c.name)} · ${CYCLE_NAMES[c.cycle]}</b></span>
+        <span><small>Periodo</small><b>${esc(p.name)}</b></span></div>
+      <div class="up-grid3">
+        <label class="field"><span>N.º de sesiones</span><input class="inp" type="number" min="0" inputmode="numeric" data-act="planF" data-k="sessions" value="${esc(pl.sessions||'')}"></label>
+        <label class="field"><span>Empieza</span><input class="inp" type="date" data-act="planF" data-k="from" value="${esc(pl.from||'')}"></label>
+        <label class="field"><span>Termina</span><input class="inp" type="date" data-act="planF" data-k="to" value="${esc(pl.to||'')}"></label>
+      </div>
+      <button class="btn ghost small" data-act="editUnit" data-id="${u.id}">✎ Nombre y descripción</button>`,
+    ctx: ta('justif','Justificación','Por qué esta unidad ahora, qué aporta al grupo y cómo enlaza con lo anterior', 3)
+       + ta('situation','Situación de aprendizaje','El reto o contexto real que da sentido a la unidad', 3)
+       + ta('product','Producto final','Qué van a crear o presentar al terminar', 2),
+    curr: `<div class="field"><span>Criterios de evaluación <i class="up-auto">${CYCLE_NAMES[c.cycle]}</i></span>${critPicker(c, u, aid)}
+        <p class="hint" style="margin:8px 0 0">Elige aquí los que va a trabajar la unidad. Los que marques al crear una tarea aparecen también, con el nombre de la tarea.</p></div>
+      <div class="field"><span>Saberes básicos <i class="up-auto">${CYCLE_NAMES[c.cycle]}</i></span>${sabPicker(aid, c.cycle, pl)}</div>
+      ${ta('saberes','Otros saberes, a mano','Lo que quieras añadir o concretar, uno por línea', 2)}
+      <div class="field"><span>Competencias clave y descriptores <i class="up-auto">salen de tus criterios</i></span>${kcPicker(c, u, aid)}</div>
+      ${ta('currNotes','Otras concreciones','Relación con otras áreas, ODS, planes de centro…', 2)}`,
+    obj: ta('objectives','Un objetivo por línea','Describir su localidad usando there is / there are\nDar y seguir indicaciones sencillas', 5),
+    met: `<div class="field"><span>Metodologías</span>${chips('methods', methods)}
+        <button class="btn ghost small" data-act="upMethodsEdit" style="margin-top:8px">✎ Editar lista de metodologías</button></div>
+      <div class="field"><span>Agrupamientos</span>${chips('groups', UP_GROUPS)}</div>
+      <div class="up-grid2">${ta('resources','Recursos y materiales','Flashcards, mapa del barrio, tablets…', 3)}${ta('spaces','Espacios','Aula, patio, biblioteca…', 3)}</div>`,
+    seq: (()=>{ const ss = upSessions(c, u, aid), ini = tasks.filter(t=>t.isInitial);
+        return (ini.length ? `<div class="field"><span>Sesión 0 · evaluación inicial de la unidad <i class="up-auto">de las tareas marcadas como inicial</i></span>
+          <div class="up-tasks">${ini.map(t=>`<div class="up-task"><span class="up-w">0</span><b>${esc(t.name)}</b><span>${esc(TYPE_NAMES[(t.instr||{}).type]||'')}</span></div>`).join('')}</div></div>` : '')
+        + `<div class="field"><span>Sesiones de la agenda <i class="up-auto">${ss?fmtDate(pl.from)+' – '+fmtDate(pl.to):'sin fechas'}</i></span>
+          ${ss===null ? `<p class="hint" style="margin:0">Pon las fechas de inicio y fin en Identificación y aparecerán aquí las sesiones que programes en la agenda para esta clase y área.</p>`
+            : ss.length ? `<div class="up-tasks">${ss.map((x,i)=>`<div class="up-task up-ses"><span class="up-w">${i+1}</span><span>${fmtDate(x.iso).slice(0,5)}</span><b>${esc(x.s.title||'(sin título)')}</b>
+              <label class="btn ghost small up-clip" title="Adjuntar a esta sesión (también se ve en la agenda)">📎 Adjuntar<input type="file" multiple hidden data-upfile="${esc(skey(x.iso, x.slot))}"></label>
+              ${(x.s.files||[]).length?`<div class="up-atts" data-attsess="${esc(skey(x.iso, x.slot))}">${attThumbs(x.s.files, {small:true})}</div>`:''}</div>`).join('')}</div>`
+            : `<p class="hint" style="margin:0">No hay sesiones programadas en la agenda entre esas fechas para esta clase y área.</p>`}</div>`; })()
+       + `<div class="field"><span>Materiales de la unidad</span>
+            <div data-upatt="unit">${attThumbs(pl.files||[], {edit:true})}</div>
+            <label class="btn ghost small" style="margin-top:6px">📎 Adjuntar PDF, imágenes o documentos<input type="file" multiple hidden data-upfile="unit"></label>
+            <p class="hint" id="upAttHint" style="margin:6px 0 0">Hasta 25 MB por archivo. Para adjuntar a una sesión concreta, usa el botón de su fila.</p></div>`
+       + `<div id="seqLines">${seqLinesHtml(pl)}</div>`
+       + ta('sequence','Sesiones previstas, a mano (una por línea)','Presentación del reto y vocabulario del barrio\nListening: seguir indicaciones en un mapa\nSpeaking por parejas: dar indicaciones', 6),
+    eval: `<div class="field"><span>Tareas evaluables <i class="up-auto">de la pestaña Tareas</i></span>
+        ${tasks.length ? `<div class="up-tasks">${tasks.map(t=>`<div class="up-task">
+          <b>${esc(t.name)}</b><span>${esc(TYPE_NAMES[(t.instr||{}).type]||'')}</span>
+          <span class="up-tc">${taskCriteria(c, t).map(k=>`<i>${esc(k)}</i>`).join('')}</span>
+          <span class="up-w">${t.isInitial?'inicial':(t.informative?'informativa':(Number(t.weight)||0)+'%')}</span></div>`).join('')}</div>`
+          : `<p class="hint" style="margin:0">Todavía no hay tareas evaluables. Cuando las crees, aparecen aquí con su instrumento, criterios y peso.</p>`}
+        <button class="btn ghost small" data-act="unitSub" data-id="tareas" style="margin-top:8px">Ir a Tareas</button></div>
+      ${ta('evalNotes','Procedimientos y observaciones','Momentos de evaluación, autoevaluación y coevaluación, cómo se informa al alumnado…', 3)}`,
+    div: (()=>{ const dl = upDivAuto(c, u, aid);
+        return `<div class="field"><span>Registrado en la app <i class="up-auto">sin nombres</i></span>
+          ${dl.length ? `<div class="up-tasks">${dl.map(x=>`<div class="up-task"><b>${esc(x)}</b></div>`).join('')}</div>`
+            : `<p class="hint" style="margin:0">No hay medidas registradas en Diversidad para esta área ni tareas adaptadas en la unidad.</p>`}</div>`; })()
+       + `<div class="field"><span>Alumnado con necesidades y medidas en esta unidad</span>${upDivPicker(c, u, aid)}
+            <p class="hint" style="margin:8px 0 0">Marca qué medidas aplicas en esta unidad. En el PDF salen sin nombres.</p></div>`
+       + ta('divGeneral','Medidas generales','Apoyos visuales, agrupamientos flexibles, tiempos, opciones de respuesta (DUA)…', 3)
+       + ta('divSpecific','Medidas específicas y adaptaciones','Qué se adapta y para qué necesidades, sin nombres', 3),
+    val: (()=>{ const sv = upSelf(pl), rs = upResults(c, u);
+        return `<div class="field"><span>Resultados de la unidad <i class="up-auto">de las notas</i></span>
+          ${rs ? `<div class="up-res"><span class="up-stat${tnv(rs.mean)}"><small>Media de la clase</small><b>${fmt(rs.mean)}</b></span>
+              <span class="up-stat"><small>Aprueban</small><b>${rs.pass} de ${rs.n}</b></span>
+              ${rs.crits.map(k=>`<span class="up-stat${tnv(k.v)}" title="Media de las tareas que evalúan el criterio ${esc(k.code)}"><small>Criterio ${esc(k.code)}</small><b>${fmt2(k.v)}</b></span>`).join('')}</div>
+              <p class="hint" style="margin:6px 0 0">Los criterios van de menor a mayor: los primeros son los que conviene revisar.</p>`
+            : `<p class="hint" style="margin:0">Aparecerán aquí la media de la clase y los criterios con peor resultado cuando haya notas.</p>`}</div>
+        <div class="field"><span>Autoevaluación de mi puesta en práctica</span>
+          <div class="self-grid"><div class="self-items">${SELF_ITEMS.map((n,i)=>`<div class="self-row"><b>${esc(n)}</b>
+              <div class="self-lv">${SELF_INS.levels.map((l,j)=>`<button type="button" class="lvl-btn ${tn(l)} ${sv[i]===j?'on':''}" data-act="selfLv" data-i="${i}" data-j="${j}" title="${esc(l.label)}">${j+1}</button>`).join('')}</div></div>`).join('')}
+            <p class="hint" style="margin:6px 0 0">1 mejorable · 2 aceptable · 3 bien · 4 muy bien. Toca otra vez un número para quitarlo.</p></div>
+            <div class="self-diana" id="selfDiana">${dianaSvg(SELF_INS, sv, 300)}</div></div></div>`; })()
+       + ta('valWorked','Qué ha funcionado','Para rellenar al terminar la unidad', 3)
+       + ta('valChange','Qué cambiaría','Propuestas de mejora para la próxima vez', 3)
+  };
+  return bar + `<div class="up-acc" style="--c:${areaColor(aid)}">${UP_BLOCKS.map((b,i)=>{
+    const on = open.indexOf(b.id)>-1, ok = upFilled(pl,b) || upAuto(c,u,b);
+    return `<section class="up-sec ${on?'open':''}" data-upb="${b.id}">
+      <button type="button" class="up-head" data-act="upToggle" data-id="${b.id}" aria-expanded="${on}">
+        <span class="up-n">${i+1}</span>
+        <span class="up-tt"><b>${b.t}</b><small>${b.s}</small></span>
+        <span class="up-dot ${ok?'on':''}" data-auto="${upAuto(c,u,b)?1:0}" title="Apartado con contenido"></span>
+        <span class="up-caret" aria-hidden="true">▾</span>
+      </button>
+      <div class="up-body"><div class="up-inner">${body[b.id]}</div></div>
+    </section>`; }).join('')}</div>`;
+}
+
+/* documento completo de la unidad: sirve para «Ver completa» y para el PDF */
+function planDocHtml(c, u, aid, p, showEmpty, lvl){
+  lvl = lvl || 0;   // 0 texto completo · 1 competencias específicas solo con su número · 2 criterios también solo con su código
+  const pl = u.plan || {};
+  const codes = upCrits(c, u);
+  const critMap = areaDef(aid).crit[c.cycle] || {}, ces = areaDef(aid).ce || {};
+  const ceList = codes.map(k=>k.split('.')[0]).filter((x,i,a)=>a.indexOf(x)===i);
+  const tasks = tasksOfUnit(c, u.id);
+  const none = '<p class="upd-none">Sin rellenar</p>';
+  const txt = k=> upHas(pl,k) ? `<p>${esc(pl[k]).replace(/\n/g,'<br>')}</p>` : '';
+  const sec = (title, html, cls)=> (html || showEmpty) ? `<section class="${cls||''}"><h2>${title}</h2>${html||none}</section>` : '';
+  const sub = (label, html)=> html ? `<div class="upd-sub"><h3>${label}</h3>${html}</div>` : '';
+  const tags = k=> upHas(pl,k) ? `<p class="upd-tags">${pl[k].map(x=>`<i>${esc(x)}</i>`).join('')}</p>` : '';
+  const meta = [areaDef(aid).name, c.name+' · '+CYCLE_NAMES[c.cycle], p.name,
+    upHas(pl,'sessions') ? pl.sessions+' sesiones' : '', upDates(pl)].filter(Boolean);
+  const ctx = sub('Justificación', txt('justif')) + sub('Situación de aprendizaje', txt('situation')) + sub('Producto final', txt('product'));
+  const lst = k=> upHas(pl,k) ? `<ul>${upLines(pl[k]).map(x=>`<li>${esc(x)}</li>`).join('')}</ul>` : '';
+  const curr0 = codes.length ? (lvl>0 ? `<div class="upd-sub"><h3>Competencias específicas</h3><p class="upd-tags">${ceList.map(k=>`<i>CE ${esc(k)}</i>`).join('')}</p></div>`
+      : ceList.some(k=>ces[k]) ? `<div class="upd-sub"><h3>Competencias específicas</h3>${ceList.map(k=>`<p class="upd-cr"><b>CE ${esc(k)}</b> ${esc(ces[k]||'')}</p>`).join('')}</div>` : '')
+      + (lvl>1 ? `<div class="upd-sub"><h3>Criterios de evaluación</h3><p class="upd-tags">${codes.map(k=>`<i>${esc(k)}</i>`).join('')}</p></div>`
+        : `<div class="upd-sub"><h3>Criterios de evaluación</h3>${codes.map(k=>`<p class="upd-cr"><b>${esc(k)}</b> ${esc(critMap[k]||'')}</p>`).join('')}</div>`) : '';
+  const chosen = sabChosen(aid, c.cycle, pl);
+  const sabHtml = chosen.map(g=>`<p class="upd-cr"><b>${esc(g.code)}</b> <em>${esc(g.name)}</em></p><ul>${g.items.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`).join('') + lst('saberes');
+  const dsc = upDescr(c, u, aid), kcs = KC.filter(([k])=>dsc[k] || (pl.kc||[]).indexOf(k)>-1);
+  const kcHtml = kcs.length ? `<p class="upd-tags">${kcs.map(([k])=>`<i>${k}${dsc[k]?' ('+dsc[k].map(x=>x.replace(k,'')).join(', ')+')':''}</i>`).join('')}</p>` : '';
+  const curr = curr0 + sub('Saberes básicos', sabHtml) + sub('Competencias clave y descriptores', kcHtml) + sub('Otras concreciones', txt('currNotes'));
+  const obj = lst('objectives');
+  const ags = upSessions(c, u, aid) || [];
+  const ini0 = tasksOfUnit(c, u.id).filter(t=>t.isInitial).map(t=>'Evaluación inicial: '+t.name);
+  const seqAll = ini0.concat(ags.map(x=>fmtDate(x.iso).slice(0,5)+' · '+(x.s.title||'(sin título)')+((x.s.files||[]).length?' (📎 '+x.s.files.length+')':''))).concat(upLines(pl.sequence));
+  const mats = (pl.files||[]).length ? `<p class="upd-cr"><b>Materiales</b> ${pl.files.map(a=>esc(a.name)).join(' · ')}</p>` : '';
+  const seq = seqAll.length || mats ? `<ol start="${ini0.length?0:1}">${seqAll.map(x=>`<li>${esc(x)}</li>`).join('')}</ol>${mats}` : '';
+  const dAuto = upDivAuto(c, u, aid);
+  const dSel = upDivStudents(c, aid).map(x=>({x:x, m:((pl.divStu||{})[x.st.id]||{}).m||[]})).filter(o=>o.m.length);
+  const dStu = dSel.length ? `<div class="upd-sub"><h3>Medidas por alumno o alumna</h3>${dSel.map((o,i)=>`<p class="upd-cr"><b>${String.fromCharCode(65+i%26)}${o.x.med?' · '+esc(o.x.med):''}</b> ${o.m.map(esc).join(' · ')}</p>`).join('')}</div>` : '';
+  const dvs = dStu + (dAuto.length ? `<ul>${dAuto.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>` : '') + sub('Medidas generales', txt('divGeneral')) + sub('Medidas específicas y adaptaciones', txt('divSpecific'));
+  const sv = upSelf(pl);
+  const selfHtml = sv.some(x=>x!=null) ? `<div class="upd-self"><div>${dianaSvg(SELF_INS, sv, 220)}</div><p>${SELF_ITEMS.map((n,i)=>sv[i]==null?'':esc(n)+': <b>'+(sv[i]+1)+'</b>').filter(Boolean).join(' · ')}</p></div>` : '';
+  const rs = upResults(c, u);
+  const resHtml = rs ? `<p>Media de la clase: <b>${fmt(rs.mean)}</b> · aprueban ${rs.pass} de ${rs.n}${rs.crits.length?' · criterios más bajos: '+rs.crits.slice(0,3).map(k=>k.code+' ('+fmt2(k.v)+')').join(', '):''}</p>` : '';
+  const val = resHtml + selfHtml + sub('Qué ha funcionado', txt('valWorked')) + sub('Qué cambiaría', txt('valChange'));
+  const met = sub('Metodologías', tags('methods')) + sub('Agrupamientos', tags('groups')) + sub('Recursos y materiales', txt('resources')) + sub('Espacios', txt('spaces'));
+  const ev = tasks.length ? `<table><thead><tr><th>Tarea evaluable</th><th>Instrumento</th><th>Criterios</th><th class="r">Peso</th></tr></thead><tbody>
+      ${tasks.map(t=>`<tr><td>${esc(t.name)}</td><td>${esc(TYPE_NAMES[(t.instr||{}).type]||'')}</td><td>${taskCriteria(c, t).map(esc).join(' · ')}</td>
+        <td class="r">${t.isInitial?'inicial':(t.informative?'informativa':(Number(t.weight)||0)+'%')}</td></tr>`).join('')}</tbody></table>` : '';
+  const evAll = ev + sub('Procedimientos y observaciones', txt('evalNotes'));
+  return `<header class="upd-head" style="--c:${areaColor(aid)}"><h1>${esc(u.name)}</h1>
+      <p>${meta.map(esc).join(' · ')}</p>${u.desc?`<p class="upd-desc">${esc(u.desc)}</p>`:''}</header>
+    <div class="upd-grid">
+      <div>${sec('Justificación y contexto', ctx)}</div>
+      <div>${sec('Objetivos didácticos', obj)}${sec('Metodología', met)}</div>
+    </div>
+    ${sec('Concreción curricular', curr, 'upd-wide')}
+    ${sec('Secuencia de sesiones', seq, 'upd-wide upd-seq')}
+    ${sec('Evaluación', evAll, 'upd-wide')}
+    ${(dvs||val||showEmpty) ? `<div class="upd-grid"><div>${sec('Atención a la diversidad', dvs)}</div><div>${sec('Valoración de la unidad', val)}</div></div>` : ''}`;
+}
+const UPD_CSS = `
+  .upd{font-family:var(--font-ui,-apple-system,'Segoe UI',system-ui,sans-serif);color:#16241F;line-height:1.4}
+  .upd *{box-sizing:border-box}
+  .upd-head{border-left:.5em solid var(--c,#1F6B4F);background:color-mix(in srgb,var(--c,#1F6B4F) 12%,#fff);border-radius:.9em;padding:.7em 1em;margin-bottom:.8em}
+  .upd h1{font-size:1.55em;margin:0 0 .15em;line-height:1.15}
+  .upd-head p{margin:0;font-size:.92em;color:#4A5A52}
+  .upd-head p.upd-desc{margin-top:.3em;color:#16241F}
+  .upd-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 .8em;align-items:start}
+  .upd-grid section,.upd-cr,.upd tr{break-inside:avoid}
+  .upd section{background:#fff;border:1px solid #DDE3DD;border-radius:.9em;padding:.6em .85em .7em;margin:0 0 .8em;box-shadow:inset 0 -2px 0 rgba(22,36,31,.06)}
+  .upd h2{font-size:.8em;text-transform:uppercase;letter-spacing:.07em;color:#1F6B4F;margin:0 0 .45em;border:0;padding:0}
+  .upd h3{font-size:.86em;margin:.55em 0 .1em;color:#4A5A52;font-weight:600}
+  .upd-sub:first-of-type h3{margin-top:0}
+  .upd p{margin:.1em 0 .25em}
+  .upd ul,.upd ol{margin:.1em 0;padding-left:1.4em}
+  .upd-seq ol{columns:2;column-gap:2em}
+  .upd table + .upd-sub{margin-top:.6em}
+  .upd li{margin-bottom:.15em}
+  .upd-none{color:#9AA79F;font-style:italic}
+  .upd-tags i{display:inline-block;font-style:normal;background:#DCEBE1;color:#1F6B4F;border-radius:1em;padding:.05em .6em;margin:0 .3em .3em 0;font-size:.92em}
+  .upd-cr{font-size:.93em}
+  .upd-cr b{color:#1F6B4F;margin-right:.3em}
+  .upd-cr em{font-style:normal;font-weight:600}
+  .upd-self{display:flex;flex-direction:column;gap:.3em;align-items:center}
+  .upd-self > div{flex:none;width:19em;padding:0 4.2em}
+  .upd-self p{font-size:.92em}
+  .upd table{width:100%;border-collapse:collapse;font-size:.95em}
+  .upd th{text-align:left;font-size:.82em;text-transform:uppercase;letter-spacing:.05em;color:#6B7A72;border-bottom:1px solid #DDE3DD;padding:.3em .4em;font-weight:600}
+  .upd td{padding:.35em .4em;border-bottom:1px solid #EEF1EE;vertical-align:top}
+  .upd tr:last-child td{border-bottom:0}
+  .upd .r{text-align:right;white-space:nowrap}
+  @media screen and (max-width:700px){.upd-grid{grid-template-columns:1fr}}`;
+/* PDF: dos caras de A4 como máximo. Se reduce el cuerpo de letra hasta que quepa. */
+function planPdf(){
+  const c = course(), aid = areaId(), p = period(), u = c && unitById(c, state.activeUnit); if(!u) return;
+  const base = reportDoc(c, [], aid, p.id, {}).css;
+  const css = base + UPD_CSS + `
+    @page{size:A4;margin:12mm}
+    #reportRoot .rep.up-rep{max-width:none;width:186mm;padding:0;background:transparent;box-shadow:none;margin:0 auto}
+    #reportRoot .up-rep .upd-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+    #reportRoot .up-fit{max-width:186mm;margin:0 auto 10px;font-size:12.5px;color:#6B7A72}
+    @media print{ #reportRoot .up-fit{display:none} #reportRoot .rep.up-rep{width:auto} }`;
+  const pack = {css:css, n:1, title:'Programación · '+u.name,
+    body:`<p class="up-fit" id="upFit"></p><div class="rep up-rep"><div class="upd">${planDocHtml(c, u, aid, p, false)}</div></div>`};
+  showReport(pack, ('programacion_'+u.name).replace(/[^\wáéíóúñÁÉÍÓÚÑ]+/g,'_')+'.html');
+  const root = document.getElementById('reportRoot'), doc = root.querySelector('.upd');
+  const info = root.querySelector('.rbar span'); if(info) info.textContent = 'Programación de la unidad';
+  const maxPx = 2 * 262 * 96 / 25.4;   // dos páginas A4 con 12 mm de margen (con un poco de holgura)
+  let pt = 10.5, lvl = 0;
+  const fit = min=>{ pt = 10.5; doc.style.fontSize = pt+'pt';
+    while(doc.scrollHeight > maxPx && pt > min){ pt = Math.round((pt-0.25)*100)/100; doc.style.fontSize = pt+'pt'; }
+    return doc.scrollHeight <= maxPx; };
+  /* primero se intenta con todo el texto a 8 pt o más; si no cabe, se abrevia la concreción curricular; solo al final se baja de 8 pt */
+  let ok = fit(8);
+  while(!ok && lvl < 2){ lvl++; doc.innerHTML = planDocHtml(c, u, aid, p, false, lvl); ok = fit(8); }
+  if(!ok) ok = fit(7);
+  const pages = Math.max(1, Math.ceil(doc.scrollHeight / (maxPx/2)));
+  doc.dataset.pt = pt; doc.dataset.pages = pages; doc.dataset.lvl = lvl;
+  root.querySelector('#upFit').textContent = !ok
+    ? 'El contenido no cabe en dos caras ni con la letra al mínimo: ocupará más de una hoja. Acorta algún apartado.'
+    : (pages===1 ? 'Cabe en una cara.' : 'Cabe en una hoja por las dos caras.')
+      + (lvl===1 ? ' Para que quepa, las competencias específicas salen solo con su número.' : lvl===2 ? ' Para que quepa, las competencias específicas y los criterios salen solo con su código.' : '')
+      + (pt<10.5 ? ' Letra a '+String(pt).replace('.',',')+' pt.' : '');
+}
+document.addEventListener('input', e=>{
+  const t = e.target; if(!t.dataset || t.dataset.act!=='planF') return;
+  const c = course(), u = c && unitById(c, state.activeUnit); if(!u) return;
+  if(!u.plan || typeof u.plan!=='object') u.plan = {};
+  if(String(t.value).trim()) u.plan[t.dataset.k] = t.value; else delete u.plan[t.dataset.k];
+  if(t.tagName==='TEXTAREA') autoGrow(t);
+  if(t.dataset.k==='sequence'){ const sl = document.getElementById('seqLines'); if(sl) sl.innerHTML = seqLinesHtml(u.plan); }
+  upRefresh(u); save();
+});
+function upRefresh(u){
+  const pl = u.plan || {}; let n = 0;
+  UP_BLOCKS.forEach(b=>{ const d = document.querySelector('[data-upb="'+b.id+'"] .up-dot'); if(!d) return;
+    const ok = upFilled(pl, b) || d.dataset.auto==='1'; d.classList.toggle('on', ok); if(ok) n++; });
+  const pr = document.getElementById('upProg'); if(pr) pr.textContent = upCountTxt(n);
+}
 
 views.evaluacion = function(){ state.view='unidades'; return views.unidades(); };
 
@@ -4475,7 +5151,7 @@ views.editorInstr = function(){
 
   const head = `<tr>
     <th class="stick">ÍTEM${linkTask?' · CRITERIO · PESO':''}</th>
-    ${isMatrix ? (ins.levels||[]).map((l,j)=>`<th class="lvl">${l.face?`<div class="lvl-face">${l.face}</div>`:''}
+    ${isMatrix ? (ins.levels||[]).map((l,j)=>`<th class="lvl ${tn(l)}" data-tj="${j}">${l.face?`<div class="lvl-face">${l.face}</div>`:''}
         <input class="lvl-label" value="${esc(l.label)}" data-act="levelLabel" data-j="${j}" aria-label="Nombre del grado">
         <div class="row" style="gap:4px;justify-content:center;margin-top:4px">
           <input class="lvl-val" type="number" step="0.1" min="0" max="10" value="${l.value}" data-act="levelValue" data-j="${j}" aria-label="Valor sobre 10">
@@ -4496,7 +5172,7 @@ views.editorInstr = function(){
         <button class="icon" data-act="delItem" data-i="${i}" title="Quitar ítem">✕</button>
       </div>
     </td>
-    ${isMatrix ? (ins.levels||[]).map((l,j)=>`<td class="cell-desc">
+    ${isMatrix ? (ins.levels||[]).map((l,j)=>`<td class="cell-desc ${tn(l)}" data-tj="${j}">
         <textarea data-act="cellText" data-i="${i}" data-j="${j}" rows="4"
           placeholder="${ins.type==='rubric'?'Qué tiene que hacer para alcanzar este grado':'Descripción opcional'}">${esc((it.cells||[])[j]||'')}</textarea></td>`).join('') : ''}
     ${isMatrix ? '<td class="cell-desc"></td>' : ''}
@@ -4521,7 +5197,7 @@ views.editorInstr = function(){
       </div>
       ${isMatrix ? (ins.levels||[]).map((l,j)=>`
         <div class="lv-row">
-          <span class="lv-tag">${esc(l.label)}<br>${fmt2(l.value)}</span>
+          <span class="lv-tag ${tn(l)}" data-tj="${j}">${esc(l.label)}<br>${fmt2(l.value)}</span>
           <textarea data-act="cellText" data-i="${i}" data-j="${j}" rows="3"
             placeholder="${ins.type==='rubric'?'Qué tiene que hacer para este grado':'Descripción opcional'}">${esc((it.cells||[])[j]||'')}</textarea>
         </div>`).join('') : ''}
@@ -4619,6 +5295,7 @@ function gradeTable(c, aid, p, opts){
   const edit = !!state.editMode;
   const nAdj = countAdj(c, aid, p.id);
   const unitFinal = (sid)=>unitScore(c, sid, unit.id);   // nota media de la unidad (informativa)
+  const showArea = !isInitialP(c, p.id);
 
   const header = `<div class="row" style="margin-bottom:12px">
       <h2 class="sec-title">${unit?'Evaluación de la unidad':'Evaluación'}</h2><div class="spacer"></div>
@@ -4648,6 +5325,7 @@ function gradeTable(c, aid, p, opts){
     const adj = isAdjTask(c, sid, t.id);
     const low = eff!=null && eff < c.pass;
     const aMark = adaptedHere? '<i class="ad-badge" title="Evaluación adaptada para este alumno">A</i>' : '';
+    if(!edit && !t.isInitial && !t.informative) cls += tnv(eff);
     const mk = edit ? '' : marksIcons(c, sid, t.id);
     const cm = edit ? '' : commentOf(c, sid, t.id);
     const mkHtml = (mk ? `<span class="cmarks" title="${esc(marksNames(c, sid, t.id))}">${mk}</span>` : '')
@@ -4668,7 +5346,7 @@ function gradeTable(c, aid, p, opts){
         <div class="stu-head">
           <span class="rownum">${String(idx+1).padStart(2,'0')}</span>
           <strong>${esc(s.name)}</strong>
-          <span class="score" title="Media de la unidad (informativa)">${fmt(um)}</span>
+          <span class="score${tnv(um)}" title="Media de la unidad (informativa)">${fmt(um)}</span>${um==null?'':pill(um, c.scale)}
         </div>
         ${list.map(t=>`<div class="task-line${t.isInitial?' tl-init':''}">
             <span class="tl-name">${t.isInitial?'<span class="init-tag">Ev. inicial</span> ':''}${esc(t.name)}${isAdaptedFor(c,t,s.id)?' <span class="tag warn" style="font-size:9px">adaptada</span>':''}<small>${TYPE_NAMES[(effInstr(c,t,s.id)||{}).type]}${t.isInitial?' · no computa':(t.informative?' · informativa':' · '+(Number(t.weight)||0)+'%')}</small></span>
@@ -4680,7 +5358,7 @@ function gradeTable(c, aid, p, opts){
 
   const head = `<tr><th class="stick">Alumno/a</th>
     ${list.map(t=>`<th class="task${t.isInitial?' th-init':''}">${t.isInitial?'<span class="init-tag">Ev. inicial</span><br>':''}${esc(t.name)}<small>${TYPE_NAMES[(t.instr||{}).type]||''}${t.isInitial?' · no computa':(t.informative?' · informativa':' · '+(Number(t.weight)||0)+'%')}</small></th>`).join('')}
-    <th class="task">Media<small>unidad</small></th></tr>`;
+    <th class="task th-sep">Media<small>unidad</small></th>${showArea?'<th class="task">Nota<small>área · trimestre</small></th>':''}</tr>`;
   const body = c.students.map((s,idx)=>{
     const um = unitFinal(s.id);
     const dv = c.diversity[dvkey(s.id, aid)]; const med = dv&&dv.med?medDef(dv.med):null;
@@ -4688,10 +5366,12 @@ function gradeTable(c, aid, p, opts){
     list.forEach(t=>{
       tr += `<td class="mark${t.isInitial?' td-init':''}">${ctrl(t, s.id, ctrlClass(t))}</td>`;
     });
-    tr += `<td class="final" title="Media de la unidad (informativa)">${fmt(um)}</td></tr>`;
-    return tr;
+    tr += `<td class="final td-sep${tnv(um)}" title="Media de la unidad (informativa)">${fmt(um)}${um==null?'':pill(um, c.scale)}</td>`;
+    if(showArea){ const af = areaFinal(c, s.id, aid, p.id);
+      tr += `<td class="final${tnv(af)}" title="Nota del área en ${esc(p.name)}, calculada por criterios">${fmt(af)}${af==null?'':pill(af, c.scale)}</td>`; }
+    return tr + '</tr>';
   }).join('');
-  return header + `<div class="scroll"><table class="grid"><thead>${head}</thead><tbody>${body}</tbody></table></div>` + (state.editMode ? '' : MARKS_HINT_F())
+  return header + `<div class="scroll"><table class="grid"><thead>${head}</thead><tbody>${body}</tbody></table></div>` + toneLegend(c) + (state.editMode ? '' : MARKS_HINT_F())
     + (hasInit? `<p class="hint" style="margin-top:8px"><span class="init-tag">Ev. inicial</span> Columna de diagnóstico: muestra la nota de la evaluación inicial, pero no cuenta para la media de la unidad ni para la nota trimestral.</p>`:'');
 }
 
@@ -4864,10 +5544,15 @@ views.plantillas = function(){
       const badge = TYPE_NAMES[t.type]||t.type;
       const body = t.type==='num'
         ? `<p class="tpl-line">Puntuación directa sobre <b>${t.max||10}</b>. No tiene ítems que definir.</p>`
+        : ((t.levels||[]).length && (t.items||[]).some(i=>(i.cells||[]).some(x=>x)))
+        ? `<div class="rv-wrap"><table class="rv"><thead><tr><th></th>
+             ${t.levels.map((l,j)=>`<th class="${tn(l)}">${lvlBars(t.levels,j)}<div>${esc(l.label)}</div><span class="gm-v">${fmt2(l.value)}</span></th>`).join('')}</tr></thead>
+             <tbody>${t.items.map(i=>`<tr><th>${esc(i.name||'ítem')}</th>
+               ${t.levels.map((l,j)=>`<td class="${tn(l)}">${esc((i.cells||[])[j]||'')}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`
         : `${(t.items||[]).length? `<div class="tpl-block"><span class="tpl-lbl">Aspectos que evalúa</span>
              <ul class="tpl-items">${t.items.map(i=>`<li>${esc(i.name||'ítem')}</li>`).join('')}</ul></div>`:''}
            ${(t.levels||[]).length? `<div class="tpl-block"><span class="tpl-lbl">Grados de logro</span>
-             <div class="tpl-levels">${t.levels.map(l=>`<span class="tpl-level">${esc(l.label)}<b>${fmt2(l.value)}</b></span>`).join('')}</div></div>`:''}`;
+             <div class="tpl-levels">${t.levels.map(l=>`<span class="tpl-level ${tn(l)}">${esc(l.label)}<b>${fmt2(l.value)}</b></span>`).join('')}</div></div>`:''}`;
       return `<details class="tpl-card">
         <summary class="tpl-sum">
           <span class="tpl-caret" aria-hidden="true">▸</span>
@@ -5132,15 +5817,17 @@ function viewTrimestreNotas(){
       const own = critsWorked(c, aid, p.id, s.id).indexOf(cd)>-1;
       if(!own){ tr += `<td class="mark na" title="No forma parte de su adaptación">·</td>`; return; }
       const v = critScore(c, s.id, aid, p.id, cd);
-      tr += `<td class="calif ${v!=null&&v<c.pass?'low':''}">${v==null?'<span style="color:#B9C4BC">–</span>':fmt2(v)}</td>`;
+      tr += `<td class="calif ${v!=null&&v<c.pass?'low':''}${tnv(v)}">${v==null?'<span style="color:#B9C4BC">–</span>':fmt2(v)}</td>`;
     });
-    tr += `<td class="final ${f!=null&&f<c.pass?'low':''}" data-final>${fmt(f)}</td><td class="calif">${pill(f, c.scale)}</td></tr>`;
+    units.forEach((u,ui)=>{ const uv = unitScore(c, s.id, u.id);
+      tr += `<td class="calif${ui?'':' td-sep'}${tnv(uv)}" title="${esc(u.name)}">${uv==null?'<span style="color:#B9C4BC">–</span>':fmt(uv)}</td>`; });
+    tr += `<td class="final td-sep ${f!=null&&f<c.pass?'low':''}${tnv(f)}" data-final>${fmt(f)}</td><td class="calif">${pill(f, c.scale)}</td></tr>`;
     return tr;
   }).join('');
 
   return header + `<div class="scroll"><table class="grid"><thead>
-      <tr><th class="stick">Alumno/a</th>${thCrit}<th class="task">Nota<small>final</small></th><th class="task">Calif.</th></tr>
-    </thead><tbody>${rows}</tbody></table></div>
+      <tr><th class="stick">Alumno/a</th>${thCrit}${units.map((u,ui)=>`<th class="task${ui?'':' th-sep'}" style="min-width:58px" title="${esc(u.name)}">U${ui+1}<small>unidad</small></th>`).join('')}<th class="task th-sep">Nota<small>área</small></th><th class="task">Calif.</th></tr>
+    </thead><tbody>${rows}</tbody></table></div>${toneLegend(c)}
     <div class="row" style="margin-top:14px;align-items:center">
       <p class="hint" style="margin:0;flex:1">${editW? 'Escribe el % de cada criterio; en blanco toma el valor gris de referencia. Deberían sumar 100%.' : 'El % de cada columna es su peso en la nota final. Para cambiarlo, usa «Modificar % criterios».'}</p>
       <button class="btn ghost small" data-act="csv">Exportar CSV</button>
@@ -6193,18 +6880,21 @@ function openCell(studentId, taskId){
   if(ins.type==='rubric'){
     const inner = `<h3>${esc(task.name)}${adTag}</h3>
       <p class="sub">${esc(s.name)} · rúbrica${adaptedHere?' · criterios de '+CYCLE_NAMES[effCycle(c,task,studentId)]:''}</p>
+      <div class="gm-bar"><div class="gm-score" id="gmScore"></div><div class="gm-dots" id="gmDots"></div><span class="gm-left" id="gmLeft"></span>
+        <div class="spacer"></div><button type="button" class="btn ghost small" data-compact></button></div>
       <div class="gm-scroll">
-      <table class="grade-matrix">
+      <table class="grade-matrix${state.rubCompact?' compact':''}">
         <thead><tr><th class="gm-itemhead">Aspecto evaluado</th>
-          ${levels.map(l=>`<th>${esc(l.label)}</th>`).join('')}
+          ${levels.map((l,j)=>`<th class="${tn(l)}"><div class="gm-h">${lvlBars(levels,j)}<b>${esc(l.label)}</b><span class="gm-v">${fmt2(l.value)}</span></div></th>`).join('')}
           <th style="width:70px">—</th></tr></thead>
         <tbody>
         ${items.map((it,i)=>`<tr data-row="${i}">
           <td class="gm-item"><strong>${esc(it.name||'Ítem '+(i+1))}</strong>
-            ${itemCrits(it).map(k=>`<span class="chip on">${esc(k)}</span>`).join('')}
-            <span class="tag grey">${itemPct(ins,i)}%</span></td>
-          ${levels.map((l,j)=>`<td class="gm-cell ${sel[i]===j?'on':''}" data-i="${i}" data-j="${j}">
-            <div class="gm-inner"><span class="gm-lvl">${esc(l.label)}</span>
+            <div class="gm-meta">${itemCrits(it).map(k=>`<span class="chip on">${esc(k)}</span>`).join('')}
+            <span class="tag grey">${itemPct(ins,i)}%</span></div>
+            <div class="gm-picked" data-pk="${i}"></div></td>
+          ${levels.map((l,j)=>`<td class="gm-cell ${tn(l)} ${sel[i]===j?'on':''}" data-i="${i}" data-j="${j}" title="${esc(l.label)} · ${fmt2(l.value)}">
+            <div class="gm-inner"><span class="gm-lvl">${lvlBars(levels,j)}<span class="gm-short">${esc(lvlShort(levels,j))}</span><span class="gm-name">${esc(l.label)}</span><span class="gm-v">${fmt2(l.value)}</span></span>
             ${(it.cells||[])[j]? `<span class="gm-desc">${esc(it.cells[j])}</span>`:''}</div></td>`).join('')}
           <td class="gm-skip"><button data-i="${i}" data-j="null">sin valorar</button></td>
         </tr>`).join('')}
@@ -6221,13 +6911,26 @@ function openCell(studentId, taskId){
       items.forEach((it,i)=>{ const j=sel[i]; if(j!=null && levels[j]){ const wi=Number(it.weight)||1; a+=levels[j].value*wi; w+=wi; } });
       const v = w? a/w : null;
       const adj = isAdjTask(c, studentId, taskId);
-      wrap.querySelector('#cellPreview').innerHTML = (v==null ? 'Sin valorar todavía.'
-        : 'Nota de la tarea: <b>'+fmt2(v)+'</b> '+pill(v, c.scale))
-        + (adj? ' <span class="count mid" style="margin-left:6px">ajustada a mano a '+fmt2(num(c.overrides[key]))+'</span>'
+      const done = sel.filter(x=>x!=null).length;
+      const sc = wrap.querySelector('#gmScore');
+      sc.className = 'gm-score' + (v==null ? '' : ' tn'+toneOf(v));
+      sc.innerHTML = '<b>'+fmt2(v)+'</b>' + (v==null ? '<small>sin valorar</small>' : pill(v, c.scale));
+      wrap.querySelector('#gmDots').innerHTML = items.map((it,i)=>`<i class="${sel[i]!=null && levels[sel[i]] ? tn(levels[sel[i]]) : ''}" title="${esc(it.name||'Ítem '+(i+1))}"></i>`).join('');
+      wrap.querySelector('#gmLeft').textContent = done+' de '+items.length;
+      wrap.querySelector('[data-compact]').textContent = state.rubCompact ? 'Ver descriptores' : 'Solo grados';
+      wrap.querySelectorAll('tr[data-row]').forEach(tr=>{
+        const i = Number(tr.dataset.row), j = sel[i];
+        tr.classList.toggle('has-sel', j!=null);
+        tr.querySelector('.gm-picked').textContent = (j!=null && levels[j]) ? levels[j].label + (((items[i].cells||[])[j]) ? ' · '+items[i].cells[j] : '') : '';
+      });
+      wrap.querySelector('#cellPreview').innerHTML =
+        (adj? '<span class="count mid">ajustada a mano a '+fmt2(num(c.overrides[key]))+'</span>'
                 +' <button class="btn ghost small" data-drop style="margin-left:6px">quitar ajuste</button>' : '');
     };
     wrap.addEventListener('click', e=>{
       if(e.target.hasAttribute('data-drop')){ delete c.overrides[key]; upd(); save(); render(); return; }
+      if(e.target.hasAttribute('data-compact')){ e.preventDefault(); state.rubCompact = !state.rubCompact;
+        wrap.querySelector('.grade-matrix').classList.toggle('compact', !!state.rubCompact); upd(); save(); return; }
       const b = e.target.closest('[data-j]');
       if(!b) return;
       e.preventDefault();
@@ -6252,7 +6955,7 @@ function openCell(studentId, taskId){
         ${itemCrits(it).map(k=>`<span class="chip on">${esc(k)}</span>`).join('')}
         <span class="tag grey">${itemPct(ins,i)}%</span>
       </div>
-      <div class="crit-chips">${levels.map((l,j)=>`<button class="lvl-btn ${sel[i]===j?'on':''}" data-i="${i}" data-j="${j}">${esc(l.label)}</button>`).join('')}
+      <div class="crit-chips">${levels.map((l,j)=>`<button class="lvl-btn ${tn(l)} ${sel[i]===j?'on':''}" data-i="${i}" data-j="${j}">${esc(l.label)}</button>`).join('')}
              <button class="lvl-btn ${sel[i]==null?'on':''}" data-i="${i}" data-j="null">–</button></div>
     </div>`).join('');
   inner += `<div id="dianaBox"></div><p class="sub" id="cellPreview" style="margin-top:6px"></p>
@@ -6404,6 +7107,7 @@ function teLeave(){
   state.activeCourse = b.cid; state.activeArea = b.aid; state.activePeriod = b.pid;
   state.view = b.view==='tarea' ? 'clases' : b.view; state.homeTab = b.homeTab; state.activeUnit = b.unit; state.editor = b.editor;
 }
+function teUnitCrits(c, d){ const u = d.unitId ? unitById(c, d.unitId) : null; return u ? ((u.plan||{}).crits||[]) : []; }
 function teCritHtml(c, d){
   const map = areaDef(d.aid).crit[c.cycle] || {};
   return d.criteria.length
@@ -6475,7 +7179,8 @@ views.tarea = function(){
 
     <section class="card te-card">
       <h2 class="te-h">Criterios de evaluación <span class="te-count" id="teCritN">${d.criteria.length?d.criteria.length+' marcado(s)':''}</span></h2>
-      ${crits.length ? `<div class="te-chips">${crits.map(k=>`<button type="button" class="te-chip mono ${d.criteria.indexOf(k.code)>-1?'on':''}" data-act="teCrit" data-code="${k.code}" title="${esc(k.text)}">${k.code}</button>`).join('')}</div>
+      ${crits.length ? `<div class="te-chips">${crits.map(k=>`<button type="button" class="te-chip mono ${d.criteria.indexOf(k.code)>-1?'on':''} ${teUnitCrits(c, d).indexOf(k.code)>-1?'inplan':''}" data-act="teCrit" data-code="${k.code}" title="${esc(k.text)}">${k.code}</button>`).join('')}</div>
+        ${teUnitCrits(c, d).length?'<p class="te-help" style="margin:8px 0 0">Con borde verde, los criterios elegidos en la programación de la unidad. Puedes marcar cualquier otro: se añadirá a la programación.</p>':''}
         <div id="teCritPrev" class="te-critlist">${teCritHtml(c, d)}</div>`
       : '<p class="te-help">No hay criterios cargados para esta área y ciclo.</p>'}
     </section>
@@ -7084,6 +7789,7 @@ function applyBackup(data, mode){
     if(data.areaColors && typeof data.areaColors==='object') state.areaColors = data.areaColors;
     if(data.colorBy) state.colorBy = data.colorBy;
     if(Array.isArray(data.markDefs)) state.markDefs = data.markDefs;
+    if(Array.isArray(data.upMethods)) state.upMethods = data.upMethods;
     if(data.holidays && typeof data.holidays==='object') state.holidays = data.holidays;
     state.activeCourse = state.courses[0]? state.courses[0].id : null;
     state.activePeriod = null; state.activeArea = null; state.editor = null;
@@ -7417,7 +8123,8 @@ async function attUrl(a){
   const b = await attBlob(a); if(!b) return null;
   return attUrls[a.id] = URL.createObjectURL(b.type ? b : new Blob([b], {type:a.type}));
 }
-function allAtts(){ const out = []; Object.keys(state.sessions||{}).forEach(k=>(state.sessions[k].files||[]).forEach(a=>out.push(a))); return out; }
+function allAtts(){ const out = []; Object.keys(state.sessions||{}).forEach(k=>(state.sessions[k].files||[]).forEach(a=>out.push(a)));
+  (state.courses||[]).forEach(c=>(c.units||[]).forEach(u=>((u.plan||{}).files||[]).forEach(a=>out.push(a)))); return out; }
 async function gdAttFolder(){
   if(state.attFolderId){
     try{ const r = await gdFetch(GD_API+'/files/'+state.attFolderId+'?fields=id,trashed'); if(r.ok){ const f = await r.json(); if(f.id && !f.trashed) return f.id; } }catch(e){ if(e.offline||e.auth) throw e; }
@@ -7442,7 +8149,7 @@ async function attUploadPending(){
       const r = await gdFetch(GD_UP+'/files?uploadType=multipart&fields=id', {method:'POST', headers:{'Content-Type':'multipart/related; boundary='+b}, body:body});
       const f = await r.json();
       /* la misma referencia puede estar en varias sesiones (sesión copiada) */
-      Object.keys(state.sessions).forEach(k=>(state.sessions[k].files||[]).forEach(x=>{ if(x.id===a.id) x.driveId = f.id; }));
+      allAtts().forEach(x=>{ if(x.id===a.id) x.driveId = f.id; });
       save();
     }
   }catch(e){}
@@ -7790,7 +8497,8 @@ function unitModal(existing){
       const nu = {id:uid(), areaId:aid, periodId:p.id, name:v.name, desc:v.desc||''};
       c.units.push(nu);
       dupTargets(c, aid).filter(x=>x.ok && v['also_'+x.c.id]).forEach(({c:dst})=>ensureUnitIn(c, dst, nu));
-      state.activeUnit=nu.id; state.view='unidad'; state.unitSub='tareas';
+      state.activeUnit=nu.id; state.view='unidad'; state.unitSub='plan'; state.upView='edit';
+      if(!state.upOpen || typeof state.upOpen!=='object') state.upOpen = {}; state.upOpen[nu.id] = ['ident'];
     }
   }, existing?'Guardar':'Crear unidad');
   if(existing && state.courses.length>1){
@@ -7963,6 +8671,139 @@ const actions = {
   evalSub(t){ state.view='evaluacion'; state.evalSub = t.dataset.id; save(); render(); },
   unitSub(t){ state.unitSub = t.dataset.id; if(t.dataset.id==='eval'){ state.editMode=false; if(!isNarrow()) state.gridMode='table'; } save(); render(); },
   triSub(t){ state.triSub = t.dataset.id; save(); render(); },
+  upView(t){ state.upView = t.dataset.m; save(); render(); },
+  /* despliega o pliega un apartado en su sitio; los demás no se mueven de orden */
+  upToggle(t){
+    const c = course(), u = c && unitById(c, state.activeUnit); if(!u) return;
+    const set = upOpenSet(u), id = t.dataset.id, i = set.indexOf(id), sec = t.closest('.up-sec');
+    if(i>-1) set.splice(i,1); else set.push(id);
+    sec.classList.toggle('open', i<0); t.setAttribute('aria-expanded', i<0);
+    if(i<0) sec.querySelectorAll('textarea').forEach(autoGrow);
+    const all = document.querySelector('[data-act="upAll"]');
+    if(all){ const full = set.length===UP_BLOCKS.length; all.dataset.m = full?0:1; all.textContent = full?'Plegar todo':'Desplegar todo'; }
+    save();
+  },
+  critToggle(t){
+    const c = course(), u = c && unitById(c, state.activeUnit); if(!u) return;
+    if(t.classList.contains('lock')) return;
+    if(!u.plan || typeof u.plan!=='object') u.plan = {};
+    const cur = Array.isArray(u.plan.crits) ? u.plan.crits.slice() : [], i = cur.indexOf(t.dataset.code);
+    if(i>-1) cur.splice(i,1); else cur.push(t.dataset.code);
+    if(cur.length) u.plan.crits = cur; else delete u.plan.crits;
+    t.classList.toggle('on', i<0); t.setAttribute('aria-pressed', i<0);
+    const box = document.getElementById('critBox');
+    box.querySelectorAll('.sab-sub').forEach(d=>{ const all = d.querySelectorAll('.sab-it').length, n = d.querySelectorAll('.sab-it.on').length;
+      d.querySelector('[data-sabn]').textContent = n+'/'+all; d.classList.toggle('has', n>0); });
+    document.getElementById('critTot').textContent = box.querySelectorAll('.sab-it.on').length+' elegidos de '+box.querySelectorAll('.sab-it').length;
+    const kl = document.querySelector('.kc-list'); if(kl) kl.outerHTML = kcPicker(c, u, areaId());
+    upRefresh(u); save();
+  },
+  selfLv(t){
+    const c = course(), u = c && unitById(c, state.activeUnit); if(!u) return;
+    if(!u.plan || typeof u.plan!=='object') u.plan = {};
+    const sv = upSelf(u.plan), i = Number(t.dataset.i), j = Number(t.dataset.j);
+    sv[i] = sv[i]===j ? null : j;
+    if(sv.some(x=>x!=null)) u.plan.self = sv; else delete u.plan.self;
+    t.parentElement.querySelectorAll('.lvl-btn').forEach(b=>b.classList.toggle('on', Number(b.dataset.j)===sv[i]));
+    const d = document.getElementById('selfDiana'); if(d) d.innerHTML = dianaSvg(SELF_INS, sv, 300);
+    upRefresh(u); save();
+  },
+  divM(t){
+    const c = course(), u = c && unitById(c, state.activeUnit); if(!u) return;
+    if(!u.plan || typeof u.plan!=='object') u.plan = {};
+    const all = u.plan.divStu || (u.plan.divStu = {}), sid = t.dataset.sid, o = all[sid] || (all[sid] = {m:[]});
+    const i = o.m.indexOf(t.dataset.m); if(i>-1) o.m.splice(i,1); else o.m.push(t.dataset.m);
+    if(!o.m.length) delete all[sid];
+    t.classList.toggle('on', i<0);
+    const n = t.closest('.dv-st').querySelector('.sab-n'); if(n) n.textContent = ((all[sid]||{}).m||[]).length+' medida(s)';
+    upRefresh(u); save();
+  },
+  divAdd(t){
+    const c = course(), u = c && unitById(c, state.activeUnit); if(!u) return;
+    const inp = t.parentElement.querySelector('[data-divnew]'), v = (inp.value||'').trim(); if(!v) return;
+    if(!u.plan || typeof u.plan!=='object') u.plan = {};
+    const all = u.plan.divStu || (u.plan.divStu = {}), o = all[t.dataset.sid] || (all[t.dataset.sid] = {m:[]});
+    if(o.m.indexOf(v)<0) o.m.push(v);
+    save(); render();
+  },
+  kcToggle(t){
+    const c = course(), u = c && unitById(c, state.activeUnit); if(!u) return;
+    if(t.classList.contains('lock')) return;
+    if(!u.plan || typeof u.plan!=='object') u.plan = {};
+    const cur = Array.isArray(u.plan.kc) ? u.plan.kc.slice() : [], i = cur.indexOf(t.dataset.k);
+    if(i>-1) cur.splice(i,1); else cur.push(t.dataset.k);
+    if(cur.length) u.plan.kc = cur; else delete u.plan.kc;
+    t.classList.toggle('on', i<0); t.setAttribute('aria-pressed', i<0); upRefresh(u); save();
+  },
+  sabToggle(t){
+    const c = course(), u = c && unitById(c, state.activeUnit); if(!u) return;
+    if(!u.plan || typeof u.plan!=='object') u.plan = {};
+    const cur = Array.isArray(u.plan.sab) ? u.plan.sab.slice() : [], i = cur.indexOf(t.dataset.id);
+    if(i>-1) cur.splice(i,1); else cur.push(t.dataset.id);
+    if(cur.length) u.plan.sab = cur; else delete u.plan.sab;
+    sabRefresh(u); save();
+  },
+  sabAll(t){
+    const c = course(), u = c && unitById(c, state.activeUnit); if(!u) return;
+    if(!u.plan || typeof u.plan!=='object') u.plan = {};
+    const ids = [...t.closest('.sab-sub').querySelectorAll('.sab-it')].map(x=>x.dataset.id);
+    let cur = (Array.isArray(u.plan.sab) ? u.plan.sab : []).filter(x=>ids.indexOf(x)<0);
+    if(t.dataset.m==='1') cur = cur.concat(ids);
+    if(cur.length) u.plan.sab = cur; else delete u.plan.sab;
+    sabRefresh(u); save();
+  },
+  /* convierte una línea de la secuencia en una sesión de la agenda, en el día y la franja elegidos */
+  seqToAgenda(t){
+    const c = course(), u = c && unitById(c, state.activeUnit); if(!u || !u.plan) return;
+    const lines = upLines(u.plan.sequence), i = Number(t.dataset.i), title = lines[i]; if(!title) return;
+    let done = false;
+    pickSlotModal(u.plan.from || today(), [], ({d, t:from})=>{
+      if(done) return;
+      const sl = state.schedule.find(x=>x.kind!=='break' && x.from===from); if(!sl) return;
+      const key = skey(d, sl.id), bd = document.querySelector('.backdrop');
+      const hint = bd && bd.querySelector('.sub');
+      if(state.sessions[key]){ if(hint) hint.innerHTML = '<b style="color:#B4232C">Esa franja ya tiene una sesión. Elige otra.</b>'; return; }
+      if(holidayOf(d)){ if(hint) hint.innerHTML = '<b style="color:#B4232C">Ese día es no lectivo. Elige otro.</b>'; return; }
+      done = true;
+      state.sessions[key] = {title:title, parts:[], courseId:c.id, areaId:u.areaId};
+      lines.splice(i,1); if(lines.length) u.plan.sequence = lines.join('\n'); else delete u.plan.sequence;
+      if(!u.plan.from || d < u.plan.from) u.plan.from = d;
+      if(!u.plan.to || d > u.plan.to) u.plan.to = d;
+      if(bd) bd.remove(); save(); render();
+    });
+    const h = document.querySelector('.backdrop h3'); if(h) h.textContent = 'Pasar a la agenda';
+    const p2 = document.querySelector('.backdrop .sub'); if(p2) p2.textContent = '«'+title+'». Toca el día y la franja libre donde irá la sesión.';
+  },
+  sabCycle(t){ state.sabCycle = Number(t.dataset.m); save(); render(); },
+  sabOnly(t){
+    state.sabOnly = !state.sabOnly;
+    const box = document.getElementById('sabBox'); if(box) box.classList.toggle('only', !!state.sabOnly);
+    t.textContent = state.sabOnly ? 'Ver todos' : 'Ver solo los elegidos'; save();
+  },
+  upAll(t){
+    const c = course(), u = c && unitById(c, state.activeUnit); if(!u) return;
+    if(!state.upOpen || typeof state.upOpen!=='object') state.upOpen = {};
+    state.upOpen[u.id] = t.dataset.m==='1' ? UP_BLOCKS.map(b=>b.id) : [];
+    save(); render();
+  },
+  /* lista de metodologías común a todas las unidades */
+  upMethodsEdit(){
+    openModal(`<h3>Metodologías</h3><p class="sub">Una por línea. La lista es la misma en todas tus unidades y clases.</p>
+      <label class="field"><span>Lista</span><textarea class="inp" name="list" style="min-height:260px">${esc(upMethodList().join('\n'))}</textarea></label>
+      <p class="hint" style="margin:8px 0 0">Si quitas una que ya está marcada en alguna unidad, esa unidad la conserva.</p>`, v=>{
+        const out = []; String(v.list||'').split(/\n+/).map(x=>x.trim()).filter(Boolean).forEach(x=>{ if(out.indexOf(x)<0) out.push(x); });
+        state.upMethods = out;
+      }, 'Guardar lista');
+  },
+  planPdf(){ planPdf(); },
+  planChip(t){
+    const c = course(), u = c && unitById(c, state.activeUnit); if(!u) return;
+    if(!u.plan || typeof u.plan!=='object') u.plan = {};
+    const k = t.dataset.k, v = t.dataset.v, cur = Array.isArray(u.plan[k]) ? u.plan[k].slice() : [], i = cur.indexOf(v);
+    if(i>-1) cur.splice(i,1); else cur.push(v);
+    if(cur.length) u.plan[k] = cur; else delete u.plan[k];
+    t.classList.toggle('on', i<0); upRefresh(u); save();
+  },
   openUnit(t){ state.activeUnit = t.dataset.id; state.view='unidad'; state.unitSub='tareas'; save(); render(); },
   addUnit(){ unitModal(null); },
   iniAddTest(){ openTaskPage({}); },
@@ -8474,6 +9315,7 @@ const actions = {
       k.tutorias = []; k.diversity = {}; k.dua = {}; k.initObs = {}; k.progress = {};
       k.layout = {items:[]}; k.timetable = {}; k.marks = {}; k.comments = {}; k.extGrades = {}; k.extDiv = {}; k.sdiv = {};
       (k.tasks||[]).forEach(t=>{ t.adaptations = {}; t.dates = []; delete t.date; });
+      (k.units||[]).forEach(u=>{ if(u.plan){ delete u.plan.divStu; delete u.plan.self; delete u.plan.valWorked; delete u.plan.valChange; } });
       k.name = cc.name + ' (programación)';
       return k;
     };
@@ -8602,6 +9444,31 @@ function weightGuard(act, go){
   return true;
 }
 
+/* al terminar de escribir la secuencia, se actualiza la lista de sesiones sin fecha */
+document.addEventListener('change', e=>{ const t = e.target; if(t.dataset && t.dataset.act==='planF' && (t.dataset.k==='from' || t.dataset.k==='to')) render(); });
+/* adjuntos desde la programación de la unidad: a una sesión de la agenda o a la unidad */
+document.addEventListener('change', async e=>{
+  const t = e.target; if(!t.dataset || !t.dataset.upfile) return;
+  const c = course(), u = c && unitById(c, state.activeUnit); if(!u) return;
+  const list = [...t.files]; t.value = ''; const key = t.dataset.upfile; let bad = '';
+  for(const f of list){
+    if(f.size > ATT_MAX){ bad = '«'+f.name+'» pesa más de 25 MB y no se ha añadido.'; continue; }
+    try{ const a = await attAdd(f);
+      if(key==='unit'){ if(!u.plan || typeof u.plan!=='object') u.plan = {}; (u.plan.files = u.plan.files || []).push(a); }
+      else if(state.sessions[key]){ (state.sessions[key].files = state.sessions[key].files || []).push(a); }
+    }catch(err){ bad = 'No se ha podido guardar «'+f.name+'» en este equipo.'; }
+  }
+  save(); render();
+  if(bad){ const h = document.getElementById('upAttHint'); if(h) h.innerHTML = '<b style="color:#B4232C">'+esc(bad)+'</b>'; }
+});
+document.addEventListener('click', e=>{
+  const box = e.target.closest('[data-upatt]'); if(!box) return;
+  const c = course(), u = c && unitById(c, state.activeUnit); if(!u || !u.plan) return;
+  const files = u.plan.files || [];
+  const d = e.target.closest('[data-attdel]');
+  if(d){ e.preventDefault(); e.stopPropagation(); files.splice(Number(d.dataset.attdel),1); if(!files.length) delete u.plan.files; save(); render(); return; }
+  const o = e.target.closest('[data-attopen]'); if(o){ e.preventDefault(); e.stopPropagation(); attViewer(files, Number(o.dataset.attopen)); }
+}, true);
 /* anexos en la agenda: tocar una miniatura o el 📎 abre el visor sin abrir la sesión */
 document.addEventListener('click', e=>{
   const box = e.target.closest('[data-attsess]'); if(!box || e.target.closest('.backdrop')) return;
@@ -8709,7 +9576,9 @@ document.addEventListener('change', e=>{
     save(); render(); return;
   }
   if(a==='levelLabel'){ ins.levels[j].label = t.value; save(); return; }
-  if(a==='levelValue'){ ins.levels[j].value = num(t.value)==null?0:num(t.value); save(); return; }
+  if(a==='levelValue'){ ins.levels[j].value = num(t.value)==null?0:num(t.value);
+    document.querySelectorAll('[data-tj="'+j+'"]').forEach(x=>{ x.className = x.className.replace(/\btn\d\b/, tn(ins.levels[j])); });
+    save(); return; }
   if(a==='itemName'){ ins.items[i].name = t.value; save(); return; }
   if(a==='itemWeight'){ const v = num(t.value); ins.items[i].weight = v==null ? 0 : Math.max(0, Math.min(100, wRound(v))); t.value = ins.items[i].weight; weightBarRefresh(ins); save(); return; }
   if(a==='cellText'){
