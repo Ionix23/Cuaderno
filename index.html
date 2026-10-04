@@ -1133,6 +1133,17 @@ table.ini-grid,table.mini-grid{border-collapse:separate;border-spacing:0 5px}
 .up-stat{background:var(--tb,var(--paper));color:var(--tf,var(--ink));border-radius:12px;padding:6px 12px;box-shadow:var(--bevel);min-width:92px}
 .up-stat small{display:block;font-size:11.5px;text-transform:uppercase;letter-spacing:.03em;opacity:.8}
 .up-stat b{font-family:var(--font-mono);font-weight:500;font-size:19px}
+/* foto de cabecera de la unidad */
+.uc-cover{margin:-2px 0 10px;border-radius:12px;overflow:hidden;aspect-ratio:3/1;background:var(--paper)}
+.unit-cover{margin:8px 0 10px;border-radius:16px;overflow:hidden;height:170px;max-width:510px;background:var(--paper);box-shadow:var(--bevel)}
+.up-cover{border-radius:12px;overflow:hidden;aspect-ratio:3/1;max-width:420px;background:var(--paper);margin-bottom:8px}
+.uc-cover img,.unit-cover img,.up-cover img{width:100%;height:100%;object-fit:cover;display:block}
+@media (max-width:700px){.unit-cover{height:auto;aspect-ratio:3/1}}
+/* marcas dentro de la casilla: arriba a la derecha, sin recortarse con las esquinas redondeadas */
+.cmarks{top:3px;right:4px;font-size:12px;letter-spacing:0;background:#fff;border-radius:20px;padding:2px 6px;box-shadow:0 0 0 1px rgba(22,36,31,.10);color:var(--ink);font-family:var(--font-mono);font-weight:500;white-space:nowrap;max-width:calc(100% - 8px);overflow:hidden;text-overflow:ellipsis}
+td.mark button.cell:has(.cmarks),td.mark .cell-wrap:has(.cmarks) input{padding-top:22px;padding-bottom:6px}
+.task-line .tl-val:has(.cmarks){min-width:96px;height:52px;padding-top:16px}
+.cm-dot{left:6px;bottom:6px}
 .up-ses{flex-wrap:wrap}
 .up-ses .up-clip{margin-left:auto;cursor:pointer}
 .up-atts{flex:1 0 100%}
@@ -1718,7 +1729,7 @@ function medMatchesProfile(medCode, conds){
 }
 const CODES = {P:'Presente', A:'Falta', R:'Retraso', J:'Justificada'};
 const KEY = 'cuaderno-lomloe:v1';
-const APP_VERSION = '4.0';
+const APP_VERSION = '4.0.1';
 const APP_BUILD = '04/10/2026';
 const APP_NOTES = 'Programación de la unidad: nueve apartados desplegables para planificar la unidad entera, con criterios, saberes básicos y competencias clave del currículo de Aragón, sesiones enlazadas con la agenda, adjuntos, medidas de atención a la diversidad por alumno, diana de autoevaluación docente, vista completa y PDF de dos caras. Además, código de color único por grado en rúbricas y tablas de notas, y tablas, horario y agenda con piezas redondeadas';
 
@@ -4375,6 +4386,7 @@ function ensureUnitIn(src, dst, u){
   let du = (dst.units||[]).find(x=>x.areaId===u.areaId && x.periodId===pid && x.name===u.name);
   if(!du){
     du = {id:uid(), areaId:u.areaId, periodId:pid, name:u.name, desc:u.desc||''};
+    if(u.cover) du.cover = JSON.parse(JSON.stringify(u.cover));
     if(u.plan){ du.plan = JSON.parse(JSON.stringify(u.plan)); ['divStu','self','valWorked','valChange'].forEach(k=>{ delete du.plan[k]; }); }
     if(!dst.units) dst.units = [];
     dst.units.push(du);
@@ -4576,6 +4588,7 @@ views.unidades = function(){
         return `<div class="unit-card" data-act="openUnit" data-id="${u.id}">
           <div class="uc-bar" style="background:${col}"></div>
           <div class="uc-body">
+            ${u.cover?`<div class="uc-cover"><img data-attimg="${u.cover.id}" alt=""></div>`:''}
             <div class="row" style="margin:0"><strong class="uc-name">${esc(u.name)}</strong><div class="spacer"></div>
               ${state.courses.length>1?`<button class="icon" data-act="dupUnitTo" data-id="${u.id}" title="Duplicar en otra clase">⇉</button>`:''}
               <button class="icon" data-act="editUnit" data-id="${u.id}" title="Editar">✎</button>
@@ -4599,6 +4612,7 @@ views.unidad = function(){
       <button class="btn ghost small" data-act="tab" data-id="unidades">← Unidades</button>
       <h2 class="sec-title" style="margin:0 0 0 6px">${esc(u.name)}</h2><div class="spacer"></div>
       ${state.courses.length>1?`<button class="btn ghost small" data-act="dupUnitTo" data-id="${u.id}">⇉ Duplicar en otra clase</button>`:''}</div>
+    ${u.cover?`<div class="unit-cover"><img data-attimg="${u.cover.id}" alt=""></div>`:''}
     ${u.desc? `<p class="hint">${esc(u.desc)}</p>`:''}
     ${subnav('unitSub', sub, [['plan','Programación','▤'],['tareas','Tareas','✎'],['eval','Evaluación','◧']])}`;
   return head + (sub==='eval' ? viewUnitEval(u) : sub==='plan' ? viewUnitPlan(u) : viewUnitTasks(u));
@@ -4813,6 +4827,11 @@ function viewUnitPlan(u){
         <label class="field"><span>Empieza</span><input class="inp" type="date" data-act="planF" data-k="from" value="${esc(pl.from||'')}"></label>
         <label class="field"><span>Termina</span><input class="inp" type="date" data-act="planF" data-k="to" value="${esc(pl.to||'')}"></label>
       </div>
+      <div class="field"><span>Foto de cabecera</span>
+        ${u.cover?`<div class="up-cover"><img data-attimg="${u.cover.id}" alt=""></div>`:''}
+        <div class="row" style="gap:6px"><label class="btn ghost small">🖼️ ${u.cover?'Cambiar foto':'Elegir foto'}<input type="file" accept="image/*" hidden data-upfile="cover"></label>
+          ${u.cover?'<button type="button" class="btn ghost small" data-act="coverDel">Quitar</button>':''}
+          <span class="hint" id="upCoverHint" style="margin:0">Mejor apaisada, de proporción 3:1 (por ejemplo 1500 × 500).</span></div></div>
       <button class="btn ghost small" data-act="editUnit" data-id="${u.id}">✎ Nombre y descripción</button>`,
     ctx: ta('justif','Justificación','Por qué esta unidad ahora, qué aporta al grupo y cómo enlaza con lo anterior', 3)
        + ta('situation','Situación de aprendizaje','El reto o contexto real que da sentido a la unidad', 3)
@@ -8124,7 +8143,7 @@ async function attUrl(a){
   return attUrls[a.id] = URL.createObjectURL(b.type ? b : new Blob([b], {type:a.type}));
 }
 function allAtts(){ const out = []; Object.keys(state.sessions||{}).forEach(k=>(state.sessions[k].files||[]).forEach(a=>out.push(a)));
-  (state.courses||[]).forEach(c=>(c.units||[]).forEach(u=>((u.plan||{}).files||[]).forEach(a=>out.push(a)))); return out; }
+  (state.courses||[]).forEach(c=>(c.units||[]).forEach(u=>{ ((u.plan||{}).files||[]).forEach(a=>out.push(a)); if(u.cover) out.push(u.cover); })); return out; }
 async function gdAttFolder(){
   if(state.attFolderId){
     try{ const r = await gdFetch(GD_API+'/files/'+state.attFolderId+'?fields=id,trashed'); if(r.ok){ const f = await r.json(); if(f.id && !f.trashed) return f.id; } }catch(e){ if(e.offline||e.auth) throw e; }
@@ -8726,6 +8745,7 @@ const actions = {
     if(o.m.indexOf(v)<0) o.m.push(v);
     save(); render();
   },
+  coverDel(){ const c = course(), u = c && unitById(c, state.activeUnit); if(!u) return; delete u.cover; save(); render(); },
   kcToggle(t){
     const c = course(), u = c && unitById(c, state.activeUnit); if(!u) return;
     if(t.classList.contains('lock')) return;
@@ -9454,12 +9474,13 @@ document.addEventListener('change', async e=>{
   for(const f of list){
     if(f.size > ATT_MAX){ bad = '«'+f.name+'» pesa más de 25 MB y no se ha añadido.'; continue; }
     try{ const a = await attAdd(f);
+      if(key==='cover'){ if(!/^image\//.test(f.type||'')){ bad = 'La foto de cabecera tiene que ser una imagen.'; continue; } u.cover = a; break; }
       if(key==='unit'){ if(!u.plan || typeof u.plan!=='object') u.plan = {}; (u.plan.files = u.plan.files || []).push(a); }
       else if(state.sessions[key]){ (state.sessions[key].files = state.sessions[key].files || []).push(a); }
     }catch(err){ bad = 'No se ha podido guardar «'+f.name+'» en este equipo.'; }
   }
   save(); render();
-  if(bad){ const h = document.getElementById('upAttHint'); if(h) h.innerHTML = '<b style="color:#B4232C">'+esc(bad)+'</b>'; }
+  if(bad){ const h = document.getElementById(key==='cover'?'upCoverHint':'upAttHint'); if(h) h.innerHTML = '<b style="color:#B4232C">'+esc(bad)+'</b>'; }
 });
 document.addEventListener('click', e=>{
   const box = e.target.closest('[data-upatt]'); if(!box) return;
