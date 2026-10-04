@@ -956,6 +956,26 @@ html,body{margin:0;background:var(--paper)}
 
 table.grid.ext-grid td.mark .ext-inp{border:1px solid var(--rule);background:#fff;border-radius:8px;width:64px;padding:6px 4px}
 table.grid.ext-grid td.mark .ext-inp.bad{border-color:#B4232C;background:#FDF1F1}
+/* diversidad: tipología y actuaciones de la norma */
+.dv-sec{border-top:1px solid var(--rule);padding-top:12px;margin-top:14px}
+.dv-sec:first-of-type{border-top:0;margin-top:4px;padding-top:0}
+.dv-sec h4{font-family:var(--font-display);font-size:16.5px;margin:0 0 6px;font-weight:800;letter-spacing:-0.01em}
+.dv-sec h4 small{font-family:var(--font-ui);font-weight:400;font-size:13px;color:var(--muted);margin-left:8px;letter-spacing:0}
+.dv-cat{border:1px solid var(--rule);border-radius:10px;margin-bottom:6px;background:#fff;padding:0 10px}
+.dv-cat.on{border-color:var(--accent);background:#F6FAF7}
+.dv-cat summary{display:flex;align-items:center;gap:10px;padding:10px 0;cursor:pointer;list-style:none}
+.dv-cat summary::-webkit-details-marker{display:none}
+.dv-cat summary::after{content:'▸';margin-left:auto;color:var(--muted)}
+.dv-cat[open] summary::after{content:'▾'}
+.dv-cat summary input{width:20px;height:20px;accent-color:var(--accent);flex:none}
+.dv-cat-n{font-weight:600;font-size:15.5px}
+.dv-cat summary small{color:var(--muted);font-size:12.5px;white-space:nowrap}
+.dv-sub{padding:8px 0 8px 30px;font-size:15px;align-items:flex-start;line-height:1.35}
+.dv-sub input{flex:none;margin-top:1px}
+.dv-cat .dv-sub:last-child{border-bottom:0}
+.dv-acts .dv-sub{padding-left:0}
+.dv-prof{margin:10px 0 4px;font-size:15px;line-height:1.4}
+.dv-prof > div{padding:2px 0}
 /* notas por apartado */
 .pt-list{display:flex;flex-direction:column;gap:8px}
 .pt-row{display:flex;align-items:center;gap:12px;padding:10px 12px;border:1px solid var(--rule);border-radius:10px;background:#fff;cursor:text}
@@ -967,7 +987,6 @@ table.grid.ext-grid td.mark .ext-inp.bad{border-color:#B4232C;background:#FDF1F1
 .pt-val.bad{border-color:#B4232C;background:#FDF1F1}
 /* diversidad */
 .div-add{flex:none}
-.div-ext{margin-top:14px;padding-top:12px;border-top:1px solid var(--rule)}
 .div-ext-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px 14px}
 .div-ext-grid label{display:block;min-width:0}
 /* «clip» recorta igual que «hidden» pero deja funcionar position:sticky (cabecera y pie fijos) */
@@ -1355,47 +1374,119 @@ const DUA_PRESET = {
 };
 
 /* Perfil del alumno: condición (por qué) y medida (qué se aplica). Por área. */
-const COND_PRESET = [
-  {code:'NEE',  name:'Necesidades educativas especiales (ACNEE)'},
-  {code:'AACC', name:'Altas capacidades intelectuales'},
-  {code:'TEA',  name:'Trastorno del espectro autista'},
-  {code:'TDAH', name:'Trastorno por déficit de atención e hiperactividad'},
-  {code:'DEA',  name:'Dificultad específica de aprendizaje'},
-  {code:'TDL',  name:'Trastorno del desarrollo del lenguaje'},
-  {code:'INC',  name:'Incorporación tardía / desconocimiento de la lengua'},
-  {code:'VUL',  name:'Vulnerabilidad socioeducativa'},
-  {code:'RM',   name:'Retraso madurativo'}
+/* ---------- ATENCIÓN A LA DIVERSIDAD: etiquetas de la normativa de Aragón ----------
+   Tipología de ACNEAE: Decreto 188/2017, arts. 21 a 26 bis, en la redacción del Decreto 164/2022,
+   tal como figura en los modelos de informe de la Orden ECD/913/2023.
+   Código de una etiqueta: 'CATEGORÍA' o 'CATEGORÍA.SUBTIPO' (p. ej. 'NEE.TEA', 'TAA.CIL'). */
+const ACNEAE = [
+  {code:'NEE', art:'art. 21', name:'Necesidades educativas especiales', subs:[
+    ['DA','Discapacidad auditiva'], ['DV','Discapacidad visual'], ['DF','Discapacidad física: motora y orgánica'],
+    ['DI','Discapacidad intelectual'], ['PLU','Pluridiscapacidad'], ['TGC','Trastorno grave de conducta'],
+    ['TEA','Trastorno del espectro autista'], ['TM','Trastorno mental'], ['TL','Trastorno del lenguaje'],
+    ['RGD','Retraso global del desarrollo']]},
+  {code:'RM', art:'art. 21 bis', name:'Retraso madurativo', note:'Solo durante la etapa de Educación Infantil.', subs:[]},
+  {code:'TDLC', art:'art. 21 ter', name:'Trastorno del desarrollo del lenguaje y la comunicación',
+    note:'Trastornos de la comunicación distintos del trastorno del lenguaje (que es NEE).', subs:[
+    ['FON','Trastorno fonológico'], ['FLU','Trastornos de la fluidez de inicio en la infancia (tartamudeo)'],
+    ['PRA','Trastorno de la comunicación social (pragmático)']]},
+  {code:'TAA', art:'art. 22', name:'Trastorno de atención o de aprendizaje', subs:[
+    ['TDAH','Trastorno por déficit de atención y/o hiperactividad'],
+    ['TAP','Trastornos específicos del aprendizaje matemático y/o de la lectura y/o de la expresión escrita'],
+    ['CIL','Capacidad intelectual límite']]},
+  {code:'AACC', art:'art. 24', name:'Altas capacidades', subs:[
+    ['SUP','Superdotación'], ['TAL','Talentos simples o complejos'], ['PRE','Precocidad']]},
+  {code:'IT', art:'art. 25', name:'Incorporación tardía', subs:[
+    ['SIN','Incorporación tardía al sistema educativo sin desconocimiento de la lengua de aprendizaje'],
+    ['CON','Incorporación tardía al sistema educativo con desconocimiento grave de la lengua de aprendizaje']]},
+  {code:'CPH', art:'art. 26', name:'Condiciones personales o de historia escolar', subs:[
+    ['SAL','Condiciones de salud física/emocional'],
+    ['ADO','Adopción, acogimiento, protección, tutela o internamiento por medida judicial'],
+    ['DEP','Alumnado deportista (programa de tecnificación deportiva o de alto rendimiento)'],
+    ['ART','Altas capacidades artísticas']]},
+  {code:'VUL', art:'art. 26 bis', name:'Situación de vulnerabilidad socioeducativa', subs:[
+    ['DSE','Desventaja socioeducativa derivada de circunstancias de carácter social, familiar, económico, cultural, geográfico, étnico o de otra índole'],
+    ['ABS','Escolarización irregular o absentismo escolar']]}
 ];
+/* etiquetas de versiones anteriores → tipología de la norma */
+const COND_OLD = {TEA:'NEE.TEA', TDAH:'TAA.TDAH', DEA:'TAA', TDL:'TDLC', INC:'IT'};
+function condDef(code){
+  const parts = String(code||'').split('.'), cat = ACNEAE.find(x=>x.code===parts[0]);
+  if(!cat) return {code:code, name:code, cat:null, sub:null, catName:code};
+  const sub = parts[1] ? cat.subs.find(x=>x[0]===parts[1]) : null;
+  return {code: sub ? cat.code+'·'+sub[0] : cat.code, name: sub ? cat.name+': '+sub[1] : cat.name,
+          cat:cat.code, sub: sub ? sub[0] : null, catName:cat.name, subName: sub ? sub[1] : ''};
+}
+/* quita la categoría genérica cuando ya hay un subtipo suyo marcado, y ordena como en la norma */
+function normConds(list){
+  const out = []; (list||[]).forEach(x=>{ const n = COND_OLD[x] || x; if(out.indexOf(n)<0) out.push(n); });
+  const order = x=>{ const d = condDef(x), ci = ACNEAE.findIndex(k=>k.code===d.cat);
+    return (ci<0?99:ci)*100 + (d.sub ? ACNEAE[ci].subs.findIndex(k=>k[0]===d.sub)+1 : 0); };
+  return out.filter(x=>x.indexOf('.')>-1 || !out.some(y=>y.indexOf(x+'.')===0)).sort((a,b)=>order(a)-order(b));
+}
+
+/* Actuaciones de intervención educativa: Orden ECD/1005/2018 en la redacción de la Orden ECD/913/2023.
+   grp 'g' = actuaciones generales (modelo de informe, apartado 7) · grp 'e' = específicas que se aplican por área (art. 26.2 b, c, f, j).
+   sig = actuación específica · cri = se evalúa con criterios de otro curso (ACS y ACA). */
 const MED_PRESET = [
-  {code:'GEN',  name:'Actuaciones generales (DUA, apoyo ordinario)', sig:false, cri:false,
+  {code:'GEN',  grp:'g', name:'Actuaciones generales (sin concretar)', sig:false, cri:false,
    desc:'Respuesta ordinaria. No modifica el currículo. Puede dirigirse al grupo o a un alumno.'},
-  {code:'APO',  name:'Apoyo dentro del aula', sig:false, cri:false,
-   desc:'Apoyo específico en el aula. El alumno sigue el currículo de su curso.'},
-  {code:'ACC',  name:'Adaptación de acceso al currículo', sig:false, cri:false,
-   desc:'Facilita el acceso a la información y la comunicación. No cambia los criterios.'},
-  {code:'ACNS', name:'Adaptación curricular no significativa', sig:false, cri:false,
-   desc:'Adecúa criterios de calificación, instrumentos, espacios y tiempos, sin bajar de curso.'},
-  {code:'ACS',  name:'Adaptación curricular significativa', sig:true, cri:true,
-   desc:'Modifica competencias, criterios y saberes. Requiere ajuste de al menos dos cursos inferiores. Se evalúa con criterios adaptados.'},
-  {code:'ACA',  name:'Adaptación curricular de ampliación', sig:true, cri:true,
-   desc:'Incorpora criterios del curso superior para altas capacidades. Se evalúa con esos criterios; se consigna con las siglas ACA.'}
+  {code:'PRV',  grp:'g', name:'Prevención de necesidades y respuesta anticipada', sig:false, cri:false, desc:''},
+  {code:'PAP',  grp:'g', name:'Promoción de la asistencia y de la permanencia en el sistema educativo', sig:false, cri:false, desc:''},
+  {code:'FTC',  grp:'g', name:'Función tutorial y convivencia escolar', sig:false, cri:false, desc:''},
+  {code:'PMO',  grp:'g', name:'Propuestas metodológicas y organizativas', sig:false, cri:false,
+   desc:'Apoyos dentro del aula, agrupamientos, docencia compartida… El alumno sigue el currículo de su curso.'},
+  {code:'REF',  grp:'g', name:'Oferta de materias de refuerzo de competencias clave', sig:false, cri:false, desc:''},
+  {code:'AUA',  grp:'g', name:'Accesibilidad universal al aprendizaje', sig:false, cri:false, desc:''},
+  {code:'ACNS', grp:'g', name:'Adaptaciones no significativas del currículo', sig:false, cri:false,
+   desc:'Adecúa metodología, instrumentos, tiempos y priorización de saberes, sin cambiar los criterios de evaluación del curso.'},
+  {code:'ENR',  grp:'g', name:'Enriquecimiento curricular', sig:false, cri:false,
+   desc:'Profundiza o amplía en horizontal lo que trabaja el grupo. No cambia los criterios de evaluación.'},
+  {code:'ACC',  grp:'g', name:'Adaptaciones de acceso: adecuación de las condiciones de aprendizaje y evaluación', sig:false, cri:false,
+   desc:'Adecúa cómo aprende y cómo se le evalúa (tiempos, formato de las pruebas, apoyos). No cambia los criterios.'},
+  {code:'CPD',  grp:'g', name:'Actuaciones de conciliación con la práctica deportiva', sig:false, cri:false, desc:''},
+  {code:'PCO',  grp:'g', name:'Programas de colaboración entre centros docentes, familias o representantes legales y comunidad educativa', sig:false, cri:false, desc:''},
+  {code:'PES',  grp:'g', name:'Programas específicos (promoción de la permanencia, cualificación inicial)', sig:false, cri:false, desc:''},
+  {code:'ACS',  grp:'e', name:'Adaptación curricular significativa', sig:true, cri:true,
+   desc:'Modifica competencias específicas, criterios de evaluación y saberes básicos. Requiere un ajuste de, al menos, dos cursos inferiores (art. 28). Se evalúa con los criterios adaptados.'},
+  {code:'ACA',  grp:'e', name:'Adaptación curricular de ampliación', sig:true, cri:true,
+   desc:'Incorpora criterios y saberes del curso inmediatamente superior, para altas capacidades con informe psicopedagógico (art. 28 bis). Se consigna con las siglas ACA.'},
+  {code:'APC',  grp:'e', name:'Aceleración parcial del currículo', sig:true, cri:false,
+   desc:'Cursa esta área en un nivel superior al que le corresponde.'},
+  {code:'EXE',  grp:'e', name:'Exención parcial extraordinaria', sig:true, cri:false,
+   desc:'Exención extraordinaria en esta área o en parte de ella.'}
 ];
-function condDef(code){ return COND_PRESET.find(x=>x.code===code) || {code:code, name:code}; }
+/* resto de actuaciones específicas del art. 26.2: son del alumno, no de un área */
+const ACT_STUDENT = [
+  ['AAC','a','Adaptaciones de acceso al currículo'],
+  ['FNI','d','Flexibilización en la incorporación a un nivel inferior respecto al correspondiente por edad'],
+  ['PEX','e','Permanencia extraordinaria en las etapas del sistema educativo'],
+  ['FNS','g','Flexibilización en la incorporación a un nivel superior respecto al correspondiente por edad'],
+  ['FRB','h','Fragmentación en bloques de las materias del currículo en Bachillerato'],
+  ['B3C','i','Realización de bachillerato en tres cursos académicos'],
+  ['APA','k','Asistencia parcial al centro educativo'],
+  ['CTC','l','Cambio de tipo de centro'],
+  ['ECO','m','Escolarización combinada'],
+  ['PRO','n','Programas específicos (salud mental infantojuvenil, entornos sanitarios y domiciliarios, medidas judiciales, atención ambulatoria en centros de Educación Especial)']
+];
+function actDef(code){ const a = ACT_STUDENT.find(x=>x[0]===code); return a ? {code:a[0], let:a[1], name:a[2]} : {code:code, let:'', name:code}; }
 function medDef(code){ return MED_PRESET.find(x=>x.code===code) || {code:code, name:code, sig:false, cri:false, desc:''}; }
-/* ¿el perfil del alumno justifica la medida significativa elegida?
-   ACS: cualquier ACNEAE (todos menos altas capacidades). ACA: solo altas capacidades. */
-const ACS_CONDS = ['NEE','TEA','TDAH','DEA','TDL','INC','VUL','RM'];
+function medOptions(cur){
+  const grp = (g, lbl)=>`<optgroup label="${lbl}">${MED_PRESET.filter(m=>m.grp===g).map(m=>`<option value="${m.code}" ${cur===m.code?'selected':''}>${m.code} · ${esc(m.name)}</option>`).join('')}</optgroup>`;
+  return grp('g','Actuaciones generales') + grp('e','Actuaciones específicas en esta área');
+}
+/* ¿la tipología del alumno justifica la actuación elegida?
+   ACS: alumnado con necesidad específica de apoyo educativo (art. 28.2) · ACA: altas capacidades (art. 28 bis.2) */
 function medMatchesProfile(medCode, conds){
   conds = conds || [];
-  if(medCode==='ACS') return conds.some(c=>ACS_CONDS.indexOf(c)>-1);
-  if(medCode==='ACA') return conds.indexOf('AACC')>-1;
-  return true; // el resto de medidas no exige perfil concreto
+  if(medCode==='ACS') return conds.some(c=>c.indexOf('AACC')!==0);
+  if(medCode==='ACA') return conds.some(c=>c.indexOf('AACC')===0);
+  return true;
 }
 const CODES = {P:'Presente', A:'Falta', R:'Retraso', J:'Justificada'};
 const KEY = 'cuaderno-lomloe:v1';
-const APP_VERSION = '3.6';
+const APP_VERSION = '3.7';
 const APP_BUILD = '04/10/2026';
-const APP_NOTES = 'Nuevo instrumento «Notas por apartado»: una nota directa en cada criterio o parte de un examen, con «Guardar y siguiente» para corregir de seguido; botón más visible para añadir adaptaciones (en la ficha y en Diversidad › Por alumno); medidas como ACS en áreas que no das tú';
+const APP_NOTES = 'Atención a la diversidad con las etiquetas de la normativa de Aragón: tipología de ACNEAE con sus subtipos (Decreto 188/2017 mod. 164/2022), que ahora es del alumno y vale para todas sus áreas; actuaciones generales y específicas de la Orden ECD/1005/2018 (mod. 913/2023); flexibilización, permanencia y otras actuaciones del alumno. Lo que tenías marcado se ha convertido solo';
 
 /* escala cualitativa por defecto (Orden ECD/1112/2022) */
 const DEFAULT_SCALE = [
@@ -1999,6 +2090,7 @@ async function load(){
 function normalize(){
   if(!state.courses) state.courses = [];
   allInstrs(toPct);
+  migrateDiv();
   if(!state.activeCourse && state.courses[0]) state.activeCourse = state.courses[0].id;
   const c = course();
   if(c){
@@ -2668,9 +2760,35 @@ function divOf(c, sid, aid){
   if(!Array.isArray(d.measures)) d.measures=[];
   return d;
 }
+/* c.sdiv[alumno] = {cond:[tipología], acts:[actuaciones específicas del alumno]} */
+function stuDiv(c, sid){
+  if(!c.sdiv || typeof c.sdiv!=='object') c.sdiv = {};
+  if(!c.sdiv[sid]) c.sdiv[sid] = {cond:[], acts:[]};
+  const d = c.sdiv[sid];
+  if(!Array.isArray(d.cond)) d.cond = [];
+  if(!Array.isArray(d.acts)) d.acts = [];
+  return d;
+}
+function stuConds(c, sid){ return ((c.sdiv||{})[sid]||{}).cond || []; }
+function stuActs(c, sid){ return ((c.sdiv||{})[sid]||{}).acts || []; }
+/* pasa lo guardado con las etiquetas antiguas (por área) a la tipología de la norma (por alumno) */
+function migrateDiv(){
+  (state.courses||[]).forEach(c=>{
+    Object.keys(c.diversity||{}).forEach(k=>{
+      const d = c.diversity[k]; if(!d) return;
+      if(d.med==='APO') d.med = 'PMO';
+      if(Array.isArray(d.cond) && d.cond.length){
+        const sd = stuDiv(c, k.split(':')[0]);
+        sd.cond = normConds(sd.cond.concat(d.cond));
+        d.cond = [];
+      }
+    });
+    Object.keys(c.extDiv||{}).forEach(k=>{ if(c.extDiv[k]==='APO') c.extDiv[k] = 'PMO'; });
+  });
+}
 function hasDiv(c, sid, aid){
   const k = dvkey(sid, aid); const d = c.diversity[k];
-  return !!(d && (d.med || (d.cond&&d.cond.length) || (d.measures&&d.measures.length) || (d.note&&d.note.trim())));
+  return !!(stuConds(c, sid).length || stuActs(c, sid).length || (d && (d.med || (d.measures&&d.measures.length) || (d.note&&d.note.trim()))));
 }
 /* ciclo de referencia para evaluar a un alumno en un área:
    si tiene medida que cambia criterios y un ciclo fijado, ese; si no, el del curso */
@@ -3462,7 +3580,7 @@ function alumnadoLista(){
     ${c.students.length? `<ul class="list">${c.students.map((s,i)=>{
       const dv = c.diversity[dvkey(s.id, aid)];
       const med = dv && dv.med ? medDef(dv.med) : null;
-      const conds = dv && dv.cond ? dv.cond : [];
+      const conds = stuConds(c, s.id);
       const mark = med
         ? `<span class="pill" title="${esc(med.name)}" style="margin-right:2px;background:${med.cri?'#FCF1D8':'var(--accent-soft)'};color:${med.cri?'#8A6206':'var(--accent)'};border:1px solid ${med.cri?'#EEDCA8':'#B8D8C6'}">${med.code}</span>`
         : (conds.length || (dv && (dv.measures||[]).length) ? `<span class="tag grey" title="Medidas registradas">medidas</span>` : '');
@@ -3949,19 +4067,21 @@ views.alumno = function(){
 function divBlock(c, s, aid){
   const d = c.diversity[dvkey(s.id, aid)];
   const med = d && d.med ? medDef(d.med) : null;
-  const conds = (d && d.cond) ? d.cond : [];
+  const conds = stuConds(c, s.id), acts = stuActs(c, s.id);
   const measures = activeMeasures(c, s.id, aid);
   const sc = studentCycle(c, s.id, aid);
   return `<div class="card" style="border-left:3px solid ${med&&med.cri?'#E4A11B':'var(--accent)'}">
     <div class="row"><h2 class="sec-title" style="margin:0">Atención a la diversidad</h2>
       <span class="tag grey">${esc(areaDef(aid).short||'')}</span>
       <div class="spacer"></div>
-      <button class="btn small" data-act="editDiv" data-id="${s.id}">${med||conds.length||measures.length?'✎ Editar adaptaciones':'＋ Añadir adaptación'}</button></div>
+      <button class="btn small" data-act="editDiv" data-id="${s.id}">${med||conds.length||acts.length||measures.length?'✎ Editar adaptaciones':'＋ Añadir adaptación'}</button></div>
     ${extMedsOf(c, s.id).length ? `<p style="margin:10px 0 0"><span class="hint" style="margin:0">En áreas de otros docentes:</span> ${extMedsOf(c, s.id).map(x=>`<span class="tag ${x.m.sig?'warn':'grey'}" title="${esc(x.m.name)}">${esc(x.e.name)} · ${esc(x.m.code)}</span>`).join(' ')}</p>` : ''}
-    ${!(med||conds.length||measures.length||(d&&d.note))
+    ${!(med||conds.length||acts.length||measures.length||(d&&d.note))
       ? `<p class="hint" style="margin:10px 0 0">Sin medidas registradas en esta área. Este alumno sigue el currículo del grupo.</p>`
       : `
-      ${conds.length? `<p style="margin:10px 0 4px"><span class="hint" style="margin:0">Perfil:</span> ${conds.map(x=>`<span class="tag grey" title="${esc(condDef(x).name)}">${esc(condDef(x).name)}</span>`).join(' ')}</p>`:''}
+      ${conds.length? `<div class="dv-prof"><span class="hint" style="margin:0">Tipología de ACNEAE:</span>${conds.map(x=>{ const k = condDef(x);
+        return `<div><b>${esc(k.catName)}</b>${k.subName?': '+esc(k.subName):''}</div>`; }).join('')}</div>`:''}
+      ${acts.length? `<div class="dv-prof"><span class="hint" style="margin:0">Actuaciones específicas del alumno:</span>${acts.map(x=>`<div>${esc(actDef(x).name)}</div>`).join('')}</div>`:''}
       ${med? `<div style="margin:8px 0"><span class="pill" style="background:${med.cri?'#FCF1D8':'var(--accent-soft)'};color:${med.cri?'#8A6206':'var(--accent)'};border:1px solid ${med.cri?'#EEDCA8':'#B8D8C6'}">${med.code}</span>
         <span style="margin-left:6px">${esc(med.name)}</span>
         <p class="hint" style="margin:4px 0 0">${esc(med.desc)}</p>
@@ -5153,11 +5273,11 @@ function divByStudent(c, aid){
     const d = c.diversity[dvkey(s.id,aid)];
     const has = hasDiv(c, s.id, aid);
     const med = d && d.med ? medDef(d.med) : null;
-    const conds = d && d.cond ? d.cond : [];
+    const conds = stuConds(c, s.id);
     return `<div class="tut-row" data-act="openStudent" data-id="${s.id}">
       <span class="num">${String(i+1).padStart(2,'0')}</span>
       <span class="grow">${esc(s.name)}
-        ${conds.length? `<small style="display:block;color:var(--muted);font-size:11px">${conds.map(x=>condDef(x).code).join(' · ')}</small>`:''}</span>
+        ${conds.length||stuActs(c, s.id).length? `<small style="display:block;color:var(--muted);font-size:11.5px">${conds.map(x=>`<span title="${esc(condDef(x).name)}">${esc(condDef(x).code)}</span>`).concat(stuActs(c, s.id).map(x=>`<span title="${esc(actDef(x).name)}">${esc(actDef(x).name.split(' ').slice(0,2).join(' ').replace(/ en$/,''))}</span>`)).join(' · ')}</small>`:''}</span>
       ${extMedsOf(c, s.id).map(x=>`<span class="tag ${x.m.sig?'warn':'grey'}" title="${esc(x.m.name)} · ${esc(x.e.name)} (otro docente)">${esc(x.e.name.slice(0,12))} · ${esc(x.m.code)}</span>`).join('')}
       ${med? `<span class="pill ${med.sig?'ACS-sig':''}" style="background:${med.cri?'#FCF1D8':'var(--accent-soft)'};color:${med.cri?'#8A6206':'var(--accent)'};border:1px solid ${med.cri?'#EEDCA8':'#B8D8C6'}">${med.code}</span>`
         : (has?'<span class="tag grey">medidas</span>':'')}
@@ -6998,8 +7118,9 @@ function applyBackup(data, mode){
 function divModal(sid){
   const c = course(), aid = areaId();
   const s = c.students.find(x=>x.id===sid);
-  const d = divOf(c, sid, aid);
-  const conds = d.cond.slice();
+  const d = divOf(c, sid, aid), sd = stuDiv(c, sid);
+  let conds = normConds(sd.cond);
+  let acts = sd.acts.slice();
   let med = d.med || '';
   let refCycle = d.refCycle || c.cycle;
   const measures = d.measures.slice();
@@ -7008,56 +7129,76 @@ function divModal(sid){
   const xList = xHave.concat(['Matemáticas','Lengua Castellana'].filter(n=>!xHave.some(e=>e.name.toLowerCase()===n.toLowerCase())
       && !c.areas.some(a=>areaDef(a).name.toLowerCase()===n.toLowerCase())).map(n=>({id:null, name:n})))
     .map(e=>Object.assign(e, {cur: e.id ? ((c.extDiv||{})[sid+':'+e.id] || '') : ''}));
+  const catOn = k=>conds.some(x=>x===k || x.indexOf(k+'.')===0);
+  const aName = areaDef(aid).short || areaDef(aid).name;
+
+  const tipHtml = ()=>ACNEAE.map(k=>{
+    const n = conds.filter(x=>x.indexOf(k.code+'.')===0).length;
+    return `<details class="dv-cat ${catOn(k.code)?'on':''}" ${catOn(k.code)?'open':''}>
+      <summary><input type="checkbox" data-cat="${k.code}" ${catOn(k.code)?'checked':''} aria-label="${esc(k.name)}">
+        <span class="dv-cat-n">${esc(k.name)}</span><small>${k.art}</small>${n?`<span class="tag">${n}</span>`:''}</summary>
+      ${k.note?`<p class="sub" style="margin:2px 0 4px 30px">${esc(k.note)}</p>`:''}
+      ${k.subs.map(sb=>`<label class="check-opt dv-sub"><input type="checkbox" data-sub="${k.code}.${sb[0]}" ${conds.indexOf(k.code+'.'+sb[0])>-1?'checked':''}><span>${esc(sb[1])}</span></label>`).join('')}
+    </details>`; }).join('');
 
   const inner = `<h3>Atención a la diversidad</h3>
-    <p class="sub">${esc(s.name)} · ${esc(areaDef(aid).name)}</p>
-    <div class="m-cols">
-      <div class="col-a">
-        <label class="field"><span>Perfil / condición</span></label>
-        <div class="crit-chips" id="condPick">
-          ${COND_PRESET.map(x=>`<button class="chip ${conds.indexOf(x.code)>-1?'on':''}" data-cond="${x.code}" title="${esc(x.name)}">${x.code}</button>`).join('')}
-        </div>
-        <p class="sub" id="condNames" style="margin-top:6px"></p>
+    <p class="sub">${esc(s.name)} · ${esc(c.name)}</p>
 
-        <label class="field" style="margin-top:12px"><span>Medida aplicada</span>
-          <select class="inp" id="medSel">
-            <option value="">Sin medida específica (currículo del grupo)</option>
-            ${MED_PRESET.map(m=>`<option value="${m.code}" ${med===m.code?'selected':''}>${m.code} · ${esc(m.name)}</option>`).join('')}
-          </select></label>
-        <p class="sub" id="medDesc"></p>
-        <div id="medNote"></div>
+    <div class="dv-sec">
+      <h4>Tipología de ACNEAE <small>es del alumno: vale para todas las áreas</small></h4>
+      <p class="sub" style="margin:0 0 8px">Categorías del Decreto 188/2017 (mod. 164/2022). Marca la que conste en su informe psicopedagógico o resolución; si no tiene, déjalo en blanco.</p>
+      <div id="dvTip">${tipHtml()}</div>
+    </div>
 
-        <div id="refBox" style="display:none">
-          <label class="field"><span>Ciclo de referencia para evaluarle</span></label>
-          <div class="seg-toggle" id="refPick">
-            ${[1,2,3].map(cy=>`<button data-ref="${cy}" aria-pressed="${refCycle===cy}">${CYCLE_NAMES[cy].replace(/ \(.*/,'')}</button>`).join('')}
+    <div class="dv-sec">
+      <h4>Actuación en ${esc(aName)} <small>solo esta área</small></h4>
+      <div class="m-cols">
+        <div class="col-a">
+          <label class="field"><span>Actuación de intervención educativa</span>
+            <select class="inp" id="medSel">
+              <option value="">Sin actuación registrada (currículo del grupo)</option>
+              ${medOptions(med)}
+            </select></label>
+          <p class="sub" id="medDesc"></p>
+          <div id="medNote"></div>
+          <div id="refBox" style="display:none">
+            <label class="field"><span>Ciclo de referencia para evaluarle</span></label>
+            <div class="seg-toggle" id="refPick">
+              ${[1,2,3].map(cy=>`<button data-ref="${cy}" aria-pressed="${refCycle===cy}">${CYCLE_NAMES[cy].replace(/ \(.*/,'')}</button>`).join('')}
+            </div>
+            <p class="sub">Las tareas que marques como <b>adaptadas</b> con este ciclo son las que se le evalúan; su nota se consigna con las siglas de la actuación.</p>
           </div>
-          <p class="sub">Las tareas que marques como <b>adaptadas</b> con este ciclo son las que se le evalúan; su nota se consigna con las siglas de la medida.</p>
+        </div>
+        <div class="col-b">
+          ${field('Repercusión en el currículo','note',{type:'textarea', rows:3, value:d.note,
+            placeholder:'Qué implica en la práctica: más tiempo, pictogramas, criterios de otro curso, agrupamientos…'})}
+          <label class="field" style="margin-top:6px"><span>Medidas individuales aplicadas</span></label>
+          <div id="measList"></div>
+          <div class="row"><button class="btn ghost small" data-addm>+ Añadir medida individual</button>
+            <button class="btn ghost small" data-fromdua>Tomar del catálogo DUA</button></div>
         </div>
       </div>
-      <div class="col-b">
-        ${field('Repercusión en el currículo','note',{type:'textarea', rows:3, value:d.note,
-          placeholder:'Qué implica en la práctica: más tiempo, pictogramas, criterios de otro curso, agrupamientos…'})}
+    </div>
 
-        <label class="field" style="margin-top:6px"><span>Medidas individuales aplicadas</span></label>
-        <div id="measList"></div>
-        <div class="row"><button class="btn ghost small" data-addm>+ Añadir medida individual</button>
-          <button class="btn ghost small" data-fromdua>Tomar del catálogo DUA</button></div>
-        <p class="sub">Las medidas generales del grupo ya se aplican solas; aquí van solo las individuales o generales personalizadas.</p>
-      </div>
-      <div class="col-full div-ext">
-        <label class="field" style="margin:0"><span>Medidas en áreas que no das tú</span></label>
-        <p class="sub" style="margin:2px 0 8px">Para tener a la vista que lleva, por ejemplo, ACS en Matemáticas. Es solo informativo: no cambia ninguna nota.</p>
-        <div class="div-ext-grid">${xList.map((e,i)=>`<label><span class="te-lbl">${esc(e.name)}</span>
-          <select class="inp" data-xmed="${i}">
-            <option value="">Sin medida</option>
-            ${MED_PRESET.map(m=>`<option value="${m.code}" ${e.cur===m.code?'selected':''}>${m.code} · ${esc(m.name)}</option>`).join('')}
-          </select></label>`).join('')}</div>
-      </div>
+    <div class="dv-sec">
+      <h4>Otras actuaciones específicas <small>son del alumno: valen para todas las áreas</small></h4>
+      <p class="sub" style="margin:0 0 6px">Artículo 26.2 de la Orden ECD/1005/2018 (mod. 913/2023). La adaptación curricular significativa, la de ampliación, la aceleración parcial y la exención parcial se marcan arriba, área por área.</p>
+      <div class="dv-acts">${ACT_STUDENT.map(a=>`<label class="check-opt dv-sub"><input type="checkbox" data-actc="${a[0]}" ${acts.indexOf(a[0])>-1?'checked':''}><span><b>${a[1]})</b> ${esc(a[2])}</span></label>`).join('')}</div>
+    </div>
+
+    <div class="dv-sec">
+      <h4>Actuaciones en áreas que no das tú <small>solo informativo</small></h4>
+      <div class="div-ext-grid">${xList.map((e,i)=>`<label><span class="te-lbl">${esc(e.name)}</span>
+        <select class="inp" data-xmed="${i}">
+          <option value="">Sin actuación registrada</option>
+          ${medOptions(e.cur)}
+        </select></label>`).join('')}</div>
     </div>`;
 
   const wrap = openModal(inner, v=>{
-    d.cond = conds;
+    sd.cond = normConds(conds);
+    sd.acts = ACT_STUDENT.map(a=>a[0]).filter(k=>acts.indexOf(k)>-1);
+    d.cond = [];
     d.med = med;
     d.refCycle = med && medDef(med).cri ? refCycle : null;
     d.note = v.note||'';
@@ -7072,7 +7213,6 @@ function divModal(sid){
   }, 'Guardar', {wide:true});
 
   const refresh = ()=>{
-    wrap.querySelector('#condNames').textContent = conds.length ? conds.map(x=>condDef(x).name).join(' · ') : '';
     const m = med? medDef(med) : null;
     wrap.querySelector('#medDesc').textContent = m? m.desc : '';
     wrap.querySelector('#refBox').style.display = (m && m.cri) ? 'block' : 'none';
@@ -7080,16 +7220,19 @@ function divModal(sid){
     if(m && m.cri){
       const okProfile = medMatchesProfile(med, conds);
       const need = med==='ACA'
-        ? 'altas capacidades (AACC)'
-        : 'un perfil ACNEAE (NEE, TEA, TDL, DEA, TDAH, incorporación tardía, vulnerabilidad o retraso madurativo)';
+        ? 'alumnado con altas capacidades según informe psicopedagógico (art. 28 bis)'
+        : 'alumnado con necesidad específica de apoyo educativo que, agotadas las actuaciones generales, necesita un ajuste de al menos dos cursos (art. 28)';
       noteBox.innerHTML = okProfile
         ? `<div class="card" style="border-left:3px solid var(--mark);margin:8px 0 4px;padding:8px 10px">
-             <p class="hint" style="margin:0">Esta medida <b>sí modifica la evaluación</b>: este alumno aparecerá al pulsar «Adaptar» en las tareas, y se le podrá evaluar con criterios de otro ciclo.</p></div>`
+             <p class="hint" style="margin:0">Esta actuación <b>sí modifica la evaluación</b>: este alumno aparecerá al pulsar «Adaptar» en las tareas, y se le podrá evaluar con criterios de otro ciclo.</p></div>`
         : `<div class="card" style="border-left:3px solid var(--low);margin:8px 0 4px;padding:8px 10px">
-             <p class="hint" style="margin:0;color:var(--low)"><b>Revisa el perfil.</b> La ${med==='ACA'?'ampliación (ACA)':'adaptación significativa (ACS)'} está prevista para ${need}. Este alumno no tiene marcado ese perfil. Puedes guardar igualmente —la decisión corresponde al equipo de orientación—, pero marca arriba la condición que corresponda si es un olvido.</p></div>`;
-    } else if(m && !m.cri){
+             <p class="hint" style="margin:0;color:var(--low)"><b>Revisa la tipología.</b> La ${med==='ACA'?'adaptación curricular de ampliación (ACA)':'adaptación curricular significativa (ACS)'} está prevista para ${need}. Este alumno no tiene marcada esa tipología. Puedes guardar igualmente —la decisión corresponde al equipo de orientación—, pero márcala arriba si procede.</p></div>`;
+    } else if(m && m.sig){
+      noteBox.innerHTML = `<div class="card" style="border-left:3px solid var(--mark);margin:8px 0 4px;padding:8px 10px">
+        <p class="hint" style="margin:0">Es una <b>actuación específica</b>: requiere evaluación psicopedagógica y autorización. En la app queda registrada, pero no cambia los criterios con los que le evalúas.</p></div>`;
+    } else if(m){
       noteBox.innerHTML = `<div class="card" style="border-left:3px solid var(--rule);margin:8px 0 4px;padding:8px 10px">
-        <p class="hint" style="margin:0">Medida <b>no significativa</b>: adecúa apoyos, tiempos, espacios o instrumentos, pero <b>no cambia los criterios de evaluación</b>. Este alumno se evalúa con los criterios del curso, así que <b>no aparecerá</b> en la opción «Adaptar» de las tareas. Anota abajo los apoyos concretos.</p></div>`;
+        <p class="hint" style="margin:0"><b>Actuación general</b>: <b>no cambia los criterios de evaluación</b>. Este alumno se evalúa con los criterios del curso y no aparecerá en la opción «Adaptar» de las tareas. Anota a la derecha los apoyos concretos.</p></div>`;
     } else {
       noteBox.innerHTML = '';
     }
@@ -7100,12 +7243,35 @@ function divModal(sid){
         <input class="inp meas-input" value="${esc(t)}" data-i="${i}">
         <button class="icon" data-delm="${i}">✕</button></div>`).join('');
   };
+  const drawTip = ()=>{
+    const open = [...wrap.querySelectorAll('.dv-cat')].map(x=>x.open);
+    wrap.querySelector('#dvTip').innerHTML = tipHtml();
+    wrap.querySelectorAll('.dv-cat').forEach((x,i)=>{ if(open[i]) x.open = true; });
+  };
   wrap.querySelector('#medSel').addEventListener('change', e=>{ med = e.target.value; refresh(); });
+  wrap.addEventListener('change', e=>{
+    const t = e.target;
+    if(t.dataset.cat){            // casilla de la categoría
+      const k = t.dataset.cat;
+      conds = conds.filter(x=>x!==k && x.indexOf(k+'.')!==0);
+      if(t.checked) conds.push(k);
+      conds = normConds(conds); drawTip();
+      if(t.checked){ const dt = [...wrap.querySelectorAll('.dv-cat')][ACNEAE.findIndex(x=>x.code===k)]; if(dt) dt.open = true; }
+      refresh(); return;
+    }
+    if(t.dataset.sub){            // casilla de un subtipo: implica su categoría
+      const k = t.dataset.sub, i = conds.indexOf(k);
+      if(t.checked && i<0) conds.push(k);
+      if(!t.checked && i>-1){ conds.splice(i,1); const cat = k.split('.')[0]; if(!conds.some(x=>x.indexOf(cat+'.')===0)) conds.push(cat); }
+      conds = normConds(conds); drawTip(); refresh(); return;
+    }
+    if(t.dataset.actc){
+      const i = acts.indexOf(t.dataset.actc);
+      if(t.checked && i<0) acts.push(t.dataset.actc);
+      if(!t.checked && i>-1) acts.splice(i,1);
+    }
+  });
   wrap.addEventListener('click', e=>{
-    const cd = e.target.closest('[data-cond]');
-    if(cd){ e.preventDefault(); const k=cd.dataset.cond, i=conds.indexOf(k);
-      if(i>-1) conds.splice(i,1); else conds.push(k);
-      cd.classList.toggle('on', i===-1); refresh(); return; }
     const rf = e.target.closest('[data-ref]');
     if(rf){ e.preventDefault(); refCycle=Number(rf.dataset.ref);
       wrap.querySelectorAll('#refPick [data-ref]').forEach(b=>b.setAttribute('aria-pressed', Number(b.dataset.ref)===refCycle)); return; }
@@ -8306,7 +8472,7 @@ const actions = {
       const k = JSON.parse(JSON.stringify(cc));
       k.students = []; k.grades = {}; k.attendance = {}; k.overrides = {}; k.finals = {};
       k.tutorias = []; k.diversity = {}; k.dua = {}; k.initObs = {}; k.progress = {};
-      k.layout = {items:[]}; k.timetable = {}; k.marks = {}; k.comments = {}; k.extGrades = {}; k.extDiv = {};
+      k.layout = {items:[]}; k.timetable = {}; k.marks = {}; k.comments = {}; k.extGrades = {}; k.extDiv = {}; k.sdiv = {};
       (k.tasks||[]).forEach(t=>{ t.adaptations = {}; t.dates = []; delete t.date; });
       k.name = cc.name + ' (programación)';
       return k;
