@@ -1285,6 +1285,39 @@ table.wk tr.brk td{border:0;border-radius:10px;background:#FBF3DD}
   .td-chip button,.att-del{min-width:30px;min-height:30px}
 }
 .te-foot,.modal{padding-bottom:max(14px, env(safe-area-inset-bottom))}
+
+/* pendientes del profesor */
+.td-wrap{max-width:860px}
+.td-add{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.td-add .inp{width:auto}
+.td-add #tdText{flex:1 1 180px;min-width:0}
+.td-add #tdPrio{flex:0 0 160px}.td-add #tdDue{flex:0 0 150px}.td-add #tdCourse{flex:0 0 130px}
+.td-bar{display:flex;gap:8px;align-items:center;margin-bottom:6px;flex-wrap:wrap}
+.chip-btn{font-family:var(--font-ui);font-size:14.5px;padding:7px 14px;border-radius:999px;border:1px solid var(--rule);background:#fff;color:var(--muted);cursor:pointer}
+.chip-btn.on{background:var(--accent-soft);border-color:var(--accent);color:var(--accent);font-weight:600}
+.td-h{font-family:var(--font-display);font-size:15px;margin:16px 0 6px;color:var(--muted);font-weight:600}
+.td-h small{font-weight:400;opacity:.75;margin-left:4px}
+.td-h.late{color:#B03A2E}
+.td-card{padding:2px 12px}
+.td-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--rule)}
+.td-row:last-child{border-bottom:0}
+.td-chk{flex:0 0 26px;width:26px;height:26px;border-radius:8px;border:2px solid var(--rule);background:#fff;cursor:pointer;color:#fff;font-size:15px;font-weight:700;line-height:1;display:flex;align-items:center;justify-content:center;padding:0}
+.td-chk:hover{border-color:var(--accent)}
+.td-row.done .td-chk{background:var(--accent);border-color:var(--accent);animation:tdPop .25s ease-out}
+@keyframes tdPop{0%{transform:scale(.6)}70%{transform:scale(1.2)}100%{transform:scale(1)}}
+.td-pr{flex:0 0 8px;width:8px;height:8px;border-radius:50%}
+.td-txt{flex:1;min-width:0;text-align:left;background:none;border:0;padding:2px 0;cursor:pointer;font-family:var(--font-ui);font-size:16px;color:var(--ink);overflow-wrap:anywhere}
+.td-row.done .td-txt{text-decoration:line-through;color:var(--muted)}
+.td-tag{font-size:12.5px;border:1px solid;border-radius:6px;padding:1px 7px;white-space:nowrap}
+.td-due{font-family:var(--font-mono);font-size:13px;color:var(--muted);white-space:nowrap}
+.td-due.late{color:#B03A2E;font-weight:700}.td-due.today{color:var(--accent);font-weight:700}
+.td-empty{padding:26px 0;text-align:center}
+.td-g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.td-del{color:#B03A2E;margin-top:6px}
+.td-strip{display:flex;gap:10px;align-items:center;width:100%;text-align:left;margin:-6px 0 12px;padding:9px 14px;border-radius:10px;border:1px solid #B8D8C6;background:var(--accent-soft);color:var(--accent);font-family:var(--font-ui);font-size:15px;font-weight:600;cursor:pointer}
+.td-strip.late{background:#FBECEA;border-color:#EBC4BE;color:#B03A2E}
+.td-strip span{margin-left:auto;font-weight:400;opacity:.85}
+@media(max-width:700px){.td-add #tdText{flex:1 1 100%}.td-add #tdPrio,.td-add #tdDue,.td-add #tdCourse{flex:1 1 30%;min-width:0}.td-add .btn{flex:1 1 100%}.td-row{gap:8px}.td-chk{flex-basis:30px;width:30px;height:30px}}
 </style>
 </head>
 <body>
@@ -1729,9 +1762,9 @@ function medMatchesProfile(medCode, conds){
 }
 const CODES = {P:'Presente', A:'Falta', R:'Retraso', J:'Justificada'};
 const KEY = 'cuaderno-lomloe:v1';
-const APP_VERSION = '4.0.1';
-const APP_BUILD = '04/10/2026';
-const APP_NOTES = 'Programación de la unidad: nueve apartados desplegables para planificar la unidad entera, con criterios, saberes básicos y competencias clave del currículo de Aragón, sesiones enlazadas con la agenda, adjuntos, medidas de atención a la diversidad por alumno, diana de autoevaluación docente, vista completa y PDF de dos caras. Además, código de color único por grado en rúbricas y tablas de notas, y tablas, horario y agenda con piezas redondeadas';
+const APP_VERSION = '4.1';
+const APP_BUILD = '06/10/2026';
+const APP_NOTES = 'Nueva pestaña «Pendientes» en la agenda: tu lista de cosas por hacer, con prioridad, fecha límite y clase; la agenda avisa de lo que vence hoy o va con retraso. Además: Programación de la unidad: nueve apartados desplegables para planificar la unidad entera, con criterios, saberes básicos y competencias clave del currículo de Aragón, sesiones enlazadas con la agenda, adjuntos, medidas de atención a la diversidad por alumno, diana de autoevaluación docente, vista completa y PDF de dos caras. Además, código de color único por grado en rúbricas y tablas de notas, y tablas, horario y agenda con piezas redondeadas';
 
 /* escala cualitativa por defecto (Orden ECD/1112/2022) */
 const DEFAULT_SCALE = [
@@ -1960,10 +1993,10 @@ const GD_FILE = 'cuaderno-datos.json';
 const GD_LS = 'cuaderno-gdrive';
 const GD_API = 'https://www.googleapis.com/drive/v3';
 const GD_UP = 'https://www.googleapis.com/upload/drive/v3';
-const GD_DATA_KEYS = ['courses','curriculo','schedule','sessions','teacherTT','templates','areaColors','colorBy','markDefs','upMethods','holidays','attFolderId'];
+const GD_DATA_KEYS = ['courses','curriculo','schedule','sessions','teacherTT','templates','areaColors','colorBy','markDefs','upMethods','holidays','attFolderId','todos'];
 const GD_UI_KEYS = ['view','homeTab','planView','planDate','planSub','activeCourse','activeArea','activePeriod','activeUnit',
   'editor','viewStudent','tutStudent','tutFromHome','unitSub','triSub','divSub','alumSub','gridMode','editMode',
-  'instrMode','rubCompact','upView','upOpen','sabOnly','sabCycle','editWeights','homeTutCourse','homeAjCourse','attDate','lastSel','lastCourse','taskEd'];
+  'instrMode','rubCompact','upView','upOpen','sabOnly','sabCycle','editWeights','todoShow','homeTutCourse','homeAjCourse','attDate','lastSel','lastCourse','taskEd'];
 
 const gd = {
   status:'off',          // off · need · ok · sync · offline · error · conflict
@@ -3570,12 +3603,121 @@ function clipBar(){
 
 function planView(){
   if((state.planSub||'agenda')==='horario')
-    return `<div class="plan">${subnav('planSub','horario',[['agenda','Agenda','▦'],['horario','Mi horario','◷']])}${teacherTimetable()}</div>`;
+    return `<div class="plan">${planSubs('horario')}${teacherTimetable()}</div>`;
+  if(state.planSub==='tareas') return `<div class="plan">${planSubs('tareas')}${todoView()}</div>`;
   return planViewAgenda();
 }
+
+/* =====================================================================
+   PENDIENTES DEL PROFESOR (lista de cosas por hacer, dentro de la agenda)
+   state.todos = [{id, text, prio:1|2|3, due:'aaaa-mm-dd'|'', course:id|'', done, doneAt, at}]
+   ===================================================================== */
+const TODO_PRIO = {1:['Alta','#C0392B'], 2:['Media','#C98A12'], 3:['Baja','#7A8A80']};
+let todoDraft = {prio:2, due:'', course:''};
+function todos(){ if(!Array.isArray(state.todos)) state.todos = []; return state.todos; }
+function todoPending(){ return todos().filter(t=>!t.done); }
+function planSubs(cur){
+  const n = todoPending().length;
+  return subnav('planSub', cur, [['agenda','Agenda','▦'],['horario','Mi horario','◷'],['tareas','Pendientes'+(n?' ('+n+')':''),'☑']]);
+}
+function todoGroupOf(t){
+  if(!t.due) return 'none';
+  const td = today();
+  if(t.due < td) return 'late';
+  if(t.due === td) return 'today';
+  return t.due <= addDays(weekDays(td)[0], 6) ? 'week' : 'later';
+}
+function todoStrip(){
+  const p = todoPending(); if(!p.length) return '';
+  const late = p.filter(t=>todoGroupOf(t)==='late').length, hoy = p.filter(t=>todoGroupOf(t)==='today').length;
+  if(!late && !hoy) return '';
+  return `<button class="td-strip ${late?'late':''}" data-act="planSub" data-id="tareas">☑ ${[hoy?hoy+' para hoy':'', late?late+(late===1?' atrasada':' atrasadas'):''].filter(Boolean).join(' · ')} <span>Ver pendientes →</span></button>`;
+}
+function todoCourseOpts(cur){
+  return `<option value="">Sin clase</option>` + state.courses.map(c=>`<option value="${c.id}" ${c.id===cur?'selected':''}>${esc(c.name)}</option>`).join('');
+}
+function todoPrioOpts(cur){ return [1,2,3].map(k=>`<option value="${k}" ${Number(cur)===k?'selected':''}>Prioridad ${TODO_PRIO[k][0].toLowerCase()}</option>`).join(''); }
+function todoRow(t){
+  const pr = TODO_PRIO[t.prio] || TODO_PRIO[2];
+  const c = t.course ? state.courses.find(x=>x.id===t.course) : null;
+  const g = todoGroupOf(t);
+  return `<div class="td-row ${t.done?'done':''}">
+    <button class="td-chk" data-act="todoToggle" data-id="${t.id}" title="${t.done?'Marcar como pendiente':'Marcar como hecha'}" aria-label="${t.done?'Marcar como pendiente':'Marcar como hecha'}">${t.done?'✓':''}</button>
+    <span class="td-pr" style="background:${pr[1]}" title="Prioridad ${pr[0].toLowerCase()}"></span>
+    <button class="td-txt" data-act="todoEdit" data-id="${t.id}">${esc(t.text)}</button>
+    ${c?`<span class="td-tag" style="border-color:${courseColor(c.id)};color:${courseColor(c.id)}">${esc(c.name)}</span>`:''}
+    ${t.due?`<span class="td-due ${!t.done&&g==='late'?'late':''} ${!t.done&&g==='today'?'today':''}">${g==='today'&&!t.done?'Hoy':fmtDate(t.due).slice(0,5)}</span>`:''}
+  </div>`;
+}
+function todoView(){
+  const all = todos(), pend = all.filter(t=>!t.done), done = all.filter(t=>t.done);
+  const show = state.todoShow==='done' ? 'done' : 'pend';
+  const sortFn = (a,b)=> (a.prio-b.prio) || String(a.due||'9999').localeCompare(String(b.due||'9999')) || (a.at-b.at);
+  let body;
+  if(show==='done'){
+    body = done.length ? `<div class="card td-card">${done.slice().sort((a,b)=>(b.doneAt||0)-(a.doneAt||0)).map(todoRow).join('')}</div>`
+      : `<p class="hint td-empty">Todavía no has completado ninguna.</p>`;
+  } else if(!pend.length){
+    body = `<p class="hint td-empty">${all.length?'Todo hecho. No te queda nada pendiente.':'Apunta aquí lo que tienes que hacer: corregir, preparar material, llamar a una familia…'}</p>`;
+  } else {
+    body = [['late','Atrasadas'],['today','Hoy'],['week','Esta semana'],['later','Más adelante'],['none','Sin fecha']].map(([g,label])=>{
+      const l = pend.filter(t=>todoGroupOf(t)===g).sort(sortFn);
+      return l.length ? `<h4 class="td-h ${g}">${label} <small>${l.length}</small></h4><div class="card td-card">${l.map(todoRow).join('')}</div>` : '';
+    }).join('');
+  }
+  return `<div class="td-wrap">
+    <div class="td-add">
+      <input class="inp" id="tdText" placeholder="Nueva tarea pendiente…" maxlength="200" autocomplete="off">
+      <select class="inp" id="tdPrio" title="Prioridad">${todoPrioOpts(todoDraft.prio)}</select>
+      <input class="inp" id="tdDue" type="date" value="${esc(todoDraft.due)}" title="Fecha límite (opcional)">
+      ${state.courses.length?`<select class="inp" id="tdCourse" title="Clase (opcional)">${todoCourseOpts(todoDraft.course)}</select>`:''}
+      <button class="btn" data-act="todoAdd">Añadir</button>
+    </div>
+    <div class="td-bar">
+      <button class="chip-btn ${show==='pend'?'on':''}" data-act="todoShow" data-id="pend">Pendientes · ${pend.length}</button>
+      <button class="chip-btn ${show==='done'?'on':''}" data-act="todoShow" data-id="done">Hechas · ${done.length}</button>
+      <div class="spacer"></div>
+      ${show==='done'&&done.length?'<button class="btn ghost small" data-act="todoClear">Borrar las hechas</button>':''}
+    </div>
+    ${body}
+  </div>`;
+}
+function todoAddFromForm(){
+  const el = document.getElementById('tdText'); if(!el) return;
+  const text = el.value.trim();
+  const g = id=>{ const x = document.getElementById(id); return x ? x.value : ''; };
+  todoDraft = {prio:Number(g('tdPrio'))||2, due:g('tdDue'), course:g('tdCourse')};
+  if(!text){ el.focus(); return; }
+  todos().push({id:uid(), text, prio:todoDraft.prio, due:todoDraft.due, course:todoDraft.course, done:false, doneAt:0, at:Date.now()});
+  todoDraft.due = '';
+  state.todoShow = 'pend'; save(); render();
+  const n = document.getElementById('tdText'); if(n) n.focus();
+}
+function todoEditModal(id){
+  const t = todos().find(x=>x.id===id); if(!t) return;
+  const w = openModal(`<h3>Editar pendiente</h3>
+    ${field('Qué tienes que hacer','text',{type:'textarea', value:t.text, rows:2})}
+    <div class="td-g2">
+      <label class="field"><span>Prioridad</span><select class="inp" name="prio">${todoPrioOpts(t.prio)}</select></label>
+      ${field('Fecha límite','due',{type:'date', value:t.due||''})}
+    </div>
+    <label class="field"><span>Clase</span><select class="inp" name="course">${todoCourseOpts(t.course)}</select></label>
+    <button type="button" class="btn ghost small td-del">Eliminar</button>`,
+    v=>{ if(v.text) t.text = v.text.slice(0,200); t.prio = Number(v.prio)||2; t.due = v.due||''; t.course = v.course||''; });
+  w.querySelector('.td-del').addEventListener('click', ()=>{ state.todos = todos().filter(y=>y.id!==id); w.remove(); save(); render(); });
+}
+document.addEventListener('keydown', e=>{
+  if(e.key==='Enter' && e.target && (e.target.id==='tdText' || e.target.id==='tdDue')){ e.preventDefault(); todoAddFromForm(); }
+});
+document.addEventListener('change', e=>{
+  const id = e.target && e.target.id;
+  if(id==='tdPrio') todoDraft.prio = Number(e.target.value)||2;
+  else if(id==='tdDue') todoDraft.due = e.target.value;
+  else if(id==='tdCourse') todoDraft.course = e.target.value;
+});
 function planViewAgenda(){
   const v = state.planView || 'week';
-  const nav = `${subnav('planSub','agenda',[['agenda','Agenda','▦'],['horario','Mi horario','◷']])}<div class="plan-bar">
+  const nav = `${planSubs('agenda')}${todoStrip()}<div class="plan-bar">
       <div class="plan-datenav">
         <button class="pd-arrow" data-act="planNav" data-d="-1" title="Anterior">‹</button>
         <button class="pd-today" data-act="planToday">Hoy</button>
@@ -8612,6 +8754,11 @@ const actions = {
   clipDone(){ sessClip = null; render(); },
   editSchedule(){ scheduleModal(); },
   planSub(t){ state.planSub = t.dataset.id; save(); render(); },
+  todoAdd(){ todoAddFromForm(); },
+  todoShow(t){ state.todoShow = t.dataset.id; save(); render(); },
+  todoToggle(t){ const x = todos().find(y=>y.id===t.dataset.id); if(!x) return; x.done = !x.done; x.doneAt = x.done ? Date.now() : 0; save(); render(); },
+  todoEdit(t){ todoEditModal(t.dataset.id); },
+  todoClear(){ state.todos = todos().filter(y=>!y.done); save(); render(); },
   ttEdit(t){ ttTeacherModal(t.dataset.slot, Number(t.dataset.dow)); },
   ttClassEdit(t){ ttClassModal(t.dataset.slot, Number(t.dataset.dow)); },
   fsOpenOrNew(){
