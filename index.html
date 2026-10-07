@@ -1467,6 +1467,47 @@ html[data-theme="archivador"] .wk-cell,html[data-theme="archivador"] .wk td{back
 html[data-theme="archivador"] .wk-time{background:transparent!important}
 html[data-theme="cuaderno"] .wk-time,html[data-theme="cuaderno"] html[data-theme="colores"] .wk-time{background:transparent!important}
 }
+
+/* aviso de guardado, deshacer, bloqueo, copias y reparto de puntos */
+#storeWarn{position:fixed;left:0;right:0;bottom:0;z-index:300;background:#8E2A1E;color:#fff;padding:12px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;font-family:system-ui,sans-serif;font-size:15px;line-height:1.35}
+#storeWarn span{flex:1 1 260px}
+#storeWarn button{background:#fff;color:#8E2A1E;border:0;border-radius:8px;padding:9px 14px;font-weight:700;font-size:15px;cursor:pointer}
+#undoToast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(18px + env(safe-area-inset-bottom));z-index:290;background:#16241F;color:#fff;border-radius:12px;padding:8px 8px 8px 16px;display:flex;gap:8px;align-items:center;box-shadow:0 8px 28px rgba(0,0,0,.3);font-family:system-ui,sans-serif;font-size:15px;max-width:calc(100vw - 24px)}
+#undoToast span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#undoToast button{border:0;border-radius:8px;padding:9px 12px;font-size:15px;cursor:pointer;background:rgba(255,255,255,.14);color:#fff;white-space:nowrap}
+#undoToast [data-undo]{background:#E4A11B;color:#16241F;font-weight:700}
+html.is-locked #app{visibility:hidden}
+#pinLock{position:fixed;inset:0;z-index:1000;background:#16241F;display:flex;align-items:flex-start;justify-content:center;overflow:auto;padding:max(24px,8vh) 16px 24px;font-family:system-ui,sans-serif;color:#EAF0EC}
+.pin-box{width:100%;max-width:340px;text-align:center}
+.pin-ic{font-size:40px}
+.pin-box h2{font-size:24px;margin:6px 0 4px;color:#fff}
+.pin-box p{margin:6px 0;font-size:15.5px;line-height:1.4;color:#C9D6CE}
+.pin-box input{width:100%;font-size:26px;letter-spacing:.3em;text-align:center;padding:12px;border-radius:12px;border:2px solid #3E5A4C;background:#22362E;color:#fff;margin:10px 0 4px}
+.pin-box #pinWipeTxt{font-size:18px;letter-spacing:.1em}
+.pin-msg{min-height:22px;color:#FFB4A6!important;font-weight:600}
+.pin-go{width:100%;padding:13px;border:0;border-radius:12px;background:#E4A11B;color:#16241F;font-size:17px;font-weight:700;cursor:pointer}
+.pin-hint{font-style:italic}
+.pin-forgot{margin-top:18px;background:none;border:0;color:#9DB4A7;text-decoration:underline;font-size:14.5px;cursor:pointer}
+#pinForgotBox{margin-top:10px;text-align:left;border:1px solid #3E5A4C;border-radius:12px;padding:12px}
+.pin-wipe{width:100%;padding:11px;border:0;border-radius:10px;background:#B4472F;color:#fff;font-size:15.5px;font-weight:700;cursor:pointer;margin-top:6px}
+.auto-row{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--rule)}
+.auto-row:last-child{border-bottom:0}
+.auto-row small{color:var(--muted);margin-left:6px}
+.td-rep{color:var(--muted);font-size:15px}
+.td-add #tdRep{flex:0 0 170px}
+@media(max-width:700px){.td-add #tdRep{flex:1 1 100%}}
+.mode-bar{flex-wrap:wrap}
+.md-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:8px;margin-top:6px}
+.md-stu{display:flex;gap:6px}
+.md-add{flex:1;min-width:0;display:flex;align-items:center;gap:8px;text-align:left;padding:11px 12px;border:2px solid var(--rule);border-radius:12px;background:#fff;cursor:pointer;font-family:var(--font-ui);font-size:15.5px;color:var(--ink)}
+.md-add .num{font-family:var(--font-mono);font-size:12px;color:var(--muted)}
+.md-add .md-nm{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.md-add b{font-family:var(--font-mono);font-size:15px;color:var(--muted);white-space:nowrap}
+.md-stu.has .md-add{border-color:var(--accent);background:var(--accent-soft)}
+.md-stu.has .md-add b{color:var(--accent)}
+.md-add:active{transform:scale(.98)}
+.md-sub{flex:0 0 44px;border:2px solid var(--rule);border-radius:12px;background:#fff;font-size:20px;cursor:pointer;color:var(--ink)}
+.md-sub:disabled{opacity:.35;cursor:default}
 </style>
 </head>
 <body>
@@ -1911,9 +1952,9 @@ function medMatchesProfile(medCode, conds){
 }
 const CODES = {P:'Presente', A:'Falta', R:'Retraso', J:'Justificada'};
 const KEY = 'cuaderno-lomloe:v1';
-const APP_VERSION = '4.3';
+const APP_VERSION = '4.4';
 const APP_BUILD = '07/10/2026';
-const APP_NOTES = 'Estilos visuales: en Ajustes › Apariencia puedes elegir entre Original, Cuaderno, Pizarra, Archivador y Colores. Las marcas con contador se suman o restan con − y + desde la propia casilla. Antes: Ajustes más limpios: la copia de seguridad y el archivo local se pliegan cuando ya sincronizas con Google Drive, y las novedades de la versión se despliegan solo si las quieres leer. Antes: Nueva pestaña «Pendientes» en la agenda: tu lista de cosas por hacer, con prioridad, fecha límite y clase; la agenda avisa de lo que vence hoy o va con retraso. Además: Programación de la unidad: nueve apartados desplegables para planificar la unidad entera, con criterios, saberes básicos y competencias clave del currículo de Aragón, sesiones enlazadas con la agenda, adjuntos, medidas de atención a la diversidad por alumno, diana de autoevaluación docente, vista completa y PDF de dos caras. Además, código de color único por grado en rúbricas y tablas de notas, y tablas, horario y agenda con piezas redondeadas';
+const APP_NOTES = 'Más seguridad para tus datos: se guarda al instante al salir de la app, avisa si el dispositivo no puede guardar, «Deshacer» tras cada borrado y una copia automática diaria. Bloqueo con PIN opcional. Pendientes que se repiten y que se crean desde una sesión o una tutoría. «Repartir puntos» para sumar marcas de un toque. Antes: Estilos visuales: en Ajustes › Apariencia puedes elegir entre Original, Cuaderno, Pizarra, Archivador y Colores. Las marcas con contador se suman o restan con − y + desde la propia casilla. Antes: Ajustes más limpios: la copia de seguridad y el archivo local se pliegan cuando ya sincronizas con Google Drive, y las novedades de la versión se despliegan solo si las quieres leer. Antes: Nueva pestaña «Pendientes» en la agenda: tu lista de cosas por hacer, con prioridad, fecha límite y clase; la agenda avisa de lo que vence hoy o va con retraso. Además: Programación de la unidad: nueve apartados desplegables para planificar la unidad entera, con criterios, saberes básicos y competencias clave del currículo de Aragón, sesiones enlazadas con la agenda, adjuntos, medidas de atención a la diversidad por alumno, diana de autoevaluación docente, vista completa y PDF de dos caras. Además, código de color único por grado en rúbricas y tablas de notas, y tablas, horario y agenda con piezas redondeadas';
 
 /* escala cualitativa por defecto (Orden ECD/1112/2022) */
 const DEFAULT_SCALE = [
@@ -2145,7 +2186,7 @@ const GD_UP = 'https://www.googleapis.com/upload/drive/v3';
 const GD_DATA_KEYS = ['courses','curriculo','schedule','sessions','teacherTT','templates','areaColors','colorBy','markDefs','upMethods','holidays','attFolderId','todos'];
 const GD_UI_KEYS = ['view','homeTab','planView','planDate','planSub','activeCourse','activeArea','activePeriod','activeUnit',
   'editor','viewStudent','tutStudent','tutFromHome','unitSub','triSub','divSub','alumSub','gridMode','editMode',
-  'instrMode','rubCompact','upView','upOpen','sabOnly','sabCycle','editWeights','todoShow','homeTutCourse','homeAjCourse','attDate','lastSel','lastCourse','taskEd'];
+  'instrMode','rubCompact','mkDeal','upView','upOpen','sabOnly','sabCycle','editWeights','todoShow','homeTutCourse','homeAjCourse','attDate','lastSel','lastCourse','taskEd'];
 
 const gd = {
   status:'off',          // off · need · ok · sync · offline · error · conflict
@@ -2451,23 +2492,51 @@ function gdCardHtml(){
 let saveTimer=null;
 function save(){
   clearTimeout(saveTimer);
+  saveDirty = true;
   saveTimer = setTimeout(async ()=>{
+    saveTimer = null;
     state.savedAt = Date.now();
     fileWrite();
     gdSchedule();
     setTimeout(attUploadPending, 1500);
-    if(memoryOnly) return;
     try{
       await store.set(KEY, JSON.stringify(state));
+      saveDirty = false; storeWarn(false);
       const s = el('saved'); s.classList.add('on'); setTimeout(()=>s.classList.remove('on'),1200);
-    }catch(e){ memoryOnly = true; }
+    }catch(e){ memoryOnly = true; storeWarn(true); }
   }, 400);
+}
+/* al pasar a segundo plano o cerrar, se guarda en el acto lo que estuviera esperando */
+let saveDirty = false;
+function flushSave(){
+  if(!saveDirty) return;
+  clearTimeout(saveTimer); saveTimer = null;
+  state.savedAt = Date.now();
+  try{
+    const l = localBox();
+    if(l && !(typeof window.storage!=='undefined' && window.storage && window.storage.set)){ l.setItem(KEY, JSON.stringify(state)); saveDirty = false; storeWarn(false); }
+    else store.set(KEY, JSON.stringify(state)).then(()=>{ saveDirty = false; }).catch(()=>{ memoryOnly = true; storeWarn(true); });
+  }catch(e){ memoryOnly = true; storeWarn(true); }
+  try{ fileWrite(); gdSchedule(); }catch(e){}
+}
+document.addEventListener('visibilitychange', ()=>{ if(document.hidden) flushSave(); });
+window.addEventListener('pagehide', flushSave);
+/* aviso fijo mientras el dispositivo no esté guardando */
+function storeWarn(on){
+  let b = document.getElementById('storeWarn');
+  if(!on){ if(b){ b.remove(); memoryOnly = false; } return; }
+  if(b) return;
+  b = document.createElement('div'); b.id = 'storeWarn'; b.setAttribute('role','alert');
+  b.innerHTML = `<span><b>Este dispositivo no está guardando los cambios.</b> Puede estar lleno el espacio del navegador o estar en modo privado. Si cierras la app, se perderá lo que hagas desde ahora.</span>
+    <button type="button" id="storeWarnBk">Descargar copia ahora</button>`;
+  document.body.appendChild(b);
+  b.querySelector('#storeWarnBk').addEventListener('click', ()=>{ if(actions.backup) actions.backup(); });
 }
 async function load(){
   try{
     const r = await store.get(KEY);
     if(r && r.value) state = Object.assign(state, JSON.parse(r.value));
-  }catch(e){}
+  }catch(e){ if(!localBox() && !(typeof window.storage!=='undefined' && window.storage)) setTimeout(()=>storeWarn(true), 300); }
   if(fsOK){
     try{
       const h = await idbGet('handle');
@@ -2513,6 +2582,8 @@ async function load(){
   if(wasClean && gdHash()!==gd.baseHash){ gd.baseHash = gdHash(); gdPersist(); }
   render();
   gdInit();
+  autoCopyInit();
+  pinInit();
 }
 function normalize(){
   if(!state.courses) state.courses = [];
@@ -2630,6 +2701,41 @@ function marksCell(c, sid, tid){
   return marksCount(c, sid, tid).map(x=> x.m.count
     ? `<span class="cmk-step"><i data-act="mkStep" data-s="${sid}" data-t="${tid}" data-m="${x.m.id}" data-d="-1" title="Quitar una" aria-label="Quitar una ${esc(x.m.name)}">−</i><span>${x.m.ic}${x.n}</span><i data-act="mkStep" data-s="${sid}" data-t="${tid}" data-m="${x.m.id}" data-d="1" title="Sumar una" aria-label="Sumar una ${esc(x.m.name)}">+</i></span>`
     : x.m.ic).join('');
+}
+/* repartir marcas con contador: se elige tarea y marca, y cada toque en un alumno suma una */
+function markDealModal(){
+  const c = course(), u = c && unitById(c, state.activeUnit); if(!u) return;
+  const tasks = tasksOfUnit(c, u.id);
+  const defs = markDefs().filter(m=>m.count);
+  if(!tasks.length){ openModal(`<h3>Repartir puntos</h3><p class="sub">Esta unidad todavía no tiene tareas. Crea una (por ejemplo, una tarea informativa de participación) y vuelve aquí.</p>`, null); return; }
+  if(!defs.length){ const w0 = openModal(`<h3>Repartir puntos</h3><p class="sub">Todavía no tienes ninguna marca con contador. Créala con «Añadir marca» y activa su casilla «Contador».</p><button type="button" class="btn small" id="mdEdit">✎ Editar marcas</button>`, null);
+    w0.querySelector('#mdEdit').addEventListener('click', ()=>{ w0.remove(); marksEditor(); }); return; }
+  let tid = (state.mkDeal && tasks.find(t=>t.id===state.mkDeal.t)) ? state.mkDeal.t : tasks[0].id;
+  let mid = (state.mkDeal && defs.find(m=>m.id===state.mkDeal.m)) ? state.mkDeal.m : defs[0].id;
+  const w = openModal(`<h3>Repartir puntos</h3>
+    <div class="td-g2">
+      <label class="field"><span>Tarea</span><select class="inp" id="mdTask">${tasks.map(t=>`<option value="${t.id}" ${t.id===tid?'selected':''}>${esc(t.name)}</option>`).join('')}</select></label>
+      <label class="field"><span>Marca</span><select class="inp" id="mdMark">${defs.map(m=>`<option value="${m.id}" ${m.id===mid?'selected':''}>${m.ic} ${esc(m.name)}</option>`).join('')}</select></label>
+    </div>
+    <p class="sub">Toca un nombre para sumarle una. El botón − quita una.</p>
+    <div class="md-grid" id="mdGrid"></div>`, null, null, {wide:true});
+  const cl = w.querySelector('[data-close]'); if(cl) cl.textContent = 'Cerrar';
+  const draw = ()=>{
+    const m = markDef(mid);
+    w.querySelector('#mdGrid').innerHTML = c.students.map((s,i)=>{
+      const n = marksOf(c, s.id, tid).filter(x=>x===mid).length;
+      return `<div class="md-stu ${n?'has':''}"><button type="button" class="md-add" data-s="${s.id}"><span class="num">${String(i+1).padStart(2,'0')}</span><span class="md-nm">${esc(s.name)}</span><b>${n? m.ic+' '+n : '＋'}</b></button><button type="button" class="md-sub" data-s="${s.id}" ${n?'':'disabled'} aria-label="Quitar una a ${esc(s.name)}">−</button></div>`;
+    }).join('');
+  };
+  draw();
+  w.querySelector('#mdTask').addEventListener('change', e=>{ tid = e.target.value; draw(); });
+  w.querySelector('#mdMark').addEventListener('change', e=>{ mid = e.target.value; draw(); });
+  w.querySelector('#mdGrid').addEventListener('click', e=>{
+    const a = e.target.closest('.md-add'), b = e.target.closest('.md-sub');
+    if(a) toggleMark(c, a.dataset.s, tid, mid); else if(b) dropMark(c, b.dataset.s, tid, mid); else return;
+    state.mkDeal = {t:tid, m:mid}; save(); draw();
+  });
+  w.addEventListener('click', e=>{ if(e.target===w || e.target.hasAttribute('data-close')) render(); });
 }
 function marksNames(c, sid, tid){ return marksCount(c, sid, tid).map(x=>x.m.ic+' '+x.m.name+(x.n>1?' ×'+x.n:'')).join(' · '); }
 function setMarks(c, sid, tid, cur){
@@ -3467,10 +3573,10 @@ views.clases = function(){
         <button class="btn" data-act="newCourse">Crear clase</button>
         <button class="btn ghost" data-act="ejemplo">Ver la Clase Ejemplo</button>
       </div>
-      <p class="hint" style="margin-top:18px">¿Vienes de otro equipo?</p>
+      <p class="hint" style="margin-top:18px">¿Ya usas el cuaderno en otro dispositivo?</p>
       <div class="row" style="justify-content:center">
-        ${fsOK? '<button class="btn ghost" data-act="fsOpen">Abrir mi archivo de datos</button>':''}
-        <button class="btn ghost" data-act="restore">Restaurar una copia</button>
+        ${gdAvailable()? '<button class="btn" data-act="gdClick">☁ Conectar Google Drive y traer mis datos</button>':''}
+        <button class="btn ghost" data-act="restore">Restaurar una copia descargada</button>
       </div></div></div>`;
   }
   const palette = ['#1F6B4F','#2D6A9F','#8A5A2B','#7A4F9A','#9A3B52','#4E7A3A','#B0742A','#3A6E70'];
@@ -3768,7 +3874,21 @@ function planView(){
    state.todos = [{id, text, prio:1|2|3, due:'aaaa-mm-dd'|'', course:id|'', done, doneAt, at}]
    ===================================================================== */
 const TODO_PRIO = {1:['Alta','#C0392B'], 2:['Media','#C98A12'], 3:['Baja','#7A8A80']};
-let todoDraft = {prio:2, due:'', course:''};
+let todoDraft = {prio:2, due:'', course:'', rep:''};
+const TODO_REP = {'':'No se repite', d:'Cada día lectivo', w:'Cada semana', m:'Cada mes'};
+function todoRepOpts(cur){ return Object.keys(TODO_REP).map(k=>`<option value="${k}" ${String(cur||'')===k?'selected':''}>${TODO_REP[k]}</option>`).join(''); }
+/* siguiente fecha de un pendiente que se repite (los diarios saltan fines de semana y días no lectivos) */
+function todoNextDate(t){
+  const td = today(); let n = t.due || td, guard = 0;
+  if(t.rep==='w'){ do{ n = addDays(n, 7); }while(n <= td && guard++ < 520); return n; }
+  if(t.rep==='m'){ do{ const d = parseDate(n); d.setMonth(d.getMonth()+1); n = toISO(d); }while(n <= td && guard++ < 120); return n; }
+  if(n < td) n = td;
+  do{ n = addDays(n, 1); const wd = parseDate(n).getDay(); if(wd!==0 && wd!==6 && !(state.holidays||{})[n]) break; }while(guard++ < 90);
+  return n;
+}
+function todoAdd(o){
+  todos().push(Object.assign({id:uid(), text:'', prio:2, due:'', course:'', rep:'', done:false, doneAt:0, at:Date.now()}, o));
+}
 function todos(){ if(!Array.isArray(state.todos)) state.todos = []; return state.todos; }
 function todoPending(){ return todos().filter(t=>!t.done); }
 function planSubs(cur){
@@ -3801,6 +3921,7 @@ function todoRow(t){
     <span class="td-pr" style="background:${pr[1]}" title="Prioridad ${pr[0].toLowerCase()}"></span>
     <button class="td-txt" data-act="todoEdit" data-id="${t.id}">${esc(t.text)}</button>
     ${c?`<span class="td-tag" style="border-color:${courseColor(c.id)};color:${courseColor(c.id)}">${esc(c.name)}</span>`:''}
+    ${t.rep?`<span class="td-rep" title="${TODO_REP[t.rep]||''}">↻</span>`:''}
     ${t.due?`<span class="td-due ${!t.done&&g==='late'?'late':''} ${!t.done&&g==='today'?'today':''}">${g==='today'&&!t.done?'Hoy':fmtDate(t.due).slice(0,5)}</span>`:''}
   </div>`;
 }
@@ -3826,6 +3947,7 @@ function todoView(){
       <select class="inp" id="tdPrio" title="Prioridad">${todoPrioOpts(todoDraft.prio)}</select>
       <input class="inp" id="tdDue" type="date" value="${esc(todoDraft.due)}" title="Fecha límite (opcional)">
       ${state.courses.length?`<select class="inp" id="tdCourse" title="Clase (opcional)">${todoCourseOpts(todoDraft.course)}</select>`:''}
+      <select class="inp" id="tdRep" title="Repetición">${todoRepOpts(todoDraft.rep)}</select>
       <button class="btn" data-act="todoAdd">Añadir</button>
     </div>
     <div class="td-bar">
@@ -3841,10 +3963,10 @@ function todoAddFromForm(){
   const el = document.getElementById('tdText'); if(!el) return;
   const text = el.value.trim();
   const g = id=>{ const x = document.getElementById(id); return x ? x.value : ''; };
-  todoDraft = {prio:Number(g('tdPrio'))||2, due:g('tdDue'), course:g('tdCourse')};
+  todoDraft = {prio:Number(g('tdPrio'))||2, due:g('tdDue'), course:g('tdCourse'), rep:g('tdRep')};
   if(!text){ el.focus(); return; }
-  todos().push({id:uid(), text, prio:todoDraft.prio, due:todoDraft.due, course:todoDraft.course, done:false, doneAt:0, at:Date.now()});
-  todoDraft.due = '';
+  todoAdd({text, prio:todoDraft.prio, due:todoDraft.due, course:todoDraft.course, rep:todoDraft.rep});
+  todoDraft.due = ''; todoDraft.rep = '';
   state.todoShow = 'pend'; save(); render();
   const n = document.getElementById('tdText'); if(n) n.focus();
 }
@@ -3856,10 +3978,13 @@ function todoEditModal(id){
       <label class="field"><span>Prioridad</span><select class="inp" name="prio">${todoPrioOpts(t.prio)}</select></label>
       ${field('Fecha límite','due',{type:'date', value:t.due||''})}
     </div>
-    <label class="field"><span>Clase</span><select class="inp" name="course">${todoCourseOpts(t.course)}</select></label>
+    <div class="td-g2">
+      <label class="field"><span>Clase</span><select class="inp" name="course">${todoCourseOpts(t.course)}</select></label>
+      <label class="field"><span>Repetición</span><select class="inp" name="rep">${todoRepOpts(t.rep)}</select></label>
+    </div>
     <button type="button" class="btn ghost small td-del">Eliminar</button>`,
-    v=>{ if(v.text) t.text = v.text.slice(0,200); t.prio = Number(v.prio)||2; t.due = v.due||''; t.course = v.course||''; });
-  w.querySelector('.td-del').addEventListener('click', ()=>{ state.todos = todos().filter(y=>y.id!==id); w.remove(); save(); render(); });
+    v=>{ if(v.text) t.text = v.text.slice(0,200); t.prio = Number(v.prio)||2; t.due = v.due||''; t.course = v.course||''; t.rep = v.rep||''; });
+  w.querySelector('.td-del').addEventListener('click', ()=>{ undoPoint('Pendiente eliminado'); state.todos = todos().filter(y=>y.id!==id); w.remove(); save(); render(); });
 }
 document.addEventListener('keydown', e=>{
   if(e.key==='Enter' && e.target && (e.target.id==='tdText' || e.target.id==='tdDue')){ e.preventDefault(); todoAddFromForm(); }
@@ -3869,6 +3994,7 @@ document.addEventListener('change', e=>{
   if(id==='tdPrio') todoDraft.prio = Number(e.target.value)||2;
   else if(id==='tdDue') todoDraft.due = e.target.value;
   else if(id==='tdCourse') todoDraft.course = e.target.value;
+  else if(id==='tdRep') todoDraft.rep = e.target.value;
 });
 /* ===== estilos visuales: se guardan por dispositivo, fuera de los datos sincronizados ===== */
 const THEMES = [
@@ -5643,6 +5769,8 @@ function gradeTable(c, aid, p, opts){
         <span class="mb-t">Calificar</span><span class="mb-s">Abrir la rúbrica de cada casilla</span></button>
       <button class="mode-btn adj ${edit?'on':''}" data-act="setEdit" data-m="1">
         <span class="mb-t">Ajustar notas</span><span class="mb-s">Escribir una nota a mano</span></button>
+      ${unit && !edit ? `<button class="mode-btn cal" data-act="mkDeal">
+        <span class="mb-t">Repartir puntos</span><span class="mb-s">Sumar marcas con contador de un toque</span></button>` : ''}
     </div>
     ${nAdj? `<div class="row" style="margin:2px 0 10px"><span class="count mid">${nAdj} nota(s) ajustada(s) a mano</span>${edit?` <button class="btn ghost small" data-act="clearAdj">Quitar todos los ajustes</button>`:''}</div>`:''}
     <p class="hint">${esc(areaDef(aid).name)} · ${esc(p.name)}${unit?' · '+esc(unit.name):''}. ${edit
@@ -6378,6 +6506,7 @@ function ajustesBody(c){
         <span class="th-prev" style="${t.bg}"><b style="background:${t.top}"></b><i style="${t.tab}">Aa</i></span><span class="th-name">${t.name}</span></button>`).join('')}</div>
     </div>
     ${gdCardHtml()}
+    ${pinCardHtml()}
     ${(()=>{
       const fileOn = fileState==='ready' || fileState==='need-permission';
       const drive = gd.connected;
@@ -6397,7 +6526,7 @@ function ajustesBody(c){
                    <button class="btn ghost small" data-act="fsOpen">Usar uno que ya tengo</button></div>`}
         </div>`;
       return `<details class="card adv" ${(!drive || fileOn)?'open':''}>
-        <summary><span class="sec-title">Copia de seguridad${fileCard?' y archivo local':''}</span>
+        <summary><span class="sec-title">Copias de seguridad${fileCard?' y archivo local':''}</span>
           <span class="adv-sub">${drive?'Opcional: tus datos ya se guardan en Google Drive':(state.lastBackup?'Última copia: '+fmtDate(state.lastBackup):'Todavía no has hecho ninguna copia')}</span></summary>
         <div class="adv-block">
           <p class="hint">${drive
@@ -6408,6 +6537,11 @@ function ajustesBody(c){
             <button class="btn small" data-act="backup">Descargar copia</button>
             <button class="btn ghost small" data-act="restore">Restaurar desde archivo</button>
           </div>
+        </div>
+        <div class="adv-block">
+          <h3 class="adv-h">Copias automáticas de este dispositivo</h3>
+          <p class="hint">La app guarda sola una copia al día (los últimos 7 días que la hayas abierto). Sirven para volver atrás si borras algo por error.</p>
+          ${autoCopiesHtml()}
         </div>
         ${fileCard}
       </details>`;
@@ -7109,7 +7243,188 @@ function field(label, name, opts){
   return `<label class="field"><span>${esc(label)}</span><input class="inp" name="${name}" type="${t}" value="${esc(opts.value==null?'':opts.value)}" placeholder="${esc(opts.placeholder||'')}"></label>`;
 }
 function confirmDo(msg, sub, fn){
-  openModal(`<h3>${esc(msg)}</h3>${sub?`<p class="sub">${esc(sub)}</p>`:''}`, ()=>fn(), 'Eliminar');
+  openModal(`<h3>${esc(msg)}</h3>${sub?`<p class="sub">${esc(sub)}</p>`:''}`, ()=>{ undoPoint(/^¿?Cargar/.test(msg) ? 'Clase Ejemplo cargada' : (/^¿?(Quitar|Vaciar)/.test(msg) ? 'Hecho' : 'Eliminado')); fn(); }, /^¿?(Cargar|Vaciar|Quitar)/.test(msg) ? 'Continuar' : 'Eliminar');
+}
+/* ===== deshacer: antes de cada borrado se guarda una foto de los datos y se ofrece recuperarla ===== */
+let undoSnap = null, undoTimer = null;
+function dataSnapshot(){ const o = {}; GD_DATA_KEYS.forEach(k=>{ o[k] = state[k]; }); return JSON.stringify(o); }
+function dataRestore(json){
+  const o = JSON.parse(json);
+  GD_DATA_KEYS.forEach(k=>{ if(k in o && o[k]!==undefined) state[k] = o[k]; else delete state[k]; });
+  if(!state.courses.find(c=>c.id===state.activeCourse)){ state.activeCourse = state.courses[0] ? state.courses[0].id : null; state.view = 'clases'; }
+  migrate(); normalize(); save(); render();
+}
+function undoPoint(label){
+  try{ undoSnap = dataSnapshot(); }catch(e){ undoSnap = null; return; }
+  setTimeout(()=>undoToast(label || 'Cambio hecho'), 60);
+}
+function undoToast(label){
+  let t = document.getElementById('undoToast'); if(t) t.remove();
+  if(!undoSnap) return;
+  t = document.createElement('div'); t.id = 'undoToast'; t.setAttribute('role','status');
+  t.innerHTML = `<span>${esc(label)}</span><button type="button" data-undo>↶ Deshacer</button><button type="button" data-x aria-label="Cerrar">✕</button>`;
+  document.body.appendChild(t);
+  const close = ()=>{ clearTimeout(undoTimer); t.remove(); };
+  t.querySelector('[data-x]').addEventListener('click', close);
+  t.querySelector('[data-undo]').addEventListener('click', ()=>{ const sn = undoSnap; undoSnap = null; close(); if(sn) dataRestore(sn); });
+  clearTimeout(undoTimer); undoTimer = setTimeout(()=>{ if(document.body.contains(t)) t.remove(); }, 15000);
+}
+
+/* ===== copias automáticas: una al día, al abrir la app, guardadas en este dispositivo (últimos 7 días) ===== */
+let autoList = [];
+function autoDb(){
+  return new Promise((res, rej)=>{
+    try{ const r = window.indexedDB.open('cuaderno-auto', 1);
+      r.onupgradeneeded = ()=>{ r.result.createObjectStore('copias', {keyPath:'date'}); };
+      r.onsuccess = ()=>res(r.result); r.onerror = ()=>rej(r.error);
+    }catch(e){ rej(e); }
+  });
+}
+async function autoAll(){
+  const db = await autoDb();
+  return new Promise((res, rej)=>{ const q = db.transaction('copias').objectStore('copias').getAll(); q.onsuccess = ()=>res(q.result||[]); q.onerror = ()=>rej(q.error); });
+}
+async function autoCopyInit(){
+  try{
+    let all = await autoAll();
+    const td = today();
+    if(state.courses.length && !all.some(x=>x.date===td)){
+      const data = dataSnapshot();
+      const db = await autoDb();
+      await new Promise((res, rej)=>{ const tx = db.transaction('copias','readwrite'); tx.objectStore('copias').put({date:td, at:Date.now(), size:data.length, data:data}); tx.oncomplete = res; tx.onerror = ()=>rej(tx.error); });
+      all = await autoAll();
+      const old = all.sort((a,b)=>b.date.localeCompare(a.date)).slice(7);
+      if(old.length){ const tx = db.transaction('copias','readwrite'); old.forEach(o=>tx.objectStore('copias').delete(o.date)); }
+      all = all.slice(0, 7);
+    }
+    autoList = all.sort((a,b)=>b.date.localeCompare(a.date)).map(x=>({date:x.date, at:x.at, size:x.size}));
+    if(state.view==='clases' && state.homeTab==='ajustes') render();
+  }catch(e){ autoList = []; }
+}
+async function autoRestore(date){
+  try{
+    const all = await autoAll(); const it = all.find(x=>x.date===date); if(!it) return;
+    undoPoint('Copia del '+fmtDate(date)+' restaurada'); dataRestore(it.data);
+  }catch(e){}
+}
+function autoCopiesHtml(){
+  if(!autoList.length) return `<p class="hint" style="margin:0">Todavía no hay ninguna. Se guarda una sola, cada día, al abrir la app.</p>`;
+  return `<div class="auto-list">${autoList.map(x=>`<div class="auto-row"><span class="grow"><b>${fmtDate(x.date)}</b>${x.date===today()?' · al abrir hoy':''} <small>${Math.max(1, Math.round(x.size/1024))} KB</small></span>
+    <button class="btn ghost small" data-act="autoRestore" data-id="${x.date}">Restaurar</button></div>`).join('')}</div>`;
+}
+
+/* ===== bloqueo con PIN (opcional, por dispositivo). Es una barrera de acceso, no un cifrado de los datos ===== */
+const PIN_LS = 'cuaderno-pin';
+let pinHiddenAt = 0, pinFails = 0, pinWaitUntil = 0;
+function pinGet(){ try{ return JSON.parse(localStorage.getItem(PIN_LS)||'null'); }catch(e){ return null; } }
+async function pinHash(pin, salt){
+  const txt = salt+':'+pin;
+  if(window.crypto && crypto.subtle && window.TextEncoder){
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(txt));
+    return [...new Uint8Array(buf)].map(b=>b.toString(16).padStart(2,'0')).join('');
+  }
+  let h = 5381; for(let i=0;i<txt.length;i++) h = ((h<<5)+h + txt.charCodeAt(i))|0; return 'x'+h;
+}
+async function pinCheck(pin){ const p = pinGet(); return !!p && (await pinHash(pin, p.salt))===p.hash; }
+async function pinSet(pin, hint){
+  const salt = Math.random().toString(36).slice(2)+Date.now().toString(36);
+  localStorage.setItem(PIN_LS, JSON.stringify({salt, hash:await pinHash(pin, salt), hint:(hint||'').slice(0,60)}));
+}
+function pinInit(){
+  if(pinGet()) pinLock();
+  document.addEventListener('visibilitychange', ()=>{
+    if(document.hidden){ pinHiddenAt = Date.now(); return; }
+    if(pinGet() && pinHiddenAt && Date.now()-pinHiddenAt > 5*60000) pinLock();
+  });
+}
+function pinLock(){
+  if(document.getElementById('pinLock')) return;
+  const p = pinGet(); if(!p) return;
+  document.querySelectorAll('.backdrop').forEach(b=>b.remove());
+  document.documentElement.classList.add('is-locked');
+  const w = document.createElement('div'); w.id = 'pinLock'; w.setAttribute('role','dialog'); w.setAttribute('aria-modal','true');
+  w.innerHTML = `<form class="pin-box" autocomplete="off">
+      <div class="pin-ic">🔒</div>
+      <h2>Cuaderno.Profesor</h2>
+      <p>Escribe tu PIN para entrar.</p>
+      <input id="pinIn" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="8" autocomplete="off" aria-label="PIN">
+      <p class="pin-msg" id="pinMsg"></p>
+      <button type="submit" class="pin-go">Entrar</button>
+      ${p.hint?`<p class="pin-hint">Pista: ${esc(p.hint)}</p>`:''}
+      <button type="button" class="pin-forgot" id="pinForgot">He olvidado el PIN</button>
+      <div id="pinForgotBox" hidden>
+        <p>El PIN no se puede recuperar. Para quitarlo hay que <b>borrar los datos del cuaderno en este dispositivo</b>.</p>
+        <p>${gd.connected?'Tienes Google Drive conectado: lo que ya esté sincronizado se descarga de nuevo al volver a conectar.':'<b>No tienes Google Drive conectado: se perderá todo lo que no tengas en una copia descargada.</b>'}</p>
+        <p>Escribe <b>BORRAR</b> para confirmarlo.</p>
+        <input id="pinWipeTxt" type="text" autocomplete="off" aria-label="Escribe BORRAR">
+        <button type="button" class="pin-wipe" id="pinWipe">Borrar los datos de este dispositivo</button>
+      </div>
+    </form>`;
+  document.body.appendChild(w);
+  const inp = w.querySelector('#pinIn'), msg = w.querySelector('#pinMsg');
+  setTimeout(()=>{ try{ inp.focus(); }catch(e){} }, 50);
+  w.querySelector('form').addEventListener('submit', async e=>{
+    e.preventDefault();
+    const wait = Math.ceil((pinWaitUntil - Date.now())/1000);
+    if(wait > 0){ msg.textContent = 'Demasiados intentos. Espera '+wait+' s.'; return; }
+    if(await pinCheck(inp.value)){ pinFails = 0; pinHiddenAt = 0; w.remove(); document.documentElement.classList.remove('is-locked'); return; }
+    pinFails++; inp.value = '';
+    if(pinFails % 5 === 0){ pinWaitUntil = Date.now()+30000; msg.textContent = 'PIN incorrecto. Espera 30 s antes de volver a probar.'; }
+    else msg.textContent = 'PIN incorrecto.';
+  });
+  w.querySelector('#pinForgot').addEventListener('click', ()=>{ w.querySelector('#pinForgotBox').hidden = false; });
+  w.querySelector('#pinWipe').addEventListener('click', ()=>{
+    if(w.querySelector('#pinWipeTxt').value.trim().toUpperCase()!=='BORRAR'){ msg.textContent = 'Escribe BORRAR en la casilla para confirmar.'; return; }
+    saveDirty = false; clearTimeout(saveTimer);
+    try{ localStorage.removeItem(KEY); localStorage.removeItem(PIN_LS); localStorage.removeItem(GD_LS); }catch(e){}
+    try{ window.indexedDB.deleteDatabase('cuaderno-auto'); }catch(e){}
+    location.reload();
+  });
+}
+function pinSetupModal(){
+  const has = !!pinGet();
+  const w = openModal(`<h3>${has?'Cambiar el PIN':'Activar el bloqueo con PIN'}</h3>
+    <p class="sub">La app pedirá el PIN al abrirse y al volver tras más de 5 minutos en segundo plano. Solo vale para este dispositivo.</p>
+    ${has?`<label class="field"><span>PIN actual</span><input class="inp" id="pinOld" type="password" inputmode="numeric" maxlength="8" autocomplete="off"></label>`:''}
+    <label class="field"><span>PIN nuevo (de 4 a 8 cifras)</span><input class="inp" id="pinA" type="password" inputmode="numeric" maxlength="8" autocomplete="off"></label>
+    <label class="field"><span>Repite el PIN</span><input class="inp" id="pinB" type="password" inputmode="numeric" maxlength="8" autocomplete="off"></label>
+    <label class="field"><span>Pista (opcional, se verá en la pantalla de bloqueo)</span><input class="inp" id="pinHint" type="text" maxlength="60" autocomplete="off"></label>
+    <p class="sub" style="color:var(--low)" id="pinErr"></p>
+    <p class="sub"><b>Si lo olvidas no se puede recuperar:</b> habría que borrar los datos de este dispositivo. Con Google Drive conectado no se pierde lo sincronizado.</p>
+    <div class="row"><div class="spacer"></div><button type="button" class="btn" id="pinSave">${has?'Cambiar PIN':'Activar'}</button></div>`, null);
+  const err = t=>{ w.querySelector('#pinErr').textContent = t; };
+  w.querySelector('#pinSave').addEventListener('click', async ()=>{
+    const a = w.querySelector('#pinA').value, b = w.querySelector('#pinB').value;
+    if(has && !(await pinCheck(w.querySelector('#pinOld').value))) return err('El PIN actual no es correcto.');
+    if(!/^[0-9]{4,8}$/.test(a)) return err('El PIN tiene que tener entre 4 y 8 cifras.');
+    if(a!==b) return err('Los dos PIN no coinciden.');
+    await pinSet(a, w.querySelector('#pinHint').value.trim());
+    w.remove(); render();
+  });
+}
+function pinOffModal(){
+  const w = openModal(`<h3>Quitar el bloqueo con PIN</h3>
+    <label class="field"><span>PIN actual</span><input class="inp" id="pinOld" type="password" inputmode="numeric" maxlength="8" autocomplete="off"></label>
+    <p class="sub" style="color:var(--low)" id="pinErr"></p>
+    <div class="row"><div class="spacer"></div><button type="button" class="btn danger" id="pinDel">Quitar el PIN</button></div>`, null);
+  w.querySelector('#pinDel').addEventListener('click', async ()=>{
+    if(!(await pinCheck(w.querySelector('#pinOld').value))){ w.querySelector('#pinErr').textContent = 'El PIN no es correcto.'; return; }
+    try{ localStorage.removeItem(PIN_LS); }catch(e){}
+    w.remove(); render();
+  });
+}
+function pinCardHtml(){
+  const on = !!pinGet();
+  return `<div class="card">
+      <h2 class="sec-title">Bloqueo con PIN</h2>
+      <p class="hint">${on
+        ? '<b>Activado en este dispositivo.</b> La app pide el PIN al abrirse y al volver tras 5 minutos en segundo plano.'
+        : 'Opcional. Pide un PIN al abrir la app en este dispositivo, para que nadie vea las notas si coge tu móvil o usas un ordenador compartido.'}
+        Impide entrar a la app, pero no cifra los datos guardados en el navegador.</p>
+      <div class="row">${on
+        ? `<button class="btn small" data-act="pinLockNow">🔒 Bloquear ahora</button><button class="btn ghost small" data-act="pinSetup">Cambiar PIN</button><button class="btn danger small" data-act="pinOff">Quitar</button>`
+        : `<button class="btn small" data-act="pinSetup">Activar PIN</button>`}</div>
+    </div>`;
 }
 
 /* ---------- calificar una tarea ---------- */
@@ -8369,6 +8684,7 @@ function tutoriaModal(existing){
         ${field('Asistentes por la familia','family',{value:t.family, placeholder:'Madre, padre, tutor/a legal…'})}
         ${field('Asistentes por el centro','staff',{value:t.staff, placeholder:'Tutor/a, especialista de inglés, orientación, PT…'})}
         ${field('Próxima cita (opcional)','next',{type:'date', value:t.next})}
+        <label class="check-opt" style="margin:-4px 0 10px"><input type="checkbox" name="mkTodo"> <span>Añadir la próxima cita a mis pendientes</span></label>
       </div>
       <div class="col-b">
         ${field('Temas tratados','topics',{type:'textarea', rows:5, value:t.topics, placeholder:'Qué se ha hablado: evolución académica, convivencia, hábitos de trabajo, aspectos que traslada la familia…'})}
@@ -8376,6 +8692,8 @@ function tutoriaModal(existing){
       </div>
     </div>`;
   openModal(inner, v=>{
+    if(v.mkTodo && v.next) todoAdd({text:'Tutoría con la familia de '+s.name, due:v.next, course:c.id, prio:1});
+    delete v.mkTodo;
     if(existing) Object.assign(existing, v);
     else c.tutorias.push(Object.assign({id:uid(), studentId:s.id}, v));
   }, existing?'Guardar':'Registrar', {wide:true});
@@ -8595,6 +8913,7 @@ function sessionModal(iso, slotId){
           <select class="inp" id="sesArea" ${courseId?'':'disabled'}>${courseId?areaOptionsFor(courseId):'<option value="">Elige antes una clase</option>'}</select></label>
         <div id="sesColor"></div>
         ${field('Sesión','title',{value:s.title, placeholder:'U3 · Sesión 1: Evaluación inicial'})}
+        ${field('☑ Pendiente para ese día (opcional)','todoTxt',{placeholder:'p. ej. Llevar las fotocopias'})}
       </div>
       <div class="col-b">
         <div class="row" style="margin-bottom:6px"><span class="field-lbl">Desarrollo de la sesión</span>
@@ -8622,6 +8941,7 @@ function sessionModal(iso, slotId){
   let files = (s.files||[]).slice();
 
   const wrap = openModal(inner, v=>{
+    if(v.todoTxt) todoAdd({text:v.todoTxt.slice(0,200), due:iso, course:courseId||''});
     const clean = parts.map(p=>({text:(p.text||'').trim(), min:p.min||0})).filter(p=>p.text);
     if(!v.title && !clean.length && !files.length && (!courseId || (ttPre && courseId===ttPre.courseId && aid===ttPre.areaId))){ delete state.sessions[key]; return; }
     const ses = {title:v.title||'', parts:clean, courseId:courseId, areaId:courseId?aid:''};
@@ -8941,14 +9261,22 @@ const actions = {
   editSchedule(){ scheduleModal(); },
   planSub(t){ state.planSub = t.dataset.id; save(); render(); },
   setTheme(t){ applyTheme(t.dataset.id); render(); },
+  autoRestore(t){ const d = t.dataset.id; openModal(`<h3>¿Restaurar la copia del ${fmtDate(d)}?</h3><p class="sub">Todos los datos del cuaderno volverán a como estaban ese día al abrir la app. Podrás deshacerlo justo después.</p>`, ()=>{ setTimeout(()=>autoRestore(d), 30); }, 'Restaurar'); },
+  pinSetup(){ pinSetupModal(); },
+  pinOff(){ pinOffModal(); },
+  pinLockNow(){ flushSave(); pinLock(); },
+  mkDeal(){ markDealModal(); },
   mkStep(t){ const c = course(); if(!c) return; const d = t.dataset;
     if(Number(d.d) > 0) toggleMark(c, d.s, d.t, d.m); else dropMark(c, d.s, d.t, d.m);
     save(); render(); },
   todoAdd(){ todoAddFromForm(); },
   todoShow(t){ state.todoShow = t.dataset.id; save(); render(); },
-  todoToggle(t){ const x = todos().find(y=>y.id===t.dataset.id); if(!x) return; x.done = !x.done; x.doneAt = x.done ? Date.now() : 0; save(); render(); },
+  todoToggle(t){ const x = todos().find(y=>y.id===t.dataset.id); if(!x) return; x.done = !x.done; x.doneAt = x.done ? Date.now() : 0;
+    /* al completar uno que se repite, se crea el siguiente */
+    if(x.done && x.rep && !x.next){ const nid = uid(); todoAdd({id:nid, text:x.text, prio:x.prio, course:x.course, rep:x.rep, due:todoNextDate(x)}); x.next = nid; }
+    save(); render(); },
   todoEdit(t){ todoEditModal(t.dataset.id); },
-  todoClear(){ state.todos = todos().filter(y=>!y.done); save(); render(); },
+  todoClear(){ undoPoint('Pendientes hechos borrados'); state.todos = todos().filter(y=>!y.done); save(); render(); },
   ttEdit(t){ ttTeacherModal(t.dataset.slot, Number(t.dataset.dow)); },
   ttClassEdit(t){ ttClassModal(t.dataset.slot, Number(t.dataset.dow)); },
   fsOpenOrNew(){
