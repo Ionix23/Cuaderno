@@ -1508,6 +1508,31 @@ html.is-locked #app{visibility:hidden}
 .md-add:active{transform:scale(.98)}
 .md-sub{flex:0 0 44px;border:2px solid var(--rule);border-radius:12px;background:#fff;font-size:20px;cursor:pointer;color:var(--ink)}
 .md-sub:disabled{opacity:.35;cursor:default}
+
+/* buscador, cursos escolares y Google Calendar */
+.top-search{margin-left:14px;display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.10);color:#EAF0EC;border:1px solid rgba(255,255,255,.20);border-radius:999px;padding:6px 14px;font-family:var(--font-ui);font-size:14.5px;cursor:pointer}
+.top-search:hover{background:rgba(255,255,255,.18)}
+@media(max-width:700px){.top-search span{display:none}.top-search{padding:6px 10px;margin-left:8px}}
+.srch #srchQ{font-size:18px;padding:12px 14px}
+.srch-r{margin-top:10px;max-height:56vh;overflow:auto}
+.srch-g{font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:12px 0 4px}
+.srch-it{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:9px 10px;border:0;border-radius:10px;background:none;cursor:pointer;font-family:var(--font-ui);color:var(--ink)}
+.srch-it:hover,.srch-it:focus{background:var(--accent-soft)}
+.srch-it b{display:block;font-size:16px;font-weight:600}.srch-it small{display:block;color:var(--muted);font-size:13.5px}
+.srch-ic{flex:0 0 28px;text-align:center;font-size:17px}
+.ro-banner{display:flex;gap:12px;align-items:center;flex-wrap:wrap;background:#FCF1D8;border:1px solid #EEDCA8;color:#5E4505;border-radius:12px;padding:10px 14px;margin:0 0 14px;font-size:15.5px}
+.ro-banner span{flex:1 1 260px}
+.yr-row{display:flex;align-items:center;gap:8px;padding:10px 0;border-bottom:1px solid var(--rule)}
+.yr-row small{display:block;color:var(--muted);font-size:13.5px}
+.yr-pick{margin:4px 0 10px;border:1px solid var(--rule);border-radius:10px;padding:2px 12px}
+.yr-pick .check-opt:last-child{border-bottom:0}
+.gc-chip.dirty{border-color:#EEDCA8;background:#FCF6E8;color:#7A5A10}
+.gc-chip.err{border-color:#EBC4BE;background:#FBECEA;color:#B03A2E}
+.gc-err{color:var(--low)!important}
+html[data-theme="colores"] .top-search{background:rgba(0,0,0,.30);color:#fff;border-color:rgba(255,255,255,.35)}
+/* el aviso de «Deshacer» no debe tapar los botones de abajo: en móvil y con una ventana abierta va arriba */
+body:has(.backdrop) #undoToast{bottom:auto;top:calc(10px + env(safe-area-inset-top));z-index:400}
+@media(max-width:700px){#undoToast{bottom:auto;top:calc(10px + env(safe-area-inset-top))}}
 </style>
 </head>
 <body>
@@ -1515,6 +1540,7 @@ html.is-locked #app{visibility:hidden}
   <header class="top">
     <div class="top-row">
       <div class="brand">Cuaderno<em>.</em>Profesor</div>
+      <button class="top-search" data-act="search" title="Buscar alumnado, tareas, unidades… (Ctrl+K)" aria-label="Buscar">🔍<span>Buscar</span></button>
       <div class="saved" id="saved">guardado</div>
       <button class="gd-pill need" id="gdPill" data-act="gdClick" hidden>☁ Conectar Drive</button>
     </div>
@@ -1952,9 +1978,9 @@ function medMatchesProfile(medCode, conds){
 }
 const CODES = {P:'Presente', A:'Falta', R:'Retraso', J:'Justificada'};
 const KEY = 'cuaderno-lomloe:v1';
-const APP_VERSION = '4.4';
+const APP_VERSION = '4.5';
 const APP_BUILD = '07/10/2026';
-const APP_NOTES = 'Más seguridad para tus datos: se guarda al instante al salir de la app, avisa si el dispositivo no puede guardar, «Deshacer» tras cada borrado y una copia automática diaria. Bloqueo con PIN opcional. Pendientes que se repiten y que se crean desde una sesión o una tutoría. «Repartir puntos» para sumar marcas de un toque. Antes: Estilos visuales: en Ajustes › Apariencia puedes elegir entre Original, Cuaderno, Pizarra, Archivador y Colores. Las marcas con contador se suman o restan con − y + desde la propia casilla. Antes: Ajustes más limpios: la copia de seguridad y el archivo local se pliegan cuando ya sincronizas con Google Drive, y las novedades de la versión se despliegan solo si las quieres leer. Antes: Nueva pestaña «Pendientes» en la agenda: tu lista de cosas por hacer, con prioridad, fecha límite y clase; la agenda avisa de lo que vence hoy o va con retraso. Además: Programación de la unidad: nueve apartados desplegables para planificar la unidad entera, con criterios, saberes básicos y competencias clave del currículo de Aragón, sesiones enlazadas con la agenda, adjuntos, medidas de atención a la diversidad por alumno, diana de autoevaluación docente, vista completa y PDF de dos caras. Además, código de color único por grado en rúbricas y tablas de notas, y tablas, horario y agenda con piezas redondeadas';
+const APP_NOTES = 'Buscador en la cabecera (Ctrl+K) para alumnado, tareas, unidades, sesiones y pendientes. Cursos escolares: «Empezar curso nuevo» archiva el actual y conserva tu programación; los anteriores se consultan desde Mis clases. Google Calendar: copia tu agenda a un calendario propio, con la cuenta que elijas. La copia de seguridad completa incluye ya los pendientes. Antes: Más seguridad para tus datos: se guarda al instante al salir de la app, avisa si el dispositivo no puede guardar, «Deshacer» tras cada borrado y una copia automática diaria. Bloqueo con PIN opcional. Pendientes que se repiten y que se crean desde una sesión o una tutoría. «Repartir puntos» para sumar marcas de un toque. Antes: Estilos visuales: en Ajustes › Apariencia puedes elegir entre Original, Cuaderno, Pizarra, Archivador y Colores. Las marcas con contador se suman o restan con − y + desde la propia casilla. Antes: Ajustes más limpios: la copia de seguridad y el archivo local se pliegan cuando ya sincronizas con Google Drive, y las novedades de la versión se despliegan solo si las quieres leer. Antes: Nueva pestaña «Pendientes» en la agenda: tu lista de cosas por hacer, con prioridad, fecha límite y clase; la agenda avisa de lo que vence hoy o va con retraso. Además: Programación de la unidad: nueve apartados desplegables para planificar la unidad entera, con criterios, saberes básicos y competencias clave del currículo de Aragón, sesiones enlazadas con la agenda, adjuntos, medidas de atención a la diversidad por alumno, diana de autoevaluación docente, vista completa y PDF de dos caras. Además, código de color único por grado en rúbricas y tablas de notas, y tablas, horario y agenda con piezas redondeadas';
 
 /* escala cualitativa por defecto (Orden ECD/1112/2022) */
 const DEFAULT_SCALE = [
@@ -2183,7 +2209,7 @@ const GD_FILE = 'cuaderno-datos.json';
 const GD_LS = 'cuaderno-gdrive';
 const GD_API = 'https://www.googleapis.com/drive/v3';
 const GD_UP = 'https://www.googleapis.com/upload/drive/v3';
-const GD_DATA_KEYS = ['courses','curriculo','schedule','sessions','teacherTT','templates','areaColors','colorBy','markDefs','upMethods','holidays','attFolderId','todos'];
+const GD_DATA_KEYS = ['courses','curriculo','schedule','sessions','teacherTT','templates','areaColors','colorBy','markDefs','upMethods','holidays','attFolderId','todos','year','archive','gcalIds'];
 const GD_UI_KEYS = ['view','homeTab','planView','planDate','planSub','activeCourse','activeArea','activePeriod','activeUnit',
   'editor','viewStudent','tutStudent','tutFromHome','unitSub','triSub','divSub','alumSub','gridMode','editMode',
   'instrMode','rubCompact','mkDeal','upView','upOpen','sabOnly','sabCycle','editWeights','todoShow','homeTutCourse','homeAjCourse','attDate','lastSel','lastCourse','taskEd'];
@@ -2212,7 +2238,7 @@ function gdHash(){
   let h = 5381; for(let i=0;i<s.length;i++) h = ((h<<5)+h + s.charCodeAt(i))|0;
   return String(h)+':'+s.length;
 }
-function gdDirty(){ return gdHash() !== gd.baseHash; }
+function gdDirty(){ return !roYear && gdHash() !== gd.baseHash; }
 function gdHasLocalData(){ return (state.courses||[]).length>0; }
 function gdSet(st, err){ gd.status = st; gd.err = err||''; gdRender(); }
 
@@ -2314,6 +2340,7 @@ function gdApplyRemote(remote){
 
 /* ---- reconciliación ---- */
 async function gdSync(){
+  if(roYear) return;
   if(!gd.connected || !gdAvailable()) return;
   if(gd.busy){ gd.again = true; return; }
   if(!gdTokenOk()){ gdSet('need'); return; }
@@ -2491,6 +2518,7 @@ function gdCardHtml(){
 
 let saveTimer=null;
 function save(){
+  if(roYear) return;          // consultando un curso archivado: nada se guarda
   clearTimeout(saveTimer);
   saveDirty = true;
   saveTimer = setTimeout(async ()=>{
@@ -2498,6 +2526,7 @@ function save(){
     state.savedAt = Date.now();
     fileWrite();
     gdSchedule();
+    gcSchedule();
     setTimeout(attUploadPending, 1500);
     try{
       await store.set(KEY, JSON.stringify(state));
@@ -2508,6 +2537,7 @@ function save(){
 }
 /* al pasar a segundo plano o cerrar, se guarda en el acto lo que estuviera esperando */
 let saveDirty = false;
+let roYear = null, liveSnap = null;
 function flushSave(){
   if(!saveDirty) return;
   clearTimeout(saveTimer); saveTimer = null;
@@ -2584,6 +2614,7 @@ async function load(){
   gdInit();
   autoCopyInit();
   pinInit();
+  gcRestore();
 }
 function normalize(){
   if(!state.courses) state.courses = [];
@@ -3577,6 +3608,7 @@ views.clases = function(){
       <div class="row" style="justify-content:center">
         ${gdAvailable()? '<button class="btn" data-act="gdClick">☁ Conectar Google Drive y traer mis datos</button>':''}
         <button class="btn ghost" data-act="restore">Restaurar una copia descargada</button>
+        ${(state.archive||[]).length || roYear ? `<button class="btn ghost" data-act="yearMenu">Cursos anteriores</button>` : ''}
       </div></div></div>`;
   }
   const palette = ['#1F6B4F','#2D6A9F','#8A5A2B','#7A4F9A','#9A3B52','#4E7A3A','#B0742A','#3A6E70'];
@@ -3585,6 +3617,7 @@ views.clases = function(){
       <div><h1 class="home-title">Mis clases</h1>
         <p class="hint" style="margin:2px 0 0">Elige una clase para trabajar con ella.</p></div>
       <div class="spacer"></div>
+      <button class="btn ghost small" data-act="yearMenu" title="Cursos escolares">Curso ${esc(yearNow())} ▾</button>
       <button class="btn ghost small" data-act="ejemplo">Clase Ejemplo</button>
       <button class="btn" data-act="newCourse">Nueva clase</button>
     </div>
@@ -4013,6 +4046,355 @@ function applyTheme(id){
   const m = document.querySelector('meta[name="theme-color"]'); if(m) m.setAttribute('content', THEME_BAR[id]);
 }
 applyTheme(themeNow());
+
+/* =====================================================================
+   CURSOS ESCOLARES: empezar curso nuevo y consultar los anteriores
+   state.year = '2026-27' · state.archive = [{id,label,closedAt,courses,sessions,holidays}]
+   ===================================================================== */
+function schoolYearGuess(){ const d = new Date(), y = d.getFullYear(), a = d.getMonth()>=7 ? y : y-1; return a+'-'+String((a+1)%100).padStart(2,'0'); }
+function yearNow(){ return roYear ? roYear.label : (state.year || schoolYearGuess()); }
+function nextYearLabel(l){ const m = String(l||'').match(/^(\d{4})/); if(!m) return schoolYearGuess(); const a = Number(m[1])+1; return a+'-'+String((a+1)%100).padStart(2,'0'); }
+function archives(){ if(!Array.isArray(state.archive)) state.archive = []; return state.archive; }
+/* la misma clase sin ningún dato del alumnado: se conservan unidades, tareas, instrumentos, criterios, pesos y programaciones */
+function teachingCopyOf(cc){
+  const k = JSON.parse(JSON.stringify(cc));
+  k.students = []; k.grades = {}; k.attendance = {}; k.overrides = {}; k.finals = {};
+  k.tutorias = []; k.diversity = {}; k.dua = {}; k.initObs = {}; k.progress = {};
+  k.layout = {items:[]}; k.timetable = {}; k.marks = {}; k.comments = {}; k.extGrades = {}; k.extDiv = {}; k.sdiv = {};
+  (k.tasks||[]).forEach(t=>{ t.adaptations = {}; t.dates = []; delete t.date; });
+  (k.units||[]).forEach(u=>{ if(u.plan){ delete u.plan.divStu; delete u.plan.self; delete u.plan.valWorked; delete u.plan.valChange; } });
+  return k;
+}
+function roBannerHtml(){
+  return `<div class="ro-banner" role="status"><span>📁 Estás consultando el curso <b>${esc(roYear.label)}</b>. Es de solo lectura: lo que toques aquí no se guarda.</span>
+    <button class="btn small" data-act="yearBack">Volver al curso actual</button></div>`;
+}
+function yearEnter(id){
+  if(roYear) yearLeave(true);
+  const a = archives().find(x=>x.id===id); if(!a) return;
+  flushSave();
+  liveSnap = {data:dataSnapshot(), ui:{view:state.view, homeTab:state.homeTab, activeCourse:state.activeCourse, activeArea:state.activeArea, activePeriod:state.activePeriod, activeUnit:state.activeUnit}};
+  roYear = {id:a.id, label:a.label};
+  state.courses = JSON.parse(JSON.stringify(a.courses||[]));
+  state.sessions = JSON.parse(JSON.stringify(a.sessions||{}));
+  state.holidays = JSON.parse(JSON.stringify(a.holidays||{}));
+  state.activeCourse = state.courses[0] ? state.courses[0].id : null; state.activeArea = null; state.activePeriod = null; state.activeUnit = null; state.editor = null;
+  state.view = 'clases'; state.homeTab = 'clases';
+  render(); window.scrollTo(0,0);
+}
+function yearLeave(silent){
+  if(!roYear || !liveSnap) return;
+  const snap = liveSnap; roYear = null; liveSnap = null;
+  const o = JSON.parse(snap.data);
+  GD_DATA_KEYS.forEach(k=>{ if(k in o && o[k]!==undefined) state[k] = o[k]; else delete state[k]; });
+  Object.assign(state, snap.ui); state.editor = null; state.view = 'clases'; state.homeTab = 'clases';
+  if(!silent){ render(); window.scrollTo(0,0); }
+}
+function yearMenuModal(){
+  const arch = archives().slice().sort((a,b)=>String(b.label).localeCompare(String(a.label)));
+  const w = openModal(`<h3>Cursos escolares</h3>
+    <div class="yr-row cur"><span class="grow"><b>Curso ${esc(state.year || schoolYearGuess())}</b><small>El curso en el que trabajas</small></span>
+      ${roYear?`<button type="button" class="btn small" data-yback>Volver a este</button>`:'<span class="tag">actual</span>'}</div>
+    ${arch.length ? arch.map(a=>`<div class="yr-row"><span class="grow"><b>Curso ${esc(a.label)}</b><small>${(a.courses||[]).length} clase(s) · cerrado el ${fmtDate(a.closedAt||'')}</small></span>
+      <button type="button" class="btn ghost small" data-yview="${a.id}">${roYear&&roYear.id===a.id?'Viéndolo':'Consultar'}</button>
+      ${roYear?'':`<button type="button" class="btn danger small" data-ydel="${a.id}">Eliminar</button>`}</div>`).join('')
+      : `<p class="sub">Todavía no hay cursos anteriores. Cuando acabes este, «Empezar curso nuevo» lo guarda aquí para consultarlo.</p>`}
+    ${roYear?'':`<div class="row" style="margin-top:14px"><button type="button" class="btn" data-ynew>Empezar curso nuevo…</button></div>`}`, null);
+  const cl = w.querySelector('[data-close]'); if(cl) cl.textContent = 'Cerrar';
+  w.addEventListener('click', e=>{
+    const v = e.target.closest('[data-yview]'), d = e.target.closest('[data-ydel]');
+    if(v){ w.remove(); yearEnter(v.dataset.yview); }
+    else if(e.target.closest('[data-yback]')){ w.remove(); yearLeave(); }
+    else if(e.target.closest('[data-ynew]')){ w.remove(); yearNewModal(); }
+    else if(d){ w.remove(); const a = archives().find(x=>x.id===d.dataset.ydel);
+      confirmDo('¿Eliminar el curso '+(a?a.label:'')+'?', 'Se borran sus clases, alumnado y notas archivados. Si quieres conservarlos, descarga antes una copia de seguridad.', ()=>{ state.archive = archives().filter(x=>x.id!==d.dataset.ydel); }); }
+  });
+}
+function yearNewModal(){
+  if(!state.courses.length){ alertBox('No hay clases en el curso actual que archivar.'); return; }
+  const cur = state.year || schoolYearGuess();
+  const w = openModal(`<h3>Empezar curso nuevo</h3>
+    <p class="sub">El curso actual se guarda entero para consultarlo cuando quieras. En el nuevo eliges qué clases sigues dando: conservan unidades, tareas, rúbricas y programaciones, pero empiezan <b>sin alumnado, notas, tutorías ni adaptaciones</b>.</p>
+    <div class="td-g2">
+      <label class="field"><span>Curso que cierras</span><input class="inp" name="oldL" value="${esc(cur)}" maxlength="12"></label>
+      <label class="field"><span>Curso nuevo</span><input class="inp" name="newL" value="${esc(nextYearLabel(cur))}" maxlength="12"></label>
+    </div>
+    <span class="field-lbl">Clases que llevas al curso nuevo</span>
+    <div class="yr-pick">${state.courses.map(c=>`<label class="check-opt"><input type="checkbox" data-ycarry="${c.id}" checked> <span><b>${esc(c.name)}</b> · ${(c.units||[]).length} unidad(es), ${(c.tasks||[]).length} tarea(s)</span></label>`).join('')}</div>
+    <label class="check-opt"><input type="checkbox" name="keepTT" checked> <span>Mantener mi horario semanal</span></label>
+    <label class="check-opt"><input type="checkbox" name="keepTodos" checked> <span>Mantener mis pendientes sin hacer</span></label>
+    <p class="sub" style="margin-top:10px">La agenda (sesiones planificadas) y los días no lectivos se archivan con el curso y empiezan vacíos. Podrás deshacerlo justo después.</p>`,
+    v=>{
+      const carry = [...w.querySelectorAll('[data-ycarry]')].filter(x=>x.checked).map(x=>x.dataset.ycarry);
+      undoPoint('Curso '+(v.newL||nextYearLabel(cur))+' empezado');
+      archives().push({id:uid(), label:(v.oldL||cur).slice(0,12), closedAt:today(), courses:state.courses, sessions:state.sessions, holidays:state.holidays||{}});
+      state.courses = state.courses.filter(c=>carry.includes(c.id)).map(teachingCopyOf);
+      state.sessions = {}; state.holidays = {};
+      if(!v.keepTT) state.teacherTT = {};
+      state.todos = v.keepTodos ? todos().filter(t=>!t.done) : [];
+      state.year = (v.newL||nextYearLabel(cur)).slice(0,12);
+      state.activeCourse = state.courses[0] ? state.courses[0].id : null; state.activeArea = null; state.activePeriod = null; state.activeUnit = null;
+      state.lastCourse = null; state.view = 'clases'; state.homeTab = 'clases';
+    }, 'Archivar y empezar', {wide:true});
+}
+
+/* =====================================================================
+   BUSCADOR: alumnado, unidades, tareas, sesiones y pendientes de todas las clases
+   ===================================================================== */
+function sNorm(x){ return String(x||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase(); }
+function searchResults(q){
+  const n = sNorm(q).trim(); if(n.length < 2) return [];
+  const words = n.split(/\s+/), hit = txt=>{ const t = sNorm(txt); return words.every(w=>t.includes(w)); };
+  const out = [];
+  const goCourse = (c, area, per)=>{ enterCourse(c.id, false); if(area && c.areas.includes(area)) state.activeArea = area; if(per && c.periods.some(p=>p.id===per)) state.activePeriod = per; };
+  state.courses.forEach(c=>{
+    c.students.forEach(st=>{ if(hit(st.name)) out.push({k:'Alumnado', ic:'👤', t:st.name, s:c.name, go:()=>{ goCourse(c); state.viewStudent = st.id; state.view = 'alumno'; }}); });
+    (c.units||[]).forEach(u=>{ if(hit(u.name)) out.push({k:'Unidades', ic:'▤', t:u.name, s:c.name+' · '+(areaDef(u.areaId).short||areaDef(u.areaId).name), go:()=>{ goCourse(c, u.areaId, u.periodId); state.activeUnit = u.id; state.view = 'unidad'; state.unitSub = 'tareas'; }}); });
+    (c.tasks||[]).forEach(t=>{ if(hit(t.name)){ const u = unitById(c, t.unitId);
+      out.push({k:'Tareas', ic:'✎', t:t.name, s:c.name+' · '+(areaDef(t.areaId).short||areaDef(t.areaId).name)+(u?' · '+u.name:''), go:()=>{ goCourse(c, t.areaId, t.periodId); if(u){ state.activeUnit = u.id; state.view = 'unidad'; state.unitSub = 'eval'; state.editMode = false; } else state.view = 'unidades'; }}); } });
+  });
+  Object.keys(state.sessions||{}).forEach(k=>{ const se = state.sessions[k]; if(se && se.title && hit(se.title)){ const iso = k.split('|')[0], c = state.courses.find(x=>x.id===se.courseId);
+    out.push({k:'Sesiones', ic:'▦', t:se.title, s:fmtDate(iso)+(c?' · '+c.name:''), go:()=>{ state.view = 'clases'; state.homeTab = 'agenda'; state.planSub = 'agenda'; state.planDate = iso; }}); } });
+  todos().forEach(t=>{ if(hit(t.text)) out.push({k:'Pendientes', ic:'☑', t:t.text, s:(t.done?'Hecho':'Pendiente')+(t.due?' · '+fmtDate(t.due):''), go:()=>{ state.view = 'clases'; state.homeTab = 'agenda'; state.planSub = 'tareas'; state.todoShow = t.done?'done':'pend'; }}); });
+  return out.slice(0, 40);
+}
+function searchModal(){
+  if(document.querySelector('.backdrop .srch')) return;
+  const w = openModal(`<div class="srch"><input class="inp" id="srchQ" type="search" placeholder="Busca un alumno, una tarea, una unidad, una sesión…" autocomplete="off" aria-label="Buscar">
+    <div id="srchR" class="srch-r"><p class="sub">Escribe al menos dos letras. Busca en todas tus clases${roYear?' del curso '+esc(roYear.label):''}.</p></div></div>`, null, null, {wide:true});
+  const cl = w.querySelector('[data-close]'); if(cl) cl.textContent = 'Cerrar';
+  const q = w.querySelector('#srchQ'), box = w.querySelector('#srchR'); let res = [];
+  setTimeout(()=>{ try{ q.focus(); }catch(e){} }, 40);
+  const pick = i=>{ const r = res[i]; if(!r) return; w.remove(); r.go(); save(); render(); window.scrollTo(0,0); };
+  q.addEventListener('input', ()=>{
+    res = searchResults(q.value);
+    if(sNorm(q.value).trim().length < 2){ box.innerHTML = '<p class="sub">Escribe al menos dos letras.</p>'; return; }
+    if(!res.length){ box.innerHTML = '<p class="sub">Nada coincide con esa búsqueda.</p>'; return; }
+    let last = '';
+    box.innerHTML = res.map((r,i)=>`${r.k!==last ? ((last = r.k), `<div class="srch-g">${r.k}</div>`) : ''}<button type="button" class="srch-it" data-i="${i}"><span class="srch-ic">${r.ic}</span><span class="grow"><b>${esc(r.t)}</b><small>${esc(r.s)}</small></span></button>`).join('');
+  });
+  q.addEventListener('keydown', e=>{ if(e.key==='Enter'){ e.preventDefault(); pick(0); } });
+  box.addEventListener('click', e=>{ const b = e.target.closest('.srch-it'); if(b) pick(Number(b.dataset.i)); });
+}
+document.addEventListener('keydown', e=>{
+  if((e.ctrlKey || e.metaKey) && !e.altKey && String(e.key).toLowerCase()==='k'){ if(document.getElementById('pinLock')) return; e.preventDefault(); searchModal(); }
+});
+
+/* =====================================================================
+   GOOGLE CALENDAR: copia de la agenda en un calendario propio («Cuaderno Profesor»)
+   - Permiso calendar.app.created: la app solo ve y toca el calendario que ella crea.
+   - Cuenta independiente de la de Drive; se elige al conectar.
+   - Sentido único: del cuaderno a Google. Lo que cambies en Google no vuelve.
+   ===================================================================== */
+const GC_SCOPE = 'https://www.googleapis.com/auth/calendar.app.created';
+const GC_SCOPES = GC_SCOPE + ' https://www.googleapis.com/auth/userinfo.email';
+const GC_API = 'https://www.googleapis.com/calendar/v3';
+const GC_LS = 'cuaderno-gcal';
+const GC_NAME = 'Cuaderno Profesor';
+const gc = {connected:false, token:null, exp:0, email:'', calId:'', opts:{ses:true, task:true, todo:true, tut:false},
+  busy:false, again:false, last:0, lastN:null, err:'', client:null, waiters:null, timer:null, dirty:false};
+function gcPersist(){ try{ localStorage.setItem(GC_LS, JSON.stringify({connected:gc.connected, token:gc.token, exp:gc.exp, email:gc.email, calId:gc.calId, opts:gc.opts, last:gc.last, lastN:gc.lastN})); }catch(e){} }
+function gcRestore(){
+  try{ const o = JSON.parse(localStorage.getItem(GC_LS)||'null'); if(o){ ['connected','token','exp','email','calId','last','lastN'].forEach(k=>{ if(o[k]!==undefined) gc[k] = o[k]; }); if(o.opts) Object.assign(gc.opts, o.opts); } }catch(e){}
+  if(gc.connected){ gc.dirty = true; if(state.view==='clases') render(); gcSchedule(4000); }
+}
+function gcTokenOk(){ return !!gc.token && Date.now() < gc.exp - 60000; }
+async function gcGetToken(pick){
+  await gdLoadGIS();
+  if(!gc.client){
+    gc.client = google.accounts.oauth2.initTokenClient({
+      client_id: GD_CLIENT_ID, scope: GC_SCOPES,
+      callback: resp=>{
+        const w = gc.waiters; gc.waiters = null; if(!w) return;
+        if(resp.error) return w.rej(new Error(resp.error));
+        if(!google.accounts.oauth2.hasGrantedAllScopes(resp, GC_SCOPE)) return w.rej(new Error('Falta el permiso de Calendar. Vuelve a conectar y marca la casilla de Google Calendar.'));
+        gc.token = resp.access_token; gc.exp = Date.now() + (Number(resp.expires_in)||3600)*1000; w.res();
+      },
+      error_callback: err=>{
+        const w = gc.waiters; gc.waiters = null; if(!w) return;
+        w.rej(new Error(err && err.type==='popup_closed' ? 'Se cerró la ventana de Google antes de terminar.'
+          : err && err.type==='popup_failed_to_open' ? 'El navegador ha bloqueado la ventana de Google. Permite las ventanas emergentes para esta página.'
+          : 'No se ha podido iniciar sesión con Google.'));
+      }
+    });
+  }
+  return new Promise((res, rej)=>{
+    gc.waiters = {res, rej};
+    const o = pick ? {prompt:'select_account'} : {prompt:''};
+    if(!pick && gc.email) o.login_hint = gc.email;
+    gc.client.requestAccessToken(o);
+  });
+}
+async function gcFetch(url, opts){
+  opts = opts || {};
+  opts.headers = Object.assign({Authorization:'Bearer '+gc.token}, opts.body?{'Content-Type':'application/json'}:{}, opts.headers||{});
+  let r;
+  try{ r = await fetch(url, opts); }catch(e){ const x = new Error('Sin conexión.'); x.offline = true; throw x; }
+  if(r.status===401){ gc.token = null; gc.exp = 0; const x = new Error('La sesión de Google ha caducado.'); x.auth = true; throw x; }
+  return r;
+}
+async function gcFail(r, what){
+  let msg = ''; try{ msg = ((await r.json()).error||{}).message||''; }catch(e){}
+  if(r.status===403 && /not been used|disabled|accessNotConfigured/i.test(msg)) throw new Error('La API de Google Calendar no está activada en el proyecto de Google Cloud de la app.');
+  throw new Error(what+' ('+r.status+')'+(msg?': '+msg:''));
+}
+async function gcEnsureCal(){
+  if(!state.gcalIds || typeof state.gcalIds!=='object') state.gcalIds = {};
+  const known = gc.calId || state.gcalIds[gc.email||'_'];
+  if(known){ const r = await gcFetch(GC_API+'/calendars/'+encodeURIComponent(known)+'?fields=id'); if(r.ok){ gc.calId = known; return; } }
+  gc.calId = '';
+  try{ const r = await gcFetch(GC_API+'/users/me/calendarList?minAccessRole=owner&fields=items(id,summary)');
+    if(r.ok){ const it = ((await r.json()).items||[]).find(x=>x.summary===GC_NAME); if(it) gc.calId = it.id; } }catch(e){ if(e.offline||e.auth) throw e; }
+  if(!gc.calId){
+    const r = await gcFetch(GC_API+'/calendars', {method:'POST', body:JSON.stringify({summary:GC_NAME, description:'Agenda del Cuaderno.Profesor. Lo escribe la app: los cambios hechos aquí se pierden al sincronizar.', timeZone:gcTz()})});
+    if(!r.ok) await gcFail(r, 'No se ha podido crear el calendario');
+    gc.calId = (await r.json()).id;
+  }
+  if(state.gcalIds[gc.email||'_']!==gc.calId){ state.gcalIds[gc.email||'_'] = gc.calId; save(); }
+}
+function gcTz(){ try{ return Intl.DateTimeFormat().resolvedOptions().timeZone || 'Europe/Madrid'; }catch(e){ return 'Europe/Madrid'; } }
+function gcHash(str){ let a = 5381, b = 52711; for(let i=0;i<str.length;i++){ const ch = str.charCodeAt(i); a = ((a<<5)+a + ch)|0; b = ((b<<5)+b ^ ch)|0; } return (a>>>0).toString(32)+(b>>>0).toString(32); }
+function gcAddMin(hhmm, min){ const p = hhmm.split(':').map(Number); const t = Math.min(23*60+59, p[0]*60+p[1]+min); return String(Math.floor(t/60)).padStart(2,'0')+':'+String(t%60).padStart(2,'0'); }
+/* lo que debe haber en Google, según lo marcado en Ajustes (desde hace 30 días hasta dentro de 11 meses) */
+function gcItems(){
+  const tz = gcTz(), from = addDays(today(), -30), to = addDays(today(), 330), inWin = d=>!!d && d>=from && d<=to, items = [];
+  const timed = (d, a, b)=>({start:{dateTime:d+'T'+a+':00', timeZone:tz}, end:{dateTime:d+'T'+b+':00', timeZone:tz}});
+  const allDay = d=>({start:{date:d}, end:{date:addDays(d,1)}});
+  const o = gc.opts;
+  if(o.ses) Object.keys(state.sessions||{}).forEach(k=>{
+    const se = state.sessions[k], p = k.split('|'), sl = state.schedule.find(x=>x.id===p[1]);
+    if(!se || !sl || !inWin(p[0]) || !(se.title || (se.parts||[]).length)) return;
+    const c = state.courses.find(x=>x.id===se.courseId);
+    items.push(Object.assign({key:'s:'+k, summary:[c&&c.name, se.areaId ? (areaDef(se.areaId).short||areaDef(se.areaId).name) : '', se.title||'Sesión'].filter(Boolean).join(' · '),
+      description:(se.parts||[]).map(x=>'• '+x.text+(x.min?' ('+x.min+' min)':'')).join('\n')}, timed(p[0], sl.from, sl.to)));
+  });
+  if(o.task) state.courses.forEach(c=>(c.tasks||[]).forEach(t=>dateEntries(t).forEach((e,i)=>{
+    if(!inWin(e.d)) return;
+    items.push(Object.assign({key:'t:'+t.id+':'+e.d+':'+i, summary:'◆ '+t.name+' · '+c.name, description:'Tarea evaluable · '+(areaDef(t.areaId).short||areaDef(t.areaId).name)},
+      e.t ? timed(e.d, e.t, gcAddMin(e.t, 45)) : allDay(e.d)));
+  })));
+  if(o.todo) todos().forEach(t=>{ if(!t.done && inWin(t.due)){ const c = t.course && state.courses.find(x=>x.id===t.course);
+    items.push(Object.assign({key:'p:'+t.id, summary:'☑ '+t.text+(c?' · '+c.name:''), description:'Pendiente del cuaderno'}, allDay(t.due))); } });
+  if(o.tut) state.courses.forEach(c=>(c.tutorias||[]).forEach(t=>{
+    if(!inWin(t.date)) return; const st = c.students.find(x=>x.id===t.studentId);
+    items.push(Object.assign({key:'u:'+t.id, summary:'Tutoría · '+(st?st.name:'')+' · '+c.name, description:t.mode||''}, t.time ? timed(t.date, t.time, gcAddMin(t.time, 30)) : allDay(t.date)));
+  }));
+  items.forEach(it=>{ it.id = 'cp'+gcHash(it.key)+gcHash('k'+it.key); it.h = gcHash(JSON.stringify([it.summary, it.description, it.start, it.end])); });
+  return items;
+}
+function gcBody(it){ return {id:it.id, summary:it.summary, description:it.description||'', start:it.start, end:it.end, status:'confirmed', transparency:'transparent',
+  reminders:{useDefault:false}, extendedProperties:{private:{cp:'1', h:it.h}}}; }
+async function gcSync(interactive){
+  if(roYear || !gc.connected) return;
+  if(gc.busy){ gc.again = true; return; }
+  if(!gcTokenOk()){
+    if(!interactive){ gc.dirty = true; gcRender(); return; }
+    try{ await gcGetToken(false); }catch(e){ gc.err = e.message; gcRender(); return; }
+  }
+  gc.busy = true; gc.err = ''; gcRender();
+  try{
+    await gcEnsureCal();
+    const base = GC_API+'/calendars/'+encodeURIComponent(gc.calId)+'/events';
+    const want = gcItems(), have = {};
+    let page = '';
+    do{
+      const r = await gcFetch(base+'?showDeleted=true&maxResults=2500&timeMin='+encodeURIComponent(addDays(today(), -32)+'T00:00:00Z')+'&fields='+encodeURIComponent('nextPageToken,items(id,status,extendedProperties/private)')+(page?'&pageToken='+encodeURIComponent(page):''));
+      if(!r.ok) await gcFail(r, 'No se ha podido leer el calendario');
+      const j = await r.json(); (j.items||[]).forEach(e=>{ have[e.id] = e; }); page = j.nextPageToken||'';
+    }while(page);
+    let add = 0, upd = 0, del = 0; const ids = {};
+    for(const it of want){
+      ids[it.id] = 1; const ex = have[it.id];
+      if(ex && ex.status!=='cancelled' && ((ex.extendedProperties||{}).private||{}).h===it.h) continue;
+      let r;
+      if(!ex){ r = await gcFetch(base, {method:'POST', body:JSON.stringify(gcBody(it))}); if(r.status===409) r = await gcFetch(base+'/'+it.id, {method:'PUT', body:JSON.stringify(gcBody(it))}); if(r.ok) add++; }
+      else { r = await gcFetch(base+'/'+it.id, {method:'PUT', body:JSON.stringify(gcBody(it))}); if(r.ok){ if(ex.status==='cancelled') add++; else upd++; } }
+      if(!r.ok) await gcFail(r, 'No se ha podido guardar «'+it.summary+'»');
+    }
+    for(const id of Object.keys(have)){
+      const e = have[id]; if(ids[id] || e.status==='cancelled' || ((e.extendedProperties||{}).private||{}).cp!=='1') continue;
+      const r = await gcFetch(base+'/'+id, {method:'DELETE'}); if(r.ok || r.status===410 || r.status===404) del++; else await gcFail(r, 'No se ha podido borrar un evento');
+    }
+    gc.last = Date.now(); gc.lastN = {total:want.length, add, upd, del}; gc.dirty = false;
+  }catch(e){ gc.err = e.offline ? 'Sin conexión: se sincronizará cuando vuelva.' : e.message; gc.dirty = true; }
+  gc.busy = false; gcPersist(); gcRender();
+  if(gc.again){ gc.again = false; gcSchedule(1500); }
+}
+function gcSchedule(ms){
+  if(!gc.connected || roYear) return;
+  gc.dirty = true; clearTimeout(gc.timer);
+  gc.timer = setTimeout(()=>{ gcSync(false); }, ms || 8000);
+}
+async function gcConnect(pick){
+  if(!gdAvailable()){ alertBox('Google Calendar solo funciona con la app abierta desde su dirección web (https).'); return; }
+  gc.err = '';
+  try{
+    await gcGetToken(true);
+    let mail = '';
+    try{ const r = await gcFetch('https://www.googleapis.com/oauth2/v3/userinfo'); if(r.ok) mail = (await r.json()).email||''; }catch(e){}
+    if(mail !== gc.email) gc.calId = '';
+    gc.email = mail; gc.connected = true; gcPersist(); gcRender();
+    await gcSync(true);
+  }catch(e){ gc.err = e.message; gcRender(); }
+}
+function gcDisconnect(){
+  const w = openModal(`<h3>Desconectar Google Calendar</h3>
+    <p class="sub">La app dejará de escribir en Google Calendar${gc.email?' ('+esc(gc.email)+')':''}.</p>
+    <label class="check-opt"><input type="checkbox" id="gcWipe"> <span>Borrar también el calendario «${GC_NAME}» de Google, con todos sus eventos</span></label>`,
+    ()=>{
+      const wipe = w.querySelector('#gcWipe').checked, id = gc.calId, tok = gc.token, ok = gcTokenOk();
+      if(wipe && id && ok){ fetch(GC_API+'/calendars/'+encodeURIComponent(id), {method:'DELETE', headers:{Authorization:'Bearer '+tok}}).catch(()=>{}); if(state.gcalIds) delete state.gcalIds[gc.email||'_']; }
+      else if(wipe){ setTimeout(()=>alertBox('No se ha podido borrar el calendario porque la sesión de Google había caducado. Puedes borrarlo desde Google Calendar › Configuración.'), 100); }
+      try{ if(tok && window.google && google.accounts && google.accounts.oauth2.revoke) google.accounts.oauth2.revoke(tok, ()=>{}); }catch(e){}
+      clearTimeout(gc.timer);
+      Object.assign(gc, {connected:false, token:null, exp:0, email:'', calId:'', last:0, lastN:null, err:'', dirty:false, client:null});
+      gcPersist();
+    }, 'Desconectar');
+}
+function gcStatusText(){
+  if(gc.busy) return 'Sincronizando…';
+  if(gc.err) return '⚠ '+gc.err;
+  if(gc.dirty && !gcTokenOk()) return 'Hay cambios sin enviar. Pulsa «Sincronizar ahora»: Google pide confirmar la sesión cada hora.';
+  if(gc.dirty) return 'Cambios pendientes: se envían solos en unos segundos.';
+  if(gc.last){ const n = gc.lastN||{}; return 'Al día · '+(n.total||0)+' evento(s) · última sincronización '+new Date(gc.last).toLocaleString('es-ES', {day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit'}); }
+  return 'Conectado. Aún no se ha sincronizado.';
+}
+function gcCardHtml(){
+  if(!gc.connected) return `<div class="card" id="gcCard">
+      <h2 class="sec-title">Google Calendar</h2>
+      <p class="hint">Copia tu agenda (sesiones, tareas evaluables con fecha y pendientes) a un calendario nuevo llamado «${GC_NAME}», para verla en el móvil junto a tus otros calendarios. La app solo puede ver y tocar ese calendario, no el resto.</p>
+      <p class="hint">Al conectar, Google te deja elegir la cuenta: <b>puede ser distinta de la de Drive</b>.</p>
+      ${gc.err?`<p class="hint" style="color:var(--low)">⚠ ${esc(gc.err)}</p>`:''}
+      <div class="row"><button class="btn small" data-act="gcConnect">Conectar con Google Calendar</button></div>
+    </div>`;
+  const ck = (k, label)=>`<label class="check-opt"><input type="checkbox" data-act="gcOpt" data-k="${k}" ${gc.opts[k]?'checked':''}> <span>${label}</span></label>`;
+  return `<div class="card" id="gcCard">
+      <h2 class="sec-title">Google Calendar</h2>
+      <p class="hint">Conectado${gc.email?' como <b>'+esc(gc.email)+'</b>':''} · calendario «${GC_NAME}». Va en un solo sentido: lo que cambies en Google no vuelve al cuaderno.</p>
+      <span class="field-lbl">Qué se envía</span>
+      ${ck('ses','Sesiones planificadas en la agenda')}
+      ${ck('task','Tareas evaluables con fecha')}
+      ${ck('todo','Pendientes con fecha límite')}
+      ${ck('tut','Tutorías registradas <small style="color:var(--muted)">(el evento lleva el nombre del alumno)</small>')}
+      <p class="hint ${gc.err?'gc-err':''}" id="gcStatus" style="margin-top:10px">${esc(gcStatusText())}</p>
+      <div class="row"><button class="btn small" data-act="gcSyncNow" ${gc.busy?'disabled':''}>Sincronizar ahora</button>
+        <button class="btn ghost small" data-act="gcConnect">Cambiar de cuenta</button>
+        <button class="btn danger small" data-act="gcOff">Desconectar</button></div>
+    </div>`;
+}
+function gcChipHtml(){
+  if(!gc.connected) return '';
+  const st = gc.busy ? ['…','Sincronizando con Google Calendar'] : gc.err ? ['⚠', gc.err] : gc.dirty ? ['↻','Hay cambios sin enviar a Google Calendar. Toca para sincronizar.'] : ['✓','Google Calendar al día. Toca para sincronizar ahora.'];
+  return `<button class="btn ghost small gc-chip ${gc.err?'err':(gc.dirty?'dirty':'')}" data-act="gcSyncNow" title="${esc(st[1])}">📅 ${st[0]}</button>`;
+}
+document.addEventListener('change', e=>{
+  const t = e.target; if(!t || !t.dataset || t.dataset.act!=='gcOpt') return;
+  gc.opts[t.dataset.k] = !!t.checked; gcPersist(); gcSchedule(1500); gcRender();
+});
+function gcRender(){
+  const card = document.getElementById('gcCard'); if(card) card.outerHTML = gcCardHtml();
+  const chip = document.querySelector('.gc-chip'); if(chip) chip.outerHTML = gcChipHtml();
+}
 function planViewAgenda(){
   const v = state.planView || 'week';
   const nav = `${planSubs('agenda')}${todoStrip()}<div class="plan-bar">
@@ -4023,6 +4405,7 @@ function planViewAgenda(){
       </div>
       <strong class="plan-title">${planLabel()}</strong>
       <div class="spacer"></div>
+      ${gcChipHtml()}
       <button class="btn ghost small" data-act="holidays">⛱ Días no lectivos</button>
       <button class="btn ghost small" data-act="editSchedule">Editar franjas horarias</button>
     </div>
@@ -6506,6 +6889,7 @@ function ajustesBody(c){
         <span class="th-prev" style="${t.bg}"><b style="background:${t.top}"></b><i style="${t.tab}">Aa</i></span><span class="th-name">${t.name}</span></button>`).join('')}</div>
     </div>
     ${gdCardHtml()}
+    ${gcCardHtml()}
     ${pinCardHtml()}
     ${(()=>{
       const fileOn = fileState==='ready' || fileState==='need-permission';
@@ -7151,7 +7535,7 @@ function render(){
   normalize();
   renderHeader();
   fitHeader();
-  el('main').innerHTML = (views[state.view] || views.clases)();
+  el('main').innerHTML = (roYear ? roBannerHtml() : '') + (views[state.view] || views.clases)();
   const av = el('appVer'); if(av) av.innerHTML = 'Cuaderno Profesor · <b>versión '+APP_VERSION+'</b> · '+APP_BUILD;
   gdRender();
   if(state.view==='alumnos' && state.alumSub==='aula') bindAulaDrag();
@@ -8453,6 +8837,9 @@ function applyBackup(data, mode){
     if(Array.isArray(data.markDefs)) state.markDefs = data.markDefs;
     if(Array.isArray(data.upMethods)) state.upMethods = data.upMethods;
     if(data.holidays && typeof data.holidays==='object') state.holidays = data.holidays;
+    if(Array.isArray(data.todos)) state.todos = data.todos;
+    if(data.year) state.year = data.year;
+    if(Array.isArray(data.archive)) state.archive = data.archive;
     state.activeCourse = state.courses[0]? state.courses[0].id : null;
     state.activePeriod = null; state.activeArea = null; state.editor = null;
   } else {
@@ -9261,6 +9648,13 @@ const actions = {
   editSchedule(){ scheduleModal(); },
   planSub(t){ state.planSub = t.dataset.id; save(); render(); },
   setTheme(t){ applyTheme(t.dataset.id); render(); },
+  search(){ searchModal(); },
+  yearMenu(){ yearMenuModal(); },
+  yearBack(){ yearLeave(); },
+  gcConnect(){ gcConnect(true); },
+  gcSyncNow(){ gcSync(true); },
+  gcOff(){ gcDisconnect(); },
+
   autoRestore(t){ const d = t.dataset.id; openModal(`<h3>¿Restaurar la copia del ${fmtDate(d)}?</h3><p class="sub">Todos los datos del cuaderno volverán a como estaban ese día al abrir la app. Podrás deshacerlo justo después.</p>`, ()=>{ setTimeout(()=>autoRestore(d), 30); }, 'Restaurar'); },
   pinSetup(){ pinSetupModal(); },
   pinOff(){ pinOffModal(); },
@@ -10024,7 +10418,8 @@ const actions = {
         data = Object.assign({}, meta, {scope:'course', courses:[c], templates:state.templates, curriculo:state.curriculo});
       } else {
         data = Object.assign({}, meta, {scope:'all', courses:state.courses, templates:state.templates, curriculo:state.curriculo, areaColors:state.areaColors, colorBy:state.colorBy, markDefs:state.markDefs, holidays:state.holidays,
-          schedule:state.schedule, sessions:state.sessions, teacherTT:state.teacherTT});
+          schedule:state.schedule, sessions:state.sessions, teacherTT:state.teacherTT,
+          upMethods:state.upMethods, todos:state.todos, year:state.year, archive:state.archive});
       }
       const txt = JSON.stringify(data);
       const name = 'cuaderno_'+((v.scope==='course'||v.scope==='teaching')&&c? c.name.replace(/[^\w]+/g,'_')+'_':'')+(v.scope==='teaching'?'programacion_':'')+today()+'.json';
