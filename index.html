@@ -1533,6 +1533,68 @@ html[data-theme="colores"] .top-search{background:rgba(0,0,0,.30);color:#fff;bor
 /* el aviso de «Deshacer» no debe tapar los botones de abajo: en móvil y con una ventana abierta va arriba */
 body:has(.backdrop) #undoToast{bottom:auto;top:calc(10px + env(safe-area-inset-top));z-index:400}
 @media(max-width:700px){#undoToast{bottom:auto;top:calc(10px + env(safe-area-inset-top))}}
+
+/* reuniones */
+.mt-wrap{max-width:1080px}
+.mt-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.mt-bar .inp{width:auto}.mt-bar #mtQ{flex:1 1 240px;min-width:0}.mt-bar #mtMonth{flex:0 0 190px}.mt-bar #mtSort{flex:0 0 210px}
+.mt-folders{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.mt-folder{display:flex;align-items:center;gap:9px;padding:10px 14px;border:1px solid var(--rule);border-radius:12px;background:#fff;color:#16241F;cursor:pointer;font-family:var(--font-ui);font-size:15.5px;min-width:132px}
+.mt-folder span{font-size:19px}.mt-folder b{font-weight:600;flex:1;text-align:left}.mt-folder small{color:#6B7A72;font-family:var(--font-mono);font-size:12.5px}
+.mt-folder.on{border-color:#1F6B4F;background:#DCEBE1;box-shadow:0 0 0 2px #DCEBE1}
+.mt-folder.add{min-width:0;border-style:dashed;color:#6B7A72}
+.mt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.mt-card{display:flex;flex-direction:column;align-items:flex-start;gap:5px;text-align:left;cursor:pointer;font-family:var(--font-ui);padding:14px;margin:0;min-height:150px;transition:box-shadow .15s,transform .15s}
+.mt-card:hover{box-shadow:0 6px 20px rgba(20,36,31,.13);transform:translateY(-2px)}
+.mt-ic{font-size:26px;line-height:1}
+.mt-t{font-family:var(--font-display);font-weight:700;font-size:17px;color:var(--ink);overflow-wrap:anywhere}
+.mt-meta{font-family:var(--font-mono);font-size:12.5px;color:var(--muted);display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.mt-tag{font-style:normal;color:#fff;border-radius:999px;padding:1px 8px;font-family:var(--font-ui);font-size:12px;font-weight:600}
+.mt-np{font-style:normal;background:#FCF1D8;color:#7A5A10;border-radius:999px;padding:1px 7px}
+.mt-snip{font-size:13.5px;color:var(--muted);line-height:1.35;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.mt-edit{max-width:920px}
+.mt-top{margin-bottom:10px;align-items:center}
+.mt-saved{font-family:var(--font-mono);font-size:12.5px;color:var(--muted);margin-right:10px}
+.mt-sheet{padding:18px 20px 22px}
+.mt-title{width:100%;border:0;border-bottom:2px solid transparent;background:transparent;font-family:var(--font-display);font-size:26px;font-weight:800;color:var(--ink);padding:2px 0 6px;outline:none}
+.mt-title:focus{border-bottom-color:var(--accent)}
+.mt-head{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 12px}.mt-head .inp{width:auto;flex:0 1 190px}
+.mt-tools{display:flex;gap:4px;flex-wrap:wrap;align-items:center;padding:8px;border:1px solid var(--rule);border-radius:12px;background:#F7F9F7;position:sticky;top:6px;z-index:5}
+.mt-b{min-width:36px;height:36px;padding:0 9px;border:1px solid transparent;border-radius:8px;background:none;cursor:pointer;font-size:16px;color:#16241F;font-family:system-ui,sans-serif}
+.mt-b:hover{background:#fff;border-color:var(--rule)}
+.mt-sel{height:36px;border:1px solid var(--rule);border-radius:8px;background:#fff;color:#16241F;font-family:var(--font-ui);font-size:14.5px;padding:0 6px;max-width:150px}
+.mt-sep{width:1px;height:22px;background:var(--rule);margin:0 4px}
+.mt-pal{position:relative}
+.mt-pal summary{list-style:none;min-width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:8px;cursor:pointer;font-weight:700;font-size:16px;color:#16241F}
+.mt-pal summary::-webkit-details-marker{display:none}
+.mt-pal summary:hover{background:#fff}
+.mt-pal>div{position:absolute;top:40px;left:0;z-index:6;display:flex;gap:6px;padding:8px;background:#fff;border:1px solid var(--rule);border-radius:10px;box-shadow:0 8px 24px rgba(20,36,31,.18)}
+.mt-sw{width:28px;height:28px;border-radius:50%;border:1px solid rgba(0,0,0,.2);cursor:pointer;font-size:12px;color:#6B7A72;padding:0}
+.mt-pinbtn{background:#FCF1D8;border-color:#EEDCA8;color:#5E4505;font-weight:600;font-size:14.5px;font-family:var(--font-ui)}
+.mt-pinbtn.on{background:#E4A11B;color:#16241F;border-color:#E4A11B}
+.mt-pinhint{background:#FCF1D8;border:1px solid #EEDCA8;color:#5E4505;border-radius:10px;padding:9px 12px;margin:10px 0 0;font-size:15px}
+.mt-body{min-height:46vh;margin-top:14px;outline:none;font-size:17px;line-height:1.55;color:#16241F;overflow-wrap:anywhere}
+.mt-body:empty::before{content:attr(data-ph);color:#9AA7A0}
+.mt-body.pinning{cursor:crosshair;background:linear-gradient(#FFFBEA,#FFFBEA)}
+.mt-body h1{font-size:26px!important;margin:14px 0 6px!important}.mt-body h2{font-size:21px!important;margin:12px 0 4px!important}.mt-body h3{font-size:18px!important;margin:10px 0 4px!important}
+.mt-body ul,.mt-body ol{padding-left:26px;margin:6px 0}
+.mt-body mark.mt-pin{background:#FFE45C;border-bottom:2px solid #E4A11B;border-radius:3px;padding:0 2px}
+.mt-body mark.mt-pin::before{content:'📌';font-size:.8em;margin-right:2px}
+.td-meet{border:0;background:none;cursor:pointer;font-size:16px;padding:2px 4px}
+@media(max-width:700px){.mt-bar #mtMonth,.mt-bar #mtSort{flex:1 1 40%}.mt-bar .btn{flex:1 1 100%}.mt-folder{min-width:0;flex:1 1 44%}.mt-grid{grid-template-columns:1fr}.mt-card{min-height:0}.mt-sheet{padding:14px 12px 18px}.mt-title{font-size:22px}.mt-head .inp{flex:1 1 44%}.mt-tools{top:52px}.mt-sep{display:none}}
+@media print{.mt-tools,.mt-top,.mt-pinhint{display:none!important}}
+
+/* eventos de Google Calendar en la agenda */
+.gx-list{display:flex;flex-direction:column;gap:3px;margin-top:5px;align-items:stretch}
+.gx{display:block;text-align:left;font-family:system-ui,sans-serif;font-size:11.5px;font-weight:500;line-height:1.3;color:#16241F;background:#fff;border:1px solid #DDE3DD;border-left:4px solid #6B7A72;border-radius:5px;padding:2px 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer;max-width:100%}
+.gx.more{border-left-width:1px;color:#6B7A72;text-align:center;cursor:default}
+table.wk th .gx-list{max-width:170px;margin-left:auto;margin-right:auto}
+.mo-cell .gx{font-size:11px;padding:1px 5px}
+.gx-day{background:#fff;border:1px solid var(--rule);border-radius:12px;padding:10px 12px;margin-bottom:12px;color:#16241F}
+.gx-row{display:flex;gap:10px;align-items:baseline;width:100%;text-align:left;background:none;border:0;border-left:4px solid #6B7A72;padding:6px 10px;margin-top:6px;cursor:pointer;font-family:var(--font-ui);font-size:15px;color:#16241F}
+.gx-row b{font-family:var(--font-mono);font-size:13px;white-space:nowrap}.gx-row span{flex:1}.gx-row small{color:#6B7A72;font-size:12.5px}
+html[data-theme="pizarra"] .mt-top .btn.danger{color:#FF9B8A;border-color:#FF9B8A;background:transparent}
+.gx-dot{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:7px;vertical-align:middle}
 </style>
 </head>
 <body>
@@ -1978,9 +2040,9 @@ function medMatchesProfile(medCode, conds){
 }
 const CODES = {P:'Presente', A:'Falta', R:'Retraso', J:'Justificada'};
 const KEY = 'cuaderno-lomloe:v1';
-const APP_VERSION = '4.5';
+const APP_VERSION = '4.7';
 const APP_BUILD = '07/10/2026';
-const APP_NOTES = 'Buscador en la cabecera (Ctrl+K) para alumnado, tareas, unidades, sesiones y pendientes. Cursos escolares: «Empezar curso nuevo» archiva el actual y conserva tu programación; los anteriores se consultan desde Mis clases. Google Calendar: copia tu agenda a un calendario propio, con la cuenta que elijas. La copia de seguridad completa incluye ya los pendientes. Antes: Más seguridad para tus datos: se guarda al instante al salir de la app, avisa si el dispositivo no puede guardar, «Deshacer» tras cada borrado y una copia automática diaria. Bloqueo con PIN opcional. Pendientes que se repiten y que se crean desde una sesión o una tutoría. «Repartir puntos» para sumar marcas de un toque. Antes: Estilos visuales: en Ajustes › Apariencia puedes elegir entre Original, Cuaderno, Pizarra, Archivador y Colores. Las marcas con contador se suman o restan con − y + desde la propia casilla. Antes: Ajustes más limpios: la copia de seguridad y el archivo local se pliegan cuando ya sincronizas con Google Drive, y las novedades de la versión se despliegan solo si las quieres leer. Antes: Nueva pestaña «Pendientes» en la agenda: tu lista de cosas por hacer, con prioridad, fecha límite y clase; la agenda avisa de lo que vence hoy o va con retraso. Además: Programación de la unidad: nueve apartados desplegables para planificar la unidad entera, con criterios, saberes básicos y competencias clave del currículo de Aragón, sesiones enlazadas con la agenda, adjuntos, medidas de atención a la diversidad por alumno, diana de autoevaluación docente, vista completa y PDF de dos caras. Además, código de color único por grado en rúbricas y tablas de notas, y tablas, horario y agenda con piezas redondeadas';
+const APP_NOTES = 'Google Calendar: los eventos se envían con el color que tienen en la app y, si quieres, tu agenda muestra los eventos de tus calendarios de Google (excursiones, festivos…). Reuniones: nueva pestaña en la agenda para tomar notas de cada reunión con un editor de texto (títulos, negrita, colores, tipos y tamaños de letra, listas), etiquetas como carpetas, búsqueda y filtro por fecha, y el botón 📌 para convertir una frase en pendiente. Antes: Google Drive: al conectar por primera vez en un dispositivo eliges la cuenta de Google, el dispositivo la recuerda y en Ajustes puedes cambiarla. Antes: Buscador en la cabecera (Ctrl+K) para alumnado, tareas, unidades, sesiones y pendientes. Cursos escolares: «Empezar curso nuevo» archiva el actual y conserva tu programación; los anteriores se consultan desde Mis clases. Google Calendar: copia tu agenda a un calendario propio, con la cuenta que elijas. La copia de seguridad completa incluye ya los pendientes. Antes: Más seguridad para tus datos: se guarda al instante al salir de la app, avisa si el dispositivo no puede guardar, «Deshacer» tras cada borrado y una copia automática diaria. Bloqueo con PIN opcional. Pendientes que se repiten y que se crean desde una sesión o una tutoría. «Repartir puntos» para sumar marcas de un toque. Antes: Estilos visuales: en Ajustes › Apariencia puedes elegir entre Original, Cuaderno, Pizarra, Archivador y Colores. Las marcas con contador se suman o restan con − y + desde la propia casilla. Antes: Ajustes más limpios: la copia de seguridad y el archivo local se pliegan cuando ya sincronizas con Google Drive, y las novedades de la versión se despliegan solo si las quieres leer. Antes: Nueva pestaña «Pendientes» en la agenda: tu lista de cosas por hacer, con prioridad, fecha límite y clase; la agenda avisa de lo que vence hoy o va con retraso. Además: Programación de la unidad: nueve apartados desplegables para planificar la unidad entera, con criterios, saberes básicos y competencias clave del currículo de Aragón, sesiones enlazadas con la agenda, adjuntos, medidas de atención a la diversidad por alumno, diana de autoevaluación docente, vista completa y PDF de dos caras. Además, código de color único por grado en rúbricas y tablas de notas, y tablas, horario y agenda con piezas redondeadas';
 
 /* escala cualitativa por defecto (Orden ECD/1112/2022) */
 const DEFAULT_SCALE = [
@@ -2209,10 +2271,10 @@ const GD_FILE = 'cuaderno-datos.json';
 const GD_LS = 'cuaderno-gdrive';
 const GD_API = 'https://www.googleapis.com/drive/v3';
 const GD_UP = 'https://www.googleapis.com/upload/drive/v3';
-const GD_DATA_KEYS = ['courses','curriculo','schedule','sessions','teacherTT','templates','areaColors','colorBy','markDefs','upMethods','holidays','attFolderId','todos','year','archive','gcalIds'];
+const GD_DATA_KEYS = ['courses','curriculo','schedule','sessions','teacherTT','templates','areaColors','colorBy','markDefs','upMethods','holidays','attFolderId','todos','year','archive','gcalIds','meetings','meetTags'];
 const GD_UI_KEYS = ['view','homeTab','planView','planDate','planSub','activeCourse','activeArea','activePeriod','activeUnit',
   'editor','viewStudent','tutStudent','tutFromHome','unitSub','triSub','divSub','alumSub','gridMode','editMode',
-  'instrMode','rubCompact','mkDeal','upView','upOpen','sabOnly','sabCycle','editWeights','todoShow','homeTutCourse','homeAjCourse','attDate','lastSel','lastCourse','taskEd'];
+  'instrMode','rubCompact','mkDeal','meetOpen','meetQ','meetTag','meetMonth','meetSort','upView','upOpen','sabOnly','sabCycle','editWeights','todoShow','homeTutCourse','homeAjCourse','attDate','lastSel','lastCourse','taskEd'];
 
 const gd = {
   status:'off',          // off · need · ok · sync · offline · error · conflict
@@ -2254,7 +2316,7 @@ function gdLoadGIS(){
     tick();
   });
 }
-async function gdGetToken(){
+async function gdGetToken(pick){
   await gdLoadGIS();
   if(!gd.client){
     gd.client = google.accounts.oauth2.initTokenClient({
@@ -2279,8 +2341,10 @@ async function gdGetToken(){
   }
   return new Promise((res, rej)=>{
     gd.waiters = {res, rej};
-    const opts = {prompt:''};
-    if(gd.email) opts.login_hint = gd.email;
+    /* la primera vez en este dispositivo (o al cambiar de cuenta) Google muestra el selector de cuentas;
+       después se renueva la sesión con la cuenta recordada */
+    const opts = pick ? {prompt:'select_account'} : {prompt:''};
+    if(!pick && gd.email) opts.login_hint = gd.email;
     gd.client.requestAccessToken(opts);
   });
 }
@@ -2356,7 +2420,7 @@ async function gdSync(){
       gdSet('ok'); return;
     }
     /* Drive tiene una versión que este equipo no ha visto */
-    if(document.querySelector('.backdrop') || state.view==='tarea'){ gd.again = true; return; }   // no pisar un formulario abierto
+    if(document.querySelector('.backdrop') || state.view==='tarea' || (document.activeElement && document.activeElement.closest && document.activeElement.closest('.mt-edit'))){ gd.again = true; return; }   // no pisar un formulario abierto
     const fresh = gd.base==null;
     if((!fresh && !dirty) || (fresh && !gdHasLocalData())){
       const remote = await gdDownload(meta.id);
@@ -2420,13 +2484,15 @@ function gdLocalBackup(){
 }
 
 /* ---- conexión ---- */
-async function gdConnect(){
+async function gdConnect(pick){
   if(!gdAvailable()){ alertBox('La sincronización con Drive funciona abriendo la app desde su dirección web, no como archivo suelto.'); return; }
+  if(pick===undefined) pick = !gd.email;      // sin cuenta recordada en este dispositivo: se elige
   try{
     gdSet('sync');
-    await gdGetToken();
+    await gdGetToken(pick);
     gd.connected = true;
     gdListen();
+    if(pick) gd.email = '';
     if(!gd.email){
       try{ const r = await gdFetch(GD_API+'/about?fields=user(emailAddress)'); gd.email = ((await r.json()).user||{}).emailAddress||''; }catch(e){}
     }
@@ -2436,6 +2502,24 @@ async function gdConnect(){
     gdSet(gd.connected?'need':'off', e.message);
     if(e.message) alertBox(e.message);
   }
+}
+/* cambiar la cuenta de Google de este dispositivo: se olvida la anterior y Google vuelve a preguntar */
+function gdSwitchAccount(){
+  openModal(`<h3>Cambiar de cuenta de Google</h3>
+    <p class="sub">Ahora este dispositivo sincroniza con <b>${esc(gd.email||'una cuenta de Google')}</b>. Al continuar, Google te dejará elegir otra.</p>
+    <p class="sub">Tus datos siguen en este dispositivo. Si la cuenta nueva no tiene todavía un cuaderno, se suben a su Drive; si ya tiene uno, la app te preguntará con cuál te quedas.</p>
+    <p class="sub">El archivo <b>${GD_FILE}</b> de la cuenta anterior no se borra: si no lo quieres allí, elimínalo tú desde ese Drive.</p>`,
+    ()=>{
+      const tok = gd.token;
+      try{ if(tok && window.google && google.accounts) google.accounts.oauth2.revoke(tok, ()=>{}); }catch(e){}
+      Object.assign(gd, {connected:false, token:null, exp:0, fileId:null, base:null, baseHash:null, lastSync:0, email:'', client:null});
+      gdPersist();
+      /* los anexos que este dispositivo conserva se volverán a subir a la cuenta nueva */
+      delete state.attFolderId;
+      const atts = allAtts();
+      Promise.all(atts.map(a=>idbGet('att:'+a.id).then(b=>{ if(b) delete a.driveId; }).catch(()=>{}))).then(()=>{ save(); });
+      gdConnect(true);
+    }, 'Elegir otra cuenta');
 }
 function gdDisconnect(){
   confirmDo('¿Desconectar Google Drive?','Los datos siguen en este equipo y en tu Drive, pero este equipo deja de sincronizarse.', ()=>{
@@ -2483,6 +2567,7 @@ function gdLabel(){
   }
 }
 function gdRender(){
+  const gcd = document.getElementById('gdCard'); if(gcd && !document.querySelector('.backdrop')) gcd.outerHTML = gdCardHtml();
   const b = el('gdPill'); if(!b) return;
   if(!gdAvailable()){ b.hidden = true; return; }
   const [txt, cls] = gdLabel();
@@ -2497,7 +2582,7 @@ function gdBannerHtml(){
   return `<div class="gd-banner">
     <span class="gd-b-ic">☁</span>
     <span class="gd-b-txt">${gd.status==='need'
-      ? '<b>Conecta con Google Drive</b> para cargar lo último que guardaste en el otro equipo.'
+      ? '<b>Conecta con Google Drive</b>'+(gd.email?' ('+esc(gd.email)+')':'')+' para cargar lo último que guardaste en el otro equipo.'
       : '<b>Sincroniza con tu Google Drive</b> para trabajar desde el cole, desde casa o desde el móvil con los mismos datos.'}</span>
     <button class="btn small" data-act="gdClick">Conectar</button></div>`;
 }
@@ -2505,13 +2590,15 @@ function gdCardHtml(){
   if(!gdAvailable()) return `<div class="card"><h2 class="sec-title">Google Drive</h2>
     <p class="hint" style="margin:0">Abre la app desde su dirección web (la versión instalada) para sincronizar con Google Drive.</p></div>`;
   const last = gd.lastSync ? new Date(gd.lastSync).toLocaleString('es-ES',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}) : '';
-  return `<div class="card">
+  return `<div class="card" id="gdCard">
     <h2 class="sec-title">Google Drive</h2>
     ${gd.connected
       ? `<p class="hint">Conectado${gd.email?' con <b>'+esc(gd.email)+'</b>':''}. Los datos se guardan en el archivo <b>${GD_FILE}</b> de tu Drive y se cargan al abrir la app en cualquier equipo.${last?' Última sincronización: '+last+'.':''}${gd.err?'<br><span style="color:var(--low)">'+esc(gd.err)+'</span>':''}</p>
          <div class="row"><button class="btn small" data-act="gdSyncNow">Sincronizar ahora</button>
+           <button class="btn ghost small" data-act="gdSwitch">Cambiar de cuenta</button>
            <button class="btn danger small" data-act="gdOff">Desconectar</button></div>`
       : `<p class="hint">Guarda los datos en tu Google Drive y cárgalos en cualquier equipo. La app solo puede ver el archivo que ella misma crea, no el resto de tu Drive.</p>
+         <p class="hint">Al conectar, Google te pregunta con qué cuenta: si vas a guardar datos de alumnado, elige la del centro. Este dispositivo la recordará.</p>
          <div class="row"><button class="btn small" data-act="gdClick">Conectar con Google Drive</button></div>`}
   </div>`;
 }
@@ -3899,6 +3986,7 @@ function planView(){
   if((state.planSub||'agenda')==='horario')
     return `<div class="plan">${planSubs('horario')}${teacherTimetable()}</div>`;
   if(state.planSub==='tareas') return `<div class="plan">${planSubs('tareas')}${todoView()}</div>`;
+  if(state.planSub==='reuniones') return `<div class="plan">${planSubs('reuniones')}${meetView()}</div>`;
   return planViewAgenda();
 }
 
@@ -3926,7 +4014,7 @@ function todos(){ if(!Array.isArray(state.todos)) state.todos = []; return state
 function todoPending(){ return todos().filter(t=>!t.done); }
 function planSubs(cur){
   const n = todoPending().length;
-  return subnav('planSub', cur, [['agenda','Agenda','▦'],['horario','Mi horario','◷'],['tareas','Pendientes'+(n?' ('+n+')':''),'☑']]);
+  return subnav('planSub', cur, [['agenda','Agenda','▦'],['horario','Mi horario','◷'],['tareas','Pendientes'+(n?' ('+n+')':''),'☑'],['reuniones','Reuniones','🗒']]);
 }
 function todoGroupOf(t){
   if(!t.due) return 'none';
@@ -3955,6 +4043,7 @@ function todoRow(t){
     <button class="td-txt" data-act="todoEdit" data-id="${t.id}">${esc(t.text)}</button>
     ${c?`<span class="td-tag" style="border-color:${courseColor(c.id)};color:${courseColor(c.id)}">${esc(c.name)}</span>`:''}
     ${t.rep?`<span class="td-rep" title="${TODO_REP[t.rep]||''}">↻</span>`:''}
+    ${t.meet && meetings().some(m=>m.id===t.meet)?`<button class="td-meet" data-act="meetOpen" data-id="${t.meet}" title="Abrir la reunión de la que salió">🗒</button>`:''}
     ${t.due?`<span class="td-due ${!t.done&&g==='late'?'late':''} ${!t.done&&g==='today'?'today':''}">${g==='today'&&!t.done?'Hoy':fmtDate(t.due).slice(0,5)}</span>`:''}
   </div>`;
 }
@@ -4155,12 +4244,13 @@ function searchResults(q){
   });
   Object.keys(state.sessions||{}).forEach(k=>{ const se = state.sessions[k]; if(se && se.title && hit(se.title)){ const iso = k.split('|')[0], c = state.courses.find(x=>x.id===se.courseId);
     out.push({k:'Sesiones', ic:'▦', t:se.title, s:fmtDate(iso)+(c?' · '+c.name:''), go:()=>{ state.view = 'clases'; state.homeTab = 'agenda'; state.planSub = 'agenda'; state.planDate = iso; }}); } });
+  meetings().forEach(m=>{ if(hit(m.title+' '+(m.tag||'')+' '+meetText(m))) out.push({k:'Reuniones', ic:'🗒', t:m.title||'Reunión sin título', s:fmtDate(m.date)+(m.tag?' · '+m.tag:''), go:()=>{ state.view = 'clases'; state.homeTab = 'agenda'; state.planSub = 'reuniones'; state.meetOpen = m.id; }}); });
   todos().forEach(t=>{ if(hit(t.text)) out.push({k:'Pendientes', ic:'☑', t:t.text, s:(t.done?'Hecho':'Pendiente')+(t.due?' · '+fmtDate(t.due):''), go:()=>{ state.view = 'clases'; state.homeTab = 'agenda'; state.planSub = 'tareas'; state.todoShow = t.done?'done':'pend'; }}); });
   return out.slice(0, 40);
 }
 function searchModal(){
   if(document.querySelector('.backdrop .srch')) return;
-  const w = openModal(`<div class="srch"><input class="inp" id="srchQ" type="search" placeholder="Busca un alumno, una tarea, una unidad, una sesión…" autocomplete="off" aria-label="Buscar">
+  const w = openModal(`<div class="srch"><input class="inp" id="srchQ" type="search" placeholder="Busca un alumno, una tarea, una unidad, una reunión…" autocomplete="off" aria-label="Buscar">
     <div id="srchR" class="srch-r"><p class="sub">Escribe al menos dos letras. Busca en todas tus clases${roYear?' del curso '+esc(roYear.label):''}.</p></div></div>`, null, null, {wide:true});
   const cl = w.querySelector('[data-close]'); if(cl) cl.textContent = 'Cerrar';
   const q = w.querySelector('#srchQ'), box = w.querySelector('#srchR'); let res = [];
@@ -4189,13 +4279,15 @@ document.addEventListener('keydown', e=>{
 const GC_SCOPE = 'https://www.googleapis.com/auth/calendar.app.created';
 const GC_SCOPES = GC_SCOPE + ' https://www.googleapis.com/auth/userinfo.email';
 const GC_API = 'https://www.googleapis.com/calendar/v3';
+const GC_READ = 'https://www.googleapis.com/auth/calendar.calendarlist.readonly https://www.googleapis.com/auth/calendar.events.readonly';
 const GC_LS = 'cuaderno-gcal';
 const GC_NAME = 'Cuaderno Profesor';
 const gc = {connected:false, token:null, exp:0, email:'', calId:'', opts:{ses:true, task:true, todo:true, tut:false},
-  busy:false, again:false, last:0, lastN:null, err:'', client:null, waiters:null, timer:null, dirty:false};
-function gcPersist(){ try{ localStorage.setItem(GC_LS, JSON.stringify({connected:gc.connected, token:gc.token, exp:gc.exp, email:gc.email, calId:gc.calId, opts:gc.opts, last:gc.last, lastN:gc.lastN})); }catch(e){} }
+  busy:false, again:false, last:0, lastN:null, err:'', client:null, waiters:null, timer:null, dirty:false,
+  read:false, readOk:false, cals:[], ext:[], extAt:0, extErr:''};
+function gcPersist(){ try{ localStorage.setItem(GC_LS, JSON.stringify({connected:gc.connected, token:gc.token, exp:gc.exp, email:gc.email, calId:gc.calId, opts:gc.opts, last:gc.last, lastN:gc.lastN, read:gc.read, readOk:gc.readOk, cals:gc.cals, ext:gc.ext, extAt:gc.extAt})); }catch(e){} }
 function gcRestore(){
-  try{ const o = JSON.parse(localStorage.getItem(GC_LS)||'null'); if(o){ ['connected','token','exp','email','calId','last','lastN'].forEach(k=>{ if(o[k]!==undefined) gc[k] = o[k]; }); if(o.opts) Object.assign(gc.opts, o.opts); } }catch(e){}
+  try{ const o = JSON.parse(localStorage.getItem(GC_LS)||'null'); if(o){ ['connected','token','exp','email','calId','last','lastN','read','readOk','cals','ext','extAt'].forEach(k=>{ if(o[k]!==undefined) gc[k] = o[k]; }); if(o.opts) Object.assign(gc.opts, o.opts); } }catch(e){}
   if(gc.connected){ gc.dirty = true; if(state.view==='clases') render(); gcSchedule(4000); }
 }
 function gcTokenOk(){ return !!gc.token && Date.now() < gc.exp - 60000; }
@@ -4208,7 +4300,9 @@ async function gcGetToken(pick){
         const w = gc.waiters; gc.waiters = null; if(!w) return;
         if(resp.error) return w.rej(new Error(resp.error));
         if(!google.accounts.oauth2.hasGrantedAllScopes(resp, GC_SCOPE)) return w.rej(new Error('Falta el permiso de Calendar. Vuelve a conectar y marca la casilla de Google Calendar.'));
-        gc.token = resp.access_token; gc.exp = Date.now() + (Number(resp.expires_in)||3600)*1000; w.res();
+        gc.token = resp.access_token; gc.exp = Date.now() + (Number(resp.expires_in)||3600)*1000;
+        gc.readOk = gc.read && GC_READ.split(' ').every(sc=>google.accounts.oauth2.hasGrantedAllScopes(resp, sc));
+        w.res();
       },
       error_callback: err=>{
         const w = gc.waiters; gc.waiters = null; if(!w) return;
@@ -4220,8 +4314,9 @@ async function gcGetToken(pick){
   }
   return new Promise((res, rej)=>{
     gc.waiters = {res, rej};
-    const o = pick ? {prompt:'select_account'} : {prompt:''};
-    if(!pick && gc.email) o.login_hint = gc.email;
+    const o = pick==='consent' ? {prompt:'consent'} : pick ? {prompt:'select_account'} : {prompt:''};
+    if(pick!==true && gc.email) o.login_hint = gc.email;
+    o.scope = GC_SCOPES + (gc.read ? ' '+GC_READ : '');
     gc.client.requestAccessToken(o);
   });
 }
@@ -4252,6 +4347,16 @@ async function gcEnsureCal(){
   }
   if(state.gcalIds[gc.email||'_']!==gc.calId){ state.gcalIds[gc.email||'_'] = gc.calId; save(); }
 }
+/* Google solo admite 11 colores de evento: se usa el más parecido al color elegido en la app */
+const GC_COLORS = {1:'#7986cb',2:'#33b679',3:'#8e24aa',4:'#e67c73',5:'#f6c026',6:'#f5511d',7:'#039be5',8:'#616161',9:'#3f51b5',10:'#0b8043',11:'#d60000'};
+function gcRgb(hex){ let h = String(hex||'').replace('#',''); if(h.length===3) h = h.split('').map(c=>c+c).join(''); const n = parseInt(h, 16); return isNaN(n) ? null : [(n>>16)&255, (n>>8)&255, n&255]; }
+function gcColorId(hex){
+  const a = gcRgb(hex); if(!a) return '';
+  let best = '', bd = Infinity;
+  Object.keys(GC_COLORS).forEach(id=>{ const b = gcRgb(GC_COLORS[id]), rm = (a[0]+b[0])/2, dr = a[0]-b[0], dg = a[1]-b[1], db = a[2]-b[2];
+    const d = (2+rm/256)*dr*dr + 4*dg*dg + (2+(255-rm)/256)*db*db; if(d < bd){ bd = d; best = id; } });
+  return best;
+}
 function gcTz(){ try{ return Intl.DateTimeFormat().resolvedOptions().timeZone || 'Europe/Madrid'; }catch(e){ return 'Europe/Madrid'; } }
 function gcHash(str){ let a = 5381, b = 52711; for(let i=0;i<str.length;i++){ const ch = str.charCodeAt(i); a = ((a<<5)+a + ch)|0; b = ((b<<5)+b ^ ch)|0; } return (a>>>0).toString(32)+(b>>>0).toString(32); }
 function gcAddMin(hhmm, min){ const p = hhmm.split(':').map(Number); const t = Math.min(23*60+59, p[0]*60+p[1]+min); return String(Math.floor(t/60)).padStart(2,'0')+':'+String(t%60).padStart(2,'0'); }
@@ -4265,25 +4370,25 @@ function gcItems(){
     const se = state.sessions[k], p = k.split('|'), sl = state.schedule.find(x=>x.id===p[1]);
     if(!se || !sl || !inWin(p[0]) || !(se.title || (se.parts||[]).length)) return;
     const c = state.courses.find(x=>x.id===se.courseId);
-    items.push(Object.assign({key:'s:'+k, summary:[c&&c.name, se.areaId ? (areaDef(se.areaId).short||areaDef(se.areaId).name) : '', se.title||'Sesión'].filter(Boolean).join(' · '),
+    items.push(Object.assign({key:'s:'+k, col:sessionColor(se), summary:[c&&c.name, se.areaId ? (areaDef(se.areaId).short||areaDef(se.areaId).name) : '', se.title||'Sesión'].filter(Boolean).join(' · '),
       description:(se.parts||[]).map(x=>'• '+x.text+(x.min?' ('+x.min+' min)':'')).join('\n')}, timed(p[0], sl.from, sl.to)));
   });
   if(o.task) state.courses.forEach(c=>(c.tasks||[]).forEach(t=>dateEntries(t).forEach((e,i)=>{
     if(!inWin(e.d)) return;
-    items.push(Object.assign({key:'t:'+t.id+':'+e.d+':'+i, summary:'◆ '+t.name+' · '+c.name, description:'Tarea evaluable · '+(areaDef(t.areaId).short||areaDef(t.areaId).name)},
+    items.push(Object.assign({key:'t:'+t.id+':'+e.d+':'+i, col:(state.colorBy==='course' ? courseColor(c.id) : areaColor(t.areaId)), summary:'◆ '+t.name+' · '+c.name, description:'Tarea evaluable · '+(areaDef(t.areaId).short||areaDef(t.areaId).name)},
       e.t ? timed(e.d, e.t, gcAddMin(e.t, 45)) : allDay(e.d)));
   })));
   if(o.todo) todos().forEach(t=>{ if(!t.done && inWin(t.due)){ const c = t.course && state.courses.find(x=>x.id===t.course);
-    items.push(Object.assign({key:'p:'+t.id, summary:'☑ '+t.text+(c?' · '+c.name:''), description:'Pendiente del cuaderno'}, allDay(t.due))); } });
+    items.push(Object.assign({key:'p:'+t.id, col:(c ? courseColor(c.id) : ''), summary:'☑ '+t.text+(c?' · '+c.name:''), description:'Pendiente del cuaderno'}, allDay(t.due))); } });
   if(o.tut) state.courses.forEach(c=>(c.tutorias||[]).forEach(t=>{
     if(!inWin(t.date)) return; const st = c.students.find(x=>x.id===t.studentId);
-    items.push(Object.assign({key:'u:'+t.id, summary:'Tutoría · '+(st?st.name:'')+' · '+c.name, description:t.mode||''}, t.time ? timed(t.date, t.time, gcAddMin(t.time, 30)) : allDay(t.date)));
+    items.push(Object.assign({key:'u:'+t.id, col:courseColor(c.id), summary:'Tutoría · '+(st?st.name:'')+' · '+c.name, description:t.mode||''}, t.time ? timed(t.date, t.time, gcAddMin(t.time, 30)) : allDay(t.date)));
   }));
-  items.forEach(it=>{ it.id = 'cp'+gcHash(it.key)+gcHash('k'+it.key); it.h = gcHash(JSON.stringify([it.summary, it.description, it.start, it.end])); });
+  items.forEach(it=>{ it.id = 'cp'+gcHash(it.key)+gcHash('k'+it.key); it.colorId = it.col ? gcColorId(it.col) : ''; it.h = gcHash(JSON.stringify([it.summary, it.description, it.start, it.end, it.colorId])); });
   return items;
 }
-function gcBody(it){ return {id:it.id, summary:it.summary, description:it.description||'', start:it.start, end:it.end, status:'confirmed', transparency:'transparent',
-  reminders:{useDefault:false}, extendedProperties:{private:{cp:'1', h:it.h}}}; }
+function gcBody(it){ return Object.assign(it.colorId ? {colorId:it.colorId} : {}, {id:it.id, summary:it.summary, description:it.description||'', start:it.start, end:it.end, status:'confirmed', transparency:'transparent',
+  reminders:{useDefault:false}, extendedProperties:{private:{cp:'1', h:it.h}}}); }
 async function gcSync(interactive){
   if(roYear || !gc.connected) return;
   if(gc.busy){ gc.again = true; return; }
@@ -4316,14 +4421,78 @@ async function gcSync(interactive){
       const r = await gcFetch(base+'/'+id, {method:'DELETE'}); if(r.ok || r.status===410 || r.status===404) del++; else await gcFail(r, 'No se ha podido borrar un evento');
     }
     gc.last = Date.now(); gc.lastN = {total:want.length, add, upd, del}; gc.dirty = false;
+    if(gc.read) await gcPull();
   }catch(e){ gc.err = e.offline ? 'Sin conexión: se sincronizará cuando vuelva.' : e.message; gc.dirty = true; }
   gc.busy = false; gcPersist(); gcRender();
   if(gc.again){ gc.again = false; gcSchedule(1500); }
 }
+/* eventos de los calendarios de Google elegidos: solo se guardan en este dispositivo, no en los datos del cuaderno */
+async function gcLoadCals(){
+  const r = await gcFetch(GC_API+'/users/me/calendarList?maxResults=250&fields='+encodeURIComponent('items(id,summary,summaryOverride,backgroundColor,primary)'));
+  if(!r.ok){ if(r.status===403) throw new Error('Google no ha dado permiso para leer tus calendarios. Revisa que los permisos de lectura estén añadidos en Google Cloud y vuelve a activarlo.'); await gcFail(r, 'No se ha podido leer la lista de calendarios'); }
+  const old = {}; (gc.cals||[]).forEach(c=>{ old[c.id] = c.on; });
+  gc.cals = ((await r.json()).items||[]).filter(c=>c.id!==gc.calId && c.summary!==GC_NAME)
+    .map(c=>({id:c.id, name:c.summaryOverride||c.summary||c.id, color:c.backgroundColor||'#6B7A72', on:(c.id in old) ? old[c.id] : true}))
+    .sort((a,b)=>a.name.localeCompare(b.name, 'es'));
+}
+async function gcPull(){
+  gc.extErr = '';
+  try{
+    if(!gc.readOk && !gc.cals.length) throw new Error('Falta dar permiso a la app para leer tus calendarios.');
+    await gcLoadCals();
+    const out = [], lo = addDays(today(), -14), hi = addDays(today(), 200);
+    const hm = d=>String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');
+    for(const c of gc.cals.filter(x=>x.on)){
+      const r = await gcFetch(GC_API+'/calendars/'+encodeURIComponent(c.id)+'/events?singleEvents=true&orderBy=startTime&maxResults=600&timeMin='+encodeURIComponent(lo+'T00:00:00Z')+'&timeMax='+encodeURIComponent(hi+'T00:00:00Z')+'&fields='+encodeURIComponent('items(id,summary,location,status,start,end)'));
+      if(!r.ok){ if(r.status===404 || r.status===403) continue; await gcFail(r, 'No se ha podido leer «'+c.name+'»'); }
+      ((await r.json()).items||[]).forEach(e=>{
+        if(e.status==='cancelled' || !e.start) return;
+        let d, d2, t = '', t2 = '';
+        if(e.start.date){ d = e.start.date; d2 = e.end && e.end.date ? addDays(e.end.date, -1) : d; if(d2 < d) d2 = d; }
+        else { const a = new Date(e.start.dateTime), b = new Date((e.end||{}).dateTime || e.start.dateTime); d = toISO(a); t = hm(a); const bb = new Date(b.getTime()-1); d2 = toISO(bb < a ? a : bb); t2 = hm(b); }
+        out.push({id:e.id, cal:c.id, title:(e.summary||'(sin título)').slice(0,140), d, d2, t, t2, loc:(e.location||'').slice(0,140)});
+      });
+    }
+    gc.ext = out; gc.extAt = Date.now();
+  }catch(e){ if(e.offline || e.auth) throw e; gc.extErr = e.message; }
+  if(state.view==='clases' && state.homeTab==='agenda' && (state.planSub||'agenda')==='agenda' && !document.querySelector('.backdrop')) render();
+}
+function gcExtOn(iso){ if(!gc.connected || !gc.read) return []; return (gc.ext||[]).filter(e=>e.d<=iso && iso<=e.d2).sort((a,b)=>(a.t||'').localeCompare(b.t||'')); }
+function gcCalOf(e){ return (gc.cals||[]).find(c=>c.id===e.cal) || {name:'', color:'#6B7A72'}; }
+function gcExtChips(iso, max){
+  const l = gcExtOn(iso); if(!l.length) return '';
+  return `<span class="gx-list">${l.slice(0, max||4).map(e=>`<span class="gx" data-act="gcExt" data-id="${esc(e.id)}" data-iso="${iso}" style="border-left-color:${gcCalOf(e).color}" title="${esc(e.title)} · ${esc(gcCalOf(e).name)}">${e.t && e.d===iso ? e.t+' ' : ''}${esc(e.title)}</span>`).join('')}${l.length>(max||4)?`<span class="gx more">+${l.length-(max||4)}</span>`:''}</span>`;
+}
+function gcExtDayHtml(iso){
+  const l = gcExtOn(iso); if(!l.length) return '';
+  return `<div class="gx-day"><span class="st-lbl">📅 En tus calendarios de Google</span>${l.map(e=>`<button class="gx-row" data-act="gcExt" data-id="${esc(e.id)}" data-iso="${iso}" style="border-left-color:${gcCalOf(e).color}"><b>${e.t && e.d===iso ? e.t+(e.t2?'–'+e.t2:'') : 'Todo el día'}</b><span>${esc(e.title)}</span><small>${esc(gcCalOf(e).name)}</small></button>`).join('')}</div>`;
+}
+function gcExtModal(id, iso){
+  const e = (gc.ext||[]).find(x=>x.id===id); if(!e) return;
+  const days = []; for(let d = e.d; d <= e.d2 && days.length < 40; d = addDays(d, 1)){ if(dowMon(d) < 5) days.push(d); }
+  const allDay = !e.t, marked = days.length && days.every(d=>holidayOf(d));
+  const w = openModal(`<h3>${esc(e.title)}</h3>
+    <p class="sub">📅 ${esc(gcCalOf(e).name)} · ${e.d===e.d2 ? fmtDate(e.d) : fmtDate(e.d)+' – '+fmtDate(e.d2)}${e.t ? ' · '+e.t+(e.t2?'–'+e.t2:'') : ' · todo el día'}${e.loc?'<br>📍 '+esc(e.loc):''}</p>
+    <p class="sub">Viene de Google Calendar: para cambiarlo, hazlo allí.</p>
+    ${allDay && days.length ? (marked ? `<p class="sub"><b>⛱ Ya está marcado como no lectivo en el cuaderno.</b></p>` : `<button type="button" class="btn small" id="gxHol">⛱ Marcar como no lectivo en el cuaderno (${days.length} día${days.length>1?'s':''})</button>`) : ''}`, null);
+  const cl = w.querySelector('[data-close]'); if(cl) cl.textContent = 'Cerrar';
+  const hb = w.querySelector('#gxHol'); if(hb) hb.addEventListener('click', ()=>{
+    undoPoint('Marcado como no lectivo'); if(!state.holidays || typeof state.holidays!=='object') state.holidays = {};
+    days.forEach(d=>{ state.holidays[d] = e.title.slice(0,40); }); w.remove(); save(); render();
+  });
+}
+async function gcReadOn(){
+  gc.read = true; gc.err = ''; gc.extErr = '';
+  try{ await gcGetToken('consent'); if(!gc.readOk) throw new Error('No has marcado el permiso para ver tus calendarios, o no está añadido en Google Cloud.'); gcPersist(); gcRender(); await gcSync(true); }
+  catch(e){ gc.read = false; gc.err = e.message; gcPersist(); gcRender(); }
+}
 function gcSchedule(ms){
   if(!gc.connected || roYear) return;
-  gc.dirty = true; clearTimeout(gc.timer);
-  gc.timer = setTimeout(()=>{ gcSync(false); }, ms || 8000);
+  gc.dirty = true;
+  const due = Date.now() + (ms || 8000);
+  if(gc.timer && gc.due && gc.due <= due) return;      // ya hay una sincronización programada antes
+  clearTimeout(gc.timer); gc.due = due;
+  gc.timer = setTimeout(()=>{ gc.timer = null; gc.due = 0; gcSync(false); }, ms || 8000);
 }
 async function gcConnect(pick){
   if(!gdAvailable()){ alertBox('Google Calendar solo funciona con la app abierta desde su dirección web (https).'); return; }
@@ -4347,7 +4516,7 @@ function gcDisconnect(){
       else if(wipe){ setTimeout(()=>alertBox('No se ha podido borrar el calendario porque la sesión de Google había caducado. Puedes borrarlo desde Google Calendar › Configuración.'), 100); }
       try{ if(tok && window.google && google.accounts && google.accounts.oauth2.revoke) google.accounts.oauth2.revoke(tok, ()=>{}); }catch(e){}
       clearTimeout(gc.timer);
-      Object.assign(gc, {connected:false, token:null, exp:0, email:'', calId:'', last:0, lastN:null, err:'', dirty:false, client:null});
+      Object.assign(gc, {connected:false, token:null, exp:0, email:'', calId:'', last:0, lastN:null, err:'', dirty:false, client:null, read:false, readOk:false, cals:[], ext:[], extAt:0, extErr:''});
       gcPersist();
     }, 'Desconectar');
 }
@@ -4376,6 +4545,12 @@ function gcCardHtml(){
       ${ck('task','Tareas evaluables con fecha')}
       ${ck('todo','Pendientes con fecha límite')}
       ${ck('tut','Tutorías registradas <small style="color:var(--muted)">(el evento lleva el nombre del alumno)</small>')}
+      <span class="field-lbl" style="margin-top:12px;display:block">Qué se trae a la agenda</span>
+      ${gc.read ? `<p class="hint" style="margin:2px 0 4px">Los eventos de los calendarios marcados aparecen en tu agenda (excursiones, festivos, reuniones…). Solo se leen, y se guardan únicamente en este dispositivo.</p>
+        ${(gc.cals||[]).length ? gc.cals.map(c=>`<label class="check-opt"><input type="checkbox" data-act="gcCal" data-id="${esc(c.id)}" ${c.on?'checked':''}> <span><i class="gx-dot" style="background:${c.color}"></i>${esc(c.name)}</span></label>`).join('') : '<p class="hint">Pulsa «Sincronizar ahora» para cargar tus calendarios.</p>'}
+        <p class="hint" style="margin:6px 0 0">${gc.extErr ? '<span style="color:var(--low)">⚠ '+esc(gc.extErr)+'</span>' : (gc.extAt ? (gc.ext||[]).length+' evento(s) cargados' : '')} <button class="btn ghost small" data-act="gcReadOff">Dejar de mostrarlos</button></p>`
+      : `<p class="hint" style="margin:2px 0 6px">Opcional: muestra en tu agenda los eventos de tus calendarios de Google (por ejemplo, el del centro). Google te pedirá un permiso más, de solo lectura.</p>
+        <button class="btn ghost small" data-act="gcReadOn">Mostrar mis calendarios de Google en la agenda</button>`}
       <p class="hint ${gc.err?'gc-err':''}" id="gcStatus" style="margin-top:10px">${esc(gcStatusText())}</p>
       <div class="row"><button class="btn small" data-act="gcSyncNow" ${gc.busy?'disabled':''}>Sincronizar ahora</button>
         <button class="btn ghost small" data-act="gcConnect">Cambiar de cuenta</button>
@@ -4388,12 +4563,238 @@ function gcChipHtml(){
   return `<button class="btn ghost small gc-chip ${gc.err?'err':(gc.dirty?'dirty':'')}" data-act="gcSyncNow" title="${esc(st[1])}">📅 ${st[0]}</button>`;
 }
 document.addEventListener('change', e=>{
-  const t = e.target; if(!t || !t.dataset || t.dataset.act!=='gcOpt') return;
+  const t = e.target; if(!t || !t.dataset) return;
+  if(t.dataset.act==='gcCal'){ const c = (gc.cals||[]).find(x=>x.id===t.dataset.id); if(c){ c.on = !!t.checked; gcPersist(); gcSchedule(1200); } return; }
+  if(t.dataset.act!=='gcOpt') return;
   gc.opts[t.dataset.k] = !!t.checked; gcPersist(); gcSchedule(1500); gcRender();
 });
+document.addEventListener('visibilitychange', ()=>{ if(!document.hidden && gc.connected && gc.read && gcTokenOk() && Date.now()-gc.extAt > 10*60000) gcSync(false); });
 function gcRender(){
   const card = document.getElementById('gcCard'); if(card) card.outerHTML = gcCardHtml();
   const chip = document.querySelector('.gc-chip'); if(chip) chip.outerHTML = gcChipHtml();
+}
+
+/* =====================================================================
+   REUNIONES: cuaderno de notas de reuniones, con etiquetas y pendientes
+   state.meetings = [{id,title,date,tag,html,at,upd}] · state.meetTags = ['Ciclo',…]
+   ===================================================================== */
+const MEET_TAGS = ['Ciclo','CCP','Claustro','Nivel','Departamento'];
+const MEET_COL = ['#2D6A9F','#8A5A2B','#7A4F9A','#1F6B4F','#9A3B52','#B0742A','#3A6E70','#4E7A3A'];
+function meetings(){ if(!Array.isArray(state.meetings)) state.meetings = []; return state.meetings; }
+function meetTags(){ if(!Array.isArray(state.meetTags)) state.meetTags = MEET_TAGS.slice(); return state.meetTags; }
+function meetColor(tag){ const i = meetTags().indexOf(tag); return i<0 ? '#6B7A72' : MEET_COL[i % MEET_COL.length]; }
+function meetText(m){ return String(m.html||'').replace(/<(br|\/p|\/div|\/li|\/h[1-6])[^>]*>/gi,' ').replace(/<[^>]+>/g,'').replace(/&nbsp;/g,' ').replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/\s+/g,' ').trim(); }
+/* solo se guarda formato de texto: nada de scripts, estilos sueltos ni atributos raros */
+function meetClean(html){
+  const OK = {B:1,STRONG:1,I:1,EM:1,U:1,S:1,STRIKE:1,P:1,DIV:1,BR:1,H1:1,H2:1,H3:1,UL:1,OL:1,LI:1,SPAN:1,FONT:1,MARK:1,BLOCKQUOTE:1};
+  const CSS = ['color','background-color','font-family','font-size','text-align','font-weight','font-style','text-decoration','text-decoration-line'];
+  const doc = new DOMParser().parseFromString('<div>'+String(html||'')+'</div>', 'text/html'), root = doc.body.firstChild;
+  const walk = node=>{
+    [...node.childNodes].forEach(ch=>{
+      if(ch.nodeType===3) return;
+      if(ch.nodeType!==1){ ch.remove(); return; }
+      if(/^(SCRIPT|STYLE|IFRAME|OBJECT|EMBED|LINK|META|SVG|IMG|VIDEO|AUDIO|FORM|INPUT|BUTTON|TEXTAREA|SELECT)$/i.test(ch.tagName)){ ch.remove(); return; }
+      walk(ch);
+      if(!OK[ch.tagName]){ while(ch.firstChild) node.insertBefore(ch.firstChild, ch); ch.remove(); return; }
+      const st = {}; CSS.forEach(p=>{ const v = ch.style.getPropertyValue(p); if(v && !/url|expression|javascript/i.test(v)) st[p] = v; });
+      const keep = {}; ['size','face','color'].forEach(a=>{ if(ch.tagName==='FONT' && ch.hasAttribute(a)) keep[a] = ch.getAttribute(a).replace(/[^\w #,.'" -]/g,''); });
+      const pin = ch.tagName==='MARK' ? ch.getAttribute('data-todo') : null;
+      [...ch.attributes].forEach(a=>ch.removeAttribute(a.name));
+      Object.keys(st).forEach(p=>ch.style.setProperty(p, st[p])); Object.keys(keep).forEach(a=>ch.setAttribute(a, keep[a]));
+      if(ch.tagName==='MARK'){ ch.className = 'mt-pin'; if(pin) ch.setAttribute('data-todo', pin.replace(/[^a-z0-9]/gi,'')); }
+    });
+  };
+  walk(root); return root.innerHTML;
+}
+function meetFiltered(){
+  const q = sNorm(state.meetQ||'').trim(), tag = state.meetTag||'', mon = state.meetMonth||'';
+  let l = meetings().filter(m=>(!tag || (tag==='__none' ? !m.tag : m.tag===tag)) && (!mon || String(m.date||'').slice(0,7)===mon) && (!q || q.split(/\s+/).every(w=>sNorm(m.title+' '+meetText(m)).includes(w))));
+  const srt = state.meetSort||'new';
+  l = l.slice().sort((a,b)=> srt==='name' ? String(a.title).localeCompare(String(b.title), 'es') : (srt==='old' ? 1 : -1) * (String(b.date||'').localeCompare(String(a.date||'')) || (b.at||0)-(a.at||0)));
+  return l;
+}
+function meetGridHtml(){
+  const l = meetFiltered();
+  if(!meetings().length) return `<p class="hint td-empty">Todavía no hay reuniones. Crea la primera con «Nueva reunión» y toma ahí tus notas.</p>`;
+  if(!l.length) return `<p class="hint td-empty">Ninguna reunión coincide con ese filtro.</p>`;
+  return `<div class="mt-grid">${l.map(m=>{ const tx = meetText(m), nP = todos().filter(t=>t.meet===m.id && !t.done).length;
+    return `<button class="card mt-card" data-act="meetOpen" data-id="${m.id}">
+      <span class="mt-ic" style="color:${meetColor(m.tag)}">🗒</span>
+      <span class="mt-t">${esc(m.title||'Reunión sin título')}</span>
+      <span class="mt-meta">${fmtDate(m.date)}${m.tag?` <i class="mt-tag" style="background:${meetColor(m.tag)}">${esc(m.tag)}</i>`:''}${nP?` <i class="mt-np" title="Pendientes sin hacer salidos de esta reunión">📌 ${nP}</i>`:''}</span>
+      <span class="mt-snip">${esc(tx.slice(0,110))||'<em>Sin notas todavía</em>'}</span></button>`; }).join('')}</div>`;
+}
+function meetView(){
+  if(state.meetOpen){ const m = meetings().find(x=>x.id===state.meetOpen); if(m) return meetEditorHtml(m); state.meetOpen = null; }
+  const all = meetings(), tags = meetTags(), cur = state.meetTag||'';
+  const months = [...new Set(all.map(m=>String(m.date||'').slice(0,7)).filter(Boolean))].sort().reverse();
+  const cnt = t=>all.filter(m=>m.tag===t).length, none = all.filter(m=>!m.tag || !tags.includes(m.tag)).length;
+  return `<div class="mt-wrap">
+    <div class="mt-bar">
+      <input class="inp" id="mtQ" type="search" placeholder="Buscar por nombre o por lo que se dijo…" value="${esc(state.meetQ||'')}" autocomplete="off">
+      <select class="inp" id="mtMonth" title="Filtrar por mes"><option value="">Todas las fechas</option>${months.map(k=>`<option value="${k}" ${k===state.meetMonth?'selected':''}>${MONTH_NAMES[Number(k.slice(5))-1]} ${k.slice(0,4)}</option>`).join('')}</select>
+      <select class="inp" id="mtSort" title="Orden"><option value="new" ${(state.meetSort||'new')==='new'?'selected':''}>Más recientes primero</option><option value="old" ${state.meetSort==='old'?'selected':''}>Más antiguas primero</option><option value="name" ${state.meetSort==='name'?'selected':''}>Por nombre</option></select>
+      <button class="btn" data-act="meetNew">＋ Nueva reunión</button>
+    </div>
+    <div class="mt-folders">
+      <button class="mt-folder ${!cur?'on':''}" data-act="meetTag" data-id=""><span>🗂</span><b>Todas</b><small>${all.length}</small></button>
+      ${tags.map(t=>`<button class="mt-folder ${cur===t?'on':''}" data-act="meetTag" data-id="${esc(t)}"><span style="color:${meetColor(t)}">📁</span><b>${esc(t)}</b><small>${cnt(t)}</small></button>`).join('')}
+      ${none?`<button class="mt-folder ${cur==='__none'?'on':''}" data-act="meetTag" data-id="__none"><span>📄</span><b>Sin etiqueta</b><small>${none}</small></button>`:''}
+      <button class="mt-folder add" data-act="meetTagsEdit" title="Añadir, renombrar o quitar etiquetas"><span>✎</span><b>Etiquetas</b></button>
+    </div>
+    <div id="mtGrid">${meetGridHtml()}</div>
+  </div>`;
+}
+function meetEditorHtml(m){
+  const tags = meetTags(), B = (cmd, label, title, val)=>`<button type="button" class="mt-b" data-cmd="${cmd}" ${val?`data-val="${val}"`:''} title="${title}" aria-label="${title}">${label}</button>`;
+  const sw = (cmd, cols)=>cols.map(c=>`<button type="button" class="mt-sw" data-cmd="${cmd}" data-val="${c}" style="background:${c==='transparent'?'#fff':c}" title="${c==='transparent'?'Quitar':c}" aria-label="Color ${c}">${c==='transparent'?'✕':''}</button>`).join('');
+  return `<div class="mt-edit" data-id="${m.id}">
+    <div class="row mt-top"><button class="btn ghost small" data-act="meetBack">← Reuniones</button><div class="spacer"></div>
+      <span class="mt-saved" id="mtSaved"></span><button class="btn danger small" data-act="meetDel" data-id="${m.id}">Eliminar</button></div>
+    <div class="card mt-sheet">
+      <input class="mt-title" id="mtTitle" value="${esc(m.title||'')}" placeholder="Nombre de la reunión" maxlength="120">
+      <div class="mt-head">
+        <input class="inp" id="mtDate" type="date" value="${esc(m.date||'')}" title="Fecha">
+        <select class="inp" id="mtTagSel" title="Etiqueta"><option value="">Sin etiqueta</option>${tags.concat(m.tag && !tags.includes(m.tag) ? [m.tag] : []).map(t=>`<option value="${esc(t)}" ${t===m.tag?'selected':''}>${esc(t)}</option>`).join('')}</select>
+      </div>
+      <div class="mt-tools" id="mtTools">
+        <select class="mt-sel" data-cmd="formatBlock" title="Tipo de párrafo"><option value="P">Texto normal</option><option value="H1">Título 1</option><option value="H2">Título 2</option><option value="H3">Título 3</option></select>
+        <select class="mt-sel" data-cmd="fontName" title="Tipo de letra"><option value="">Letra</option><option value="system-ui, sans-serif">Normal</option><option value="Georgia, serif">Con serifa</option><option value="'Courier New', monospace">Máquina</option><option value="'Patrick Hand', cursive">Manuscrita</option><option value="'Baloo 2', sans-serif">Redondeada</option></select>
+        <select class="mt-sel" data-cmd="fontSize" title="Tamaño de letra"><option value="">Tamaño</option><option value="2">Pequeña</option><option value="3">Normal</option><option value="5">Grande</option><option value="6">Muy grande</option></select>
+        <span class="mt-sep"></span>
+        ${B('bold','<b>N</b>','Negrita')}${B('italic','<i>K</i>','Cursiva')}${B('underline','<u>S</u>','Subrayado')}${B('strikeThrough','<s>T</s>','Tachado')}
+        <span class="mt-sep"></span>
+        <details class="mt-pal"><summary title="Color del texto"><span style="border-bottom:3px solid #C0392B">A</span></summary><div>${sw('foreColor',['#16241F','#C0392B','#C98A12','#1F6B4F','#2D6A9F','#7A4F9A'])}</div></details>
+        <details class="mt-pal"><summary title="Subrayador"><span style="background:#FFE45C;padding:0 3px">A</span></summary><div>${sw('hiliteColor',['#FFE45C','#BFEBA6','#A9E3F5','#FFB3C7','#FFD9A8','transparent'])}</div></details>
+        <span class="mt-sep"></span>
+        ${B('insertUnorderedList','•≡','Lista con puntos')}${B('insertOrderedList','1≡','Lista numerada')}
+        ${B('removeFormat','⌫','Quitar formato')}${B('undo','↶','Deshacer')}${B('redo','↷','Rehacer')}
+        <span class="mt-sep"></span>
+        <button type="button" class="mt-b mt-pinbtn" id="mtPin" title="Convertir una frase en pendiente: pulsa y luego selecciona la frase con el ratón">📌 Pendiente</button>
+      </div>
+      <p class="mt-pinhint" id="mtPinHint" hidden>📌 Selecciona con el ratón (o con el dedo) la frase que quieres convertir en pendiente. <button type="button" class="btn small" id="mtPinUse" hidden>Usar lo seleccionado</button> <button type="button" class="btn ghost small" id="mtPinX">Cancelar</button></p>
+      <div class="mt-body" id="mtBody" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Notas de la reunión" data-ph="Escribe aquí lo que se comenta en la reunión…">${meetClean(m.html)}</div>
+    </div>
+  </div>`;
+}
+/* el editor se engancha después de pintar; guarda solo, sin repintar, para no perder el cursor */
+let mtTimer = null, mtRange = null, mtPinOn = false;
+function mtCommit(){
+  const ed = document.querySelector('.mt-edit'); if(!ed) return;
+  const m = meetings().find(x=>x.id===ed.dataset.id); if(!m) return;
+  const body = ed.querySelector('#mtBody'), html = meetClean(body.innerHTML);
+  const t = ed.querySelector('#mtTitle').value.trim().slice(0,120), d = ed.querySelector('#mtDate').value, tg = ed.querySelector('#mtTagSel').value;
+  if(html===m.html && t===m.title && d===m.date && tg===(m.tag||'')) return;
+  m.html = html; m.title = t; m.date = d; m.tag = tg; m.upd = Date.now();
+  save();
+  const sv = ed.querySelector('#mtSaved'); if(sv){ sv.textContent = 'Guardado'; setTimeout(()=>{ if(sv) sv.textContent = ''; }, 1500); }
+}
+function mtSoon(){ clearTimeout(mtTimer); mtTimer = setTimeout(mtCommit, 500); }
+function mtInSel(){ const s = window.getSelection(), b = document.getElementById('mtBody'); return !!(b && s && s.rangeCount && b.contains(s.getRangeAt(0).commonAncestorContainer)); }
+function mtRestore(){ const b = document.getElementById('mtBody'); if(!b) return; b.focus(); if(mtRange){ const s = window.getSelection(); s.removeAllRanges(); s.addRange(mtRange); } }
+function mtExec(cmd, val){
+  mtRestore();
+  try{ document.execCommand('styleWithCSS', false, cmd!=='fontSize'); }catch(e){}
+  if(cmd==='hiliteColor' && val==='transparent'){ try{ document.execCommand('hiliteColor', false, 'transparent'); }catch(e){ document.execCommand('backColor', false, 'transparent'); } }
+  else if(cmd==='formatBlock') document.execCommand('formatBlock', false, '<'+val+'>');
+  else document.execCommand(cmd, false, val||null);
+  mtSoon();
+}
+function mtPinMode(on){
+  mtPinOn = on;
+  const b = document.getElementById('mtPin'), h = document.getElementById('mtPinHint'), body = document.getElementById('mtBody');
+  if(b) b.classList.toggle('on', on); if(h) h.hidden = !on; if(body) body.classList.toggle('pinning', on);
+}
+function mtPinFromSelection(){
+  if(!mtInSel()) return false;
+  const sel = window.getSelection(), text = sel.toString().replace(/\s+/g,' ').trim(); if(text.length < 2) return false;
+  const range = sel.getRangeAt(0).cloneRange(), ed = document.querySelector('.mt-edit'), m = meetings().find(x=>x.id===ed.dataset.id);
+  mtPinMode(false);
+  const w = openModal(`<h3>📌 Nuevo pendiente</h3>
+    ${field('Qué hay que hacer','text',{type:'textarea', value:text.slice(0,200), rows:3})}
+    <div class="td-g2">
+      ${field('Fecha límite','due',{type:'date', value:''})}
+      <label class="field"><span>Prioridad</span><select class="inp" name="prio">${todoPrioOpts(2)}</select></label>
+    </div>
+    <p class="sub">Aparecerá en Pendientes, enlazado con esta reunión${m&&m.title?' ('+esc(m.title)+')':''}.</p>`, v=>{
+      if(!v.text) return;
+      const id = uid();
+      todoAdd({id, text:v.text.slice(0,200), due:v.due||'', prio:Number(v.prio)||2, meet:m.id});
+      /* la frase queda marcada en las notas */
+      try{ const mk = document.createElement('mark'); mk.className = 'mt-pin'; mk.setAttribute('data-todo', id); range.surroundContents(mk); }
+      catch(e){ try{ const s2 = window.getSelection(); s2.removeAllRanges(); s2.addRange(range); document.execCommand('styleWithCSS', false, true); document.execCommand('hiliteColor', false, '#FFE45C'); }catch(e2){} }
+      mtCommit();
+    }, 'Crear pendiente');
+  w.addEventListener('click', e=>{ if(e.target===w || e.target.hasAttribute('data-close')) setTimeout(()=>{ if(!document.querySelector('.mt-edit')) return; }, 0); });
+  return true;
+}
+function mtBind(){
+  const ed = document.querySelector('.mt-edit'); if(!ed || ed.dataset.bound) return; ed.dataset.bound = '1';
+  mtRange = null; mtPinOn = false;
+  const body = ed.querySelector('#mtBody'), tools = ed.querySelector('#mtTools');
+  body.addEventListener('input', mtSoon);
+  body.addEventListener('blur', ()=>{ clearTimeout(mtTimer); mtCommit(); });
+  body.addEventListener('paste', e=>{ e.preventDefault(); const t = (e.clipboardData || window.clipboardData).getData('text/plain'); document.execCommand('insertText', false, t); });
+  ['#mtTitle','#mtDate','#mtTagSel'].forEach(q=>{ const x = ed.querySelector(q); x.addEventListener('input', mtSoon); x.addEventListener('change', mtCommit); });
+  ed.querySelector('#mtTitle').addEventListener('keydown', e=>{ if(e.key==='Enter'){ e.preventDefault(); body.focus(); } });
+  tools.addEventListener('mousedown', e=>{ if(e.target.closest('.mt-b, .mt-sw, summary')) e.preventDefault(); });   // no perder la selección
+  tools.addEventListener('click', e=>{
+    const b = e.target.closest('[data-cmd]'); if(!b || b.tagName==='SELECT') return;
+    mtExec(b.dataset.cmd, b.dataset.val); const d = b.closest('details'); if(d) d.open = false;
+  });
+  tools.querySelectorAll('select[data-cmd]').forEach(sel=>sel.addEventListener('change', ()=>{ if(sel.value) mtExec(sel.dataset.cmd, sel.value); if(sel.dataset.cmd!=='formatBlock') sel.value = ''; }));
+  ed.querySelector('#mtPin').addEventListener('click', ()=>{
+    if(mtPinOn) return mtPinMode(false);
+    const live = window.getSelection();
+    if(mtInSel() && !live.isCollapsed && mtPinFromSelection()) return;       // ya había una frase seleccionada
+    mtPinMode(true);
+  });
+  ed.querySelector('#mtPinX').addEventListener('click', ()=>mtPinMode(false));
+  ed.querySelector('#mtPinUse').addEventListener('mousedown', e=>e.preventDefault());
+  ed.querySelector('#mtPinUse').addEventListener('click', ()=>{ mtRestore(); mtPinFromSelection(); });
+  body.addEventListener('mouseup', ()=>{ if(mtPinOn) setTimeout(mtPinFromSelection, 10); });
+  if(!body.innerHTML.trim() && !(window.matchMedia && window.matchMedia('(pointer:coarse)').matches) && !ed.querySelector('#mtTitle').value) ed.querySelector('#mtTitle').focus();
+}
+document.addEventListener('selectionchange', ()=>{
+  if(!document.getElementById('mtBody')) return;
+  if(mtInSel()){ const s = window.getSelection(); mtRange = s.getRangeAt(0).cloneRange();
+    const u = document.getElementById('mtPinUse'); if(u) u.hidden = !(mtPinOn && s.toString().trim().length > 1); }
+});
+document.addEventListener('visibilitychange', ()=>{ if(document.hidden && document.querySelector('.mt-edit')){ clearTimeout(mtTimer); mtCommit(); flushSave(); } });
+window.addEventListener('pagehide', ()=>{ if(document.querySelector('.mt-edit')){ clearTimeout(mtTimer); mtCommit(); flushSave(); } });
+/* filtros de la lista: se repinta solo la rejilla para no perder el foco del buscador */
+document.addEventListener('input', e=>{
+  if(e.target && e.target.id==='mtQ'){ state.meetQ = e.target.value; const g = document.getElementById('mtGrid'); if(g) g.innerHTML = meetGridHtml(); save(); }
+});
+document.addEventListener('change', e=>{
+  const id = e.target && e.target.id;
+  if(id==='mtMonth'){ state.meetMonth = e.target.value; save(); render(); }
+  else if(id==='mtSort'){ state.meetSort = e.target.value; save(); render(); }
+});
+function meetNewModal(){
+  const tags = meetTags(), def = state.meetTag && state.meetTag!=='__none' ? state.meetTag : '';
+  const w = openModal(`<h3>Nueva reunión</h3>
+    ${field('Nombre','title',{placeholder:'p. ej. Reunión de ciclo'})}
+    <div class="td-g2">
+      ${field('Fecha','date',{type:'date', value:today()})}
+      <label class="field"><span>Etiqueta</span><select class="inp" name="tag"><option value="">Sin etiqueta</option>${tags.map(t=>`<option value="${esc(t)}" ${t===def?'selected':''}>${esc(t)}</option>`).join('')}</select></label>
+    </div>`, v=>{
+      const m = {id:uid(), title:(v.title || ('Reunión'+(v.tag?' de '+v.tag:''))).slice(0,120), date:v.date||today(), tag:v.tag||'', html:'', at:Date.now(), upd:Date.now()};
+      meetings().push(m); state.meetOpen = m.id;
+    }, 'Crear y abrir');
+}
+function meetTagsModal(){
+  const before = meetTags().slice();
+  openModal(`<h3>Etiquetas de reuniones</h3>
+    <p class="sub">Una por línea. Puedes añadir, renombrar (en su misma línea) o quitar. Las reuniones de una etiqueta quitada pasan a «Sin etiqueta».</p>
+    ${field('Etiquetas','list',{type:'textarea', rows:8, value:before.join('\n')})}`, v=>{
+      const lines = String(v.list||'').split('\n').map(x=>x.trim().slice(0,30));
+      const next = [...new Set(lines.filter(Boolean))];
+      /* misma posición con otro nombre = renombrada */
+      before.forEach((old,i)=>{ const nw = lines[i]; if(nw && nw!==old && !before.includes(nw) && !next.includes(old)) meetings().forEach(m=>{ if(m.tag===old) m.tag = nw; }); });
+      meetings().forEach(m=>{ if(m.tag && !next.includes(m.tag)) m.tag = ''; });
+      state.meetTags = next; if(state.meetTag && state.meetTag!=='__none' && !next.includes(state.meetTag)) state.meetTag = '';
+    });
 }
 function planViewAgenda(){
   const v = state.planView || 'week';
@@ -4414,7 +4815,7 @@ function planViewAgenda(){
         `<button class="subnav-btn ${v===m?'on':''}" data-act="planMode" data-m="${m}"><span class="sn-ic">${ic}</span>${l}</button>`).join('')}
     </div>
     ${areaLegend()}`;
-  if(v==='day') return `<div class="plan">${nav}${clipBar()}${planDay()}</div>`;
+  if(v==='day') return `<div class="plan">${nav}${clipBar()}${gcExtDayHtml(state.planDate)}${planDay()}</div>`;
   if(v==='month') return `<div class="plan">${nav}${clipBar()}${planMonth()}</div>`;
   return `<div class="plan${sessClip?' pasting':''}">${nav}${clipBar()}${planWeek()}</div>`;
 }
@@ -4481,7 +4882,7 @@ function planWeek(){
   const tod = today();
   return `<div class="wk-scroll"><table class="wk">
     <thead><tr><th class="wk-time"></th>
-      ${days.map(iso=>{ const d=parseDate(iso), hol=holidayOf(iso); return `<th class="${iso===tod?'is-today':''} ${hol?'is-hol':''} wk-dayh" data-act="holidays" data-iso="${iso}" title="${hol?esc(hol)+' · toca para cambiarlo':'Toca para marcar como no lectivo'}">${DAY_NAMES[dowMon(iso)]}<small>${d.getDate()}/${d.getMonth()+1}</small>${hol?`<span class="hol-tag">⛱ ${esc(hol)}</span>`:''}</th>`; }).join('')}
+      ${days.map(iso=>{ const d=parseDate(iso), hol=holidayOf(iso); return `<th class="${iso===tod?'is-today':''} ${hol?'is-hol':''} wk-dayh" data-act="holidays" data-iso="${iso}" title="${hol?esc(hol)+' · toca para cambiarlo':'Toca para marcar como no lectivo'}">${DAY_NAMES[dowMon(iso)]}<small>${d.getDate()}/${d.getMonth()+1}</small>${hol?`<span class="hol-tag">⛱ ${esc(hol)}</span>`:''}${gcExtChips(iso, 3)}</th>`; }).join('')}
     </tr></thead>
     <tbody>
       ${state.schedule.map(sl=>{
@@ -4636,7 +5037,7 @@ function planMonth(){
         const evalT = tasksOnDate(iso);
         const hol = wknd ? null : holidayOf(iso);
         return `<div class="mo-cell ${inMonth?'':'off'} ${wknd?'wknd':''} ${hol?'is-hol':''} ${iso===tod?'is-today':''}" data-act="planGoDay" data-iso="${iso}">
-          <div class="mo-num">${d.getDate()}</div>${hol?`<div class="mo-hol">⛱ ${esc(hol)}</div>`:''}
+          <div class="mo-num">${d.getDate()}</div>${hol?`<div class="mo-hol">⛱ ${esc(hol)}</div>`:''}${gcExtChips(iso, 2)}
           ${evalT.map(x=>`<div class="mo-task" style="border-left:3px solid ${areaColor(x.task.areaId)}" title="Tarea evaluable: ${esc(x.task.name)}">◆ ${x.time?esc(x.time)+' ':''}${esc(x.task.name.slice(0,16))}</div>`).join('')}
           ${daySessions.slice(0,evalT.length?2:3).map(s=>`<div class="mo-dot" style="border-left:3px solid ${sessionColor(s)}">${esc((s.title||'').slice(0,22))}</div>`).join('')}
           ${daySessions.length>(evalT.length?2:3)? `<div class="mo-more">+${daySessions.length-(evalT.length?2:3)} más</div>`:''}
@@ -7535,7 +7936,9 @@ function render(){
   normalize();
   renderHeader();
   fitHeader();
+  if(document.querySelector('.mt-edit')){ clearTimeout(mtTimer); mtCommit(); }
   el('main').innerHTML = (roYear ? roBannerHtml() : '') + (views[state.view] || views.clases)();
+  mtBind();
   const av = el('appVer'); if(av) av.innerHTML = 'Cuaderno Profesor · <b>versión '+APP_VERSION+'</b> · '+APP_BUILD;
   gdRender();
   if(state.view==='alumnos' && state.alumSub==='aula') bindAulaDrag();
@@ -8838,6 +9241,8 @@ function applyBackup(data, mode){
     if(Array.isArray(data.upMethods)) state.upMethods = data.upMethods;
     if(data.holidays && typeof data.holidays==='object') state.holidays = data.holidays;
     if(Array.isArray(data.todos)) state.todos = data.todos;
+    if(Array.isArray(data.meetings)) state.meetings = data.meetings;
+    if(Array.isArray(data.meetTags)) state.meetTags = data.meetTags;
     if(data.year) state.year = data.year;
     if(Array.isArray(data.archive)) state.archive = data.archive;
     state.activeCourse = state.courses[0]? state.courses[0].id : null;
@@ -9604,8 +10009,9 @@ const actions = {
     if(gd.connected && gd.status==='ok'){ state.view='clases'; state.homeTab='ajustes'; save(); render(); return; }
     gdConnect();
   },
-  gdSyncNow(){ if(gdTokenOk()) gdSync(); else gdConnect(); },
+  gdSyncNow(){ if(gdTokenOk()) gdSync(); else gdConnect(false); },
   gdOff(){ gdDisconnect(); },
+  gdSwitch(){ gdSwitchAccount(); },
   tab(t){ state.view = t.dataset.id; rememberSel(); save(); render(); },
   pickCourse(t){ enterCourse(t.value, true); save(); render(); },
   pickPeriod(t){ state.activePeriod=t.value; leaveStale(); rememberSel(); save(); render(); },
@@ -9646,14 +10052,24 @@ const actions = {
   copySession(t){ copySession(t.dataset.iso, t.dataset.slot); },
   clipDone(){ sessClip = null; render(); },
   editSchedule(){ scheduleModal(); },
-  planSub(t){ state.planSub = t.dataset.id; save(); render(); },
+  planSub(t){ if(t.dataset.id==='reuniones' && state.planSub==='reuniones'){ clearTimeout(mtTimer); mtCommit(); state.meetOpen = null; } state.planSub = t.dataset.id; save(); render(); },
   setTheme(t){ applyTheme(t.dataset.id); render(); },
   search(){ searchModal(); },
+  meetNew(){ meetNewModal(); },
+  meetOpen(t){ state.view = 'clases'; state.homeTab = 'agenda'; state.planSub = 'reuniones'; state.meetOpen = t.dataset.id; save(); render(); window.scrollTo(0,0); },
+  meetBack(){ clearTimeout(mtTimer); mtCommit(); state.meetOpen = null; save(); render(); },
+  meetTag(t){ state.meetTag = t.dataset.id; save(); render(); },
+  meetTagsEdit(){ meetTagsModal(); },
+  meetDel(t){ const m = meetings().find(x=>x.id===t.dataset.id); if(!m) return;
+    confirmDo('¿Eliminar la reunión «'+(m.title||'sin título')+'»?', 'Se borran sus notas. Los pendientes que salieron de ella se conservan.', ()=>{ state.meetings = meetings().filter(x=>x.id!==m.id); state.meetOpen = null; }); },
   yearMenu(){ yearMenuModal(); },
   yearBack(){ yearLeave(); },
   gcConnect(){ gcConnect(true); },
   gcSyncNow(){ gcSync(true); },
   gcOff(){ gcDisconnect(); },
+  gcReadOn(){ gcReadOn(); },
+  gcReadOff(){ gc.read = false; gc.readOk = false; gc.ext = []; gc.cals = []; gc.extAt = 0; gcPersist(); render(); },
+  gcExt(t){ gcExtModal(t.dataset.id, t.dataset.iso); },
 
   autoRestore(t){ const d = t.dataset.id; openModal(`<h3>¿Restaurar la copia del ${fmtDate(d)}?</h3><p class="sub">Todos los datos del cuaderno volverán a como estaban ese día al abrir la app. Podrás deshacerlo justo después.</p>`, ()=>{ setTimeout(()=>autoRestore(d), 30); }, 'Restaurar'); },
   pinSetup(){ pinSetupModal(); },
@@ -10419,7 +10835,7 @@ const actions = {
       } else {
         data = Object.assign({}, meta, {scope:'all', courses:state.courses, templates:state.templates, curriculo:state.curriculo, areaColors:state.areaColors, colorBy:state.colorBy, markDefs:state.markDefs, holidays:state.holidays,
           schedule:state.schedule, sessions:state.sessions, teacherTT:state.teacherTT,
-          upMethods:state.upMethods, todos:state.todos, year:state.year, archive:state.archive});
+          upMethods:state.upMethods, todos:state.todos, year:state.year, archive:state.archive, meetings:state.meetings, meetTags:state.meetTags});
       }
       const txt = JSON.stringify(data);
       const name = 'cuaderno_'+((v.scope==='course'||v.scope==='teaching')&&c? c.name.replace(/[^\w]+/g,'_')+'_':'')+(v.scope==='teaching'?'programacion_':'')+today()+'.json';
@@ -10756,7 +11172,7 @@ window.addEventListener('resize', ()=>{
   if(window.innerWidth===rzW) return;
   rzW = window.innerWidth;
   clearTimeout(rzTimer);
-  rzTimer = setTimeout(()=>{ const a = document.activeElement; const typing = a && /^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName);
+  rzTimer = setTimeout(()=>{ const a = document.activeElement; const typing = a && (/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName) || a.isContentEditable);
     if(!document.querySelector('.backdrop') && !typing) render(); else fitHeader(); }, 250);
 });
 
