@@ -1318,6 +1318,17 @@ table.wk tr.brk td{border:0;border-radius:10px;background:#FBF3DD}
 .td-strip.late{background:#FBECEA;border-color:#EBC4BE;color:#B03A2E}
 .td-strip span{margin-left:auto;font-weight:400;opacity:.85}
 @media(max-width:700px){.td-add #tdText{flex:1 1 100%}.td-add #tdPrio,.td-add #tdDue,.td-add #tdCourse{flex:1 1 30%;min-width:0}.td-add .btn{flex:1 1 100%}.td-row{gap:8px}.td-chk{flex-basis:30px;width:30px;height:30px}}
+
+/* ajustes plegables */
+details.adv>summary{list-style:none;cursor:pointer;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+details.adv>summary::-webkit-details-marker{display:none}
+details.adv>summary::after{content:'▾';margin-left:auto;color:var(--muted);transition:transform .15s}
+details.adv[open]>summary::after{transform:rotate(180deg)}
+details.adv>summary .sec-title{margin:0;font-family:var(--font-display);font-weight:800;font-size:19px}
+.adv-sub{font-size:14.5px;color:var(--muted)}
+.adv-block{margin-top:14px}
+.adv-block+.adv-block{padding-top:14px;border-top:1px solid var(--rule)}
+.adv-h{font-size:16px!important;margin:0 0 6px!important}
 </style>
 </head>
 <body>
@@ -1762,9 +1773,9 @@ function medMatchesProfile(medCode, conds){
 }
 const CODES = {P:'Presente', A:'Falta', R:'Retraso', J:'Justificada'};
 const KEY = 'cuaderno-lomloe:v1';
-const APP_VERSION = '4.1';
-const APP_BUILD = '06/10/2026';
-const APP_NOTES = 'Nueva pestaña «Pendientes» en la agenda: tu lista de cosas por hacer, con prioridad, fecha límite y clase; la agenda avisa de lo que vence hoy o va con retraso. Además: Programación de la unidad: nueve apartados desplegables para planificar la unidad entera, con criterios, saberes básicos y competencias clave del currículo de Aragón, sesiones enlazadas con la agenda, adjuntos, medidas de atención a la diversidad por alumno, diana de autoevaluación docente, vista completa y PDF de dos caras. Además, código de color único por grado en rúbricas y tablas de notas, y tablas, horario y agenda con piezas redondeadas';
+const APP_VERSION = '4.2';
+const APP_BUILD = '07/10/2026';
+const APP_NOTES = 'Ajustes más limpios: la copia de seguridad y el archivo local se pliegan cuando ya sincronizas con Google Drive, y las novedades de la versión se despliegan solo si las quieres leer. Antes: Nueva pestaña «Pendientes» en la agenda: tu lista de cosas por hacer, con prioridad, fecha límite y clase; la agenda avisa de lo que vence hoy o va con retraso. Además: Programación de la unidad: nueve apartados desplegables para planificar la unidad entera, con criterios, saberes básicos y competencias clave del currículo de Aragón, sesiones enlazadas con la agenda, adjuntos, medidas de atención a la diversidad por alumno, diana de autoevaluación docente, vista completa y PDF de dos caras. Además, código de color único por grado en rúbricas y tablas de notas, y tablas, horario y agenda con piezas redondeadas';
 
 /* escala cualitativa por defecto (Orden ECD/1112/2022) */
 const DEFAULT_SCALE = [
@@ -6197,39 +6208,47 @@ function ajustesBody(c){
     <div class="settings-section">
       <div class="settings-head">
         <h3 class="settings-title">Ajustes generales de la app</h3>
-        <p class="settings-sub">Válidos para <b>todas tus clases</b>. La copia de seguridad guarda todo: clases, alumnado, notas y horario.</p>
+        <p class="settings-sub">Válidos para <b>todas tus clases</b>.</p>
       </div>
     ${gdCardHtml()}
-    <div class="card">
-      <h2 class="sec-title">Archivo de datos local${gdAvailable()?' (alternativa)':' sincronizado'}</h2>
-      ${!fsOK
-        ? `<p class="hint">Este navegador no permite escribir en un archivo directamente. Funciona en Chrome y Edge de ordenador; en el móvil o en Firefox usa la copia de seguridad de abajo.</p>`
-        : fileState==='ready'
-          ? `<p class="hint">Conectado a <b>${esc(fileName)}</b>. Cada cambio se escribe solo en ese archivo, y al abrir la app se lee de él. Si lo tienes en la carpeta de Drive u OneDrive, el otro ordenador verá los cambios sin que hagas nada.</p>
-             <div class="row"><button class="btn ghost small" data-act="fsSync">Guardar ahora en el archivo</button>
-               <button class="btn danger small" data-act="fsOff">Desconectar</button></div>`
-          : fileState==='need-permission'
-            ? `<p class="hint">Hay un archivo conectado (<b>${esc(fileName)}</b>) pero el navegador pide permiso otra vez. Es normal al reabrir la app.</p>
-               <div class="row"><button class="btn small" data-act="fsGrant">Reconectar</button>
+    ${(()=>{
+      const fileOn = fileState==='ready' || fileState==='need-permission';
+      const drive = gd.connected;
+      const fileCard = !fsOK && !fileOn ? '' : `
+        <div class="adv-block">
+          <h3 class="adv-h">Archivo de datos local</h3>
+          ${fileState==='ready'
+            ? `<p class="hint">Conectado a <b>${esc(fileName)}</b>. Cada cambio se escribe solo en ese archivo y al abrir la app se lee de él.${drive?' Con Google Drive conectado ya no hace falta: puedes desconectarlo.':''}</p>
+               <div class="row"><button class="btn ghost small" data-act="fsSync">Guardar ahora en el archivo</button>
                  <button class="btn danger small" data-act="fsOff">Desconectar</button></div>`
-            : `<p class="hint">Elige un archivo .json en tu carpeta sincronizada de Drive u OneDrive y la app escribirá en él sola: se acabó exportar e importar a mano entre el colegio y casa.</p>
-               <div class="row"><button class="btn small" data-act="fsNew">Crear archivo de datos</button>
-                 <button class="btn ghost small" data-act="fsOpen">Usar uno que ya tengo</button></div>`}
-    </div>
-    <div class="card">
-      <h2 class="sec-title">Copia de seguridad y traslado</h2>
-      <p class="hint">Los datos viven en este equipo. Para llevarlos a otro sitio, descarga una copia y restáurala allí.
-        ${state.lastBackup? 'Última copia: <b>'+fmtDate(state.lastBackup)+'</b>.' : '<b>Todavía no has hecho ninguna copia.</b>'}</p>
-      <div class="row">
-        <button class="btn small" data-act="backup">Descargar copia</button>
-        <button class="btn ghost small" data-act="restore">Restaurar desde archivo</button>
-      </div>
-      <p class="hint" style="margin:12px 0 0">Consejo: guárdala en Drive u OneDrive para tenerla en el cole, en casa y en el móvil.</p>
-    </div>
-    <div class="card">
-      <h2 class="sec-title">Versión de la app</h2>
-      <p class="hint" style="margin:0">Versión <b>${APP_VERSION}</b> · ${APP_BUILD}<br>Novedades: ${esc(APP_NOTES)}.</p>
-    </div>
+            : fileState==='need-permission'
+              ? `<p class="hint">Hay un archivo conectado (<b>${esc(fileName)}</b>) pero el navegador pide permiso otra vez.${drive?' Con Google Drive conectado ya no hace falta: puedes desconectarlo.':''}</p>
+                 <div class="row"><button class="btn small" data-act="fsGrant">Reconectar</button>
+                   <button class="btn danger small" data-act="fsOff">Desconectar</button></div>`
+              : `<p class="hint">Alternativa a Google Drive, solo en Chrome y Edge de ordenador: la app escribe sola en un archivo .json de una carpeta sincronizada.</p>
+                 <div class="row"><button class="btn ghost small" data-act="fsNew">Crear archivo de datos</button>
+                   <button class="btn ghost small" data-act="fsOpen">Usar uno que ya tengo</button></div>`}
+        </div>`;
+      return `<details class="card adv" ${(!drive || fileOn)?'open':''}>
+        <summary><span class="sec-title">Copia de seguridad${fileCard?' y archivo local':''}</span>
+          <span class="adv-sub">${drive?'Opcional: tus datos ya se guardan en Google Drive':(state.lastBackup?'Última copia: '+fmtDate(state.lastBackup):'Todavía no has hecho ninguna copia')}</span></summary>
+        <div class="adv-block">
+          <p class="hint">${drive
+            ? 'Con Google Drive conectado no necesitas copias para cambiar de equipo. Una copia descargada sirve como seguridad extra o para pasar tus datos a otra cuenta.'
+            : '<b>Sin Google Drive conectado, los datos viven solo en este equipo.</b> Descarga una copia de vez en cuando, o conecta Drive arriba.'}
+            ${state.lastBackup? ' Última copia: <b>'+fmtDate(state.lastBackup)+'</b>.' : ''}</p>
+          <div class="row">
+            <button class="btn small" data-act="backup">Descargar copia</button>
+            <button class="btn ghost small" data-act="restore">Restaurar desde archivo</button>
+          </div>
+        </div>
+        ${fileCard}
+      </details>`;
+    })()}
+    <details class="card adv">
+      <summary><span class="sec-title">Versión ${APP_VERSION}</span><span class="adv-sub">${APP_BUILD} · ver novedades</span></summary>
+      <p class="hint adv-block" style="margin-bottom:0">${esc(APP_NOTES)}.</p>
+    </details>
     </div>`;
 
   return (c ? cursoCards + datosCards : datosCards);
