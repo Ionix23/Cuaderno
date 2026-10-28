@@ -2379,6 +2379,35 @@ body:has(.vt-scan){overflow:hidden}
 .ci-del-opts .btn small{font-weight:400;opacity:.85;font-size:12.5px}
 .ci-del-opts .btn:disabled{opacity:.4;cursor:not-allowed}
 .lg-areaw{display:flex;align-items:stretch;gap:6px}
+.lg-pack{display:flex;align-items:center;gap:14px;border:1.5px dashed var(--accent);background:var(--accent-soft);border-radius:16px;padding:14px 16px;margin-bottom:14px}
+.lg-pack b{display:block;font-size:15.5px}.lg-pack small{display:block;color:var(--muted);font-size:13px;margin-top:2px}
+.lg-pack>span:nth-child(2){flex:1}
+.lg-pack.ok{border-style:solid;border-color:#9FD3B5;background:#EEF8F1}
+.lg-pk-ic{width:36px;height:36px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-weight:800;flex:none}
+.wl .modal{position:relative;max-width:480px;padding:26px 24px 20px}
+.wl-x{position:absolute;top:10px;right:10px;width:34px;height:34px;border-radius:50%;border:0;background:var(--paper);color:var(--muted);font-size:15px;cursor:pointer}
+.wl-x:hover{background:var(--rule);color:var(--ink)}
+.wl-ic{font-size:40px;text-align:center;margin-bottom:4px}
+.wl-note{background:var(--paper);border-radius:10px;padding:10px 12px;margin:4px 0 0}
+/* todas las evaluaciones / evaluación final */
+.pg-lead{margin:0 0 12px}
+.pgroup{margin:0 0 26px;padding-top:4px}
+.pg-h{display:flex;align-items:center;gap:10px;margin:0 0 8px;padding:8px 14px;border-radius:12px;background:var(--accent-soft);border-left:5px solid var(--accent)}
+#app .pg-h h2{font-size:18px;margin:0}
+.pgroup.ini .pg-h{background:#FCF1DC;border-left-color:var(--mark)}
+.pg-tag{font-size:12px;font-weight:700;color:#8A5A00;background:#FCEFD2;border-radius:6px;padding:2px 7px}
+.pgroup .subnav{display:none}
+.pgroup .empty{padding:14px 10px;margin:0}.pgroup .empty h3{font-size:16px;margin-bottom:2px}.pgroup .empty p{margin:2px 0 8px;font-size:14px}
+.fin-grid th.fin-cg{border-bottom:0;text-align:center}
+.fin-grid th.fin-sub{font-size:11px;min-width:40px;padding:4px 2px}
+.fin-grid .fin-cs{box-shadow:inset 2px 0 0 var(--rule)}
+.fin-grid th.fin-th{background:var(--accent-soft)}
+.fin-ev{padding:3px!important;background:var(--accent-soft)}
+.fin-inp{width:64px;text-align:center;font:600 15px/1 var(--font-mono);border:1.5px solid var(--rule);border-radius:8px;padding:7px 4px;background:var(--card);color:var(--ink)}
+.fin-inp::placeholder{color:#A9B5AE;font-weight:400}
+.fin-inp:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.fin-inp.bad{border-color:#C0392B;background:#FDF3F0}
+.fin-ev.own .fin-inp{border-color:var(--accent);background:#fff}
 .lg-areaw .lg-area{flex:1;min-width:0}
 .lg-imp{border:1.5px dashed var(--accent);background:transparent;color:var(--accent);border-radius:8px;padding:4px 8px;font:700 12px/1.2 system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;cursor:pointer;white-space:nowrap}
 .lg-imp:hover{background:var(--accent-soft)}
@@ -2836,9 +2865,9 @@ function medMatchesProfile(medCode, conds){
 }
 const CODES = {P:'Presente', A:'Falta', R:'Retraso', J:'Justificada'};
 const KEY = 'cuaderno-lomloe:v1';
-const APP_VERSION = '5.2';
+const APP_VERSION = '5.3';
 const APP_BUILD = '28/10/2026';
-const APP_NOTES = 'Importar un área (Legislación o ajustes de la clase): eliges los ciclos y pegas, desde el PDF oficial, competencias, criterios y saberes en su recuadro; la app te enseña lo que reconoce y lo que falta antes de guardar. Las áreas importadas se pueden eliminar (o solo quitar de tus clases conservando sus datos). Inglés: criterios y competencias con la redacción del currículo de Aragón (Anexo II de la Orden ECD/1112/2022); tus tareas, rúbricas y notas no cambian. Legislación (en el menú, junto a Ajustes): eliges tu comunidad y tienes a un clic la página oficial de normativa, la Orden de currículo con sus modificaciones, el PDF del Anexo II de cada área (primero las tuyas) y el resto de anexos. Votaciones con tarjetas (en cada clase, junto a la Pizarra): crea cuestionarios de 2 a 4 respuestas (o pégalos de golpe con «📋 Pegar preguntas»: con la correcta marcada con ✅, en negrita, con «Answer: B» o con una clave al final), imprime una tarjeta por alumno y proyecta las preguntas en el ordenador; con el móvil escaneas las tarjetas que levanta la clase, cada nombre se apaga al leerse, revelas la respuesta y pasas a la siguiente desde el móvil, y al final ves qué ha acertado cada alumno y lo pasas a una tarea evaluable. Menú lateral reorganizado: Agenda (Mi programación de aula, Mi horario), Mis clases, Tareas pendientes y Reuniones; en cada clase, Alumnado (lista, aula, horario, diversidad y tutorías), sus áreas y Herramientas (Pizarra y Votaciones), con líneas que marcan qué va dentro de qué. Pizarra: botón ▁ Minimizar para seguir usando la app con la pizarra abierta. Pendientes: el campo para escribir, más grande y centrado. Antes: Pizarra: varias páginas por pizarra (‹ 1/3 › en la barra), imágenes (desde el menú Añadir, pegándolas con Ctrl+V o arrastrando el archivo), botón 📌 para fijar una imagen, tabla o pósit al fondo y escribir encima, y herramienta ⬚ para rodear lo escrito y moverlo, cambiarle el tamaño, el color o el grosor, duplicarlo o borrarlo. Antes: Pizarra: Aula pasa a ser una pizarra a pantalla completa para el monitor del aula. Se escribe con el lápiz o el dedo (presión del lápiz, subrayador, líneas, flechas, formas y goma), con fondos lisos, pautas de escritura, cuadrícula, pentagrama y pistas de Educación Física con fichas de jugadores. Sobre ella se colocan y mueven pósits, textos, tablas, temporizador, voluntario, grupos (también por nota), ruleta y semáforo. Se guarda sola en el equipo y, con Drive conectado, se sube como archivo editable e imagen a la carpeta «Cuaderno Profesor · pizarras». Antes: Aula: nuevas herramientas Ruleta (alumnado, números o tu lista) y Semáforo de volumen. Pendientes: botón 📌 para sacarlos como pósit flotante encima de las demás ventanas (Chrome y Edge de ordenador). Google Calendar: botón para compartir tu agenda con un compañero. Antes: Menú lateral: Mis clases › clase › área › sección, con Agenda, Pendientes y Reuniones a mano; en tablet se pliega a iconos y en el móvil se abre con ☰. Diversidad pasa a ser de toda la clase, con todas las áreas de cada alumno, y la etiqueta de adaptación de las tablas lleva a su perfil. Si prefieres las pestañas de antes, cámbialo en Ajustes › Apariencia. Antes: Google Calendar: los eventos se envían con el color que tienen en la app y, si quieres, tu agenda muestra los eventos de tus calendarios de Google (excursiones, festivos…). Reuniones: nueva pestaña en la agenda para tomar notas de cada reunión con un editor de texto (títulos, negrita, colores, tipos y tamaños de letra, listas), etiquetas como carpetas, búsqueda y filtro por fecha, y el botón 📌 para convertir una frase en pendiente. Antes: Google Drive: al conectar por primera vez en un dispositivo eliges la cuenta de Google, el dispositivo la recuerda y en Ajustes puedes cambiarla. Antes: Buscador en la cabecera (Ctrl+K) para alumnado, tareas, unidades, sesiones y pendientes. Cursos escolares: «Empezar curso nuevo» archiva el actual y conserva tu programación; los anteriores se consultan desde Mis clases. Google Calendar: copia tu agenda a un calendario propio, con la cuenta que elijas. La copia de seguridad completa incluye ya los pendientes. Antes: Más seguridad para tus datos: se guarda al instante al salir de la app, avisa si el dispositivo no puede guardar, «Deshacer» tras cada borrado y una copia automática diaria. Bloqueo con PIN opcional. Pendientes que se repiten y que se crean desde una sesión o una tutoría. «Repartir puntos» para sumar marcas de un toque. Antes: Estilos visuales: en Ajustes › Apariencia puedes elegir entre Original, Cuaderno, Pizarra, Archivador y Colores. Las marcas con contador se suman o restan con − y + desde la propia casilla. Antes: Ajustes más limpios: la copia de seguridad y el archivo local se pliegan cuando ya sincronizas con Google Drive, y las novedades de la versión se despliegan solo si las quieres leer. Antes: Nueva pestaña «Pendientes» en la agenda: tu lista de cosas por hacer, con prioridad, fecha límite y clase; la agenda avisa de lo que vence hoy o va con retraso. Además: Programación de la unidad: nueve apartados desplegables para planificar la unidad entera, con criterios, saberes básicos y competencias clave del currículo de Aragón, sesiones enlazadas con la agenda, adjuntos, medidas de atención a la diversidad por alumno, diana de autoevaluación docente, vista completa y PDF de dos caras. Además, código de color único por grado en rúbricas y tablas de notas, y tablas, horario y agenda con piezas redondeadas';
+const APP_NOTES = 'Primera vez: la app pregunta en qué comunidad trabajas (se puede cerrar) y precarga el currículo de Aragón; también desde Legislación. Evaluaciones: en el selector de evaluación de cada área, «Todas las evaluaciones» (unidades y evaluación trimestral de inicial, 1.ª, 2.ª y 3.ª, una detrás de otra) y «Evaluación final» (nota de cada trimestre, su media, la nota final escrita a mano y, si quieres, la nota de cada criterio en cada trimestre). Antes: Importar un área (Legislación o ajustes de la clase): eliges los ciclos y pegas, desde el PDF oficial, competencias, criterios y saberes en su recuadro; la app te enseña lo que reconoce y lo que falta antes de guardar. Las áreas importadas se pueden eliminar (o solo quitar de tus clases conservando sus datos). Inglés: criterios y competencias con la redacción del currículo de Aragón (Anexo II de la Orden ECD/1112/2022); tus tareas, rúbricas y notas no cambian. Legislación (en el menú, junto a Ajustes): eliges tu comunidad y tienes a un clic la página oficial de normativa, la Orden de currículo con sus modificaciones, el PDF del Anexo II de cada área (primero las tuyas) y el resto de anexos. Votaciones con tarjetas (en cada clase, junto a la Pizarra): crea cuestionarios de 2 a 4 respuestas (o pégalos de golpe con «📋 Pegar preguntas»: con la correcta marcada con ✅, en negrita, con «Answer: B» o con una clave al final), imprime una tarjeta por alumno y proyecta las preguntas en el ordenador; con el móvil escaneas las tarjetas que levanta la clase, cada nombre se apaga al leerse, revelas la respuesta y pasas a la siguiente desde el móvil, y al final ves qué ha acertado cada alumno y lo pasas a una tarea evaluable. Menú lateral reorganizado: Agenda (Mi programación de aula, Mi horario), Mis clases, Tareas pendientes y Reuniones; en cada clase, Alumnado (lista, aula, horario, diversidad y tutorías), sus áreas y Herramientas (Pizarra y Votaciones), con líneas que marcan qué va dentro de qué. Pizarra: botón ▁ Minimizar para seguir usando la app con la pizarra abierta. Pendientes: el campo para escribir, más grande y centrado. Antes: Pizarra: varias páginas por pizarra (‹ 1/3 › en la barra), imágenes (desde el menú Añadir, pegándolas con Ctrl+V o arrastrando el archivo), botón 📌 para fijar una imagen, tabla o pósit al fondo y escribir encima, y herramienta ⬚ para rodear lo escrito y moverlo, cambiarle el tamaño, el color o el grosor, duplicarlo o borrarlo. Antes: Pizarra: Aula pasa a ser una pizarra a pantalla completa para el monitor del aula. Se escribe con el lápiz o el dedo (presión del lápiz, subrayador, líneas, flechas, formas y goma), con fondos lisos, pautas de escritura, cuadrícula, pentagrama y pistas de Educación Física con fichas de jugadores. Sobre ella se colocan y mueven pósits, textos, tablas, temporizador, voluntario, grupos (también por nota), ruleta y semáforo. Se guarda sola en el equipo y, con Drive conectado, se sube como archivo editable e imagen a la carpeta «Cuaderno Profesor · pizarras». Antes: Aula: nuevas herramientas Ruleta (alumnado, números o tu lista) y Semáforo de volumen. Pendientes: botón 📌 para sacarlos como pósit flotante encima de las demás ventanas (Chrome y Edge de ordenador). Google Calendar: botón para compartir tu agenda con un compañero. Antes: Menú lateral: Mis clases › clase › área › sección, con Agenda, Pendientes y Reuniones a mano; en tablet se pliega a iconos y en el móvil se abre con ☰. Diversidad pasa a ser de toda la clase, con todas las áreas de cada alumno, y la etiqueta de adaptación de las tablas lleva a su perfil. Si prefieres las pestañas de antes, cámbialo en Ajustes › Apariencia. Antes: Google Calendar: los eventos se envían con el color que tienen en la app y, si quieres, tu agenda muestra los eventos de tus calendarios de Google (excursiones, festivos…). Reuniones: nueva pestaña en la agenda para tomar notas de cada reunión con un editor de texto (títulos, negrita, colores, tipos y tamaños de letra, listas), etiquetas como carpetas, búsqueda y filtro por fecha, y el botón 📌 para convertir una frase en pendiente. Antes: Google Drive: al conectar por primera vez en un dispositivo eliges la cuenta de Google, el dispositivo la recuerda y en Ajustes puedes cambiarla. Antes: Buscador en la cabecera (Ctrl+K) para alumnado, tareas, unidades, sesiones y pendientes. Cursos escolares: «Empezar curso nuevo» archiva el actual y conserva tu programación; los anteriores se consultan desde Mis clases. Google Calendar: copia tu agenda a un calendario propio, con la cuenta que elijas. La copia de seguridad completa incluye ya los pendientes. Antes: Más seguridad para tus datos: se guarda al instante al salir de la app, avisa si el dispositivo no puede guardar, «Deshacer» tras cada borrado y una copia automática diaria. Bloqueo con PIN opcional. Pendientes que se repiten y que se crean desde una sesión o una tutoría. «Repartir puntos» para sumar marcas de un toque. Antes: Estilos visuales: en Ajustes › Apariencia puedes elegir entre Original, Cuaderno, Pizarra, Archivador y Colores. Las marcas con contador se suman o restan con − y + desde la propia casilla. Antes: Ajustes más limpios: la copia de seguridad y el archivo local se pliegan cuando ya sincronizas con Google Drive, y las novedades de la versión se despliegan solo si las quieres leer. Antes: Nueva pestaña «Pendientes» en la agenda: tu lista de cosas por hacer, con prioridad, fecha límite y clase; la agenda avisa de lo que vence hoy o va con retraso. Además: Programación de la unidad: nueve apartados desplegables para planificar la unidad entera, con criterios, saberes básicos y competencias clave del currículo de Aragón, sesiones enlazadas con la agenda, adjuntos, medidas de atención a la diversidad por alumno, diana de autoevaluación docente, vista completa y PDF de dos caras. Además, código de color único por grado en rúbricas y tablas de notas, y tablas, horario y agenda con piezas redondeadas';
 
 /* escala cualitativa por defecto (Orden ECD/1112/2022) */
 const DEFAULT_SCALE = [
@@ -3067,7 +3096,7 @@ const GD_FILE = 'cuaderno-datos.json';
 const GD_LS = 'cuaderno-gdrive';
 const GD_API = 'https://www.googleapis.com/drive/v3';
 const GD_UP = 'https://www.googleapis.com/upload/drive/v3';
-const GD_DATA_KEYS = ['courses','curriculo','schedule','sessions','teacherTT','templates','areaColors','colorBy','markDefs','upMethods','holidays','attFolderId','todos','year','archive','gcalIds','meetings','meetTags','boards','boardFolderId','quizzes','ccaa','curRev'];
+const GD_DATA_KEYS = ['courses','curriculo','schedule','sessions','teacherTT','templates','areaColors','colorBy','markDefs','upMethods','holidays','attFolderId','todos','year','archive','gcalIds','meetings','meetTags','boards','boardFolderId','quizzes','ccaa','curRev','curPack','welcomed'];
 const GD_UI_KEYS = ['view','homeTab','planView','planDate','planSub','activeCourse','activeArea','activePeriod','activeUnit',
   'editor','viewStudent','tutStudent','tutFromHome','unitSub','triSub','divSub','alumSub','gridMode','editMode',
   'instrMode','rubCompact','mkDeal','sbOpen','divArea','divFocus','divBack','meetOpen','meetQ','meetTag','meetMonth','meetSort','upView','upOpen','sabOnly','sabCycle','editWeights','todoShow','homeTutCourse','homeAjCourse','attDate','lastSel','lastCourse','taskEd'];
@@ -3446,6 +3475,38 @@ function storeWarn(on){
   document.body.appendChild(b);
   b.querySelector('#storeWarnBk').addEventListener('click', ()=>{ if(actions.backup) actions.backup(); });
 }
+let appFresh = false;
+/* precarga el currículo de una comunidad (por ahora, Aragón): añade las áreas que falten, sin tocar las que ya tienes */
+function curPreload(cc){
+  if(cc!=='ar') return 0;
+  if(!state.curriculo) state.curriculo = {};
+  if(!state.curRev || typeof state.curRev!=='object') state.curRev = {};
+  let n = 0;
+  Object.keys(CURRICULO).forEach(k=>{ if(!state.curriculo[k]){ state.curriculo[k] = JSON.parse(JSON.stringify(CURRICULO[k])); n++; } if(CUR_REV[k]) state.curRev[k] = Math.max(state.curRev[k]||1, CUR_REV[k]); });
+  state.curPack = 'ar'; state.ccaa = state.ccaa || 'ar';
+  return n;
+}
+function curMissing(cc){ return cc==='ar' ? Object.keys(CURRICULO).filter(k=>!(state.curriculo||{})[k]) : []; }
+/* bienvenida: la primera vez que se abre la app, elegir comunidad (opcional) */
+function welcome(){
+  if(!appFresh || state.welcomed || (state.courses||[]).length) return;
+  const w = openModal(`<button type="button" class="wl-x" data-wlx aria-label="Cerrar" title="Seguir sin elegir comunidad">✕</button>
+    <div class="wl-ic">📒</div><h3 style="text-align:center">Bienvenido al Cuaderno del profesor</h3>
+    <p class="sub" style="text-align:center">¿En qué comunidad autónoma trabajas? Así la app carga su currículo (competencias, criterios y saberes básicos) y su normativa.</p>
+    <label class="field"><span>Comunidad autónoma</span><select class="inp" name="cc">${LEGIS.ccaa.map(([k,n])=>`<option value="${k}" ${k==='ar'?'selected':''}>${esc(n)}</option>`).join('')}</select></label>
+    <p class="hint wl-note" data-wlnote></p>
+    <p class="hint" style="margin:10px 0 0">Si ya usas el cuaderno en otro dispositivo, cierra esta ventana y pulsa «Conectar Google Drive y traer mis datos».</p>`, v=>{
+      state.welcomed = true; state.ccaa = v.cc;
+      if(v.cc==='ar'){ const n = curPreload('ar'); setTimeout(()=>vtToast('Currículo de Aragón cargado: '+n+' áreas'), 100); }
+      else setTimeout(()=>vtToast('Puedes importar los criterios de tus áreas desde Legislación'), 100);
+    }, 'Empezar');
+  w.classList.add('wl');
+  { const cb = w.querySelector('[data-close]'); if(cb) cb.textContent = 'Ahora no'; }
+  const note = ()=>{ const v = w.querySelector('[name="cc"]').value, nm = (LEGIS.ccaa.find(x=>x[0]===v)||[])[1]||'';
+    w.querySelector('[data-wlnote]').innerHTML = v==='ar' ? `Se cargarán las <b>${Object.keys(CURRICULO).length} áreas</b> del currículo de Aragón que ya trae la app. Podrás añadir más desde Legislación.` : `El currículo de ${esc(nm)} todavía no viene precargado. Podrás importar los criterios de tus áreas desde Legislación, pegándolos del PDF oficial.`; };
+  w.querySelector('[name="cc"]').addEventListener('change', note); note();
+  w.addEventListener('click', e=>{ if(e.target.closest('[data-wlx]') || e.target.hasAttribute('data-close')){ state.welcomed = true; save(); w.remove(); } }, true);
+}
 async function load(){
   try{
     const r = await store.get(KEY);
@@ -3464,8 +3525,13 @@ async function load(){
       }
     }catch(e){}
   }
-  if(!state.curriculo) state.curriculo = JSON.parse(JSON.stringify(CURRICULO));
-  Object.keys(CURRICULO).forEach(k=>{
+  /* instalación nueva: sin currículo hasta que se elija comunidad (bienvenida o Legislación).
+     Los datos de antes de esta versión ya llevaban Aragón: se marcan como precargados. */
+  appFresh = !state.curriculo && !(state.courses||[]).length;
+  if(!state.curriculo) state.curriculo = {};
+  if(!state.curPack && !appFresh) state.curPack = 'ar';
+  if(!state.ccaa && state.curPack==='ar') state.ccaa = 'ar';
+  if(state.curPack==='ar') Object.keys(CURRICULO).forEach(k=>{
     if(!state.curriculo[k]){ state.curriculo[k] = JSON.parse(JSON.stringify(CURRICULO[k])); return; }
     /* si un área quedó sin criterios en una versión anterior, se cargan ahora */
     const src = CURRICULO[k], dst = state.curriculo[k];
@@ -3495,6 +3561,7 @@ async function load(){
   normalize();
   if(wasClean && gdHash()!==gd.baseHash){ gd.baseHash = gdHash(); gdPersist(); }
   render();
+  welcome();
   gdInit();
   autoCopyInit();
   pinInit();
@@ -3963,7 +4030,7 @@ function curUpdate(){
     if((state.curRev[k]||1) >= CUR_REV[k]) return;
     const src = CURRICULO[k], dst = state.curriculo[k], old = CUR_OLD[k] || {};
     if(!src) return;
-    if(!dst){ state.curriculo[k] = JSON.parse(JSON.stringify(src)); state.curRev[k] = CUR_REV[k]; return; }
+    if(!dst) return;   /* área no cargada: al precargarla ya llega con la redacción nueva */
     if(!dst.ce) dst.ce = {}; if(!dst.crit) dst.crit = {1:{},2:{},3:{}};
     Object.keys(src.ce||{}).forEach(n=>{ const cur = dst.ce[n]; if(cur==null || curHash(cur)===old['ce:'+n]) dst.ce[n] = src.ce[n]; });
     [1,2,3].forEach(y=>{ if(!dst.crit[y]) dst.crit[y] = {};
@@ -4036,6 +4103,7 @@ function migrate(){
     });
     if(!c.overrides) c.overrides = {};
     if(!c.finals) c.finals = {};
+    if(!c.finalEv || typeof c.finalEv!=='object') c.finalEv = {};   // nota de la evaluación final escrita a mano: sid:aid
     if(!Array.isArray(c.tutorias)) c.tutorias = [];
     if(!c.dua) c.dua = {};                 // aid -> [medidas generales activas del grupo]
     if(!c.duaCatalog) c.duaCatalog = null; // catálogo propio (si null, usa DUA_PRESET)
@@ -4468,7 +4536,10 @@ function renderHeader(){
       ${c.areas.map(a=>`<option value="${a}" ${a===areaId()?'selected':''}>${esc(areaDef(a).short||areaDef(a).name)}</option>`).join('')}
     </select>
     <select class="ctx-sel" data-act="pickPeriod" aria-label="Periodo">
-      ${c.periods.map(p=>`<option value="${p.id}" ${p.id===state.activePeriod?'selected':''}>${esc(p.name)}</option>`).join('')}
+      ${c.periods.map(p=>`<option value="${p.id}" ${!state.pMode && p.id===state.activePeriod?'selected':''}>${esc(p.name)}</option>`).join('')}
+      <option disabled>──────────</option>
+      <option value="__all" ${state.pMode==='all'?'selected':''}>Todas las evaluaciones</option>
+      <option value="__final" ${state.pMode==='final'?'selected':''}>Evaluación final</option>
     </select>
     <button class="home-btn tools-btn" data-act="tools" title="Pizarra: escribir, temporizador, voluntarios, grupos, ruleta…"><span>🖍</span><span>Pizarra</span></button>`;
   if(fileState==='need-permission'){
@@ -4476,7 +4547,7 @@ function renderHeader(){
   } else if(fileState==='ready'){
     ctx.innerHTML += `<span class="tag" style="align-self:center">⇄ ${esc(fileName)}</span>`;
   }
-  const ini = !!(period() && isInitialP(c, period().id));
+  const ini = !state.pMode && !!(period() && isInitialP(c, period().id));
   el('tabs').innerHTML = TABS.filter(([id])=>id!=='clases' && !(ini && id==='trimestre')).map(([id,label])=>{
     const lbl = (ini && id==='unidades') ? 'Evaluación inicial' : label;
     const cur = state.view===id || (id==='votaciones' && ['votoEd','votoRes','votoPaste'].includes(state.view)) || (id==='unidades' && ['unidad','editorInstr'].includes(state.view) && !(state.editor&&state.editor.mode==='template'));
@@ -5022,7 +5093,7 @@ function teachingCopyOf(cc){
   const k = JSON.parse(JSON.stringify(cc));
   k.students = []; k.grades = {}; k.attendance = {}; k.overrides = {}; k.finals = {};
   k.tutorias = []; k.diversity = {}; k.dua = {}; k.initObs = {}; k.progress = {};
-  k.layout = {items:[]}; k.timetable = {}; k.marks = {}; k.comments = {}; k.extGrades = {}; k.extDiv = {}; k.sdiv = {}; k.votes = [];
+  k.layout = {items:[]}; k.timetable = {}; k.marks = {}; k.comments = {}; k.extGrades = {}; k.extDiv = {}; k.sdiv = {}; k.votes = []; k.finalEv = {};
   (k.tasks||[]).forEach(t=>{ t.adaptations = {}; t.dates = []; delete t.date; });
   (k.units||[]).forEach(u=>{ if(u.plan){ delete u.plan.divStu; delete u.plan.self; delete u.plan.valWorked; delete u.plan.valChange; } });
   return k;
@@ -6795,8 +6866,27 @@ function viewProgreso(){
 }
 function autoGrow(t){ t.style.height='auto'; t.style.height = Math.max(34, t.scrollHeight+2)+'px'; }
 
+/* «Todas las evaluaciones»: la misma vista, una evaluación detrás de otra.
+   Cada bloque lleva data-pgroup y, al tocar algo dentro, esa pasa a ser la evaluación activa (ver más abajo). */
+function perPeriod(fn, title, onlyReal){
+  const c = course(), keep = state.activePeriod;
+  const ps = c.periods.slice().sort((a,b)=>(b.initial?1:0)-(a.initial?1:0)).filter(p=>!onlyReal || !p.initial);
+  const html = ps.map(p=>{ state.activePeriod = p.id; let h = '';
+    try{ h = fn(); }catch(e){ h = '<p class="hint">No se ha podido mostrar.</p>'; }
+    if(title) h = h.replace('<h2 class="sec-title">'+title+'</h2>', '');
+    h = h.replace('<h2 class="sec-title">Evaluación inicial</h2>', '');
+    return `<section class="pgroup ${p.initial?'ini':''}" data-pgroup="${p.id}"><div class="pg-h"><h2>${esc(p.name)}</h2>${p.initial?'<span class="pg-tag">no computa</span>':''}</div>${h}</section>`; }).join('');
+  state.activePeriod = keep;
+  return `<div class="pg-all">${html}</div>`;
+}
+['click','change','input','focusin','keydown'].forEach(ev=>document.addEventListener(ev, e=>{
+  const g = e.target && e.target.closest && e.target.closest('[data-pgroup]'); if(!g) return;
+  const c = course(); if(c && c.periods.some(p=>p.id===g.dataset.pgroup)) state.activePeriod = g.dataset.pgroup;
+}, true));
 views.unidades = function(){
   const c = course(); if(!c) return noCourse();
+  if(state.pMode==='final') return viewFinal();
+  if(state.pMode==='all' && !state._pg){ state._pg = true; try{ return `<p class="hint pg-lead">${esc(areaDef(areaId()).name)} · todas las evaluaciones, en orden.</p>` + perPeriod(views.unidades, 'Unidades didácticas'); } finally { state._pg = false; } }
   const aid = areaId(), p = period();
   if(!p) return `<div class="empty"><h3>Sin periodos</h3><p>Crea al menos una evaluación en Ajustes.</p></div>`;
   if(isInitialP(c, p.id)) return viewInicial();
@@ -7824,9 +7914,14 @@ views.plantillas = function(){
 
 views.trimestre = function(){
   const c = course(); if(!c) return noCourse();
-  if(period() && isInitialP(c, period().id)){ state.view='unidades'; return views.unidades(); }
+  if(state.pMode==='final') return viewFinal();
+  if(!state.pMode && period() && isInitialP(c, period().id)){ state.view='unidades'; return views.unidades(); }
   const sub = state.triSub || 'notas';
   const nav = subnav('triSub', sub, [['notas','Evaluación por criterios','▦'],['stats','Estadísticas','▥'],['otras','Otras áreas','✎'],['progreso','Punto de partida y progreso','↗'],['referencia','Criterios del currículo','▤']]);
+  if(state.pMode==='all' && sub!=='referencia'){
+    const fn = sub==='progreso' ? viewProgreso : sub==='otras' ? viewOtras : sub==='stats' ? viewEstadisticas : viewTrimestreNotas;
+    return nav + perPeriod(fn, 'Evaluación trimestral', true);
+  }
   if(sub==='progreso') return nav + viewProgreso();
   if(sub==='otras') return nav + viewOtras();
   if(sub==='stats') return nav + viewEstadisticas();
@@ -9013,6 +9108,66 @@ function viewTrimestreNotas(){
     </div>`;
 }
 
+/* ---------- Evaluación final ----------
+   Notas de cada trimestre, su media y una nota final que se escribe a mano: c.finalEv['sid:aid'].
+   Con «Ver por criterios» se añaden las notas de cada criterio en cada trimestre. */
+function finKey(sid, aid){ return sid+':'+aid; }
+function finCalc(c, sid, aid){
+  const ps = c.periods.filter(p=>!p.initial);
+  const v = ps.map(p=>areaFinal(c, sid, aid, p.id)).filter(x=>x!=null);
+  return v.length ? v.reduce((a,b)=>a+b,0)/v.length : null;
+}
+function finValue(c, sid, aid){ const o = (c.finalEv||{})[finKey(sid,aid)]; if(o!=null && o!==''){ const n = num(o); if(n!=null) return n; } return finCalc(c, sid, aid); }
+function viewFinal(){
+  const c = course(), aid = areaId();
+  if(!c.students.length) return `<div class="empty"><h3>Falta el alumnado</h3></div>`;
+  const ps = c.periods.filter(p=>!p.initial);
+  const det = !!state.finCrit;
+  const codesBy = {}; ps.forEach(p=>{ codesBy[p.id] = critsWorked(c, aid, p.id, null); });
+  const allCodes = [...new Set(ps.flatMap(p=>codesBy[p.id]))].sort(cmpCode);
+  /* en el detalle, cada criterio solo lleva las evaluaciones en las que se trabajó */
+  const colsOf = cd=>ps.filter(p=>codesBy[p.id].indexOf(cd)>-1);
+  const critMap = areaDef(aid).crit[c.cycle] || {};
+  const short = p=>{ const m = /^(\d)/.exec(p.name); return m ? m[1]+'.ª' : p.name.slice(0,4); };
+  const cell = (v, extra, f)=>`<td class="calif ${v!=null&&v<c.pass?'low':''}${tnv(v)} ${extra||''}">${v==null?'<span style="color:#B9C4BC">–</span>':(f||fmt2)(v)}</td>`;
+  const rs = det ? 'rowspan="2"' : '';
+  const head1 = `<tr><th class="stick" ${rs}>Alumno/a</th>
+    ${ps.map((p,i)=>`<th class="task" ${rs} style="min-width:62px" title="Nota del área en ${esc(p.name)}">${esc(short(p))}<small>evaluación</small></th>`).join('')}
+    <th class="task th-sep" ${rs} style="min-width:62px">Media<small>trimestres</small></th>
+    <th class="task fin-th" ${rs} style="min-width:84px">Ev. Final<small>a mano</small></th>
+    <th class="task" ${rs}>Calif.</th>
+    ${det ? allCodes.map((cd,i)=>`<th class="task fin-cg ${i?'fin-cs':'th-sep'}" colspan="${colsOf(cd).length}" title="${esc(critMap[cd]||'')}">${esc(cd)}</th>`).join('') : ''}</tr>`;
+  const head2 = det ? `<tr>${allCodes.map((cd,i)=>colsOf(cd).map((p,j)=>`<th class="task fin-sub ${!i&&!j?'th-sep':''} ${j||!i?'':'fin-cs'}">${esc(short(p))}</th>`).join('')).join('')}</tr>` : '';
+  const rows = c.students.map((s,idx)=>{
+    const dv = c.diversity[dvkey(s.id, aid)]; const med = dv&&dv.med?medDef(dv.med):null;
+    let tr = `<tr data-student="${s.id}"><td class="stick"><span class="rownum">${String(idx+1).padStart(2,'0')}</span>${esc(s.name)}${divBadge(c, s.id, med)}</td>`;
+    ps.forEach(p=>{ tr += cell(areaFinal(c, s.id, aid, p.id), '', fmt); });
+    const calc = finCalc(c, s.id, aid), own = (c.finalEv||{})[finKey(s.id,aid)], f = finValue(c, s.id, aid);
+    tr += `<td class="final td-sep ${calc!=null&&calc<c.pass?'low':''}${tnv(calc)}">${fmt(calc)}</td>`;
+    tr += `<td class="fin-ev ${own!=null&&own!==''?'own':''}"><input class="fin-inp" inputmode="decimal" data-fin="${s.id}" value="${esc(own==null?'':String(own).replace('.',','))}" placeholder="${calc==null?'':fmt(calc)}" aria-label="Nota final de ${esc(s.name)}"></td>`;
+    tr += `<td class="calif" data-fincal>${pill(f, c.scale)}</td>`;
+    if(det) allCodes.forEach((cd,i)=>colsOf(cd).forEach((p,j)=>{ tr += cell(critScore(c, s.id, aid, p.id, cd), (!i&&!j?'td-sep ':'')+(j||!i?'':'fin-cs')); }));
+    return tr + '</tr>';
+  }).join('');
+  return `<div class="row" style="margin-bottom:6px"><h2 class="sec-title">Evaluación final</h2><div class="spacer"></div>
+      <button class="btn ${det?'':'ghost'} small" data-act="finCrit">${det?'Ocultar los criterios':'Ver por criterios'}</button></div>
+    <p class="tpl-intro" style="margin-bottom:12px">${esc(areaDef(aid).name)} · nota de cada evaluación y su media. Escribe en «Ev. Final» la nota final de cada alumno; si la dejas vacía, cuenta la media (en gris).${det?' A la derecha, la nota de cada criterio en cada evaluación en la que se trabajó.':''}</p>
+    <div class="scroll"><table class="grid fin-grid"><thead>${head1}${head2}</thead><tbody>${rows}</tbody></table></div>${toneLegend(c)}`;
+}
+document.addEventListener('change', e=>{
+  const t = e.target; if(!t.dataset || t.dataset.fin==null) return;
+  const c = course(); if(!c) return; if(!c.finalEv || typeof c.finalEv!=='object') c.finalEv = {};
+  const k = finKey(t.dataset.fin, areaId()), v = t.value.trim();
+  if(!v){ delete c.finalEv[k]; }
+  else { const n = num(v); if(n==null || n<0 || n>10){ t.classList.add('bad'); return; } c.finalEv[k] = String(Math.round(n*100)/100); }
+  t.classList.remove('bad'); save(); render();
+});
+document.addEventListener('keydown', e=>{
+  const t = e.target; if(!t.dataset || t.dataset.fin==null) return;
+  if(e.key==='Enter' || e.key==='ArrowDown' || e.key==='ArrowUp'){ e.preventDefault();
+    const all = [...document.querySelectorAll('input[data-fin]')], i = all.indexOf(t), nx = all[i + (e.key==='ArrowUp'?-1:1)];
+    t.blur(); if(nx) setTimeout(()=>{ const n2 = document.querySelector('input[data-fin="'+nx.dataset.fin+'"]'); if(n2){ n2.focus(); n2.select(); } }, 30); }
+});
 function viewCriterios(){
   const c = course(); if(!c) return noCourse();
   const aid = areaId(), p = period();
@@ -9304,6 +9459,7 @@ function ajustesBody(c){
    que se entienda de un vistazo cómo encaja todo en la app.
    =================================================================== */
 function buildEjemplo(){
+  if(!state.curriculo.ing || !state.curriculo.nat) curPreload('ar');   /* la clase de ejemplo usa el currículo de Aragón */
   state.courses = [];                     // deja solo la clase de ejemplo
   const c = newCourse('Clase Ejemplo', '5º', ['ing','nat']);
   c.desc = 'Clase de muestra para conocer la app: unidades con sus tareas, rúbricas, adaptaciones, tutorías y evaluación por criterios.';
@@ -11950,7 +12106,12 @@ function unitModal(existing){
 
 function courseModal(existing){
   const c = existing;
-  const areas = c ? c.areas.slice() : ['ing'];
+  const avail = Object.keys(state.curriculo||{});
+  const areas = c ? c.areas.slice() : (avail.includes('ing') ? ['ing'] : avail.slice(0,1));
+  if(!c && !avail.length){
+    openModal(`<h3>Primero, las áreas</h3><p class="sub">Para crear una clase necesitas al menos un área con sus criterios. Precarga el currículo de tu comunidad o importa un área pegando sus criterios del PDF oficial.</p>`, ()=>{ state.view = 'clases'; state.homeTab = 'legis'; }, 'Ir a Legislación');
+    return;
+  }
   const inner = `<h3>${c?'Editar clase':'Nueva clase'}</h3>
     ${field('Nombre','name',{value:c?c.name:'', placeholder:'4.º A'})}
     ${field('Curso','level',{type:'select', value:c?c.level:'4º', options:Object.keys(COURSE_CYCLE).map(k=>({value:k,label:k+' de Primaria · '+CYCLE_NAMES[COURSE_CYCLE[k]]}))})}
@@ -11961,6 +12122,7 @@ function courseModal(existing){
     <p class="sub" style="margin-top:10px">El ciclo se deduce del curso; al guardar se cargan sus criterios de evaluación.</p>`;
   const wrap = openModal(inner, v=>{
     if(!v.name) return;
+    if(!areas.length){ alertBox('Elige al menos un área.'); return; }
     if(c){ c.name=v.name; c.level=v.level; c.desc=v.desc||''; c.cycle=COURSE_CYCLE[v.level]||c.cycle; c.areas = areas.length?areas:c.areas; }
     else {
       const n = newCourse(v.name, v.level, areas);
@@ -11993,7 +12155,9 @@ const actions = {
   gdSwitch(){ gdSwitchAccount(); },
   tab(t){ state.view = t.dataset.id; rememberSel(); save(); render(); },
   pickCourse(t){ enterCourse(t.value, true); save(); render(); },
-  pickPeriod(t){ state.activePeriod=t.value; leaveStale(); rememberSel(); save(); render(); },
+  pickPeriod(t){ const v = t.value;
+    if(v==='__all' || v==='__final'){ state.pMode = v==='__all' ? 'all' : 'final'; if(!['unidades','trimestre'].includes(state.view)){ state.view = v==='__final' ? 'trimestre' : 'unidades'; state.activeUnit = null; state.editor = null; } save(); render(); window.scrollTo(0,0); return; }
+    state.pMode = null; state.activePeriod = v; leaveStale(); rememberSel(); save(); render(); },
   pickArea(t){ state.activeArea=t.value; leaveStale(); rememberSel(); save(); render(); },
   stuArea(t){ state.activeArea=t.dataset.a; if(t.dataset.p) state.activePeriod=t.dataset.p; rememberSel(); save(); render(); window.scrollTo(0,0); },
   setCourse(t){ enterCourse(t.dataset.id, false); save(); render(); },
@@ -12071,6 +12235,8 @@ const actions = {
       const mem = (state.lastSel||{})[cid] || {};
       state.view = v || (['unidades','trimestre'].includes(mem.view) ? mem.view : 'unidades');
       leaveStale(); }); },
+  lgPack(){ const n = curPreload('ar'); save(); render(); vtToast(n ? 'Currículo de Aragón: '+n+' áreas cargadas' : 'Ya tenías todas las áreas de Aragón'); },
+  finCrit(){ state.finCrit = !state.finCrit; save(); render(); },
   sbAula(t){ const cid = t.dataset.c; if(!course() || course().id!==cid){ enterCourse(cid, false); save(); render(); } sbCloseOverlay(); openBoard({cid}); },
   divArea(t){ state.divArea = t.dataset.id; save(); render(); },
   divGo(t){ const sid = t.dataset.id;
@@ -12848,7 +13014,7 @@ const actions = {
       const k = JSON.parse(JSON.stringify(cc));
       k.students = []; k.grades = {}; k.attendance = {}; k.overrides = {}; k.finals = {};
       k.tutorias = []; k.diversity = {}; k.dua = {}; k.initObs = {}; k.progress = {};
-      k.layout = {items:[]}; k.timetable = {}; k.marks = {}; k.comments = {}; k.extGrades = {}; k.extDiv = {}; k.sdiv = {}; k.votes = [];
+      k.layout = {items:[]}; k.timetable = {}; k.marks = {}; k.comments = {}; k.extGrades = {}; k.extDiv = {}; k.sdiv = {}; k.votes = []; k.finalEv = {};
       (k.tasks||[]).forEach(t=>{ t.adaptations = {}; t.dates = []; delete t.date; });
       (k.units||[]).forEach(u=>{ if(u.plan){ delete u.plan.divStu; delete u.plan.self; delete u.plan.valWorked; delete u.plan.valChange; } });
       k.name = cc.name + ' (programación)';
@@ -15445,12 +15611,19 @@ function lgInApp(cc, a){
   const k = Object.keys(state.curriculo||{}).find(x=>(state.curriculo[x].imp||{}).src===cc+':'+a.id);
   return k || '';
 }
+function lgPackCard(){
+  const miss = curMissing('ar'), tot = Object.keys(CURRICULO).length, names = Object.keys(CURRICULO).map(k=>CURRICULO[k].short||CURRICULO[k].name).join(', ');
+  if(state.curPack==='ar' && !miss.length) return `<div class="lg-pack ok"><span class="lg-pk-ic">✓</span><span><b>Currículo de Aragón precargado</b><small>${tot} áreas: ${esc(names)}</small></span></div>`;
+  return `<div class="lg-pack"><span class="lg-pk-ic">⬇</span><span><b>${state.curPack==='ar' ? 'Hay '+miss.length+' áreas nuevas del currículo de Aragón' : 'Precargar el currículo de Aragón'}</b><small>${state.curPack==='ar' ? esc(miss.map(k=>CURRICULO[k].short||CURRICULO[k].name).join(', ')) : tot+' áreas con sus competencias, criterios y saberes: '+esc(names)}. No toca las áreas que ya tengas.</small></span><button class="btn small" data-act="lgPack">${state.curPack==='ar'?'Añadirlas':'Precargar'}</button></div>`;
+}
 function homeLegis(){
-  const cc = state.ccaa || 'ar', D = LEGIS.cc[cc], name = (LEGIS.ccaa.find(x=>x[0]===cc)||[])[1] || '';
+  const cc = state.ccaa || '', D = LEGIS.cc[cc], name = (LEGIS.ccaa.find(x=>x[0]===cc)||[])[1] || '';
   const mine = {}; (state.courses||[]).forEach(c=>(c.areas||[]).forEach(a=>{ mine[a] = 1; }));
-  const sel = `<label class="lg-cc"><span>Comunidad autónoma</span><select class="inp" data-act="lgCcaa">${LEGIS.ccaa.map(([k,n])=>`<option value="${k}" ${k===cc?'selected':''}>${esc(n)}</option>`).join('')}</select></label>`;
+  const sel = `<label class="lg-cc"><span>Comunidad autónoma</span><select class="inp" data-act="lgCcaa">${cc?'':'<option value="" selected>Elige tu comunidad…</option>'}${LEGIS.ccaa.map(([k,n])=>`<option value="${k}" ${k===cc?'selected':''}>${esc(n)}</option>`).join('')}</select></label>`;
   let body = '';
-  if(!D){
+  if(!cc){
+    body = `<div class="lg-none"><b>Elige arriba la comunidad autónoma en la que trabajas.</b><span>Verás su normativa y, si está disponible, podrás precargar su currículo. También puedes importar cualquier área pegando sus criterios desde el PDF oficial.</span></div>`;
+  } else if(!D){
     body = `<div class="lg-none"><b>La normativa de ${esc(name)} todavía no está en la app.</b><span>De momento tienes la normativa estatal. Puedes usar ya los criterios de tus áreas: abre su PDF oficial y pulsa «＋ Importar un área» para pegarlos.</span></div>`;
   } else {
     const areas = D.areas.slice().sort((a,b)=>(mine[lgInApp(cc,b)||b.id]?1:0)-(mine[lgInApp(cc,a)||a.id]?1:0));
@@ -15469,6 +15642,7 @@ function homeLegis(){
   return `<div class="lg-page">
     <div class="lg-top"><div><h2 class="sec-title">Legislación</h2><p class="hint" style="margin:2px 0 0">Enlaces a la normativa oficial de Educación Primaria. Se abren en otra pestaña.</p></div><div class="spacer"></div>${sel}<button class="btn small" data-cib="open" title="Pegar los criterios de un área desde su PDF oficial">＋ Importar un área</button></div>
     ${D && D.portal ? `<a class="lg-portal" href="${esc(D.portal)}" target="_blank" rel="noopener noreferrer"><span>🏛</span><span><b>Página oficial de normativa de Primaria · ${esc(name)}</b><small>${esc(D.portal.replace(/^https?:\/\//,''))}</small></span><span class="lg-go">Abrir ↗</span></a>` : ''}
+    ${cc==='ar' ? lgPackCard() : ''}
     ${body}
     <section class="lg-sec"><div class="lg-h"><h3>Normativa estatal</h3></div><div class="lg-list">${LEGIS.estatal.map(x=>lgLink(x)).join('')}</div></section>
   </div>`;
@@ -15766,7 +15940,7 @@ function ciPurge(aid){
     c.tasks = (c.tasks||[]).filter(t=>t.areaId!==aid);
     c.units = (c.units||[]).filter(u=>u.areaId!==aid);
     ['grades','overrides','marks','comments'].forEach(f=>{ const o = c[f]; if(o && typeof o==='object') Object.keys(o).forEach(k=>{ if(tids[k.split(':')[1]]) delete o[k]; }); });
-    ['finals','progress','initObs','diversity','extGrades','extDiv'].forEach(f=>{ const o = c[f]; if(o && typeof o==='object') Object.keys(o).forEach(k=>{ if(k.split(':').indexOf(aid)>0) delete o[k]; }); });
+    ['finals','progress','initObs','diversity','extGrades','extDiv','finalEv'].forEach(f=>{ const o = c[f]; if(o && typeof o==='object') Object.keys(o).forEach(k=>{ if(k.split(':').indexOf(aid)>0) delete o[k]; }); });
     if(c.critWeights) Object.keys(c.critWeights).forEach(k=>{ if(k.indexOf(aid+':')===0) delete c.critWeights[k]; });
     if(c.dua) delete c.dua[aid];
     c.areas = (c.areas||[]).filter(a=>a!==aid);
