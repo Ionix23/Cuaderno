@@ -1363,6 +1363,55 @@ label.btn:hover{background:var(--accent-soft)}
 .kc.on b{color:#1A6347}
 .kc.lock{cursor:default}
 .te-chip.inplan{box-shadow:0 0 0 2px #2E8B62}
+.te-sabcr{padding:10px 0 8px;border-top:1px solid #EEF1EE}
+.te-sabcr:first-of-type{border-top:0;padding-top:2px}
+.te-sabh{display:flex;gap:10px;margin:0 0 8px;font-size:14.5px;line-height:1.35}
+.te-sabh b{flex:none;font-family:var(--font-mono);color:var(--accent);background:var(--accent-soft);border-radius:8px;padding:1px 8px;height:fit-content}
+.te-sabh span{color:var(--muted)}
+.te-sabs{display:flex;flex-wrap:wrap;gap:6px}
+.te-sab{display:inline-flex;align-items:baseline;gap:6px;max-width:100%;font:inherit;font-size:13.5px;line-height:1.3;text-align:left;padding:7px 12px;border-radius:999px;border:1.5px solid var(--rule);background:#fff;color:var(--ink);cursor:pointer;min-height:36px}
+.te-sab b{flex:none;font-family:var(--font-mono);font-size:12.5px;font-weight:500;color:var(--accent)}
+.te-sab span{min-width:0;overflow:hidden;text-overflow:ellipsis}
+.te-sab:hover{border-color:#A9D3BC}
+.te-sab.on{background:#DBEEE3;border-color:#2E8B62;color:#14513A}
+.te-sab.on b::before{content:"✓ "}
+.te-sab.sug{border-style:dashed;border-color:#7FBF9D;background:#F5FBF7;color:var(--muted)}
+.te-sabmore{margin-top:12px;padding-top:12px;border-top:1px solid #EEF1EE}
+.lk-wrap{overflow-x:auto;margin:0 0 8px;-webkit-overflow-scrolling:touch}
+.lk-mx{border-collapse:separate;border-spacing:4px;font-size:13px}
+.lk-mx th{font-family:var(--font-mono);font-weight:500;font-size:12.5px;color:var(--accent);background:var(--accent-soft);border-radius:8px;padding:5px 7px;white-space:nowrap;text-align:center}
+.lk-mx th.lk-corner{background:transparent;color:var(--muted);font-family:var(--font-ui)}
+.lk-mx td{min-width:46px;height:34px;text-align:center;background:var(--paper);border-radius:8px;padding:3px}
+.lk-mx td i{color:#B9C4BE;font-style:normal}
+.lk-mx td.on{background:#DBEEE3}
+.lk-mx td.lk-warn{box-shadow:inset 0 0 0 1.5px #E4A11B}
+.lk-mx tr.lk-bad th{background:#F7DDD5;color:#8C2F1B}
+.lk-t{font:inherit;font-family:var(--font-mono);font-size:12px;font-weight:500;border:0;border-radius:6px;background:#2E8B62;color:#fff;padding:2px 6px;margin:1px;cursor:pointer}
+.lk-t:hover{background:var(--accent)}
+.lk-list{display:none}
+.lk-cr{background:var(--paper);border-radius:12px;padding:10px 12px;margin-bottom:6px;box-shadow:var(--bevel)}
+.lk-cr.lk-bad{background:#FBEDE8}
+.lk-ch{margin:0 0 6px;font-size:14px;line-height:1.35}
+.lk-ch b{font-family:var(--font-mono);color:var(--accent);margin-right:4px}
+.lk-row{display:flex;align-items:baseline;gap:8px;font-size:13.5px;padding:4px 0;border-top:1px solid #E6EBE6}
+.lk-code{flex:none;font-family:var(--font-mono);font-size:12.5px;color:var(--accent)}
+.lk-tx{flex:1;min-width:0}
+.lk-ts{flex:none}
+.lk-none{margin:0;font-size:13px;color:var(--muted)}
+.lk-cr.lk-bad .lk-none{color:#8C2F1B}
+.lk-leg{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:13px;color:var(--muted);margin:6px 0}
+.lk-leg b{font-family:var(--font-mono);color:var(--accent);margin-right:3px}
+.lk-legs{font-size:13.5px;margin:4px 0 8px}
+.lk-legs summary{cursor:pointer;color:var(--accent);font-size:13.5px}
+.lk-legs p{margin:4px 0}
+.lk-legs p b{font-family:var(--font-mono);font-size:12.5px;color:var(--accent);margin-right:4px}
+.lk-als{display:flex;flex-direction:column;gap:5px;margin-top:8px}
+.lk-al{font-size:13.5px;border-radius:10px;padding:7px 11px}
+.lk-al b{font-family:var(--font-mono);font-size:12.5px;margin-right:4px}
+.lk-al.warn{background:#FCF1DC;color:#7A4E00}
+.lk-al.bad{background:#FBE3DC;color:#8C2F1B}
+.lk-al.ok{background:#E3F2E8;color:#1A6347}
+@media (max-width:700px){.lk-wrap{display:none}.lk-list{display:block}}
 .sab-bar{display:flex;align-items:center;gap:8px;margin-bottom:8px}
 .sab-tot{font-family:var(--font-mono);font-size:13px;color:var(--accent);background:var(--accent-soft);border-radius:20px;padding:3px 11px}
 .sab-blk{margin-bottom:12px}
@@ -2392,7 +2441,13 @@ body:has(.vt-scan){overflow:hidden}
 /* todas las evaluaciones / evaluación final */
 .pg-lead{margin:0 0 12px}
 .pgroup{margin:0 0 26px;padding-top:4px}
-.pg-h{display:flex;align-items:center;gap:10px;margin:0 0 8px;padding:8px 14px;border-radius:12px;background:var(--accent-soft);border-left:5px solid var(--accent)}
+.pg-h{display:flex;align-items:center;gap:10px;margin:0 0 8px;padding:8px 14px;border-radius:12px;background:var(--accent-soft);border:0;border-left:5px solid var(--accent);width:100%;text-align:left;font:inherit;color:var(--ink);cursor:pointer}
+.pg-h .spacer{flex:1}
+.pg-h .up-caret{transition:transform .2s;font-size:15px;color:var(--muted)}
+.pgroup.shut .pg-h .up-caret{transform:rotate(-90deg)}
+.pgroup.shut{margin-bottom:10px}
+.pgroup.shut .pg-h{opacity:.75}
+.pg-off{font-family:var(--font-mono);font-size:12px;color:var(--muted)}
 #app .pg-h h2{font-size:18px;margin:0}
 .pgroup.ini .pg-h{background:#FCF1DC;border-left-color:var(--mark)}
 .pg-tag{font-size:12px;font-weight:700;color:#8A5A00;background:#FCEFD2;border-radius:6px;padding:2px 7px}
@@ -2865,9 +2920,9 @@ function medMatchesProfile(medCode, conds){
 }
 const CODES = {P:'Presente', A:'Falta', R:'Retraso', J:'Justificada'};
 const KEY = 'cuaderno-lomloe:v1';
-const APP_VERSION = '5.3';
-const APP_BUILD = '28/10/2026';
-const APP_NOTES = 'Primera vez: la app pregunta en qué comunidad trabajas (se puede cerrar) y precarga el currículo de Aragón; también desde Legislación. Evaluaciones: en el selector de evaluación de cada área, «Todas las evaluaciones» (unidades y evaluación trimestral de inicial, 1.ª, 2.ª y 3.ª, una detrás de otra) y «Evaluación final» (nota de cada trimestre, su media, la nota final escrita a mano y, si quieres, la nota de cada criterio en cada trimestre). Antes: Importar un área (Legislación o ajustes de la clase): eliges los ciclos y pegas, desde el PDF oficial, competencias, criterios y saberes en su recuadro; la app te enseña lo que reconoce y lo que falta antes de guardar. Las áreas importadas se pueden eliminar (o solo quitar de tus clases conservando sus datos). Inglés: criterios y competencias con la redacción del currículo de Aragón (Anexo II de la Orden ECD/1112/2022); tus tareas, rúbricas y notas no cambian. Legislación (en el menú, junto a Ajustes): eliges tu comunidad y tienes a un clic la página oficial de normativa, la Orden de currículo con sus modificaciones, el PDF del Anexo II de cada área (primero las tuyas) y el resto de anexos. Votaciones con tarjetas (en cada clase, junto a la Pizarra): crea cuestionarios de 2 a 4 respuestas (o pégalos de golpe con «📋 Pegar preguntas»: con la correcta marcada con ✅, en negrita, con «Answer: B» o con una clave al final), imprime una tarjeta por alumno y proyecta las preguntas en el ordenador; con el móvil escaneas las tarjetas que levanta la clase, cada nombre se apaga al leerse, revelas la respuesta y pasas a la siguiente desde el móvil, y al final ves qué ha acertado cada alumno y lo pasas a una tarea evaluable. Menú lateral reorganizado: Agenda (Mi programación de aula, Mi horario), Mis clases, Tareas pendientes y Reuniones; en cada clase, Alumnado (lista, aula, horario, diversidad y tutorías), sus áreas y Herramientas (Pizarra y Votaciones), con líneas que marcan qué va dentro de qué. Pizarra: botón ▁ Minimizar para seguir usando la app con la pizarra abierta. Pendientes: el campo para escribir, más grande y centrado. Antes: Pizarra: varias páginas por pizarra (‹ 1/3 › en la barra), imágenes (desde el menú Añadir, pegándolas con Ctrl+V o arrastrando el archivo), botón 📌 para fijar una imagen, tabla o pósit al fondo y escribir encima, y herramienta ⬚ para rodear lo escrito y moverlo, cambiarle el tamaño, el color o el grosor, duplicarlo o borrarlo. Antes: Pizarra: Aula pasa a ser una pizarra a pantalla completa para el monitor del aula. Se escribe con el lápiz o el dedo (presión del lápiz, subrayador, líneas, flechas, formas y goma), con fondos lisos, pautas de escritura, cuadrícula, pentagrama y pistas de Educación Física con fichas de jugadores. Sobre ella se colocan y mueven pósits, textos, tablas, temporizador, voluntario, grupos (también por nota), ruleta y semáforo. Se guarda sola en el equipo y, con Drive conectado, se sube como archivo editable e imagen a la carpeta «Cuaderno Profesor · pizarras». Antes: Aula: nuevas herramientas Ruleta (alumnado, números o tu lista) y Semáforo de volumen. Pendientes: botón 📌 para sacarlos como pósit flotante encima de las demás ventanas (Chrome y Edge de ordenador). Google Calendar: botón para compartir tu agenda con un compañero. Antes: Menú lateral: Mis clases › clase › área › sección, con Agenda, Pendientes y Reuniones a mano; en tablet se pliega a iconos y en el móvil se abre con ☰. Diversidad pasa a ser de toda la clase, con todas las áreas de cada alumno, y la etiqueta de adaptación de las tablas lleva a su perfil. Si prefieres las pestañas de antes, cámbialo en Ajustes › Apariencia. Antes: Google Calendar: los eventos se envían con el color que tienen en la app y, si quieres, tu agenda muestra los eventos de tus calendarios de Google (excursiones, festivos…). Reuniones: nueva pestaña en la agenda para tomar notas de cada reunión con un editor de texto (títulos, negrita, colores, tipos y tamaños de letra, listas), etiquetas como carpetas, búsqueda y filtro por fecha, y el botón 📌 para convertir una frase en pendiente. Antes: Google Drive: al conectar por primera vez en un dispositivo eliges la cuenta de Google, el dispositivo la recuerda y en Ajustes puedes cambiarla. Antes: Buscador en la cabecera (Ctrl+K) para alumnado, tareas, unidades, sesiones y pendientes. Cursos escolares: «Empezar curso nuevo» archiva el actual y conserva tu programación; los anteriores se consultan desde Mis clases. Google Calendar: copia tu agenda a un calendario propio, con la cuenta que elijas. La copia de seguridad completa incluye ya los pendientes. Antes: Más seguridad para tus datos: se guarda al instante al salir de la app, avisa si el dispositivo no puede guardar, «Deshacer» tras cada borrado y una copia automática diaria. Bloqueo con PIN opcional. Pendientes que se repiten y que se crean desde una sesión o una tutoría. «Repartir puntos» para sumar marcas de un toque. Antes: Estilos visuales: en Ajustes › Apariencia puedes elegir entre Original, Cuaderno, Pizarra, Archivador y Colores. Las marcas con contador se suman o restan con − y + desde la propia casilla. Antes: Ajustes más limpios: la copia de seguridad y el archivo local se pliegan cuando ya sincronizas con Google Drive, y las novedades de la versión se despliegan solo si las quieres leer. Antes: Nueva pestaña «Pendientes» en la agenda: tu lista de cosas por hacer, con prioridad, fecha límite y clase; la agenda avisa de lo que vence hoy o va con retraso. Además: Programación de la unidad: nueve apartados desplegables para planificar la unidad entera, con criterios, saberes básicos y competencias clave del currículo de Aragón, sesiones enlazadas con la agenda, adjuntos, medidas de atención a la diversidad por alumno, diana de autoevaluación docente, vista completa y PDF de dos caras. Además, código de color único por grado en rúbricas y tablas de notas, y tablas, horario y agenda con piezas redondeadas';
+const APP_VERSION = '5.4';
+const APP_BUILD = '29/10/2026';
+const APP_NOTES = 'Saberes por criterio: en cada tarea, debajo de los criterios, tocas qué saberes moviliza cada uno (los ya usados con ese criterio en otras tareas de la unidad salen sugeridos). La programación de la unidad tiene un apartado propio «Saberes básicos» con la matriz criterios × saberes, en qué tarea se cruzan y avisos de cobertura; los saberes marcados en una tarea pasan a la programación. Todas las evaluaciones: cada evaluación se pliega con su flecha. La app recuerda en todos tus dispositivos qué apartados, grupos y submenús dejaste plegados o desplegados. Antes: Primera vez: la app pregunta en qué comunidad trabajas (se puede cerrar) y precarga el currículo de Aragón; también desde Legislación. Evaluaciones: en el selector de evaluación de cada área, «Todas las evaluaciones» (unidades y evaluación trimestral de inicial, 1.ª, 2.ª y 3.ª, una detrás de otra) y «Evaluación final» (nota de cada trimestre, su media, la nota final escrita a mano y, si quieres, la nota de cada criterio en cada trimestre). Antes: Importar un área (Legislación o ajustes de la clase): eliges los ciclos y pegas, desde el PDF oficial, competencias, criterios y saberes en su recuadro; la app te enseña lo que reconoce y lo que falta antes de guardar. Las áreas importadas se pueden eliminar (o solo quitar de tus clases conservando sus datos). Inglés: criterios y competencias con la redacción del currículo de Aragón (Anexo II de la Orden ECD/1112/2022); tus tareas, rúbricas y notas no cambian. Legislación (en el menú, junto a Ajustes): eliges tu comunidad y tienes a un clic la página oficial de normativa, la Orden de currículo con sus modificaciones, el PDF del Anexo II de cada área (primero las tuyas) y el resto de anexos. Votaciones con tarjetas (en cada clase, junto a la Pizarra): crea cuestionarios de 2 a 4 respuestas (o pégalos de golpe con «📋 Pegar preguntas»: con la correcta marcada con ✅, en negrita, con «Answer: B» o con una clave al final), imprime una tarjeta por alumno y proyecta las preguntas en el ordenador; con el móvil escaneas las tarjetas que levanta la clase, cada nombre se apaga al leerse, revelas la respuesta y pasas a la siguiente desde el móvil, y al final ves qué ha acertado cada alumno y lo pasas a una tarea evaluable. Menú lateral reorganizado: Agenda (Mi programación de aula, Mi horario), Mis clases, Tareas pendientes y Reuniones; en cada clase, Alumnado (lista, aula, horario, diversidad y tutorías), sus áreas y Herramientas (Pizarra y Votaciones), con líneas que marcan qué va dentro de qué. Pizarra: botón ▁ Minimizar para seguir usando la app con la pizarra abierta. Pendientes: el campo para escribir, más grande y centrado. Antes: Pizarra: varias páginas por pizarra (‹ 1/3 › en la barra), imágenes (desde el menú Añadir, pegándolas con Ctrl+V o arrastrando el archivo), botón 📌 para fijar una imagen, tabla o pósit al fondo y escribir encima, y herramienta ⬚ para rodear lo escrito y moverlo, cambiarle el tamaño, el color o el grosor, duplicarlo o borrarlo. Antes: Pizarra: Aula pasa a ser una pizarra a pantalla completa para el monitor del aula. Se escribe con el lápiz o el dedo (presión del lápiz, subrayador, líneas, flechas, formas y goma), con fondos lisos, pautas de escritura, cuadrícula, pentagrama y pistas de Educación Física con fichas de jugadores. Sobre ella se colocan y mueven pósits, textos, tablas, temporizador, voluntario, grupos (también por nota), ruleta y semáforo. Se guarda sola en el equipo y, con Drive conectado, se sube como archivo editable e imagen a la carpeta «Cuaderno Profesor · pizarras». Antes: Aula: nuevas herramientas Ruleta (alumnado, números o tu lista) y Semáforo de volumen. Pendientes: botón 📌 para sacarlos como pósit flotante encima de las demás ventanas (Chrome y Edge de ordenador). Google Calendar: botón para compartir tu agenda con un compañero. Antes: Menú lateral: Mis clases › clase › área › sección, con Agenda, Pendientes y Reuniones a mano; en tablet se pliega a iconos y en el móvil se abre con ☰. Diversidad pasa a ser de toda la clase, con todas las áreas de cada alumno, y la etiqueta de adaptación de las tablas lleva a su perfil. Si prefieres las pestañas de antes, cámbialo en Ajustes › Apariencia. Antes: Google Calendar: los eventos se envían con el color que tienen en la app y, si quieres, tu agenda muestra los eventos de tus calendarios de Google (excursiones, festivos…). Reuniones: nueva pestaña en la agenda para tomar notas de cada reunión con un editor de texto (títulos, negrita, colores, tipos y tamaños de letra, listas), etiquetas como carpetas, búsqueda y filtro por fecha, y el botón 📌 para convertir una frase en pendiente. Antes: Google Drive: al conectar por primera vez en un dispositivo eliges la cuenta de Google, el dispositivo la recuerda y en Ajustes puedes cambiarla. Antes: Buscador en la cabecera (Ctrl+K) para alumnado, tareas, unidades, sesiones y pendientes. Cursos escolares: «Empezar curso nuevo» archiva el actual y conserva tu programación; los anteriores se consultan desde Mis clases. Google Calendar: copia tu agenda a un calendario propio, con la cuenta que elijas. La copia de seguridad completa incluye ya los pendientes. Antes: Más seguridad para tus datos: se guarda al instante al salir de la app, avisa si el dispositivo no puede guardar, «Deshacer» tras cada borrado y una copia automática diaria. Bloqueo con PIN opcional. Pendientes que se repiten y que se crean desde una sesión o una tutoría. «Repartir puntos» para sumar marcas de un toque. Antes: Estilos visuales: en Ajustes › Apariencia puedes elegir entre Original, Cuaderno, Pizarra, Archivador y Colores. Las marcas con contador se suman o restan con − y + desde la propia casilla. Antes: Ajustes más limpios: la copia de seguridad y el archivo local se pliegan cuando ya sincronizas con Google Drive, y las novedades de la versión se despliegan solo si las quieres leer. Antes: Nueva pestaña «Pendientes» en la agenda: tu lista de cosas por hacer, con prioridad, fecha límite y clase; la agenda avisa de lo que vence hoy o va con retraso. Además: Programación de la unidad: nueve apartados desplegables para planificar la unidad entera, con criterios, saberes básicos y competencias clave del currículo de Aragón, sesiones enlazadas con la agenda, adjuntos, medidas de atención a la diversidad por alumno, diana de autoevaluación docente, vista completa y PDF de dos caras. Además, código de color único por grado en rúbricas y tablas de notas, y tablas, horario y agenda con piezas redondeadas';
 
 /* escala cualitativa por defecto (Orden ECD/1112/2022) */
 const DEFAULT_SCALE = [
@@ -2921,6 +2976,21 @@ function num(v){ if(v===''||v==null) return null; const n=parseFloat(String(v).r
 function fmt(n){ if(n==null) return '–'; let s=(Math.round(n*100)/100).toFixed(2).replace(/0+$/,'').replace(/\.$/,''); return s.replace('.',','); }
 function fmt2(n){ return n==null ? '–' : (Math.round(n*10)/10).toString().replace('.',','); }
 function isNarrow(){ try{ return window.matchMedia('(max-width: 700px)').matches; }catch(e){ return false; } }
+/* plegables que se recuerdan en todos los dispositivos: viajan con los datos de Drive (state.fold).
+   Solo se guarda lo que difiere de cómo se abre por defecto. */
+function foldGet(k, def){ const f = state.fold; return (f && typeof f==='object' && Object.prototype.hasOwnProperty.call(f, k)) ? !!f[k] : !!def; }
+function foldSet(k, open, def){
+  if(!state.fold || typeof state.fold!=='object') state.fold = {};
+  if(def!=null && !!open===!!def) delete state.fold[k]; else state.fold[k] = open ? 1 : 0;
+  save();
+}
+function fold(k, def){ return `data-fold="${esc(k)}" data-fdef="${def?1:0}" ${foldGet(k, def)?'open':''}`; }
+document.addEventListener('toggle', e=>{
+  const d = e.target; if(!d || !d.dataset || !d.dataset.fold) return;
+  const k = d.dataset.fold, def = d.dataset.fdef==='1';
+  if(d.open===foldGet(k, def)) return;
+  foldSet(k, d.open, def);
+}, true);
 function gridMode(){ return state.gridMode || (isNarrow()?'cards':'table'); }
 /* subnavegación con botones grandes: items = [[id, label, act, icono?], ...] */
 function subnav(act, cur, items){
@@ -3096,10 +3166,10 @@ const GD_FILE = 'cuaderno-datos.json';
 const GD_LS = 'cuaderno-gdrive';
 const GD_API = 'https://www.googleapis.com/drive/v3';
 const GD_UP = 'https://www.googleapis.com/upload/drive/v3';
-const GD_DATA_KEYS = ['courses','curriculo','schedule','sessions','teacherTT','templates','areaColors','colorBy','markDefs','upMethods','holidays','attFolderId','todos','year','archive','gcalIds','meetings','meetTags','boards','boardFolderId','quizzes','ccaa','curRev','curPack','welcomed'];
+const GD_DATA_KEYS = ['courses','curriculo','schedule','sessions','teacherTT','templates','areaColors','colorBy','markDefs','upMethods','holidays','attFolderId','todos','year','archive','gcalIds','meetings','meetTags','boards','boardFolderId','quizzes','ccaa','curRev','curPack','welcomed','fold','upOpen','sbOpen'];
 const GD_UI_KEYS = ['view','homeTab','planView','planDate','planSub','activeCourse','activeArea','activePeriod','activeUnit',
   'editor','viewStudent','tutStudent','tutFromHome','unitSub','triSub','divSub','alumSub','gridMode','editMode',
-  'instrMode','rubCompact','mkDeal','sbOpen','divArea','divFocus','divBack','meetOpen','meetQ','meetTag','meetMonth','meetSort','upView','upOpen','sabOnly','sabCycle','editWeights','todoShow','homeTutCourse','homeAjCourse','attDate','lastSel','lastCourse','taskEd'];
+  'instrMode','rubCompact','mkDeal','divArea','divFocus','divBack','meetOpen','meetQ','meetTag','meetMonth','meetSort','upView','sabOnly','sabCycle','editWeights','todoShow','homeTutCourse','homeAjCourse','attDate','lastSel','lastCourse','taskEd'];
 
 const gd = {
   status:'off',          // off · need · ok · sync · offline · error · conflict
@@ -6872,15 +6942,18 @@ function perPeriod(fn, title, onlyReal){
   const c = course(), keep = state.activePeriod;
   const ps = c.periods.slice().sort((a,b)=>(b.initial?1:0)-(a.initial?1:0)).filter(p=>!onlyReal || !p.initial);
   const html = ps.map(p=>{ state.activePeriod = p.id; let h = '';
-    try{ h = fn(); }catch(e){ h = '<p class="hint">No se ha podido mostrar.</p>'; }
-    if(title) h = h.replace('<h2 class="sec-title">'+title+'</h2>', '');
-    h = h.replace('<h2 class="sec-title">Evaluación inicial</h2>', '');
-    return `<section class="pgroup ${p.initial?'ini':''}" data-pgroup="${p.id}"><div class="pg-h"><h2>${esc(p.name)}</h2>${p.initial?'<span class="pg-tag">no computa</span>':''}</div>${h}</section>`; }).join('');
+    const fk = 'pg:'+c.id+':'+p.id, on = foldGet(fk, true);
+    if(on){
+      try{ h = fn(); }catch(e){ h = '<p class="hint">No se ha podido mostrar.</p>'; }
+      if(title) h = h.replace('<h2 class="sec-title">'+title+'</h2>', '');
+      h = h.replace('<h2 class="sec-title">Evaluación inicial</h2>', '');
+    }
+    return `<section class="pgroup ${p.initial?'ini':''} ${on?'':'shut'}" data-pgroup="${p.id}"><button type="button" class="pg-h" data-act="pgFold" data-k="${esc(fk)}" aria-expanded="${on}" title="${on?'Ocultar':'Mostrar'} ${esc(p.name)}"><h2>${esc(p.name)}</h2>${p.initial?'<span class="pg-tag">no computa</span>':''}<span class="spacer"></span>${on?'':'<span class="pg-off">oculta</span>'}<span class="up-caret" aria-hidden="true">▾</span></button>${h}</section>`; }).join('');
   state.activePeriod = keep;
   return `<div class="pg-all">${html}</div>`;
 }
 ['click','change','input','focusin','keydown'].forEach(ev=>document.addEventListener(ev, e=>{
-  const g = e.target && e.target.closest && e.target.closest('[data-pgroup]'); if(!g) return;
+  const g = e.target && e.target.closest && e.target.closest('[data-pgroup]'); if(!g || e.target.closest('.pg-h')) return;
   const c = course(); if(c && c.periods.some(p=>p.id===g.dataset.pgroup)) state.activePeriod = g.dataset.pgroup;
 }, true));
 views.unidades = function(){
@@ -6967,7 +7040,7 @@ function critPicker(c, u, aid){
   return `<div class="sab" id="critBox">
     <div class="sab-bar"><span class="sab-tot" id="critTot">${all.length} elegidos de ${crits.length}</span></div>
     ${Object.keys(byCE).sort((a,b)=>a-b).map(ce=>{ const n = byCE[ce].filter(k=>all.indexOf(k.code)>-1).length;
-      return `<details class="sab-sub ${n?'has':''}" ${n && !isNarrow()?'open':''}>
+      return `<details class="sab-sub ${n?'has':''}" ${fold('crit:'+u.id+':'+ce, n && !isNarrow())}>
         <summary><span class="sab-code">CE ${esc(ce)}</span><span class="sab-name sab-ce">${esc(ces[ce]||'Competencia específica '+ce)}</span>
           <span class="sab-n" data-sabn>${n}/${byCE[ce].length}</span><span class="up-caret" aria-hidden="true">▾</span></summary>
         <div class="sab-items">${byCE[ce].map(k=>{ const ts = upCritTasks(c, u, k.code), on = ts.length>0 || mine.indexOf(k.code)>-1;
@@ -7044,17 +7117,45 @@ function sabBlocks(aid, cycle){ const a = sabData(aid); if(!a) return []; return
 function sabCycles(aid){ return Object.keys(sabData(aid)||{}).map(Number).sort(); }
 /* el ciclo de la clase guarda «A.2|0»; los de otro ciclo, «c2:A.2|0» */
 function sabId(sub, i, cy, base){ return (cy && cy!==base ? 'c'+cy+':' : '') + sub.c+'|'+i; }
-/* saberes elegidos en la unidad, agrupados como en la norma: [{code, name, items:[texto], cycle}] */
-function sabChosen(aid, cycle, pl){
-  const set = pl.sab || [], out = [], cys = sabCycles(aid), base = cys.indexOf(Number(cycle))>-1 ? Number(cycle) : cys[0];
+/* saberes elegidos en la unidad, agrupados como en la norma: [{code, name, items:[texto], ids:[id], cycle}]
+   extra: saberes que llegan de las tareas (vinculados a un criterio) */
+function sabChosen(aid, cycle, pl, extra){
+  const set = (pl.sab || []).concat(extra||[]), out = [], cys = sabCycles(aid), base = cys.indexOf(Number(cycle))>-1 ? Number(cycle) : cys[0];
   cys.forEach(cy=>(sabData(aid)[cy]||[]).forEach(b=>b.s.forEach(sub=>{
-    const its = sub.i.filter((_,i)=>set.indexOf(sabId(sub,i,cy,base))>-1);
-    if(its.length) out.push({code:sub.c, name:(sub.n || b.n) + (cy!==base ? ' · '+CYCLE_NAMES[cy] : ''), items:its});
+    const ids = [], its = sub.i.filter((_,i)=>{ const id = sabId(sub,i,cy,base); if(set.indexOf(id)<0) return false; ids.push(id); return true; });
+    if(its.length) out.push({code:sub.c, name:(sub.n || b.n) + (cy!==base ? ' · '+CYCLE_NAMES[cy] : ''), items:its, ids:ids});
   })));
   return out;
 }
-function sabPicker(aid, cycle, pl){
-  const cys = sabCycles(aid), set = pl.sab || [];
+/* índice de todos los saberes del área para la clase, en el orden de la norma: id → {sub, name, text, label} */
+function sabIndex(aid, cycle){
+  const out = {}, cys = sabCycles(aid); if(!cys.length) return out;
+  const base = cys.indexOf(Number(cycle))>-1 ? Number(cycle) : cys[0];
+  [base].concat(cys.filter(x=>x!==base)).forEach(cy=>(sabData(aid)[cy]||[]).forEach(b=>b.s.forEach(sub=>sub.i.forEach((x,i)=>{
+    out[sabId(sub,i,cy,base)] = {sub:sub.c, name:sub.n || b.n, text:x, cy:cy,
+      label:sub.c+'·'+(i+1)+(cy!==base ? ' ('+cy+'.º c.)' : '')};
+  }))));
+  return out;
+}
+function sabShort(x, n){ x = String(x||'').replace(/\s+/g,' ').trim(); n = n || 70; return x.length>n ? x.slice(0, n-1).replace(/[\s,;:.]+\S*$/,'')+'…' : x; }
+/* saberes que una tarea vincula a sus criterios (solo criterios que la tarea evalúa) */
+function taskSabMap(t){ const m = t.critSab || {}, out = {};
+  (t.criteria||[]).forEach(k=>{ if((m[k]||[]).length) out[k] = m[k].slice(); }); return out; }
+function taskSabIds(t){ const m = taskSabMap(t), s = {}; Object.keys(m).forEach(k=>m[k].forEach(x=>{ s[x]=1; })); return Object.keys(s); }
+/* tareas que cuentan para el vínculo: la evaluación inicial no entra */
+function upLinkTasks(c, u){ return tasksOfUnit(c, u.id).filter(t=>!t.isInitial); }
+/* id del saber → tareas que lo vinculan */
+function upSabLocks(c, u){ const out = {};
+  upLinkTasks(c, u).forEach(t=>taskSabIds(t).forEach(id=>{ (out[id] = out[id] || []).push(t); })); return out; }
+/* saberes de la unidad: los de la programación más los que vinculan las tareas, en el orden de la norma */
+function upSab(c, u, aid){
+  const idx = sabIndex(aid || u.areaId, c.cycle), set = {};
+  ((u.plan||{}).sab||[]).forEach(x=>{ set[x]=1; }); Object.keys(upSabLocks(c, u)).forEach(x=>{ set[x]=1; });
+  return Object.keys(idx).filter(id=>set[id]);
+}
+function sabPicker(aid, cycle, pl, lk, uid){
+  lk = lk || {};
+  const cys = sabCycles(aid), set = (pl.sab || []).concat(Object.keys(lk).filter(x=>(pl.sab||[]).indexOf(x)<0));
   if(!cys.length) return `<p class="hint" style="margin:0 0 10px">Esta área todavía no tiene cargados los saberes básicos del currículo. Mientras tanto puedes escribirlos a mano aquí abajo.</p>`;
   const base = cys.indexOf(Number(cycle))>-1 ? Number(cycle) : cys[0];
   const cy = cys.indexOf(Number(state.sabCycle))>-1 ? Number(state.sabCycle) : base;
@@ -7067,12 +7168,12 @@ function sabPicker(aid, cycle, pl){
     ${cy!==base ? `<p class="hint" style="margin:0 0 8px">Estás viendo ${CYCLE_NAMES[cy]}. La clase es de ${CYCLE_NAMES[base]}.</p>` : ''}
     ${blocks.map(b=>`<div class="sab-blk">${b.s.length===1 && !b.s[0].n ? '' : `<h4><b>${esc(b.c)}</b>${esc(b.n)}</h4>`}
       ${b.s.map(sub=>{ const n = sub.i.filter((_,i)=>set.indexOf(sabId(sub,i,cy,base))>-1).length;
-        return `<details class="sab-sub ${n?'has':''}" data-sub="${esc(sub.c)}" ${n && !isNarrow()?'open':''}>
+        return `<details class="sab-sub ${n?'has':''}" data-sub="${esc(sub.c)}" ${fold('sab:'+(uid||aid)+':'+cy+':'+sub.c, n && !isNarrow())}>
           <summary><span class="sab-code">${esc(sub.c)}</span><span class="sab-name">${esc(sub.n || b.n)}</span>
             <span class="sab-n" data-sabn>${n}/${sub.i.length}</span><span class="up-caret" aria-hidden="true">▾</span></summary>
           <div class="sab-items">
-            ${sub.i.map((x,i)=>{ const id = sabId(sub,i,cy,base), on = set.indexOf(id)>-1;
-              return `<button type="button" class="sab-it ${on?'on':''}" data-act="sabToggle" data-id="${esc(id)}" aria-pressed="${on}"><i aria-hidden="true"></i><span>${esc(x)}</span></button>`; }).join('')}
+            ${sub.i.map((x,i)=>{ const id = sabId(sub,i,cy,base), on = set.indexOf(id)>-1, ts = lk[id] || [];
+              return `<button type="button" class="sab-it ${on?'on':''} ${ts.length?'lock':''}" data-act="sabToggle" data-id="${esc(id)}" aria-pressed="${on}" ${ts.length?'title="Lo vincula una tarea de la unidad a un criterio: se quita desde la tarea"':''}><i aria-hidden="true"></i><span><b class="sab-cc">${esc(sub.c)}·${i+1}</b> ${esc(x)}${ts.length?`<em class="sab-in">${ts.map(t=>`<u>${esc(t.name)}</u>`).join('')}</em>`:''}</span></button>`; }).join('')}
             <div class="row" style="gap:6px;margin-top:4px"><button type="button" class="btn ghost small" data-act="sabAll" data-sub="${esc(sub.c)}" data-m="1">Añadir todos</button>
               <button type="button" class="btn ghost small" data-act="sabAll" data-sub="${esc(sub.c)}" data-m="0">Quitar todos</button></div>
           </div></details>`; }).join('')}</div>`).join('')}
@@ -7080,19 +7181,62 @@ function sabPicker(aid, cycle, pl){
 }
 function sabRefresh(u){
   const box = document.getElementById('sabBox'); if(!box) return;
-  const set = (u.plan||{}).sab || [];
+  const c = course(), set = ((u.plan||{}).sab || []).concat(Object.keys(upSabLocks(c, u)));
   box.querySelectorAll('.sab-it').forEach(x=>{ const on = set.indexOf(x.dataset.id)>-1; x.classList.toggle('on', on); x.setAttribute('aria-pressed', on); });
   box.querySelectorAll('.sab-sub').forEach(d=>{ const all = d.querySelectorAll('.sab-it').length, n = d.querySelectorAll('.sab-it.on').length;
     d.querySelector('[data-sabn]').textContent = n+'/'+all; d.classList.toggle('has', n>0); });
-  const t = document.getElementById('sabTot'); if(t) t.textContent = set.length+' elegidos';
+  const t = document.getElementById('sabTot'); if(t) t.textContent = set.filter((x,i)=>set.indexOf(x)===i).length+' elegidos';
   const tab = box.querySelector('[data-act="sabCycle"][aria-pressed="true"]');
   if(tab){ const n = box.querySelectorAll('.sab-it.on').length; tab.textContent = tab.dataset.m+'.º ciclo'+(n?' · '+n:''); }
+  upLinkRefresh(c, u);
   upRefresh(u);
+}
+/* vínculo criterios × saberes de la unidad, sacado de las tareas (la evaluación inicial no entra) */
+function upLinkData(c, u, aid){
+  const idx = sabIndex(aid, c.cycle), tasks = upLinkTasks(c, u), tn = {};
+  tasks.forEach((t,i)=>{ tn[t.id] = 'T'+(i+1); });
+  const crits = upCrits(c, u), sabs = upSab(c, u, aid), cell = {};
+  tasks.forEach(t=>{ const m = taskSabMap(t); Object.keys(m).forEach(k=>m[k].forEach(id=>{
+    const r = cell[k] || (cell[k] = {}); (r[id] = r[id] || []).push(t); })); });
+  const unworked = sabs.filter(id=>!Object.keys(cell).some(k=>cell[k][id]));
+  const nolink = crits.filter(k=>tasks.some(t=>(t.criteria||[]).indexOf(k)>-1) && !Object.keys(cell[k]||{}).length);
+  const used = tasks.filter(t=>taskSabIds(t).length);
+  return {idx, tasks, tn, crits, sabs, cell, unworked, nolink, used};
+}
+function upLinkHtml(c, u, aid){
+  const D = upLinkData(c, u, aid), map = areaDef(aid).crit[c.cycle] || {};
+  if(!D.crits.length && !D.sabs.length) return `<p class="hint" style="margin:0">Elige criterios y saberes, y vincúlalos en cada tarea: aquí verás qué saberes trabaja cada criterio y en qué tarea.</p>`;
+  if(!D.used.length) return `<p class="hint" style="margin:0">Ninguna tarea vincula todavía saberes a sus criterios. Se hace al crear o editar cada tarea, debajo de los criterios; aquí verás la matriz y lo que falta por cubrir.</p>`;
+  const badge = t=>`<button type="button" class="lk-t" data-act="editTask" data-id="${t.id}" title="${esc(t.name)}">${D.tn[t.id]}</button>`;
+  const cellHtml = (k, id)=>{ const ts = (D.cell[k]||{})[id] || []; return ts.length ? ts.map(badge).join('') : ''; };
+  const table = D.crits.length && D.sabs.length ? `<div class="lk-wrap"><table class="lk-mx"><thead><tr><th class="lk-corner">Criterio</th>${D.sabs.map(id=>`<th title="${esc(D.idx[id].text)}">${esc(D.idx[id].label)}</th>`).join('')}</tr></thead>
+      <tbody>${D.crits.map(k=>`<tr class="${D.nolink.indexOf(k)>-1?'lk-bad':''}"><th title="${esc(map[k]||'')}">${esc(k)}</th>${D.sabs.map(id=>{ const h = cellHtml(k, id); return `<td class="${h?'on':''} ${D.unworked.indexOf(id)>-1?'lk-warn':''}">${h||'<i>·</i>'}</td>`; }).join('')}</tr>`).join('')}</tbody></table></div>` : '';
+  const list = D.crits.length ? `<div class="lk-list">${D.crits.map(k=>{ const ids = D.sabs.filter(id=>(D.cell[k]||{})[id]);
+      return `<div class="lk-cr ${ids.length?'':(D.nolink.indexOf(k)>-1?'lk-bad':'')}"><p class="lk-ch"><b>${esc(k)}</b> ${esc(sabShort(map[k]||'', 90))}</p>
+        ${ids.length ? ids.map(id=>`<div class="lk-row"><span class="lk-code">${esc(D.idx[id].label)}</span><span class="lk-tx">${esc(sabShort(D.idx[id].text, 80))}</span><span class="lk-ts">${cellHtml(k, id)}</span></div>`).join('')
+          : `<p class="lk-none">${D.nolink.indexOf(k)>-1?'Se evalúa sin saberes vinculados':'Sin tareas que lo evalúen todavía'}</p>`}</div>`; }).join('')}</div>` : '';
+  const legT = D.tasks.length ? `<p class="lk-leg">${D.tasks.map(t=>`<span><b>${D.tn[t.id]}</b> ${esc(t.name)}</span>`).join('')}</p>` : '';
+  const legS = D.sabs.length ? `<details class="lk-legs" ${fold('lkleg:'+u.id, false)}><summary>Ver el texto de los ${D.sabs.length} saberes</summary>
+      ${D.sabs.map(id=>`<p><b>${esc(D.idx[id].label)}</b> ${esc(D.idx[id].text)}</p>`).join('')}</details>` : '';
+  const warn = D.unworked.map(id=>`<div class="lk-al warn"><b>${esc(D.idx[id].label)}</b> ${esc(sabShort(D.idx[id].text, 60))}: no se trabaja en ninguna tarea</div>`).join('')
+    + D.nolink.map(k=>`<div class="lk-al bad"><b>${esc(k)}</b> se evalúa sin saberes vinculados</div>`).join('');
+  const ok = !warn ? `<div class="lk-al ok">Todos los saberes se trabajan y todos los criterios evaluados tienen saberes</div>` : '';
+  return table + list + legT + legS + (warn || ok ? `<div class="lk-als">${warn}${ok}</div>` : '');
+}
+function upLinkRefresh(c, u){ const b = document.getElementById('upLink'); if(b) b.innerHTML = upLinkHtml(c, u, u.areaId); }
+/* versión compacta para el PDF y «Ver completa»: solo códigos */
+function upLinkDoc(c, u, aid){
+  const D = upLinkData(c, u, aid); if(!D.used.length || !D.crits.length || !D.sabs.length) return '';
+  const cols = D.sabs.filter(id=>Object.keys(D.cell).some(k=>D.cell[k][id])), rows = D.crits.filter(k=>Object.keys(D.cell[k]||{}).length);
+  return `<div class="upd-sub"><h3>Criterios × saberes</h3><table class="upd-lk"><thead><tr><th></th>${cols.map(id=>`<th>${esc(D.idx[id].label)}</th>`).join('')}</tr></thead>
+    <tbody>${rows.map(k=>`<tr><th>${esc(k)}</th>${cols.map(id=>`<td>${((D.cell[k]||{})[id]||[]).map(t=>D.tn[t.id]).join(' ')}</td>`).join('')}</tr>`).join('')}</tbody></table>
+    <p class="upd-lkleg">${D.used.map(t=>`<b>${D.tn[t.id]}</b> ${esc(t.name)}`).join(' · ')}</p></div>`;
 }
 const UP_BLOCKS = [
   {id:'ident', t:'Identificación', s:'Sesiones y fechas', keys:['sessions','from','to']},
   {id:'ctx',   t:'Justificación y contexto', s:'Por qué, situación de aprendizaje y producto final', keys:['justif','situation','product']},
-  {id:'curr',  t:'Concreción curricular', s:'Criterios, competencias y saberes básicos', keys:['crits','sab','saberes','kc','currNotes'], auto:true},
+  {id:'curr',  t:'Concreción curricular', s:'Criterios de evaluación y competencias', keys:['crits','kc','currNotes'], auto:true},
+  {id:'sab',   t:'Saberes básicos', s:'Qué saberes se trabajan y con qué criterios', keys:['sab','saberes'], auto:true},
   {id:'obj',   t:'Objetivos didácticos', s:'Qué van a aprender', keys:['objectives']},
   {id:'met',   t:'Metodología', s:'Cómo se trabaja, agrupamientos, recursos y espacios', keys:['methods','groups','resources','spaces']},
   {id:'seq',   t:'Secuencia de sesiones', s:'Qué se hace en cada sesión', keys:['sequence','files']},
@@ -7106,7 +7250,7 @@ function upHas(pl, k){ const v = pl[k]; if(k==='self') return upSelf(pl).some(x=
   return Array.isArray(v) ? v.length>0 : (v!=null && String(v).trim()!==''); }
 function upFilled(pl, b){ return (b.keys||[]).some(k=>upHas(pl, k)); }
 /* lo que la app aporta sola a un apartado (criterios o tareas de la unidad) */
-function upAuto(c, u, b){ return b.id==='curr' ? critsWorkedUnit(c, u.id).length>0 : b.id==='eval' ? tasksOfUnit(c, u.id).length>0
+function upAuto(c, u, b){ return b.id==='curr' ? critsWorkedUnit(c, u.id).length>0 : b.id==='sab' ? Object.keys(upSabLocks(c, u)).length>0 : b.id==='eval' ? tasksOfUnit(c, u.id).length>0
     : b.id==='seq' ? ((upSessions(c, u, u.areaId)||[]).length>0 || tasksOfUnit(c, u.id).some(t=>t.isInitial)) : b.id==='div' ? upDivAuto(c, u, u.areaId).length>0 : false; }
 function upCountTxt(n){ return n+' de '+UP_BLOCKS.length+' apartados'; }
 function upLines(txt){ return String(txt||'').split(/\n+/).map(x=>x.replace(/^\s*(?:[-•·*]|\d+[.)])\s*/,'').trim()).filter(Boolean); }
@@ -7155,10 +7299,12 @@ function viewUnitPlan(u){
        + ta('product','Producto final','Qué van a crear o presentar al terminar', 2),
     curr: `<div class="field"><span>Criterios de evaluación <i class="up-auto">${CYCLE_NAMES[c.cycle]}</i></span>${critPicker(c, u, aid)}
         <p class="hint" style="margin:8px 0 0">Elige aquí los que va a trabajar la unidad. Los que marques al crear una tarea aparecen también, con el nombre de la tarea.</p></div>
-      <div class="field"><span>Saberes básicos <i class="up-auto">${CYCLE_NAMES[c.cycle]}</i></span>${sabPicker(aid, c.cycle, pl)}</div>
-      ${ta('saberes','Otros saberes, a mano','Lo que quieras añadir o concretar, uno por línea', 2)}
       <div class="field"><span>Competencias clave y descriptores <i class="up-auto">salen de tus criterios</i></span>${kcPicker(c, u, aid)}</div>
       ${ta('currNotes','Otras concreciones','Relación con otras áreas, ODS, planes de centro…', 2)}`,
+    sab: `<div class="field"><span>Saberes de la unidad <i class="up-auto">${CYCLE_NAMES[c.cycle]}</i></span>${sabPicker(aid, c.cycle, pl, upSabLocks(c, u), u.id)}
+        <p class="hint" style="margin:8px 0 0">Elige aquí los que va a trabajar la unidad. Los que vincules en una tarea aparecen también, con el nombre de la tarea.</p></div>
+      ${ta('saberes','Otros saberes, a mano','Lo que quieras añadir o concretar, uno por línea', 2)}
+      <div class="field"><span>Criterios × saberes <i class="up-auto">de las tareas · sin la evaluación inicial</i></span><div id="upLink">${upLinkHtml(c, u, aid)}</div></div>`,
     obj: ta('objectives','Un objetivo por línea','Describir su localidad usando there is / there are\nDar y seguir indicaciones sencillas', 5),
     met: `<div class="field"><span>Metodologías</span>${chips('methods', methods)}
         <button class="btn ghost small" data-act="upMethodsEdit" style="margin-top:8px">✎ Editar lista de metodologías</button></div>
@@ -7244,11 +7390,13 @@ function planDocHtml(c, u, aid, p, showEmpty, lvl){
       : ceList.some(k=>ces[k]) ? `<div class="upd-sub"><h3>Competencias específicas</h3>${ceList.map(k=>`<p class="upd-cr"><b>CE ${esc(k)}</b> ${esc(ces[k]||'')}</p>`).join('')}</div>` : '')
       + (lvl>1 ? `<div class="upd-sub"><h3>Criterios de evaluación</h3><p class="upd-tags">${codes.map(k=>`<i>${esc(k)}</i>`).join('')}</p></div>`
         : `<div class="upd-sub"><h3>Criterios de evaluación</h3>${codes.map(k=>`<p class="upd-cr"><b>${esc(k)}</b> ${esc(critMap[k]||'')}</p>`).join('')}</div>`) : '';
-  const chosen = sabChosen(aid, c.cycle, pl);
-  const sabHtml = chosen.map(g=>`<p class="upd-cr"><b>${esc(g.code)}</b> <em>${esc(g.name)}</em></p><ul>${g.items.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`).join('') + lst('saberes');
+  const chosen = sabChosen(aid, c.cycle, pl, Object.keys(upSabLocks(c, u)));
+  const sIdx = sabIndex(aid, c.cycle);
+  const sabList = chosen.map(g=>`<p class="upd-cr"><b>${esc(g.code)}</b> <em>${esc(g.name)}</em></p><ul class="upd-sab">${g.items.map((x,i)=>`<li><b>${esc((sIdx[g.ids[i]]||{}).label||'')}</b> ${esc(x)}</li>`).join('')}</ul>`).join('') + lst('saberes');
+  const sabHtml = sabList + (lvl<3 ? upLinkDoc(c, u, aid) : '');
   const dsc = upDescr(c, u, aid), kcs = KC.filter(([k])=>dsc[k] || (pl.kc||[]).indexOf(k)>-1);
   const kcHtml = kcs.length ? `<p class="upd-tags">${kcs.map(([k])=>`<i>${k}${dsc[k]?' ('+dsc[k].map(x=>x.replace(k,'')).join(', ')+')':''}</i>`).join('')}</p>` : '';
-  const curr = curr0 + sub('Saberes básicos', sabHtml) + sub('Competencias clave y descriptores', kcHtml) + sub('Otras concreciones', txt('currNotes'));
+  const curr = curr0 + sub('Competencias clave y descriptores', kcHtml) + sub('Otras concreciones', txt('currNotes'));
   const obj = lst('objectives');
   const ags = upSessions(c, u, aid) || [];
   const ini0 = tasksOfUnit(c, u.id).filter(t=>t.isInitial).map(t=>'Evaluación inicial: '+t.name);
@@ -7276,6 +7424,7 @@ function planDocHtml(c, u, aid, p, showEmpty, lvl){
       <div>${sec('Objetivos didácticos', obj)}${sec('Metodología', met)}</div>
     </div>
     ${sec('Concreción curricular', curr, 'upd-wide')}
+    ${sec('Saberes básicos', sabHtml, 'upd-wide')}
     ${sec('Secuencia de sesiones', seq, 'upd-wide upd-seq')}
     ${sec('Evaluación', evAll, 'upd-wide')}
     ${(dvs||val||showEmpty) ? `<div class="upd-grid"><div>${sec('Atención a la diversidad', dvs)}</div><div>${sec('Valoración de la unidad', val)}</div></div>` : ''}`;
@@ -7311,6 +7460,14 @@ const UPD_CSS = `
   .upd td{padding:.35em .4em;border-bottom:1px solid #EEF1EE;vertical-align:top}
   .upd tr:last-child td{border-bottom:0}
   .upd .r{text-align:right;white-space:nowrap}
+  .upd ul.upd-sab{list-style:none;padding-left:.4em}
+  .upd ul.upd-sab b{font-family:var(--font-mono,monospace);font-size:.88em;color:#1F6B4F;margin-right:.3em}
+  .upd table.upd-lk{width:auto;max-width:100%;font-size:.85em;margin-top:.2em}
+  .upd .upd-lk th,.upd .upd-lk td{border:1px solid #DDE3DD;padding:.2em .4em;text-align:center;font-family:var(--font-mono,monospace);text-transform:none;letter-spacing:0;color:#16241F}
+  .upd .upd-lk thead th{background:#DCEBE1;color:#1F6B4F;font-weight:600}
+  .upd .upd-lk tbody th{background:#F4F6F3;color:#1F6B4F}
+  .upd .upd-lk td{white-space:nowrap}
+  .upd .upd-lkleg{font-size:.85em;color:#4A5A52;margin-top:.3em}
   @media screen and (max-width:700px){.upd-grid{grid-template-columns:1fr}}`;
 /* PDF: dos caras de A4 como máximo. Se reduce el cuerpo de letra hasta que quepa. */
 function planPdf(){
@@ -7334,14 +7491,14 @@ function planPdf(){
     return doc.scrollHeight <= maxPx; };
   /* primero se intenta con todo el texto a 8 pt o más; si no cabe, se abrevia la concreción curricular; solo al final se baja de 8 pt */
   let ok = fit(8);
-  while(!ok && lvl < 2){ lvl++; doc.innerHTML = planDocHtml(c, u, aid, p, false, lvl); ok = fit(8); }
+  while(!ok && lvl < 3){ lvl++; doc.innerHTML = planDocHtml(c, u, aid, p, false, lvl); ok = fit(8); }
   if(!ok) ok = fit(7);
   const pages = Math.max(1, Math.ceil(doc.scrollHeight / (maxPx/2)));
   doc.dataset.pt = pt; doc.dataset.pages = pages; doc.dataset.lvl = lvl;
   root.querySelector('#upFit').textContent = !ok
     ? 'El contenido no cabe en dos caras ni con la letra al mínimo: ocupará más de una hoja. Acorta algún apartado.'
     : (pages===1 ? 'Cabe en una cara.' : 'Cabe en una hoja por las dos caras.')
-      + (lvl===1 ? ' Para que quepa, las competencias específicas salen solo con su número.' : lvl===2 ? ' Para que quepa, las competencias específicas y los criterios salen solo con su código.' : '')
+      + (lvl===1 ? ' Para que quepa, las competencias específicas salen solo con su número.' : lvl===2 ? ' Para que quepa, las competencias específicas y los criterios salen solo con su código.' : lvl===3 ? ' Para que quepa, competencias y criterios salen solo con su código y la matriz criterios × saberes no sale (está en la app).' : '')
       + (pt<10.5 ? ' Letra a '+String(pt).replace('.',',')+' pt.' : '');
 }
 document.addEventListener('input', e=>{
@@ -7891,7 +8048,7 @@ views.plantillas = function(){
              <ul class="tpl-items">${t.items.map(i=>`<li>${esc(i.name||'ítem')}</li>`).join('')}</ul></div>`:''}
            ${(t.levels||[]).length? `<div class="tpl-block"><span class="tpl-lbl">Grados de logro</span>
              <div class="tpl-levels">${t.levels.map(l=>`<span class="tpl-level ${tn(l)}">${esc(l.label)}<b>${fmt2(l.value)}</b></span>`).join('')}</div></div>`:''}`;
-      return `<details class="tpl-card">
+      return `<details class="tpl-card" ${fold('tpl:'+t.id, false)}>
         <summary class="tpl-sum">
           <span class="tpl-caret" aria-hidden="true">▸</span>
           <span class="tpl-name">${esc(t.name)}</span>
@@ -9202,7 +9359,7 @@ function viewCriterios(){
       ${Object.keys(byCE).sort((a,b)=>a-b).map(ce=>{
         const nCrit = byCE[ce].length;
         const worked = byCE[ce].filter(k=>cov(k.code)>0).length;
-        return `<details class="tpl-card">
+        return `<details class="tpl-card" ${fold('cref:'+aid+':'+ce, false)}>
           <summary class="tpl-sum">
             <span class="tpl-caret" aria-hidden="true">▸</span>
             <span class="tpl-name">Competencia específica ${ce}</span>
@@ -9245,7 +9402,7 @@ function divGeneral(c, aid){
     ${Object.keys(cat).map(bk=>{
       const b = cat[bk];
       const nOn = b.items.filter((it,i)=>active.indexOf(bk+'::'+i)>-1).length;
-      return `<details class="tpl-card" ${nOn?'open':''}>
+      return `<details class="tpl-card" ${fold('dua:'+bk, nOn>0)}>
         <summary class="tpl-sum">
           <span class="tpl-caret" aria-hidden="true">▸</span>
           <span class="tpl-name">${esc(b.name)}</span>
@@ -9273,7 +9430,7 @@ function divCatalog(c){
     <div class="tpl-list">
     ${Object.keys(cat).map(bk=>{
       const b = cat[bk];
-      return `<details class="tpl-card">
+      return `<details class="tpl-card" ${fold('duacat:'+bk, false)}>
         <summary class="tpl-sum">
           <span class="tpl-caret" aria-hidden="true">▸</span>
           <span class="tpl-name">${esc(b.name)}</span>
@@ -9423,7 +9580,7 @@ function ajustesBody(c){
                  <div class="row"><button class="btn ghost small" data-act="fsNew">Crear archivo de datos</button>
                    <button class="btn ghost small" data-act="fsOpen">Usar uno que ya tengo</button></div>`}
         </div>`;
-      return `<details class="card adv" ${(!drive || fileOn)?'open':''}>
+      return `<details class="card adv" ${fold('adv:copias', !drive || fileOn)}>
         <summary><span class="sec-title">Copias de seguridad${fileCard?' y archivo local':''}</span>
           <span class="adv-sub">${drive?'Opcional: tus datos ya se guardan en Google Drive':(state.lastBackup?'Última copia: '+fmtDate(state.lastBackup):'Todavía no has hecho ninguna copia')}</span></summary>
         <div class="adv-block">
@@ -9444,7 +9601,7 @@ function ajustesBody(c){
         ${fileCard}
       </details>`;
     })()}
-    <details class="card adv">
+    <details class="card adv" ${fold('adv:version', false)}>
       <summary><span class="sec-title">Versión ${APP_VERSION}</span><span class="adv-sub">${APP_BUILD} · ver novedades</span></summary>
       <p class="hint adv-block" style="margin-bottom:0">${esc(APP_NOTES)}.</p>
     </details>
@@ -10647,7 +10804,7 @@ function openTaskPage(o){
     const t = o.task;
     d = {id:t.id, cid:o.cid || state.activeCourse, aid:t.areaId, pid:t.periodId, unitId:t.unitId||'', newUnit:'',
       name:t.name||'', skill:t.skill||'', kind:t.isInitial?'initial':(t.informative?'info':'counts'), weight:Number(t.weight)||0,
-      criteria:(t.criteria||[]).slice(), dates:dateEntries(t).map(x=>({d:x.d, t:x.t||''})),
+      criteria:(t.criteria||[]).slice(), critSab:JSON.parse(JSON.stringify(t.critSab||{})), sabExtra:[], dates:dateEntries(t).map(x=>({d:x.d, t:x.t||''})),
       desc:t.desc||'', goals:t.goals||'', activities:t.activities||''};
   } else {
     const c = state.courses.find(x=>x.id===o.cid) || course() || state.courses[0];
@@ -10657,7 +10814,7 @@ function openTaskPage(o){
     let pid = o.pid || (same && !o.fromAgenda ? (period()||{}).id : mem.period);
     if(!c.periods.some(p=>p.id===pid) || (o.fromAgenda && isInitialP(c, pid))) pid = (c.periods.find(p=>!p.initial)||c.periods[0]).id;
     d = {id:null, cid:c.id, aid:aid, pid:pid, unitId:o.unitId||'', newUnit:'',
-      name:'', skill:'', kind:'counts', weight:25, type:'rubric', tpl:'', criteria:[],
+      name:'', skill:'', kind:'counts', weight:25, type:'rubric', tpl:'', criteria:[], critSab:{}, sabExtra:[],
       dates:(o.dates||[]).map(x=>({d:x.d, t:x.t||''})), desc:'', goals:'', activities:''};
   }
   d.back = back; d.fromAgenda = !!o.fromAgenda || (back.view==='clases' && back.homeTab==='agenda'); d.dirty = false; d.err = '';
@@ -10672,6 +10829,51 @@ function teLeave(){
   state.activeCourse = b.cid; state.activeArea = b.aid; state.activePeriod = b.pid;
   state.view = b.view==='tarea' ? 'clases' : b.view; state.homeTab = b.homeTab; state.activeUnit = b.unit; state.editor = b.editor;
 }
+/* saberes que se pueden vincular en la tarea: los de la unidad, los ya vinculados y los añadidos a mano */
+function teSabBank(c, d){
+  const u = d.unitId && d.unitId!=='__new' ? unitById(c, d.unitId) : null;
+  const idx = sabIndex(d.aid, c.cycle), set = {};
+  if(u){ ((u.plan||{}).sab||[]).forEach(x=>{ set[x]=1; }); upLinkTasks(c, u).forEach(t=>{ if(t.id!==d.id) taskSabIds(t).forEach(x=>{ set[x]=1; }); }); }
+  Object.keys(d.critSab||{}).forEach(k=>(d.critSab[k]||[]).forEach(x=>{ set[x]=1; }));
+  (d.sabExtra||[]).forEach(x=>{ set[x]=1; });
+  return {u:u, idx:idx, ids:Object.keys(idx).filter(id=>set[id])};
+}
+/* sugerencias: lo que otras tareas de la unidad ya vinculan a cada criterio */
+function teSabSug(c, d, u){ const out = {}; if(!u) return out;
+  upLinkTasks(c, u).forEach(t=>{ if(t.id===d.id) return; const m = taskSabMap(t);
+    Object.keys(m).forEach(k=>m[k].forEach(x=>{ (out[k] = out[k] || {})[x] = 1; })); });
+  return out;
+}
+function teSabHtml(c, d){
+  const B = teSabBank(c, d), sug = teSabSug(c, d, B.u), map = areaDef(d.aid).crit[c.cycle] || {};
+  const crits = d.criteria.slice().sort(cmpCode), cs = d.critSab || {};
+  const nLinked = crits.filter(k=>(cs[k]||[]).length).length;
+  const head = `<h2 class="te-h">Saberes de cada criterio <small>opcional</small> <span class="te-count">${nLinked?nLinked+' de '+crits.length+' con saberes':''}</span></h2>`;
+  if(!crits.length) return head + '<p class="te-help">Marca primero los criterios de la tarea.</p>';
+  const hasSug = crits.some(k=>Object.keys(sug[k]||{}).some(id=>(cs[k]||[]).indexOf(id)<0));
+  const rows = crits.map(k=>{ const on = cs[k] || [], sg = sug[k] || {};
+    const chips = B.ids.map(id=>{ const x = B.idx[id], is = on.indexOf(id)>-1, sgd = !is && !!sg[id];
+      return `<button type="button" class="te-sab ${is?'on':''} ${sgd?'sug':''}" data-act="teSab" data-code="${esc(k)}" data-id="${esc(id)}" aria-pressed="${is}" title="${esc(x.text)}${sgd?' (sugerido: ya lo vinculaste a este criterio en otra tarea)':''}"><b>${esc(x.label)}</b><span>${esc(sabShort(x.text, 46))}</span></button>`; }).join('');
+    return `<div class="te-sabcr"><p class="te-sabh"><b>${esc(k)}</b><span>${esc(sabShort(map[k]||'', 120))}</span></p>
+      <div class="te-sabs">${chips || '<span class="te-help" style="margin:0">Todavía no hay saberes para elegir.</span>'}</div></div>`; }).join('');
+  const help = B.ids.length ? 'Toca los saberes que trabaja cada criterio en esta tarea.' + (hasSug ? ' Con borde de puntos, los que ya usaste con ese criterio en otras tareas de la unidad: tócalos para confirmarlos.' : '')
+    : (B.u ? 'La programación de esta unidad todavía no tiene saberes. Añádelos con «Otros saberes del área».' : 'Añade los saberes con «Otros saberes del área».');
+  return head + `<p class="te-help" style="margin:0 0 10px">${help}</p>` + rows
+    + `<button type="button" class="btn ghost small" data-act="teSabMore" style="margin-top:10px">${d.sabMore?'Cerrar la lista de saberes':'＋ Otros saberes del área'}</button>`
+    + (d.sabMore ? teSabMoreHtml(c, d, B) : '');
+}
+function teSabMoreHtml(c, d, B){
+  const cys = sabCycles(d.aid); if(!cys.length) return '<p class="te-help">Esta área no tiene cargados los saberes básicos.</p>';
+  const base = cys.indexOf(Number(c.cycle))>-1 ? Number(c.cycle) : cys[0], extra = d.sabExtra || [];
+  const inBank = id=>B.ids.indexOf(id)>-1;
+  return `<div class="sab te-sabmore" style="--c:${areaColor(d.aid)}"><p class="te-help" style="margin:0 0 8px">Los que añadas salen arriba para vincularlos. Al guardar, los que vincules pasan a la programación de la unidad.</p>
+    ${(sabData(d.aid)[base]||[]).map(b=>`<div class="sab-blk">${b.s.length===1 && !b.s[0].n ? '' : `<h4><b>${esc(b.c)}</b>${esc(b.n)}</h4>`}
+      ${b.s.map(sub=>{ const n = sub.i.filter((_,i)=>inBank(sabId(sub,i,base,base))).length;
+        return `<details class="sab-sub ${n?'has':''}" ${fold('tesab:'+d.aid+':'+sub.c, false)}><summary><span class="sab-code">${esc(sub.c)}</span><span class="sab-name">${esc(sub.n||b.n)}</span><span class="sab-n">${n}/${sub.i.length}</span><span class="up-caret" aria-hidden="true">▾</span></summary>
+          <div class="sab-items">${sub.i.map((x,i)=>{ const id = sabId(sub,i,base,base), on = inBank(id), fixed = on && extra.indexOf(id)<0;
+            return `<button type="button" class="sab-it ${on?'on':''} ${fixed?'lock':''}" data-act="teSabExtra" data-id="${esc(id)}" aria-pressed="${on}" ${fixed?'title="Ya está entre los saberes de la unidad"':''}><i aria-hidden="true"></i><span><b class="sab-cc">${esc(sub.c)}·${i+1}</b> ${esc(x)}</span></button>`; }).join('')}</div></details>`; }).join('')}</div>`).join('')}</div>`;
+}
+function teSabRefresh(c, d){ const b = document.getElementById('teSabBox'); if(b) b.innerHTML = teSabHtml(c, d); }
 function teUnitCrits(c, d){ const u = d.unitId ? unitById(c, d.unitId) : null; return u ? ((u.plan||{}).crits||[]) : []; }
 function teCritHtml(c, d){
   const map = areaDef(d.aid).crit[c.cycle] || {};
@@ -10750,6 +10952,8 @@ views.tarea = function(){
       : '<p class="te-help">No hay criterios cargados para esta área y ciclo.</p>'}
     </section>
 
+    ${ini || d.kind==='initial' || !crits.length || !sabCycles(d.aid).length ? '' : `<section class="card te-card" id="teSabBox">${teSabHtml(c, d)}</section>`}
+
     ${ini ? '' : `<section class="card te-card">
       <h2 class="te-h">Cómo cuenta</h2>
       <div class="te-kinds">${TE_KINDS.map(([id,n,sub])=>`<button type="button" class="te-type ${d.kind===id?'on':''}" data-act="teKind" data-k="${id}"><b>${n}</b><span>${sub}</span></button>`).join('')}</div>
@@ -10805,12 +11009,15 @@ function teSave(go){
   const isInitial = ini || d.kind==='initial', informative = !ini && d.kind==='info';
   const weight = (isInitial || informative) ? 0 : Math.max(0, Number(d.weight)||0);
   const crit = d.criteria.slice();
+  const critSab = {};
+  if(!isInitial) crit.forEach(k=>{ const a = ((d.critSab||{})[k]||[]).filter((x,i,arr)=>arr.indexOf(x)===i); if(a.length) critSab[k] = a; });
   const dates = d.dates.slice(); teSortDates(dates);
   let task;
   if(d.id){
     task = c.tasks.find(x=>x.id===d.id);
     Object.assign(task, {name:name, desc:d.desc.trim(), goals:d.goals.trim(), activities:d.activities.trim(), criteria:crit,
       weight:weight, isInitial:isInitial, informative:informative, unitId:unitId});
+    if(Object.keys(critSab).length) task.critSab = critSab; else delete task.critSab;
     if(d.aid==='ing') task.skill = d.skill||'';
     setTaskDates(task, dates);
     ((task.instr||{}).items||[]).forEach(it=>{ it.crits = itemCrits(it).filter(k=>crit.indexOf(k)>-1); delete it.critCode; });
@@ -10821,6 +11028,7 @@ function teSave(go){
     task = {id:uid(), areaId:d.aid, periodId:d.pid, unitId:unitId, name:name, skill:d.aid==='ing'?(d.skill||''):'',
       desc:d.desc.trim(), goals:d.goals.trim(), activities:d.activities.trim(), criteria:crit, weight:weight,
       isInitial:isInitial, informative:informative, instr:instr, adaptations:{}, dates:dates};
+    if(Object.keys(critSab).length) task.critSab = critSab;
     c.tasks.push(task);
   }
   const b = d.back || {}, type = (task.instr||{}).type;
@@ -10851,7 +11059,7 @@ document.addEventListener('change', e=>{
     const pn = (state.courses.find(x=>x.id===d.back.cid)||{periods:[]}).periods.find(p=>p.id===d.pid);
     const twin = pn ? c.periods.find(p=>p.name===pn.name) : null;
     d.pid = twin ? twin.id : (c.periods.find(p=>!p.initial)||c.periods[0]).id; d.unitId = ''; }
-  if(k==='aid'){ d.criteria = []; d.unitId = ''; if(d.aid!=='ing') d.skill = ''; }
+  if(k==='aid'){ d.criteria = []; d.critSab = {}; d.sabExtra = []; d.unitId = ''; if(d.aid!=='ing') d.skill = ''; }
   if(k==='pid') d.unitId = '';
   if(k==='tpl'){ const tp = (state.templates||[]).find(x=>x.id===d.tpl);
     if(tp){ d.type = tp.type; if(tp.self || tp.type==='faces') d.kind = 'info'; } }
@@ -11598,7 +11806,7 @@ function tutoriaModal(existing){
   const t = existing || {date:today(), time:'', mode:'Presencial', family:'', staff:'', topics:'', agreements:'', next:''};
   const inner = `<h3>${existing?'Editar tutoría':'Registrar tutoría'}</h3>
     <p class="sub">${esc(s.name)} · ${esc(c.name)}</p>
-    ${c.areas.some(a=>hasStartPoint(c, s.id, a)) ? `<details class="sp-card" style="margin-bottom:10px"><summary><b>Punto de partida (evaluación inicial)</b></summary>${startPointHtml(c, s.id, c.areas)}</details>`:''}
+    ${c.areas.some(a=>hasStartPoint(c, s.id, a)) ? `<details class="sp-card" ${fold('sp', false)} style="margin-bottom:10px"><summary><b>Punto de partida (evaluación inicial)</b></summary>${startPointHtml(c, s.id, c.areas)}</details>`:''}
     <div class="m-cols">
       <div class="col-a">
         <div class="row" style="gap:10px">
@@ -12372,6 +12580,7 @@ const actions = {
   unitSub(t){ state.unitSub = t.dataset.id; if(t.dataset.id==='eval'){ state.editMode=false; if(!isNarrow()) state.gridMode='table'; } save(); render(); },
   triSub(t){ state.triSub = t.dataset.id; save(); render(); },
   upView(t){ state.upView = t.dataset.m; save(); render(); },
+  pgFold(t){ const k = t.dataset.k; foldSet(k, !foldGet(k, true), true); render(); },
   /* despliega o pliega un apartado en su sitio; los demás no se mueven de orden */
   upToggle(t){
     const c = course(), u = c && unitById(c, state.activeUnit); if(!u) return;
@@ -12396,7 +12605,7 @@ const actions = {
       d.querySelector('[data-sabn]').textContent = n+'/'+all; d.classList.toggle('has', n>0); });
     document.getElementById('critTot').textContent = box.querySelectorAll('.sab-it.on').length+' elegidos de '+box.querySelectorAll('.sab-it').length;
     const kl = document.querySelector('.kc-list'); if(kl) kl.outerHTML = kcPicker(c, u, areaId());
-    upRefresh(u); save();
+    upLinkRefresh(c, u); upRefresh(u); save();
   },
   selfLv(t){
     const c = course(), u = c && unitById(c, state.activeUnit); if(!u) return;
@@ -12438,6 +12647,7 @@ const actions = {
   },
   sabToggle(t){
     const c = course(), u = c && unitById(c, state.activeUnit); if(!u) return;
+    if(t.classList.contains('lock')) return;
     if(!u.plan || typeof u.plan!=='object') u.plan = {};
     const cur = Array.isArray(u.plan.sab) ? u.plan.sab.slice() : [], i = cur.indexOf(t.dataset.id);
     if(i>-1) cur.splice(i,1); else cur.push(t.dataset.id);
@@ -12447,7 +12657,7 @@ const actions = {
   sabAll(t){
     const c = course(), u = c && unitById(c, state.activeUnit); if(!u) return;
     if(!u.plan || typeof u.plan!=='object') u.plan = {};
-    const ids = [...t.closest('.sab-sub').querySelectorAll('.sab-it')].map(x=>x.dataset.id);
+    const ids = [...t.closest('.sab-sub').querySelectorAll('.sab-it:not(.lock)')].map(x=>x.dataset.id);
     let cur = (Array.isArray(u.plan.sab) ? u.plan.sab : []).filter(x=>ids.indexOf(x)<0);
     if(t.dataset.m==='1') cur = cur.concat(ids);
     if(cur.length) u.plan.sab = cur; else delete u.plan.sab;
@@ -12709,7 +12919,19 @@ const actions = {
     d.dirty = true; t.classList.toggle('on', i===-1);
     if(!d.id && d.type==='points' && !d.tpl){ render(); return; }   // cambia el texto del botón
     const pv = document.getElementById('teCritPrev'); if(pv) pv.innerHTML = teCritHtml(c, d);
-    const n = document.getElementById('teCritN'); if(n) n.textContent = d.criteria.length ? d.criteria.length+' marcado(s)' : ''; },
+    const n = document.getElementById('teCritN'); if(n) n.textContent = d.criteria.length ? d.criteria.length+' marcado(s)' : '';
+    teSabRefresh(c, d); },
+  teSab(t){ const d = state.taskEd, c = teCourse(); if(!d || !c) return;
+    const k = t.dataset.code, id = t.dataset.id, cs = d.critSab || (d.critSab = {}), a = cs[k] || (cs[k] = []), i = a.indexOf(id);
+    if(i>-1) a.splice(i,1); else a.push(id);
+    if(!a.length) delete cs[k];
+    d.dirty = true; teSabRefresh(c, d); },
+  teSabMore(){ const d = state.taskEd, c = teCourse(); if(!d || !c) return; d.sabMore = !d.sabMore; teSabRefresh(c, d); },
+  teSabExtra(t){ const d = state.taskEd, c = teCourse(); if(!d || !c || t.classList.contains('lock')) return;
+    const a = d.sabExtra || (d.sabExtra = []), i = a.indexOf(t.dataset.id);
+    if(i>-1){ a.splice(i,1); Object.keys(d.critSab||{}).forEach(k=>{ d.critSab[k] = d.critSab[k].filter(x=>x!==t.dataset.id); if(!d.critSab[k].length) delete d.critSab[k]; }); }
+    else a.push(t.dataset.id);
+    d.dirty = true; teSabRefresh(c, d); },
   teAddDate(){ const d = state.taskEd; if(!d) return;
     const v = document.getElementById('teDate').value, h = document.getElementById('teTime').value || '';
     if(!v) return;
@@ -15637,7 +15859,7 @@ function homeLegis(){
             <div class="lg-acts"><a class="lg-go" href="${esc(a.u)}" target="_blank" rel="noopener noreferrer">PDF ↗</a>${inApp ? '' : `<button class="lg-imp" data-cib="open" data-name="${esc(a.t)}" data-src="${cc}:${a.id}" title="Pegar sus criterios para usarlos en tus tareas">＋ Importar</button>`}</div></div>`; }).join('')}</div>
         ${nMine?'<p class="hint lg-note">Arriba, las áreas que tienes en tus clases.</p>':''}</section>
       <section class="lg-sec"><div class="lg-h"><h3>Orden de currículo y modificaciones</h3></div><div class="lg-list">${D.orden.map(x=>lgLink(x)).join('')}${lgLink(D.perfil)}</div></section>
-      ${D.otros.map(g=>`<details class="lg-sec lg-det"><summary><h3>${esc(g.t)}</h3><span class="lg-n">${g.items.length}</span></summary><div class="lg-list">${g.items.map(x=>lgLink(x)).join('')}</div></details>`).join('')}`;
+      ${D.otros.map(g=>`<details class="lg-sec lg-det" ${fold('lg:'+g.t, false)}><summary><h3>${esc(g.t)}</h3><span class="lg-n">${g.items.length}</span></summary><div class="lg-list">${g.items.map(x=>lgLink(x)).join('')}</div></details>`).join('')}`;
   }
   return `<div class="lg-page">
     <div class="lg-top"><div><h2 class="sec-title">Legislación</h2><p class="hint" style="margin:2px 0 0">Enlaces a la normativa oficial de Educación Primaria. Se abren en otra pestaña.</p></div><div class="spacer"></div>${sel}<button class="btn small" data-cib="open" title="Pegar los criterios de un área desde su PDF oficial">＋ Importar un área</button></div>
