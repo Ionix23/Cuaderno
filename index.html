@@ -2046,6 +2046,78 @@ td.stick button.dv-go{font-size:9px;margin-left:4px;vertical-align:1px}
 .vt-chip{flex:none;font-size:12.5px;border-radius:999px;padding:5px 11px;background:var(--paper);color:var(--muted);border:1px solid var(--rule);max-width:200px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .vt-chip.ok{background:var(--accent-soft);color:var(--accent);border-color:transparent;font-weight:600}
 @media(max-width:700px){.vt-qrow{flex-wrap:wrap}.vt-qbtns{width:100%}.vt-qbtns .vt-play{flex:1}.vt-chip{display:none}.vt-rrow{padding:10px}}
+/* ---------- Super Improver Wall ---------- */
+.siw-page{max-width:980px;margin:0 auto}
+.siw-head{gap:10px}
+.siw-n{font-variant-numeric:tabular-nums}
+.siw-date{display:inline-flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:3px 4px 3px 10px;font-size:13px;color:var(--muted);box-shadow:var(--bevel)}
+.siw-date input{border:0;background:transparent;font:inherit;font-size:15px;color:var(--ink);padding:4px}
+.siw-date.past{background:#FDF3DC;border-color:var(--mark);color:#7A5300}
+.siw-sort{width:auto;font-size:15px;padding:6px 8px}
+.siw-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
+.siw-stats>div{background:var(--card);border:1px solid var(--rule);border-radius:14px;padding:10px 14px;box-shadow:var(--bevel);display:flex;flex-direction:column}
+.siw-stats b{font-family:var(--font-display);font-size:26px;line-height:1.1;color:var(--ink)}
+.siw-stats span{font-size:13px;color:var(--muted)}
+.siw-stats .tk{background:#FFF4D6;border-color:#F0D9A0}
+.siw-ladder{background:var(--card);border:1px solid var(--rule);border-radius:14px;padding:9px 14px;margin-bottom:12px}
+.siw-ladder summary{cursor:pointer;font-size:14px;font-weight:600;color:var(--muted)}
+.siw-lv{display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:6px;margin-top:10px}
+.siw-lv span{display:flex;align-items:center;gap:6px;border:3px solid var(--lv);border-radius:8px;padding:3px 8px;font-family:var(--font-display);font-weight:700;font-size:13.5px;background:var(--card)}
+.siw-lv i{font-style:normal;font-family:var(--font-mono);font-size:11.5px;color:var(--muted)}
+.siw-list{display:flex;flex-direction:column;gap:9px}
+.siw-st{background:var(--card);border:1px solid var(--rule);border-left:6px solid var(--edge);border-radius:14px;padding:11px 14px;box-shadow:var(--bevel);display:flex;flex-direction:column;gap:9px}
+.siw-st.flash{animation:siwFl .9s ease-out}
+@keyframes siwFl{0%{box-shadow:0 0 0 3px var(--mark)}100%{box-shadow:var(--bevel)}}
+@media (prefers-reduced-motion:reduce){.siw-st.flash{animation:none}}
+.siw-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.siw-who{display:flex;flex-direction:column;gap:3px;min-width:0}
+.siw-who b{font-size:16.5px;font-weight:600;overflow-wrap:anywhere}
+.siw-who small{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--muted)}
+.siw-chip{display:inline-block;border-radius:999px;padding:1px 9px;font-weight:700;font-size:12.5px}
+.siw-tk{display:inline-flex;align-items:center;gap:5px;flex:none;background:#FFE9A8;color:#4A3500;border-radius:999px;padding:4px 11px;font-weight:700;font-size:15px}
+.siw-tk.zero{background:transparent;border:1px dashed var(--rule);color:var(--muted);font-weight:500}
+.siw-segs{display:grid;grid-template-columns:repeat(12,1fr);gap:3px}
+.siw-segs span{height:11px;border-radius:4px;background:#E7ECE8}
+.siw-segs span.cur{background:transparent;outline:2px solid var(--seg);outline-offset:-2px}
+.siw-acts{display:flex;gap:8px;flex-wrap:wrap}
+.siw-acts .btn{min-height:40px}
+button.btn.siw-up{flex:1 1 200px;background:var(--lf);color:var(--lt);border-color:rgba(0,0,0,.12);font-weight:600;box-shadow:var(--bevel)}
+button.btn.siw-up:hover{filter:brightness(.95);background:var(--lf)}
+button.btn.siw-up:disabled{background:#E7ECE8;color:var(--muted);cursor:default}
+.siw-acts .btn.ghost{flex:0 1 auto}
+.siw-acts .btn:disabled{opacity:.45;cursor:default}
+.siw-dots{font-weight:700;letter-spacing:1px}
+.siw-red{display:flex;flex-direction:column;gap:7px;background:#FFF7E2;border:1px solid #F0D9A0;border-radius:12px;padding:11px}
+.siw-red-h{font-weight:600;font-size:14.5px}.siw-red-h span{font-weight:400;color:var(--muted);margin-left:4px}
+.siw-cost{display:flex;align-items:center;gap:3px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#7A5300;margin-top:2px}
+.siw-cost i{width:9px;height:9px;border-radius:2px;background:var(--mark);margin-right:1px}
+.siw-cost i:last-of-type{margin-right:5px}
+.siw-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:6px}
+.siw-card{display:flex;flex-direction:column;align-items:flex-start;gap:2px;text-align:left;background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:8px 10px;cursor:pointer;font:inherit;color:var(--ink);box-shadow:var(--bevel)}
+.siw-card b{font-size:14px}.siw-card small{font-size:12.5px;color:var(--muted);line-height:1.3}
+.siw-card[aria-pressed="true"]{border:2px solid var(--ink);padding:7px 9px;background:#fff}
+.siw-card:disabled{opacity:.4;cursor:not-allowed;box-shadow:none}
+.siw-otro{display:flex;gap:6px}.siw-otro input{flex:1;min-width:0}.siw-otro select{width:auto}
+.siw-red-go{margin-top:2px}.siw-red-go .btn:disabled{opacity:.45;cursor:default}
+.siw-dnote{font-size:13px;color:#7A5300}
+.siw-more{display:flex;flex-direction:column;gap:7px;border-top:1px dashed var(--rule);padding-top:9px}
+.siw-hist-h{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}
+.siw-hist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:3px}
+.siw-hist li{display:flex;gap:10px;font-size:14px}
+.siw-hist time{color:var(--muted);min-width:56px}.siw-hist span{flex:1}.siw-hist em{font-style:normal;color:#7A5300;font-weight:600}
+.siw-last{font-size:13.5px;color:var(--muted)}
+#app .siw-page .siw-sub{font-family:inherit;font-size:13px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin:26px 0 8px;font-weight:700}
+.siw-feed{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:5px}
+.siw-feed li{display:flex;align-items:center;gap:9px;font-size:14.5px}
+.siw-feed time{color:var(--muted);font-size:13px;min-width:52px}
+.siw-feed i{width:9px;height:9px;border-radius:50%;flex:none}
+@media(max-width:700px){
+  .siw-head .sec-title{width:100%}
+  .siw-stats{gap:6px}.siw-stats>div{padding:8px 10px}.siw-stats b{font-size:21px}.siw-stats span{font-size:12px}
+  .siw-st{padding:10px 11px}
+  .siw-cards{grid-template-columns:1fr 1fr}
+  .siw-acts{flex-wrap:nowrap}button.btn.siw-up{flex:1 1 0;min-width:0;padding-inline:8px}
+}
 
 /* editor */
 .vt-saved{font-size:12.5px;color:var(--muted)}
@@ -2920,8 +2992,8 @@ function medMatchesProfile(medCode, conds){
 }
 const CODES = {P:'Presente', A:'Falta', R:'Retraso', J:'Justificada'};
 const KEY = 'cuaderno-lomloe:v1';
-const APP_VERSION = '5.4';
-const APP_BUILD = '29/10/2026';
+const APP_VERSION = '5.5';
+const APP_BUILD = '11/11/2026';
 const APP_NOTES = 'Saberes por criterio: en cada tarea, debajo de los criterios, tocas qué saberes moviliza cada uno (los ya usados con ese criterio en otras tareas de la unidad salen sugeridos). La programación de la unidad tiene un apartado propio «Saberes básicos» con la matriz criterios × saberes, en qué tarea se cruzan y avisos de cobertura; los saberes marcados en una tarea pasan a la programación. Todas las evaluaciones: cada evaluación se pliega con su flecha. La app recuerda en todos tus dispositivos qué apartados, grupos y submenús dejaste plegados o desplegados. Antes: Primera vez: la app pregunta en qué comunidad trabajas (se puede cerrar) y precarga el currículo de Aragón; también desde Legislación. Evaluaciones: en el selector de evaluación de cada área, «Todas las evaluaciones» (unidades y evaluación trimestral de inicial, 1.ª, 2.ª y 3.ª, una detrás de otra) y «Evaluación final» (nota de cada trimestre, su media, la nota final escrita a mano y, si quieres, la nota de cada criterio en cada trimestre). Antes: Importar un área (Legislación o ajustes de la clase): eliges los ciclos y pegas, desde el PDF oficial, competencias, criterios y saberes en su recuadro; la app te enseña lo que reconoce y lo que falta antes de guardar. Las áreas importadas se pueden eliminar (o solo quitar de tus clases conservando sus datos). Inglés: criterios y competencias con la redacción del currículo de Aragón (Anexo II de la Orden ECD/1112/2022); tus tareas, rúbricas y notas no cambian. Legislación (en el menú, junto a Ajustes): eliges tu comunidad y tienes a un clic la página oficial de normativa, la Orden de currículo con sus modificaciones, el PDF del Anexo II de cada área (primero las tuyas) y el resto de anexos. Votaciones con tarjetas (en cada clase, junto a la Pizarra): crea cuestionarios de 2 a 4 respuestas (o pégalos de golpe con «📋 Pegar preguntas»: con la correcta marcada con ✅, en negrita, con «Answer: B» o con una clave al final), imprime una tarjeta por alumno y proyecta las preguntas en el ordenador; con el móvil escaneas las tarjetas que levanta la clase, cada nombre se apaga al leerse, revelas la respuesta y pasas a la siguiente desde el móvil, y al final ves qué ha acertado cada alumno y lo pasas a una tarea evaluable. Menú lateral reorganizado: Agenda (Mi programación de aula, Mi horario), Mis clases, Tareas pendientes y Reuniones; en cada clase, Alumnado (lista, aula, horario, diversidad y tutorías), sus áreas y Herramientas (Pizarra y Votaciones), con líneas que marcan qué va dentro de qué. Pizarra: botón ▁ Minimizar para seguir usando la app con la pizarra abierta. Pendientes: el campo para escribir, más grande y centrado. Antes: Pizarra: varias páginas por pizarra (‹ 1/3 › en la barra), imágenes (desde el menú Añadir, pegándolas con Ctrl+V o arrastrando el archivo), botón 📌 para fijar una imagen, tabla o pósit al fondo y escribir encima, y herramienta ⬚ para rodear lo escrito y moverlo, cambiarle el tamaño, el color o el grosor, duplicarlo o borrarlo. Antes: Pizarra: Aula pasa a ser una pizarra a pantalla completa para el monitor del aula. Se escribe con el lápiz o el dedo (presión del lápiz, subrayador, líneas, flechas, formas y goma), con fondos lisos, pautas de escritura, cuadrícula, pentagrama y pistas de Educación Física con fichas de jugadores. Sobre ella se colocan y mueven pósits, textos, tablas, temporizador, voluntario, grupos (también por nota), ruleta y semáforo. Se guarda sola en el equipo y, con Drive conectado, se sube como archivo editable e imagen a la carpeta «Cuaderno Profesor · pizarras». Antes: Aula: nuevas herramientas Ruleta (alumnado, números o tu lista) y Semáforo de volumen. Pendientes: botón 📌 para sacarlos como pósit flotante encima de las demás ventanas (Chrome y Edge de ordenador). Google Calendar: botón para compartir tu agenda con un compañero. Antes: Menú lateral: Mis clases › clase › área › sección, con Agenda, Pendientes y Reuniones a mano; en tablet se pliega a iconos y en el móvil se abre con ☰. Diversidad pasa a ser de toda la clase, con todas las áreas de cada alumno, y la etiqueta de adaptación de las tablas lleva a su perfil. Si prefieres las pestañas de antes, cámbialo en Ajustes › Apariencia. Antes: Google Calendar: los eventos se envían con el color que tienen en la app y, si quieres, tu agenda muestra los eventos de tus calendarios de Google (excursiones, festivos…). Reuniones: nueva pestaña en la agenda para tomar notas de cada reunión con un editor de texto (títulos, negrita, colores, tipos y tamaños de letra, listas), etiquetas como carpetas, búsqueda y filtro por fecha, y el botón 📌 para convertir una frase en pendiente. Antes: Google Drive: al conectar por primera vez en un dispositivo eliges la cuenta de Google, el dispositivo la recuerda y en Ajustes puedes cambiarla. Antes: Buscador en la cabecera (Ctrl+K) para alumnado, tareas, unidades, sesiones y pendientes. Cursos escolares: «Empezar curso nuevo» archiva el actual y conserva tu programación; los anteriores se consultan desde Mis clases. Google Calendar: copia tu agenda a un calendario propio, con la cuenta que elijas. La copia de seguridad completa incluye ya los pendientes. Antes: Más seguridad para tus datos: se guarda al instante al salir de la app, avisa si el dispositivo no puede guardar, «Deshacer» tras cada borrado y una copia automática diaria. Bloqueo con PIN opcional. Pendientes que se repiten y que se crean desde una sesión o una tutoría. «Repartir puntos» para sumar marcas de un toque. Antes: Estilos visuales: en Ajustes › Apariencia puedes elegir entre Original, Cuaderno, Pizarra, Archivador y Colores. Las marcas con contador se suman o restan con − y + desde la propia casilla. Antes: Ajustes más limpios: la copia de seguridad y el archivo local se pliegan cuando ya sincronizas con Google Drive, y las novedades de la versión se despliegan solo si las quieres leer. Antes: Nueva pestaña «Pendientes» en la agenda: tu lista de cosas por hacer, con prioridad, fecha límite y clase; la agenda avisa de lo que vence hoy o va con retraso. Además: Programación de la unidad: nueve apartados desplegables para planificar la unidad entera, con criterios, saberes básicos y competencias clave del currículo de Aragón, sesiones enlazadas con la agenda, adjuntos, medidas de atención a la diversidad por alumno, diana de autoevaluación docente, vista completa y PDF de dos caras. Además, código de color único por grado en rúbricas y tablas de notas, y tablas, horario y agenda con piezas redondeadas';
 
 /* escala cualitativa por defecto (Orden ECD/1112/2022) */
@@ -3169,7 +3241,7 @@ const GD_UP = 'https://www.googleapis.com/upload/drive/v3';
 const GD_DATA_KEYS = ['courses','curriculo','schedule','sessions','teacherTT','templates','areaColors','colorBy','markDefs','upMethods','holidays','attFolderId','todos','year','archive','gcalIds','meetings','meetTags','boards','boardFolderId','quizzes','ccaa','curRev','curPack','welcomed','fold','upOpen','sbOpen'];
 const GD_UI_KEYS = ['view','homeTab','planView','planDate','planSub','activeCourse','activeArea','activePeriod','activeUnit',
   'editor','viewStudent','tutStudent','tutFromHome','unitSub','triSub','divSub','alumSub','gridMode','editMode',
-  'instrMode','rubCompact','mkDeal','divArea','divFocus','divBack','meetOpen','meetQ','meetTag','meetMonth','meetSort','upView','sabOnly','sabCycle','editWeights','todoShow','homeTutCourse','homeAjCourse','attDate','lastSel','lastCourse','taskEd'];
+  'instrMode','rubCompact','mkDeal','divArea','divFocus','divBack','meetOpen','meetQ','meetTag','meetMonth','meetSort','upView','sabOnly','sabCycle','editWeights','todoShow','homeTutCourse','homeAjCourse','attDate','lastSel','lastCourse','taskEd','siwSort'];
 
 const gd = {
   status:'off',          // off · need · ok · sync · offline · error · conflict
@@ -4577,7 +4649,7 @@ function adaptedWeightByStudent(c, aid, pid){
    ===================================================================== */
 const TABS = [
   ['clases','Clases'],['alumnos','Alumnado'],['unidades','Unidades'],['trimestre','Ev. Trimestral'],
-  ['diversidad','Diversidad'],['votaciones','Votaciones'],['plantillas','Plantillas']
+  ['diversidad','Diversidad'],['votaciones','Votaciones'],['siw','Improver Wall'],['plantillas','Plantillas']
 ];
 
 function atHome(){ return state.view==='clases' || !course(); }
@@ -5829,14 +5901,14 @@ function sbWhere(){
   }
   if(v==='plantillas') return {g:'plantillas'};
   if(v==='ajustes') return {g:'ajustes'};
-  const map = {alumnos:'alumnos', alumno:'alumnos', diversidad:'diversidad', tutorias:'tutorias', tutoriaAlumno:'tutorias', trimestre:'trimestre', votaciones:'votaciones', votoEd:'votaciones', votoRes:'votaciones', votoPaste:'votaciones'};
+  const map = {alumnos:'alumnos', alumno:'alumnos', diversidad:'diversidad', tutorias:'tutorias', tutoriaAlumno:'tutorias', trimestre:'trimestre', votaciones:'votaciones', votoEd:'votaciones', votoRes:'votaciones', votoPaste:'votaciones', siw:'siw'};
   return {g:'clases', cid:c.id, aid: map[v] && v!=='trimestre' ? null : areaId(), sec: map[v] || 'unidades', asub: state.alumSub || 'lista'};
 }
 function sbCrumbHtml(){
   const w = sbWhere(), c = course();
   const names = {clases:'Mis clases', agenda:'Agenda', pend:'Tareas pendientes', reu:'Reuniones', ajustes:'Ajustes', plantillas:'Plantillas', legis:'Legislación'};
   if(!w.cid) return `<span class="sb-crumb">${esc(w.g==='agenda' ? (w.sub==='horario' ? 'Agenda › Mi horario' : 'Agenda › Mi programación de aula') : names[w.g]||'')}</span>`;
-  const secN = {alumnos:'Alumnado › '+({lista:'Lista de clase', aula:'Disposición en el aula', horario:'Horario de aula'}[w.asub]||'Lista de clase'), diversidad:'Alumnado › Diversidad', tutorias:'Alumnado › Tutorías', unidades:'Unidades', trimestre:'Ev. trimestral', votaciones:'Herramientas › Votaciones'};
+  const secN = {alumnos:'Alumnado › '+({lista:'Lista de clase', aula:'Disposición en el aula', horario:'Horario de aula'}[w.asub]||'Lista de clase'), diversidad:'Alumnado › Diversidad', tutorias:'Alumnado › Tutorías', unidades:'Unidades', trimestre:'Ev. trimestral', votaciones:'Herramientas › Votaciones', siw:'Herramientas › Super Improver Wall'};
   const a = w.aid ? (areaDef(w.aid).short || areaDef(w.aid).name) : '';
   return `<span class="sb-crumb">${esc(c.name)}${a?' › '+esc(a):''} › ${secN[w.sec]||''}</span>`;
 }
@@ -5872,10 +5944,10 @@ function sbRender(){
         return g;
       }).join('') + `</div>`;
       /* Herramientas de aula */
-      const hrHere = here && w.sec==='votaciones';
+      const hrHere = here && ['votaciones','siw'].includes(w.sec);
       const hrOpen = op['hr:'+c.id]!==undefined ? op['hr:'+c.id] : hrHere;
       h += `<div class="sb-g lv2 ${hrHere?'cur':''} ${hrOpen?'open':''}">${car('hr:'+c.id, hrOpen)}<button class="sb-gl" data-act="sbTog" data-id="hr:${c.id}"><span class="ic">✦</span><span class="t">Herramientas</span></button></div>`;
-      if(hrOpen) h += `<div class="sb-kids${hrHere?' cur':''}">` + I('lv3', '🖍', 'Pizarra', `data-act="sbAula" data-c="${c.id}"`, false) + I('lv3', '📇', 'Votaciones', `data-act="sbCls" data-c="${c.id}" data-v="votaciones"`, hrHere) + `</div>`;
+      if(hrOpen) h += `<div class="sb-kids${hrHere?' cur':''}">` + I('lv3', '🖍', 'Pizarra', `data-act="sbAula" data-c="${c.id}"`, false) + I('lv3', '📇', 'Votaciones', `data-act="sbCls" data-c="${c.id}" data-v="votaciones"`, hrHere && w.sec==='votaciones') + I('lv3', '⭐', 'Super Improver Wall', `data-act="sbCls" data-c="${c.id}" data-v="siw"`, hrHere && w.sec==='siw') + `</div>`;
       return h + `</div>`;
     }).join('');
   }
@@ -5884,6 +5956,7 @@ function sbRender(){
       ${[['alumnos','👥','Alumnado'],['diversidad','◈','Diversidad'],['tutorias','◉','Tutorías']].map(([v,ic,l])=>I('', ic, l, `data-act="sbCls" data-c="${c0.id}" data-v="${v}" title="${esc(c0.name)} · ${l}"`, w.cid===c0.id && w.sec===v)).join('')}
       ${I('', '🖍', 'Pizarra', `data-act="sbAula" data-c="${c0.id}" title="${esc(c0.name)} · Pizarra"`, false)}
       ${I('', '📇', 'Votaciones', `data-act="sbCls" data-c="${c0.id}" data-v="votaciones" title="${esc(c0.name)} · Votaciones"`, w.cid===c0.id && w.sec==='votaciones')}
+      ${I('', '⭐', 'Super Improver Wall', `data-act="sbCls" data-c="${c0.id}" data-v="siw" title="${esc(c0.name)} · Super Improver Wall"`, w.cid===c0.id && w.sec==='siw')}
       ${[['unidades','▤','Unidades'],['trimestre','▥','Ev. trimestral']].map(([v,ic,l])=>I('', ic, l, `data-act="sbArea" data-c="${c0.id}" data-a="${areaId()}" data-v="${v}" title="${esc(c0.name)} · ${esc(areaDef(areaId()).short||'')} · ${l}"`, w.cid===c0.id && w.sec===v)).join('')}
     </div>` : '';
   const gdTxt = !gdAvailable() ? '' : gd.connected ? (gd.status==='ok' ? '<b>✓</b>' : gd.status==='sync' ? '…' : gd.status==='conflict' ? '<b class="w">⚠</b>' : '<b class="w">↻</b>') : '<b class="w">sin conectar</b>';
@@ -12416,7 +12489,7 @@ const actions = {
   },
   sbTog(t){ const op = sbOpenSet(), k = t.dataset.id, w = sbWhere();
     const cur = op[k]!==undefined ? op[k] : (k==='classes' ? true : k==='agenda' ? w.g==='agenda' : k.indexOf('c:')===0 ? w.cid===k.slice(2)
-      : k.indexOf('al:')===0 ? (w.cid===k.slice(3) && ['alumnos','diversidad','tutorias'].includes(w.sec)) : k.indexOf('ar:')===0 ? (w.cid===k.slice(3) && !!w.aid && ['unidades','trimestre'].includes(w.sec)) : k.indexOf('hr:')===0 ? (w.cid===k.slice(3) && w.sec==='votaciones') : (w.cid && k===('a:'+w.cid+':'+w.aid)));
+      : k.indexOf('al:')===0 ? (w.cid===k.slice(3) && ['alumnos','diversidad','tutorias'].includes(w.sec)) : k.indexOf('ar:')===0 ? (w.cid===k.slice(3) && !!w.aid && ['unidades','trimestre'].includes(w.sec)) : k.indexOf('hr:')===0 ? (w.cid===k.slice(3) && ['votaciones','siw'].includes(w.sec)) : (w.cid && k===('a:'+w.cid+':'+w.aid)));
     op[k] = !cur;
     if(!cur && k.indexOf('c:')===0) sbFocus(k.slice(2), null);
     if(!cur && k.indexOf('a:')===0){ const p = k.split(':'); sbFocus(p[1], p[2]); }
@@ -12435,7 +12508,7 @@ const actions = {
   sbClass(t){ const cid = t.dataset.id; sbNav(()=>{ enterCourse(cid, false); sbFocus(cid, null);
       const mem = (state.lastSel||{})[cid] || {}; state.view = LIST_VIEWS.includes(mem.view) && mem.view!=='plantillas' ? mem.view : 'alumnos'; }); },
   sbCls(t){ const cid = t.dataset.c, v = t.dataset.v, sub = t.dataset.s; sbNav(()=>{ if(!course() || course().id!==cid) enterCourse(cid, false); sbFocus(cid, null); state.view = v; if(sub) state.alumSub = sub;
-      if(['alumnos','diversidad','tutorias'].includes(v)) sbOpenSet()['al:'+cid] = true; if(v==='votaciones') sbOpenSet()['hr:'+cid] = true;
+      if(['alumnos','diversidad','tutorias'].includes(v)) sbOpenSet()['al:'+cid] = true; if(v==='votaciones' || v==='siw') sbOpenSet()['hr:'+cid] = true;
       if(v==='diversidad'){ state.divFocus = null; state.divBack = null; } }); },
   sbArea(t){ const cid = t.dataset.c, a = t.dataset.a, v = t.dataset.v; sbNav(()=>{
       if(!course() || course().id!==cid) enterCourse(cid, false);
@@ -15475,6 +15548,196 @@ function vtScanner(code){
   draw(); connect();
   return S;
 }
+
+/* =====================================================================
+   SUPER IMPROVER WALL
+   Cada alumno sube por 12 tarjetas de 15 estrellas. Tarjeta completada = 1 ticket.
+   Los tickets se canjean por cartas. Datos por clase en c.siw[idAlumno]:
+   {niveles, gastados, historial:[{fecha, tipo:'nivel'|'canje', nivel|carta, coste, at}]}
+   Tickets disponibles = niveles − gastados. Viaja con las clases (y con Drive).
+   ===================================================================== */
+const SIW_LEVELS = [
+  // [nombre, relleno, texto sobre el relleno, color sólido]
+  ['Beginner','#A9D3EA','#14324A','#7DBBDD'],
+  ['Rookie','#1F6DB5','#FFFFFF','#1F6DB5'],
+  ['Learner','#B8DA8C','#203410','#9CC86A'],
+  ['Rising Star','#5DB646','#FFFFFF','#4FA63A'],
+  ['Pro','#F4D434','#3A2F00','#E3C21E'],
+  ['MVP','#F3A55B','#3A1E00','#EE9443'],
+  ['Genius','#9B6A2F','#FFFFFF','#9B6A2F'],
+  ['Expert','#E6603F','#FFFFFF','#E6603F'],
+  ['Super Star','#EE79B4','#3A0A22','#E9629F'],
+  ['Brilliant','#3B6FCB','#FFFFFF','#3B6FCB'],
+  ['Legend','linear-gradient(135deg,#8E9296,#D9DCDF 45%,#9DA1A5)','#1E2124','#A3A7AB'],
+  ['Living Legend','linear-gradient(135deg,#B8862A,#F1D27A 45%,#C0912E)','#2E1F00','#C99A30']
+];
+const SIW_CARDS = [
+  {n:'Assassination Classroom', c:1, d:'Pone la canción que quiera en clase'},
+  {n:'Escaqueator', c:1, d:'Últimos 10 min de clase libres'},
+  {n:'Just chatting de chill', c:1, d:'5 min para hablar con su compañero'},
+  {n:'Salvavidas', c:2, d:'No se revisan sus deberes ese día'},
+  {n:'Fast & Furious', c:2, d:'Toda la clase puede cambiarse de sitio'},
+  {n:'Superviviente', c:3, d:'+0,5 en el examen que quiera'},
+  {n:'2 minutos de ayuda', c:3, d:'Consultar apuntes 2 min en un examen'},
+  {n:'UAV de respuesta en camino', c:3, d:'El profe le ayuda con una pregunta del examen'}
+];
+const SIW_MAX = SIW_LEVELS.length, SIW_STARS = 15;
+const SIW_TICKET = '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2v-2a2 2 0 0 0 0-4z"/><path d="M14 6v12" stroke-dasharray="2 2"/></svg>';
+/* estado de pantalla (no se guarda) */
+const siwUi = {open:null, redeem:null, pick:null, flash:null, date:null, why:'', cost:1};
+function siwToday(){ const d = new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+function siwFd(s){ return s ? new Date(s+'T12:00').toLocaleDateString('es-ES',{day:'numeric',month:'short'}).replace('.','') : ''; }
+function siwData(c){ if(!c.siw || typeof c.siw!=='object') c.siw = {}; return c.siw; }
+function siwOf(c, sid){
+  const all = siwData(c);
+  let r = all[sid];
+  if(!r){ r = all[sid] = {niveles:0, gastados:0, historial:[]}; }
+  if(!Array.isArray(r.historial)) r.historial = [];
+  r.niveles = Math.max(0, Math.min(SIW_MAX, Number(r.niveles)||0));
+  r.gastados = Math.max(0, Number(r.gastados)||0);
+  return r;
+}
+function siwPeek(c, sid){ const r = (c.siw||{})[sid]; return r ? {niveles:Number(r.niveles)||0, gastados:Number(r.gastados)||0, historial:r.historial||[]} : {niveles:0, gastados:0, historial:[]}; }
+function siwTk(r){ return Math.max(0, r.niveles - r.gastados); }
+function siwChip(i){ const L = SIW_LEVELS[i]; return `<span class="siw-chip" style="background:${L[1]};color:${L[2]}">${esc(L[0])}</span>`; }
+function siwBar(n){
+  return `<div class="siw-segs" aria-hidden="true">${SIW_LEVELS.map((L,i)=> i<n ? `<span class="f" style="background:${L[1]}" title="${esc(L[0])}"></span>`
+    : i===n ? `<span class="cur" style="--seg:${L[3]}" title="${esc(L[0])} · en curso"></span>` : `<span title="${esc(L[0])}"></span>`).join('')}</div>`;
+}
+function siwMoveTxt(h){
+  if(h.tipo==='nivel'){ const L = SIW_LEVELS[(h.nivel||1)-1] || SIW_LEVELS[0]; return `completó <b>${esc(L[0])}</b> · +1`; }
+  return `canjeó <b>${esc(h.carta||'Otro')}</b> · −${h.coste||1}`;
+}
+
+views.siw = function(){
+  const c = course(); if(!c) return noCourse();
+  if(!siwUi.date) siwUi.date = siwToday();
+  const sort = state.siwSort || 'lista';
+  const rows = c.students.map((s,i)=>({s, i, r:siwPeek(c, s.id)}));
+  const nm = (a,b)=>String(a.s.name).localeCompare(String(b.s.name),'es');
+  if(sort==='nombre') rows.sort(nm);
+  if(sort==='nivel') rows.sort((a,b)=>b.r.niveles-a.r.niveles || nm(a,b));
+  if(sort==='tickets') rows.sort((a,b)=>siwTk(b.r)-siwTk(a.r) || nm(a,b));
+  const lv = rows.reduce((n,x)=>n+x.r.niveles,0), tk = rows.reduce((n,x)=>n+siwTk(x.r),0);
+  const feed = [];
+  rows.forEach(x=>x.r.historial.forEach(h=>feed.push({h, name:x.s.name})));
+  feed.sort((a,b)=>(b.h.at||0)-(a.h.at||0) || String(b.h.fecha).localeCompare(String(a.h.fecha)));
+  const isToday = siwUi.date===siwToday();
+
+  const card = ({s, r})=>{
+    const n = r.niveles, t = siwTk(r), cur = n<SIW_MAX ? SIW_LEVELS[n] : null, open = siwUi.open===s.id, red = siwUi.redeem===s.id;
+    const edge = n ? SIW_LEVELS[n-1][3] : 'var(--rule)';
+    let redeem = '';
+    if(red){
+      const pk = siwUi.pick, pc = pk==='otro' ? Number(siwUi.cost)||1 : pk!=null ? SIW_CARDS[pk].c : 0;
+      const can = pk!=null && pc<=t && (pk!=='otro' || siwUi.why.trim());
+      redeem = `<div class="siw-red">
+        <div class="siw-red-h">¿Qué carta canjea? <span>tiene ${t} ticket${t===1?'':'s'}</span></div>
+        ${[1,2,3].map(cost=>`<div class="siw-cost">${'<i></i>'.repeat(cost)}${cost} ticket${cost>1?'s':''}</div>
+          <div class="siw-cards">${SIW_CARDS.map((k,i)=>k.c!==cost ? '' : `<button type="button" class="siw-card" data-siw="pick" data-id="${s.id}" data-i="${i}" aria-pressed="${pk===i}" ${t<cost?'disabled':''}><b>${esc(k.n)}</b><small>${esc(k.d)}</small></button>`).join('')}</div>`).join('')}
+        <div class="siw-cards"><button type="button" class="siw-card" data-siw="pick" data-id="${s.id}" data-i="otro" aria-pressed="${pk==='otro'}" ${t<1?'disabled':''}><b>Otro</b><small>Motivo libre</small></button></div>
+        ${pk==='otro' ? `<div class="siw-otro"><input class="inp" id="siwWhy" data-siwin="why" placeholder="Motivo" value="${esc(siwUi.why)}" autocomplete="off">
+          <select class="inp" data-siwin="cost" aria-label="Coste">${[1,2,3].map(k=>`<option value="${k}" ${k===Number(siwUi.cost)?'selected':''} ${k>t?'disabled':''}>${k} ticket${k>1?'s':''}</option>`).join('')}</select></div>` : ''}
+        <div class="row siw-red-go"><button type="button" class="btn" data-siw="use" data-id="${s.id}" ${can?'':'disabled'}>${pk==null ? 'Canjear' : 'Canjear · −'+pc}</button>
+          <button type="button" class="btn ghost" data-siw="cancel">Cancelar</button>
+          ${isToday ? '' : `<span class="siw-dnote">con fecha ${siwFd(siwUi.date)}</span>`}</div>
+      </div>`;
+    }
+    const canjes = r.historial.filter(h=>h.tipo==='canje').slice().reverse();
+    const more = open ? `<div class="siw-more">
+        <div class="siw-hist-h">Canjes</div>
+        ${canjes.length ? `<ul class="siw-hist">${canjes.map(h=>`<li><time>${siwFd(h.fecha)}</time><span>${esc(h.carta||'Otro')}</span><em>−${h.coste||1}</em></li>`).join('')}</ul>` : `<p class="hint" style="margin:0">Todavía no ha canjeado ninguna carta.</p>`}
+        ${r.historial.length ? `<div class="row"><span class="siw-last">Último: ${siwMoveTxt(r.historial[r.historial.length-1])} · ${siwFd(r.historial[r.historial.length-1].fecha)}</span><div class="spacer"></div>
+          <button type="button" class="btn danger small" data-siw="undo" data-id="${s.id}">↶ Deshacer último</button></div>` : ''}
+      </div>` : '';
+    return `<article class="siw-st${siwUi.flash===s.id?' flash':''}" style="--edge:${edge}">
+      <div class="siw-top">
+        <div class="siw-who"><b>${esc(s.name)}</b>
+          <small>${cur ? `${siwChip(n)} <span class="siw-n">${n}/${SIW_MAX}</span>` : `${siwChip(SIW_MAX-1)} completa`}</small></div>
+        <span class="siw-tk${t?'':' zero'}" title="Tickets disponibles">${SIW_TICKET}<span class="siw-n">${t}</span></span>
+      </div>
+      ${siwBar(n)}
+      <div class="siw-acts">
+        <button type="button" class="btn siw-up" data-siw="up" data-id="${s.id}" ${cur?'':'disabled'} ${cur?`style="--lf:${cur[1]};--lt:${cur[2]}"`:''}>${cur ? '＋ '+esc(cur[0])+' completada' : 'Escalera completa'}</button>
+        <button type="button" class="btn ghost" data-siw="redeem" data-id="${s.id}" aria-expanded="${red}" ${t<1&&!red?'disabled':''}>Canjear</button>
+        <button type="button" class="btn ghost siw-dots" data-siw="more" data-id="${s.id}" aria-expanded="${open}" aria-label="Historial y deshacer" title="Historial y deshacer">···</button>
+      </div>${redeem}${more}
+    </article>`;
+  };
+
+  return `<div class="siw-page">
+    <div class="row siw-head"><h2 class="sec-title">Super Improver Wall</h2><div class="spacer"></div>
+      <label class="siw-date${isToday?'':' past'}" title="Fecha con la que se registran niveles y canjes"><span>Fecha</span><input type="date" data-siwin="date" value="${siwUi.date}" max="${siwToday()}"></label>
+      <select class="inp siw-sort" data-siwin="sort" aria-label="Ordenar">
+        ${[['lista','Orden de lista'],['nombre','Por nombre'],['nivel','Por nivel'],['tickets','Por tickets']].map(([v,l])=>`<option value="${v}" ${v===sort?'selected':''}>${l}</option>`).join('')}
+      </select></div>
+    ${c.students.length ? `<div class="siw-stats">
+      <div><b class="siw-n">${lv}</b><span>niveles completados</span></div>
+      <div><b class="siw-n">${lv*SIW_STARS}</b><span>estrellas</span></div>
+      <div class="tk"><b class="siw-n">${tk}</b><span>tickets sin canjear</span></div></div>` : ''}
+    <details class="siw-ladder"><summary>Niveles de tarjeta · ${SIW_STARS} estrellas cada una</summary>
+      <div class="siw-lv">${SIW_LEVELS.map((L,i)=>`<span style="--lv:${L[3]}"><i>${i+1}</i>${esc(L[0])}</span>`).join('')}</div></details>
+    ${c.students.length ? `<div class="siw-list">${rows.map(card).join('')}</div>`
+      : `<div class="vt-empty"><p>Esta clase no tiene alumnado todavía.</p><button class="btn" data-act="sbCls" data-c="${c.id}" data-v="alumnos" data-s="lista">Ir a la lista de clase</button></div>`}
+    <h3 class="siw-sub">Últimos movimientos</h3>
+    ${feed.length ? `<ul class="siw-feed">${feed.slice(0,15).map(({h,name})=>`<li><time>${siwFd(h.fecha)}</time><i style="background:${h.tipo==='nivel' ? (SIW_LEVELS[(h.nivel||1)-1]||SIW_LEVELS[0])[3] : 'var(--mark)'}"></i><span><b>${esc(name)}</b> ${siwMoveTxt(h)}</span></li>`).join('')}</ul>`
+      : `<p class="hint">Aquí aparecerán las tarjetas completadas y los canjes.</p>`}
+  </div>`;
+};
+
+document.addEventListener('click', e=>{
+  const b = e.target.closest('[data-siw]'); if(!b || b.closest('.backdrop')) return;
+  const c = course(); if(!c) return;
+  const a = b.dataset.siw, sid = b.dataset.id;
+  const st = sid && c.students.find(x=>x.id===sid);
+  const redraw = ()=>{ const y = window.scrollY; render(); window.scrollTo(0, y); siwUi.flash = null; };
+  if(a==='more'){ siwUi.open = siwUi.open===sid ? null : sid; return redraw(); }
+  if(a==='redeem'){ const on = siwUi.redeem!==sid; siwUi.redeem = on ? sid : null; siwUi.pick = null; siwUi.why = ''; siwUi.cost = 1; return redraw(); }
+  if(a==='cancel'){ siwUi.redeem = null; siwUi.pick = null; return redraw(); }
+  if(a==='pick'){ siwUi.pick = b.dataset.i==='otro' ? 'otro' : Number(b.dataset.i); redraw(); if(siwUi.pick==='otro'){ const w = document.getElementById('siwWhy'); if(w) w.focus(); } return; }
+  if(!st) return;
+  if(roYear){ alertBox('Estás consultando un curso archivado: no se puede cambiar.'); return; }
+  const r = siwOf(c, sid), fecha = siwUi.date || siwToday();
+  if(a==='up'){
+    if(r.niveles>=SIW_MAX) return;
+    r.niveles++; r.historial.push({fecha, tipo:'nivel', nivel:r.niveles, at:Date.now()});
+    siwUi.flash = sid;
+  } else if(a==='use'){
+    const pk = siwUi.pick; if(pk==null) return;
+    let carta, coste;
+    if(pk==='otro'){ carta = siwUi.why.trim(); coste = Math.max(1, Math.min(3, Number(siwUi.cost)||1)); if(!carta) return; }
+    else { carta = SIW_CARDS[pk].n; coste = SIW_CARDS[pk].c; }
+    if(siwTk(r)<coste) return;
+    r.gastados += coste; r.historial.push({fecha, tipo:'canje', carta, coste, at:Date.now()});
+    siwUi.redeem = null; siwUi.pick = null; siwUi.why = ''; siwUi.flash = sid;
+  } else if(a==='undo'){
+    const h = r.historial.pop(); if(!h) return;
+    if(h.tipo==='nivel') r.niveles = Math.max(0, r.niveles-1);
+    else r.gastados = Math.max(0, r.gastados-(h.coste||1));
+    if(siwTk(r)<1 && siwUi.redeem===sid) siwUi.redeem = null;
+  } else return;
+  save(); redraw();
+});
+document.addEventListener('input', e=>{
+  const t = e.target.closest('[data-siwin]'); if(!t) return;
+  if(t.dataset.siwin==='why'){
+    siwUi.why = t.value;
+    const go = t.closest('.siw-red') && t.closest('.siw-red').querySelector('[data-siw="use"]');
+    if(go){ const c = course(), r = c && siwPeek(c, siwUi.redeem); go.disabled = !(t.value.trim() && r && siwTk(r)>=Number(siwUi.cost)); }
+  }
+});
+document.addEventListener('change', e=>{
+  const t = e.target.closest('[data-siwin]'); if(!t) return;
+  const k = t.dataset.siwin, y = window.scrollY;
+  if(k==='sort'){ state.siwSort = t.value; save(); }
+  else if(k==='date'){ siwUi.date = t.value || siwToday(); }
+  else if(k==='cost'){ siwUi.cost = Number(t.value)||1; }
+  else return;
+  render(); window.scrollTo(0, y);
+});
+document.addEventListener('keydown', e=>{
+  if(e.key==='Enter' && e.target.id==='siwWhy'){ e.preventDefault(); const b = document.querySelector('.siw-red [data-siw="use"]'); if(b && !b.disabled) b.click(); }
+});
 
 /* =====================================================================
    EVENTOS DE LAS PÁGINAS
